@@ -262,4 +262,4 @@ This will ensure that the tests start with `BundleSettings`.
 
 
 !!! Tip 
-    See [the ISIS App Testing Notebook](App Testing Cookbook.md) for examples you can copy from. 
+    See [the ISIS App Testing Notebook](app-testing-cookbook.md) for examples you can copy from. 

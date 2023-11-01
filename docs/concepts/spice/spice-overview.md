@@ -33,7 +33,7 @@ processing will not be possible.
 
 At a minimum 'spiceinit' requires SpacecraftName, InstrumentId,
 TargetName, StartTime and StopTime. These keywords are loaded at the
-ingestion step ( [Importing Mission Data](../../getting-started/Using%20ISIS:%20First%20Steps/Locating%20and%20Ingesting%20Image%20Data.md) ).
+ingestion step ([Importing Mission Data](../../getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md)).
 
 See also: [**Mission Specific
 Programs**](http://isis.astrogeology.usgs.gov/Application/index.html)

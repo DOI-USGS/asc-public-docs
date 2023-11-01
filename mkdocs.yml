@@ -44,6 +44,8 @@ nav:
       - Locating and Ingesting Image Data: "getting-started/Using ISIS: First Steps/Locating and Ingesting Image Data.md"
       - Adding SPICE: "getting-started/Using ISIS: First Steps/Adding Spice.md"
       - Exporting ISIS Data: "getting-started/Using ISIS: First Steps/Exporting ISIS Data.md"
+    - Writing Tests:
+      - Writing Tests for ALE Drivers: "getting-started/writing-tests/writing-tests-for-ale-drivers.ipynb"
   - How-To Guides: 
     - Home: how-to-guides/index.md
     - Environment Setup and Maintenance:

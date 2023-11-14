@@ -50,6 +50,8 @@ nav:
       - Installing ISIS Via Anaconda:      how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md
       - Anaconda in a Network Environment: how-to-guides/environment-setup-and-maintenance/anaconda-in-a-network-environment.md
       - SPICE Kernel Updates in ISIS:      how-to-guides/environment-setup-and-maintenance/spice-kernel-updates-in-isis.md
+    - SPICE: 
+      - Creating Spice Config Files in SpiceQL: how-to-guides/SPICE/creating-spice-config-files-in-spiceql.md
     - Image Processing:
       - Map Projecting Images:             how-to-guides/image-processing/map-projecting-images.md
       - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md

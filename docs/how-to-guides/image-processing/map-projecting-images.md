@@ -27,11 +27,11 @@ The main application to project an image is
     that is supported within ISIS
   @TODO
   - Proper ingestion of the image data into ISIS ( [**Importing Mission
-    Data**](Map%20Projecting%20Images.md) )
+    Data**](map-projecting-images.md) )
   @TODO
-  - Available [**SPICE**](Map%20Projecting%20Images.md) information for every
+  - Available [**SPICE**](map-projecting-images.md) information for every
     individual image
-  - A [**map template**](../../concepts/Camera%20Geometry%20and%20Projections/Learning%20About%20Map%20Projections.md) to define an
+  - A [**map template**](../../concepts/camera-geometry-and-projections/learning-about-map-projections.md) to define an
     output map projection
 
 
@@ -39,10 +39,10 @@ The main application to project an image is
 
 -----
 
-[**ISIS Supported Projections**](../../concepts/Camera%20Geometry%20and%20Projections/Learning%20About%20Map%20Projections.md)
+[**ISIS Supported Projections**](../../concepts/camera-geometry-and-projections/learning-about-map-projections.md)
 
   - For detailed information about Map Projections within ISIS refer to
-    [Learning About Map Projections](../../concepts/Camera%20Geometry%20and%20Projections/Learning%20About%20Map%20Projections.md) .
+    [Learning About Map Projections](../../concepts/camera-geometry-and-projections/learning-about-map-projections.md) .
 
 
 ## Defining an Output Map 
@@ -63,8 +63,8 @@ parameter to a supported map projection.
   - In conjunction with the supplied map templates; the default for an
     output map are as follows:
     
-      - The original [**raw camera geometry**](../../concepts/Camera%20Geometry%20and%20Projections/Camera%20Geometry.md)
-      - [**Computed parameters**](../../concepts/Camera%20Geometry%20and%20Projections/Learning%20About%20Map%20Projections.md)
+      - The original [**raw camera geometry**](../../concepts/camera-geometry-and-projections/camera-geometry.md)
+      - [**Computed parameters**](../../concepts/camera-geometry-and-projections/learning-about-map-projections.md)
       - The target body is defined in the system defaults which can be
         found in $ISISDATA/base/templates/targets/.
 
@@ -74,7 +74,7 @@ parameter to a supported map projection.
   - The viewing geometry of an image(s) are important details to
     consider when defining an output map projection.
       - There are a number of applications that report relevant
-        [**camera geometry**](../../concepts/Camera%20Geometry%20and%20Projections/Camera%20Geometry.md) information for a given
+        [**camera geometry**](../../concepts/camera-geometry-and-projections/camera-geometry.md) information for a given
         image or a list of images.
       - Does your input cover the north or south pole of the body?
       - Do you want your output map to be centered at a specific
@@ -82,7 +82,7 @@ parameter to a supported map projection.
       - Do you plan on mosaicking your images together?
       - An output mosaic (digital image map-DIM) is a major
         consideration before projecting multiple images. Refer to
-        [**Making Mosaics**](../../concepts/Camera%20Geometry%20and%20Projections/Learning%20About%20Map%20Projections.md).
+        [**Making Mosaics**](../../concepts/camera-geometry-and-projections/learning-about-map-projections.md).
 
 
 #### The Custom Map Template 

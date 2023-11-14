@@ -39,45 +39,49 @@ nav:
   - Getting Started: 
     - Home: getting-started/index.md
     - CSM Stack:
-      - Generating an ISD, creating a CSM model, and converting coordinates: getting-started/CSM Stack/ImageToGroundTutorial.ipynb
+      - Generating an ISD, creating a CSM model, and converting coordinates: getting-started/csm-stack/image-to-ground-tutorial.ipynb
     - "Using ISIS: First Steps":
-      - Locating and Ingesting Image Data: "getting-started/Using ISIS: First Steps/Locating and Ingesting Image Data.md"
-      - Adding SPICE: "getting-started/Using ISIS: First Steps/Adding Spice.md"
-      - Exporting ISIS Data: "getting-started/Using ISIS: First Steps/Exporting ISIS Data.md"
+      - Locating and Ingesting Image Data: getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md
+      - Adding SPICE:                      getting-started/using-isis-first-steps/adding-spice.md
+      - Exporting ISIS Data:               getting-started/using-isis-first-steps/exporting-isis-data.md
   - How-To Guides: 
     - Home: how-to-guides/index.md
     - Environment Setup and Maintenance:
-      - Installing ISIS Via Anaconda: how-to-guides/Environment Setup and Maintenance/Installing ISIS Via Anaconda.md
-      - Anaconda in a Network Environment: how-to-guides/Environment Setup and Maintenance/Anaconda in a Network Environment.md
-      - SPICE Kernel Updates in ISIS: how-to-guides/Environment Setup and Maintenance/SPICE Kernel Updates in ISIS.md
-    - SPICE: 
-      - Creating Spice Config Files in SpiceQL: how-to-guides/SPICE/Creating Spice Config Files in SpiceQL.md
+      - Installing ISIS Via Anaconda:      how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md
+      - Anaconda in a Network Environment: how-to-guides/environment-setup-and-maintenance/anaconda-in-a-network-environment.md
+      - SPICE Kernel Updates in ISIS:      how-to-guides/environment-setup-and-maintenance/spice-kernel-updates-in-isis.md
     - Image Processing:
-      - Map Projecting Images: how-to-guides/Image Processing/Map Projecting Images.md
-      - Removing Striping Noise: how-to-guides/Image Processing/Removing Striping Noise.md
-      - General Utility with FX: how-to-guides/Image Processing/General Utility with FX.md
+      - Map Projecting Images:             how-to-guides/image-processing/map-projecting-images.md
+      - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md
+      - General Utility with FX:           how-to-guides/image-processing/general-utility-with-fx.md
     - Software Management: 
-      - ISIS Public Release Process: how-to-guides/Software Management/Public Release Process.md
-      - Software Support: how-to-guides/Software Management/Software Support.md
-      - Guidelines for Reporting Issues: how-to-guides/Software Management/Guidelines for Reporting Issues.md
+      - ISIS Public Release Process:       how-to-guides/software-management/public-release-process.md
+      - Software Support:                  how-to-guides/software-management/software-support.md
+      - Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
+      - Guidelines for Pull Requests: how-to-guides/software-management/guidelines-for-pull-requests.md
     - ISIS Developer Guides:
-      - How To Write ISIS Tests with CTest and GTest: how-to-guides/ISIS Developer Guides/Writing ISIS Tests with CTest and GTest.md
-      - App Testing CookBook: how-to-guides/ISIS Developer Guides/App Testing Cookbook.md
-      - Class Requirements For Using Doxygen Tags: how-to-guides/ISIS Developer Guides/Class Requirements For Using Doxygen Tags.md
-      - Developing ISIS3 with cmake: how-to-guides/ISIS Developer Guides/Developing ISIS3 with cmake.md
+      - How To Write ISIS Tests with CTest and GTest: how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md
+      - App Testing CookBook:                         how-to-guides/isis-developer-guides/app-testing-cookbook.md
+      - Class Requirements For Using Doxygen Tags:    how-to-guides/isis-developer-guides/class-requirements-for-using-doxygen-tags.md
+      - Developing ISIS3 with cmake:                  how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md
   - Concepts: 
-    - Home: concepts/index.md
+    - Home:     concepts/index.md
     - Glossary: concepts/glossary/glossary.md
     - Camera Geometry and Projections:
-      - Camera Geometry: concepts/Camera Geometry and Projections/Camera Geometry.md
-      - Learning About Map Projections: concepts/Camera Geometry and Projections/Learning About Map Projections.md
+      - Camera Geometry:                     concepts/camera-geometry-and-projections/camera-geometry.md
+      - Learning About Map Projections:      concepts/camera-geometry-and-projections/learning-about-map-projections.md
     - SPICE:
-      - SPICE Overview: concepts/SPICE/SPICE Overview.md
-      - SPICE Position Functions and Requirements: concepts/SPICE/SPICE Position Functions and Requirements.md
+      - SPICE Overview:                            concepts/spice/spice-overview.md
+      - SPICE Position Functions and Requirements: concepts/spice/spice-position-functions-and-requirements.md
     - Image Processing:
-      - The Power of Spatial Filters: concepts/Image Processing/The Power of Spatial Filters.md
-      - Overview of Noise and Artifacts: concepts/Image Processing/Overview of Noise and Artifacts.md
-      - Overview of Radiometric Calibration: concepts/Image Processing/Overview of Radiometric Calibration.md
+      - The Power of Spatial Filters:        concepts/image-processing/the-power-of-spatial-filters.md
+      - Overview of Noise and Artifacts:     concepts/image-processing/overview-of-noise-and-artifacts.md
+      - Overview of Radiometric Calibration: concepts/image-processing/overview-of-radiometric-calibration.md
+    - Control Networks:
+      - Automatic Registration:         concepts/control-networks/automatic-registration.md
+      - Autoseed:                       concepts/control-networks/autoseed.md
+      - Image Registration:             concepts/control-networks/image-registration.md
+      - Multi-Instrument Registration:  concepts/control-networks/multi-instrument-registration.md
   - Manuals: manuals/index.md
 
 extra_css:

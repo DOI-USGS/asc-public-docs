@@ -28,7 +28,7 @@ though it does not require radiometric calibration).
       - **Longitude Direction = East** Longitude values increase to the
         east
 
-Definitions for the geometric reference terms can be found in [Learning About Map Projections](../Camera%20Geometry%20and%20Projections/Learning%20About%20Map%20Projections.md)
+Definitions for the geometric reference terms can be found in [Learning About Map Projections](../camera-geometry-and-projections/learning-about-map-projections.md)
 
 
 ## Camera Information Applications 
@@ -175,7 +175,7 @@ Enceladus. In this example, **phocube** will generate a 6-band output
 cube.
 
 @TODO
-!!! Note "The image used in this example has been processed through Level1 \[ingestion, spiceinit and radiometric calibration\]. Refer to: [Working with Cassini ISS Data](Camera%20Geometry.md)"
+!!! Note "The image used in this example has been processed through Level1 \[ingestion, spiceinit and radiometric calibration\]. Refer to: [Working with Cassini ISS Data](camera-geometry.md)"
 
 Each band will contain the information asked for (parameters set to
 true) in the following command:

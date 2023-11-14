@@ -67,7 +67,7 @@ We use these four categories to cover the range of potential docs while clarifyi
 | **Has the Goal of** | Enabling Beginners    | Showing How To Solve A Problem | Give Detailed Written Explanations | Give Dry Descriptions of Libraries, Services and Apps |
 | **Example**  | Jupyter notebook with toy data on how to ingest and project images | A breakdown of quirks working with Themis Images  |   Write-up on how ISIS defines projections | ISIS library Doxygen reference |
  
-This website structure borrows from the [Divio documentation system](https://documentation.divio.com/), except adapted to more specifically adhere to how our software is already structured, renamed the categories to be more specific, and have more focus on the composition (or mode of writing) of the docs to reduce ambiguity. One can't expect any categorical structure for software documentation to be orthogonal to eachother. There will always exist some degree of overlap between categories as the quantity of documentation grows. Documentation in one category can easily have overlapping information with those in others. However, composition of the doc (e.g., jupyter notebook with an explicit starting and end point, short how-to guide with code examples but ambigious starting point and end point, written explanation without code, doxygen API reference) is less ambigious that whether or not your docs can be considered a guide or a tutorial.    
+This website structure borrows from the [Divio documentation system](https://documentation.divio.com/), except adapted to more specifically adhere to how our software is already structured, renamed the categories to be more specific, and have more focus on the composition (or mode of writing) of the docs to reduce ambiguity. One can't expect any categorical structure for software documentation to be orthogonal to each other. There will always exist some degree of overlap between categories as the quantity of documentation grows. Documentation in one category can easily have overlapping information with those in others. However, composition of the doc (e.g., jupyter notebook with an explicit starting and end point, short how-to guide with code examples but ambiguous starting point and end point, written explanation without code, doxygen API reference) is less ambiguous that whether or not your docs can be considered a guide or a tutorial.    
 
 
 ### Getting Started Tutorials
@@ -89,7 +89,7 @@ Good getting started docs should:
 Concrete things your tutorial needs: 
 
 - If your tutorial requires installing software, list what software and their versions and clear instructions on how to install them. Feel free to point to other points of the doc that already have boilerplate info like "Go here to read on how to set up a custom ISISPreferences file". 
-- If your tutorial has data, use generative data or data that is in the repo. Avoid external data dependencies. Before data is committed into the repo, check if [existing data can be re-used](./data/). If new data needs to be committed, make sure it is small so as not to increase the data burden.   
+- If your tutorial has data, use generative data or data that is in the repo. Avoid external data dependencies. Before data is committed into the repo, check if [existing data can be reused](./data/). If new data needs to be committed, make sure it is small so as not to increase the data burden.   
 - Make sure to make the lesson clear in the title. Also, make it clear in the tutorial with something like "Lessons learned in this tutorial:". 
 
 
@@ -105,7 +105,7 @@ How-to guides are much like recipes in a recipe book. Write how-to docs to solve
 Similar to getting started guides in that they explain to users how to perform some valuable tasks with the software, but distinct in that they:
 
 1. Solve practical problems for more experienced users
-1. Offer more ambiguous starting points; they should be re-usable in many different contexts 
+1. Offer more ambiguous starting points; they should be reusable in many different contexts 
 1. Can be much shorter than getting started docs
 
 Examples: 
@@ -136,5 +136,5 @@ Examples:
 Software manuals centered on the code of the library. These are generally links to the library's programmatically generated API docs. Think Sphinx docs and/or Doxygen-generated docs. 
 
 Examples: 
-* Programatically Generated Python/C++ API docs from inline doc strings
+* Programmatically Generated Python/C++ API docs from inline doc strings
 * RESTful API docs from an OpenAPI spec file 

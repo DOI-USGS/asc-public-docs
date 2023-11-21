@@ -3,4 +3,4 @@ mkdocs-material
 neoteroi-mkdocs
 codespell
 linkchecker
-mknotebooks
+git+https://github.com/Kelvinrr/mknotebooks.git

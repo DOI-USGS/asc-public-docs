@@ -1,69 +1,31 @@
-# variables in gitlab:
-#   S3_BUCKET_NAME
-#   S3_BUCKET_SUBDIR
-#   AWS_ACCESS_KEY_ID
-#   AWS_SECRET_ACCESS_KET
-#   AWS_DEFAULT_REGION
+image: continuumio/miniconda3:latest
 
-stages:
-  - build
-  - test
-  - deploy
-
-"Build MkDocs":
-  image: "python:3"
-  stage: build
-  before_script:
-    - pip install -r requirements.txt
-  script: 
-    - mkdocs build
-  artifacts:
-    paths:
-      - site/
-
-
-"Spell Check Docs":
-  image: "python:3"
-  stage: test
-  before_script:
-    - pip install codespell
-  script: 
-    - codespell site/
-
-
-"Link Check Docs":
-  image: "python:3"
-  stage: test
-  before_script:
-    - pip install linkchecker
-  script: 
-    - linkchecker site/index.html --ignore-url '(asc-public-docs/site/docs/software/|manuals/)' 
-
-
-"Grammar Check Docs":
-  image: "node:latest"
-  stage: test
-  before_script:
-    -  npm i gramma -g
-  script: 
-    - git diff --name-only origin/main | grep -e .md -e .MD | sed 's/^/"/;s/$/"/' | xargs -t -L1 gramma check -p || true 
-  allow_failure: 
-    exit_codes:
-      - 1
-
-
-"Sync with S3":
-  image: "python:3"
-  stage: deploy
-  dependencies:
-    - "Build MkDocs"
-  only: 
-    - main
-  before_script:
-    - pip install awscli
-    - aws --version
-  script: 
-    - aws s3 sync site/ s3://${S3_BUCKET_NAME}/${S3_BUCKET_SUBDIR} --delete
-  environment:
-    name: Site
-    url: http://${S3_BUCKET_NAME}.s3-website.${AWS_DEFAULT_REGION}.amazonaws.com/${S3_BUCKET_SUBDIR}
+clone_github:
+    stage: deploy 
+    image: ubuntu:18.04
+    before_script:
+        - apt-get update -y && apt-get install openssh-client -y
+        - apt install git -y
+        - eval $(ssh-agent -s)
+        - echo "$GIT_SSH_PRIVATE_KEY" | openssl base64 -A -d | ssh-add -
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - ssh-keyscan $GIT_LAB_HOST >> ~/.ssh/known_hosts
+        - chmod 644 ~/.ssh/known_hosts
+        - git config --global user.name "krodriguez"
+        - git config --global user.email "krodriguez@usgs.gov"
+        - ssh "git@$GIT_LAB_HOST"
+    script:
+        - echo $SOURCE_REPOSITORY
+        - git config --global http.sslVerify false
+        - rm -rf spiceql  # Needed to allow multiple CI runs
+        - git config --global user.name "krodriguez"
+        - git config --global user.email "krodriguez@usgs.gov"
+        - git clone --mirror https://github.com/DOI-USGS/asc-public-docs.git asc-public-docs
+        - cd spiceql
+        - git remote remove origin
+        - git remote add origin $DESTINATION_REPOSITORY
+        - git push -f --prune --all
+        - git push -f --prune --tags
+    only:
+        - branches

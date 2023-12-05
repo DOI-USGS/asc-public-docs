@@ -3,6 +3,7 @@
 *[Bit]: Short for binary digit, which in a computer is the smallest unit of storage. Bits are either "0" or "1". 
 *[Byte]: Short for binary term. A byte is a collection of computer bits. On most modern computers, a byte is a group of eight bits. Typically, computers handle and store information in binary (base-2), and a group of eight bits represents an eight digit binary number.
 *[CSM]: Community Sensor Model. A standard for sensor models USGS uses for interoperability. 
+*[EMCAscript]: A standard for scripting languages. C++'s standard library uses the EMCAscript standard for regular expressions.  
 *[SPICE]: Spacecraft & Planetary ephemerides, Instrument C-matrix and Event kernels. SPICE refers to all the information required by ISIS in order to compute and map each image pixel onto a surface with reference to spacecraft position, sun position, instrument, and mission activities. ISIS uses software (ToolKit) supplied by the Navigation and Ancillary Information Facility (NAIF) for SPICE access and kernel management (Refer to spiceinit). 
 *[NAIF]: Navigation and Ancillary Information Facility. They engineered and support the SPICE observation geometry information system. 
 *[NULL]: NULL is a Special Pixel value that is tracked and reported to the user. NULL represents "No Data". NULL is set in all 8, 16, 32-bit type image data. 

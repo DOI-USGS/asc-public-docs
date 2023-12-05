@@ -57,6 +57,11 @@ jobs:
           codespell site/
       - name: Grammar Check
         run: |
+          git remote add origin https://github.com/DOI-USGS/asc-public-docs.git 
+          git remote fetch origin main
+          # List the files that changed 
+          git diff --name-only origin/main
+          # Grammar check only those files
           git diff --name-only origin/main | grep -e .md -e .MD | sed 's/^/"/;s/$/"/' | xargs -t -L1 gramma check -p || true
 
   Link-Check:

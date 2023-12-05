@@ -58,7 +58,7 @@ jobs:
       - name: Grammar Check
         run: |
           git remote add origin https://github.com/DOI-USGS/asc-public-docs.git 
-          git remote fetch origin main
+          git fetch origin main
           # List the files that changed 
           git diff --name-only origin/main
           # Grammar check only those files

@@ -57,7 +57,5 @@ Before you consider contributing new documentation, ask yourself what category i
 
 Regarding software manuals, issues or contributions should be addressed to the repository for that specific project. The software manuals should have links to their repositories. 
 
-You can submit any issues (e.g., addressing grammar errors, factual inacuracies) and find more info on how to contribute new docs through the site's [git repository](https://code.usgs.gov/astrogeology/asc-public-docs). If you find an issue somewhere in the repo, we strongly encourage users to also submit a change to the git repository to be reviewed, merged, and deployed. 
-
-
+You can submit any issues (e.g., addressing grammar errors, factual inacuracies) and find more info on how to contribute new docs through the site's [git repository](https://github.com/DOI-USGS/asc-public-docs.git). If you find an issue somewhere in the repo, we strongly encourage users to also submit a change to the git repository to be reviewed, merged, and deployed. 
 

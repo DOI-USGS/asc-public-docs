@@ -244,6 +244,3 @@ Example output for querying all kernels for Messenger: https://gist.github.com/K
 4. Test by creating a new gtest running `utils::listMissionKernels` and manually confirming that all kernels are accounted for. Look at FunctionalTestsSpiceQueries.cpp for some examples. 
 5. Add new config files to CMakeLists.txt's SPICEQL_CONFIG_FILES variable to make sure they get installed. 
  
-!!! Warning "Software In Beta"
-    As this library is a work in progress, testing these queries isn't 100% figured out, In the long term, we will test against ISIS's kernel search and make sure we get the response. 
-

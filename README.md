@@ -1,4 +1,4 @@
-# asc-public-docs
+![Static Badge](https://img.shields.io/badge/docs-USGS%20Astro-blue?style=flat-square&link=https%3A%2F%2Fastrogeology.usgs.gov%2Fdocs%2F)
 
 ## Getting started
 

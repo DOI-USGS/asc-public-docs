@@ -68,7 +68,7 @@ nav:
       - Developing ISIS3 with cmake:                  how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md
   - Concepts: 
     - Home:     concepts/index.md
-    - Glossary: concepts/glossary/glossary.md
+    - Glossary: concepts/glossary.md
     - Camera Geometry and Projections:
       - Camera Geometry:                     concepts/camera-geometry-and-projections/camera-geometry.md
       - Learning About Map Projections:      concepts/camera-geometry-and-projections/learning-about-map-projections.md

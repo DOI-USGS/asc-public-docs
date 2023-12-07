@@ -11,7 +11,7 @@ There are many niche topics important to understand how SPICE and kernels work. 
 Here are some resources: 
 
 * [Intro to Kernels](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/Tutorials/pdf/individual_docs/12_intro_to_kernels), includes descriptions of kernel types.
-* [Useful glossary of terms](../../concepts/glossary/glossary.md)
+* [Useful glossary of terms](../../concepts/glossary.md)
 * [Kerneldbgen](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/kerneldbgen/kerneldbgen.html), used to create ISIS DB files, docs has useful descriptions of Kernel qualities.
 * [NAIF required reading on SPICE](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/index.html).
 

@@ -10,7 +10,7 @@ There are many niche topics important to understand how SPICE and kernels work. 
 
 Here are some resources: 
 
-* [Intro to Kernels](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/Tutorials/pdf/individual_docs/12_intro_to_kernels), includes descriptions of kernel types:
+* [Intro to Kernels](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/Tutorials/pdf/individual_docs/12_intro_to_kernels), includes descriptions of kernel types.
 * [Useful glossary of terms](../../concepts/glossary/glossary.md)
 * [Kerneldbgen](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/kerneldbgen/kerneldbgen.html), used to create ISIS DB files, docs has useful descriptions of Kernel qualities.
 * [NAIF required reading on SPICE](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/index.html).
@@ -21,7 +21,7 @@ Issues with ISIS's approach:
 
 * DB files are co-located with kernels and, therefore, it is difficult to release them separately from the kernels.
 * Kernels are tied to the ISIS data area and cannot be used directly on NAIF-distributed kernels. 
-* As these DB files are in the ISIS data area, they cannot be versioned and controlled separately.
+* As these DB files are in the ISIS data area, they cannot be versioned and controlled separately. 
 * If you add kernels, you have to regenerate the kernel files. 
 * ISIS's code for searching and exploiting Kernels is not modular. 
 * Kernel search works on a per-image basis and cannot be used for arbitrary SPICE queries. 
@@ -30,12 +30,12 @@ SpiceQL more-or-less rewrites much of ISIS's Kernel searching and exploitation c
 
 Distinctions in SpiceQL's approach: 
 
-* DB files, here referred to as Mission config files, are located JSON files that can be shipped separately from data installs.
+* DB files, here referred to as Mission config files, are located as JSON files that can be shipped separately from data installs. 
 * Config files leverage common Kernel naming schemes so you can use both NAIF-installed kernels but also kernels from USGS Astro or any other source. 
-* Config files are source-controlled.
+* Config files are source-controlled. 
 * If you add Kernels, you can easily modify them locally, and contribute your changes for the new Kernels. 
 * Sugar Spice modularizes most of the Kernel code for search and I/O. 
-* Config files can be used for more generalized kernel queries
+* Config files can be used for more generalized kernel queries 
 
 ## Understanding how ISIS stores Kernel metadata
 
@@ -48,15 +48,15 @@ Structure of ISIS data area, ignoring non-kernel data:
         └── <mission>/
             └── kernels/
                 ├── <Binary Kernel Type>/
-                │   ├── <kernel db files> 
-                │   ├── <Kernel makedb files> 
+                │   ├── <kernel db files>
+                │   ├── <Kernel makedb files>
                 │   └── <kernel files>
                 └── <Text Kernel Type>/
                     ├── <kernel db files> 
                     └── <kernel files>
 ```
 
-Where ``<mission>`` the name of any particular mission (MRO, Odyssey, Messenger, etc.), ``<Kernel Type>`` is with a slightly different structure if the kernel type is binary (CK, SPK, etc.) or text (IK, IAK, LSK, etc.), This section focuses on the Kernel "makedb" and "db" files. 
+Where ``<mission>`` is the name of any particular mission (MRO, Odyssey, Messenger, etc.), ``<Kernel Type>`` is with a slightly different structure if the kernel type is binary (CK, SPK, etc.) or text (IK, IAK, LSK, etc.), This section focuses on the Kernel "makedb" and "db" files. 
 
 Each kernel directory (ck, spk, ik, etc.) has a file called ``kernels.[0-9]{4}.db`` where ``[0-9]{4}`` is the version of the db file. As ISIS kernel metadata is not version controlled, it uses a proprietary versioning system where the 4 numbers after the first extension delimiter is a version number.  
 
@@ -104,10 +104,10 @@ Things to note:
 
 * ``type=SPK`` describes the Kernel type, this populates the Object name in the output PVL. In this case, ``Object = SpacecraftPosition``  
 * ``lsk='$base/kernels/lsk/naif????.tls`` describes the LSK dependencies, sometimes you also see ``SCLK=<path>`` in cases where a specific SCLK is required. Populates the dependencies group, in this case ``LeapsecondKernel = $base/kernels/lsk/naif0011.tls``
-* ``reconfilter=msgr_20040803*.bsp``describes the format (using Unix globbing wildcards) for this mission's reconstructed kernels for the given kernel type (SPK). Files matching these patterns are globbed, then: 
-  1. kerneldb gen uses NAIFs cspice toolkit to compute the time ranges for the kernels.
-  2. Different filters. ``predictfilter`` matches are labeled as predicted, ``reconfilter`` matches are labeled as reconstructed, etc.   
-  3. This process works very well as the names for mission kernels are very well structured. 
+* ``reconfilter=msgr_20040803*.bsp`` describes the format (using Unix globbing wildcards) for this mission's reconstructed kernels for the given kernel type (SPK). Files matching these patterns are globbed, then: 
+    1. kerneldb gen uses NAIFs cspice toolkit to compute the time ranges for the kernels.
+    2. Different filters. ``predictfilter`` matches are labeled as predicted, ``reconfilter`` matches are labeled as reconstructed, etc.   
+    3. This process works very well as the names for mission kernels are very well structured. 
 
 **Text Kernel file, $ISISDATA/mro/kernels/ik/kernels.0003.db**
 
@@ -131,7 +131,7 @@ Things to note:
     EndObject
 ```
 
-Here, like with most IK db files, the IK selection is instrument-specific, so the ``Match`` key is used by ISIS to specify image label keywords that must match to select this kernel. These usually have no ``makedb`` and are handwritten as scpice is not needed to extract kernel times. 
+Here, like with most IK db files, the IK selection is instrument-specific, so the ``Match`` key is used by ISIS to specify image label keywords that must match to select this kernel. These usually have no ``makedb`` and are handwritten as cspice is not needed to extract kernel times. 
 
 The last example, a more complex example where kernel selection requires multiple kernels selected from the same kernel type, is used in situations where a particular kernel has time-based dependencies. 
 
@@ -204,16 +204,12 @@ Everything here, except kernel start and stop times, requires a knowledgeable in
 
 **Example Configuration File:**
 
-Here, we'll run through an example config file, again for Messenger, encapsulating a lot of the information put into ISIS between the .db and makedb files.  
-
-.. literalinclude:: ../../SpiceQL/db/mess.json 
-   :language: JSON
-   :linenos:
+Here, we'll run through an [example config file](https://github.com/DOI-USGS/SpiceQL/blob/main/SpiceQL/db/mess.json), again for Messenger, encapsulating a lot of the information put into ISIS between the .db and makedb files.  
 
 
 Things to note: 
 
-* the JSON format mimics ISIS's directory structure for kernels.  With the tree: 
+* The JSON format mimics ISIS's directory structure for kernels.  With the tree: 
 
 ```
    
@@ -235,9 +231,9 @@ Things to note:
 
 Example output for querying all kernels for Messenger: https://gist.github.com/Kelvinrr/3e383d62eead58c016b7165acdf64d60
 
-## The Flowchart™
+## The Flowchart
 
-1. Identify the mission, create a new JSON file called <mission>.json, and try to stick to NAIF abbreviations (see: https://naif.jpl.nasa.gov/pub/naif/pds/data/) 
+1. Identify the mission, create a new JSON file called `<mission>.json`, and try to stick to NAIF abbreviations (see: https://naif.jpl.nasa.gov/pub/naif/pds/data/) 
 2. Do binary kernels first (CKs, SPKs, etc.): 
     * Look at the makedb file, translate the wildcards to EMCAscript, and place them under their respective quality keyword 
     * If the list of regexes (or any list) has only one element, feel free to write it as a string, not an array

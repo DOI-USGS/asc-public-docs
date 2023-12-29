@@ -15,6 +15,7 @@ theme:
         - navigation.indexes
         - search.suggest
         - search.suggest
+        - content.code.copy
 
     palette:
         # Palette toggle for dark mode
@@ -56,7 +57,7 @@ nav:
       - Map Projecting Images:             how-to-guides/image-processing/map-projecting-images.md
       - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md
       - General Utility with FX:           how-to-guides/image-processing/general-utility-with-fx.md
-    - Software Management: 
+    - Software Management:
       - ISIS Public Release Process:       how-to-guides/software-management/public-release-process.md
       - Software Support:                  how-to-guides/software-management/software-support.md
       - Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
@@ -73,6 +74,14 @@ nav:
     - Camera Geometry and Projections:
       - Camera Geometry:                     concepts/camera-geometry-and-projections/camera-geometry.md
       - Learning About Map Projections:      concepts/camera-geometry-and-projections/learning-about-map-projections.md
+    - ISIS Fundamentals:
+      - Introduction to ISIS:              how-to-guides/isis-fundamentals/introduction.md
+      - ISIS Cube Format:                  how-to-guides/isis-fundamentals/cube-format.md
+      - ISIS Attached Spice Format:        how-to-guides/isis-fundamentals/spice-format.md
+      - ISIS Kernel Load Selection:        how-to-guides/isis-fundamentals/kernel-selection.md
+      - Understanding Bit Types:           how-to-guides/isis-fundamentals/bit-types.md
+      - Special Pixels:                    how-to-guides/isis-fundamentals/special-pixels.md
+      - FAQ:                               how-to-guides/isis-fundamentals/faq.md
     - SPICE:
       - SPICE Overview:                            concepts/spice/spice-overview.md
       - SPICE Position Functions and Requirements: concepts/spice/spice-position-functions-and-requirements.md
@@ -90,12 +99,14 @@ nav:
 extra_css:
   - css/neoteroi-mkdocs.css
   - css/extras.css
+  - https://asc-public-docs.s3.us-west-2.amazonaws.com/common/uswds/3.6.0/css/uswds.css
   - https://asc-public-docs.s3.us-west-2.amazonaws.com/common/uswds/3.6.0/css/common.css
   - https://asc-public-docs.s3.us-west-2.amazonaws.com/common/uswds/3.6.0/css/custom.css
 
 
 extra_javascript: 
   - https://asc-public-docs.s3.us-west-2.amazonaws.com/common/uswds/3.6.0/js/uswds-init.min.js
+  - https://asc-public-docs.s3.us-west-2.amazonaws.com/common/uswds/3.6.0/js/uswds.min.js
 
 plugins:
   - search

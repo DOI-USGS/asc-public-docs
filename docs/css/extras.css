@@ -1,2 +1,6 @@
-:root {
-  }
+/* This handles the issue where mkdocs-css and uswds-css are in conflict. Both try to set html to a specific font-size percentage. 
+    mkdocs-css makes the font too large causing the usa banner to be too large. uswds-css makes the page font too small. 
+    Therefore a solution is to set the font-size percentage in the middle.*/
+html {
+  font-size: 120%!important;
+}

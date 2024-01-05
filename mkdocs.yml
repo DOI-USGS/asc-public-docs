@@ -44,6 +44,8 @@ nav:
       - Locating and Ingesting Image Data: getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md
       - Adding SPICE:                      getting-started/using-isis-first-steps/adding-spice.md
       - Exporting ISIS Data:               getting-started/using-isis-first-steps/exporting-isis-data.md
+    - Software Management:
+      - Contributing with Git:             getting-started/software-management/contributing-with-git.md
   - How-To Guides: 
     - Home: how-to-guides/index.md
     - Environment Setup and Maintenance:

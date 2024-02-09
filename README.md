@@ -1,31 +1,40 @@
-# asc-public-docs
+![Static Badge](https://img.shields.io/badge/docs-USGS%20Astro-blue?style=flat-square&link=https%3A%2F%2Fastrogeology.usgs.gov%2Fdocs%2F)
 
 ## Getting started
 
 ### Cloning and Rendering the Docs Locally
 
-```bash   
-# 1. Clone the repository to your local machine:   
-git clone git@code.usgs.gov:astrogeology/asc-public-docs.git
+```bash
+# 1. Create a fork of the repository (the fork button is on the upper right corner on GitHub)
+
+# 2. Clone the repository to your local machine, replace <fork url> with your own fork.   
+git clone <fork url>
 cd asc-public-docs/
 
-# 2. Create a branch to track your work
+# 3. Create a branch to track your work
 git checkout -b your-branch-name 
 
-# 3. install dependencies 
+# 4. install dependencies 
 pip install -r requirements.txt
 
-# 4. Make your changes to the code 
+# 5. Make your changes to the code
+# See "Adding Your Files" in the readme for details
 # ...
 
-# 5. Preview your changes, in the root of the repo run
+# 6. Preview your changes, in the root of the repo run
 mkdocs serve
-
-# 6. Push your changes to the branch
-git push origin your-branch-name
 ```
 
-### Adding your files
+To contribute changes back in: 
+
+```bash
+# 1. push changes back into your fork
+git push origin your-branch-name
+
+# Create a PR on this repository 
+```
+
+### Adding Your Files
 
 > See [mkdocs material docs](https://squidfunk.github.io/mkdocs-material/getting-started/) for information on how to work with mkdoc's material theme and it's features. 
 
@@ -46,8 +55,6 @@ git push origin your-branch-name
 1. Once all the reviewers have approved your changes, one of the maintainers will merge your MR into the main branch.
 1. The continuous deployment system should automatically deploy your new changes. 
 1. Celebrate your contribution! :tada:
-
-
 
 ## Understanding The Doc System
 

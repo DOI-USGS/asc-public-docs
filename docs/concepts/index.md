@@ -6,7 +6,7 @@ Concept docs are understanding-oriented docs. The focus is on explaining a topic
 
 Use the table of contents on the left to browse docs covering different concepts. 
 
-Good place to start is with the [glossary](glossary/glossary.md)
+Good place to start is with the [glossary](glossary.md)
 
 ## For Authors 
 

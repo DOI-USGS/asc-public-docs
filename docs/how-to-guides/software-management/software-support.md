@@ -19,7 +19,7 @@ Support sprints are dedicated efforts, time-boxed to 3 weeks quarterly. We sched
 ??? Question "How do I get Notified of Support Sprints and prioritization meetings?" 
     We email anyone who has opted in to our software support newsletter which includes when the support sprint was scheduled, when the prioritization meetings are happening, and a link to the meeting. These are sent shortly after it's scheduled and again right before the meeting. 
     
-    Sign up at [here](https://public.govdelivery.com/accounts/USDOIGS/signup/39118). 
+    Sign up [here](https://public.govdelivery.com/accounts/USDOIGS/signup/39118). 
 
 ### Step 1: Scheduling the Support Sprint
 While there is some leeway in the exact timing of each support sprint, the sprints must be scheduled quarterly and should be scheduled roughly 3 months apart. Project scheduling should be coordinated by the project/technical lead and the software lead during routine software scheduling meetings.

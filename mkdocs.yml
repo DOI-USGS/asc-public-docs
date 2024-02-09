@@ -85,6 +85,8 @@ nav:
       - Autoseed:                       concepts/control-networks/autoseed.md
       - Image Registration:             concepts/control-networks/image-registration.md
       - Multi-Instrument Registration:  concepts/control-networks/multi-instrument-registration.md
+    - Sensor Models:
+      - Sensor Models:   concepts/sensor-models/sensor-models.md
   - Manuals: manuals/index.md
 
 extra_css:

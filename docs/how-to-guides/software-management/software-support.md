@@ -24,12 +24,11 @@ Support sprints are dedicated efforts, time-boxed to 3 weeks quarterly. We sched
 ### Step 1: Scheduling the Support Sprint
 While there is some leeway in the exact timing of each support sprint, the sprints must be scheduled quarterly and should be scheduled roughly 3 months apart. Project scheduling should be coordinated by the project/technical lead and the software lead during routine software scheduling meetings.
 
-After setting up the sprint schedule, the technical lead should create a software support board and communicate the schedule to contributors.
+After setting up the sprint schedule, we create a software support board and communicate the schedule to contributors. The prioritization meeting should be scheduled some day the week before the support sprint. 
 
 ### Step 2: Setting up the Project Board
 Immediately after scheduling the support sprint, the technical lead should create a project board to facilitate the tracking, prioritization, and assignment of issues.  This has traditionally taken the form of a GitHub [projects board](https://github.com/orgs/DOI-USGS/teams/astrogeology-developers/projects) or a GitHub [discussion post](https://github.com/DOI-USGS/ISIS3/discussions), both of which provide automated tracking for issues that are hosted on GitHub. 
 
-!!! Note "Due to recent changes in permissions and organizational boundaries, project boards can only be created as private (within-organization), which precludes external contributors from viewing or editing the board."
 
 ### Step 3: Notifying the Community
 
@@ -73,23 +72,15 @@ Prioritization meetings are typically a loosely guided discussion in which the t
 1. Ask for any closing remarks
 
 ??? Note "Issue deferral"
-    Deferring an issue generally means "this is a good, important issue, but it requires further discussion." This discussion should not interrupt the flow of prioritization.
+    Deferring an issue generally means "this is a good, important issue, but it requires further discussion." This discussion should not interrupt the flow of prioritization. 
 
 
 ## Continuous Support 
 
-An additional 6 hours per week between sprints are dedicated for handling small issues. We refer to this as continuous support, as it's support time between dedicated sprints. This is mostly to stay on top of GitHub notifications.  
+Internal developers have time to perform basic support tasks throughout the week. We refer to this as continuous support, as it's support time between dedicated sprints. This is to stay on top of GitHub notifications. 
 
-Examples of what a developer is expected to be worked during these continuous support hours: 
+As a user, you should expect feedback on an issue within a week of posting. If urgent, you can ping `@DOI-USGS/astrogeology-developers`. If the GitHub issue is open with no activity for a long enough time it will become stale and eventually auto-closed. Often, issues are not ignored, but are saved for a support sprint. 
 
-1. Review small PRs 
-1. Iterate on already open PRs 
-1. Comment on issues 
-1. Participate in discussion boards
-1. Resolving small issues 
+??? Danger "Continuous Support and internal Developers"
 
-Examples of what a developer is **not** expected to be worked during these continuous support hours: 
-
-1. Resolving complex issues requiring new PRs
-1. Reviewing large PRs 
-1. Non-support related project work
+    See the [internal software support docs](https://code.chs.usgs.gov/asc/ASC_Software_Docs/-/blob/main/Software%20Management/Continuous%20Support.md) for more information on continuous support. 

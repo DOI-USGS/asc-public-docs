@@ -33,7 +33,7 @@ Immediately after scheduling the support sprint, the technical lead should creat
 
 ### Step 3: Notifying the Community
 
-The community is notifed via an email sent to anyone [subscribed to the newsletter](https://public.govdelivery.com/accounts/USDOIGS/signup/39118). 
+The community is notified via an email sent to anyone [subscribed to the newsletter](https://public.govdelivery.com/accounts/USDOIGS/signup/39118). 
 
 This email should include:
 
@@ -76,11 +76,11 @@ Prioritization meetings are typically a loosely guided discussion in which the t
     Deferring an issue generally means "this is a good, important issue, but it requires further discussion." This discussion should not interrupt the flow of prioritization.
 
 
-## Continous Support 
+## Continuous Support 
 
-An additional 6 hours per week between sprints are dedicated for handling small issues. We refer to this as continious support, as it's suppport time between dedicated sprints. This is mostly to stay on top of GitHub notifications.  
+An additional 6 hours per week between sprints are dedicated for handling small issues. We refer to this as continuous support, as it's support time between dedicated sprints. This is mostly to stay on top of GitHub notifications.  
 
-Examples of what a developer is excpected to be worked during these continuous suport hours: 
+Examples of what a developer is expected to be worked during these continuous support hours: 
 
 1. Review small PRs 
 1. Iterate on already open PRs 

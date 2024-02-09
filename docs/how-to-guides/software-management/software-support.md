@@ -1,19 +1,20 @@
 # Software Support
 
+This document provides information about the software support process. That is, how our development team goes about addressing these issues. Including scheduling, project management tools and practices, issue soliciation, issue selection, and prioritization.
+
+
 !!! Note "How to Submit Issues" 
     Our code is managed [via GitHub](https://github.com/DOI-USGS)
 
-    Any issues with our software portfolio should be tracked in our repos through [GitHub issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues). Links for some our bigger repos: 
+    Any issues with our software portfolio should be tracked in our repos through [GitHub issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues). Links for some our more active repos: 
 
     * [ISIS](https://github.com/DOI-USGS/ISIS3/issues)
     * [ALE](https://github.com/DOI-USGS/ale/issues)
     * [USGSCSM](https://github.com/DOI-USGS/usgscsm/issues)
 
-    This document provides information about the software support process. That is, how our development team goes about addressing these issues. Including scheduling, project management tools and practices, issue soliciation, issue selection, and prioritization.
-
 ## Support Sprint Process 
 
-Support sprints are dedicated efforts, time-boxed to 3 weeks quarterly. We schedule these as part of our internal scheduling procedures, and support sprints are scheduled 3 to 6 weeks ahead of time. This includes a prioritization meeting where we go through the issues accross our repositories and put them in prioritization order. These meetings are open to the public. 
+Support sprints are dedicated efforts, time-boxed to 3 weeks quarterly. We schedule these as part of our internal scheduling procedures. Support sprints are scheduled 3 to 6 weeks ahead of time. A public prioritization meeting is scheduled prior to starting a support sprint. A notification of this meeting will be made (see below for how to subscribe) to the support mailing list 3 to 6 weeks ahead of time.
 
 ??? Question "How do I get Notified of Support Sprints and prioritization meetings?" 
     We email anyone who has opted in to our software support newsletter which includes when the support sprint was scheduled, when the prioritization meetings are happening, and a link to the meeting. These are sent shortly after it's scheduled and again right before the meeting. 
@@ -31,7 +32,8 @@ Immediately after scheduling the support sprint, the technical lead should creat
 !!! Note "Due to recent changes in permissions and organizational boundaries, project boards can only be created as private (within-organization), which precludes external contributors from viewing or editing the board."
 
 ### Step 3: Notifying the Community
-With a project board in place, there is now a mechanism to store incoming issues, and the technical lead can notify the community of the upcoming sprint.  A new GovDelivery bulletin. Bulletin are emails that get broadcasted to subscribers.  
+
+The community is notifed via an email sent to anyone [subscribed to the newsletter](https://public.govdelivery.com/accounts/USDOIGS/signup/39118). 
 
 This email should include:
 
@@ -44,6 +46,10 @@ This email should include:
 
 ??? Tip "Optional Boilerplate Email for MS Teams Calendar Event"
     This meeting will be used to prioritize the issues found at < link to project board > for the upcoming support sprint scheduled < date range of support >.  The list of issues found on the project board is currently incomplete.  If the list doesn't contain work that you would like to see scheduled during this sprint, then feel free to add items to the list.  For contributors outside the ASC, please note that organizational policy does not currently allow read/write access to internal project boards.  If you'd like work to be scheduled during this sprint, please ensure that an issue has been created and email me at < your email > to get the work scheduled.
+
+??? Danger "For USGS devs: What mechanism do we use to send these emails out?"
+
+    We use GovDelivery to create bulletins. These bulletins are emails which are broadcasted to our subscribers who have signed up with the link mentioned above. If you do not know how to create these bulletins ask the software lead for details of how to sign up for and sign into GovDelivery.
 
 
 ### Step 4: Selecting Additional Issues
@@ -67,14 +73,14 @@ Prioritization meetings are typically a loosely guided discussion in which the t
 1. Ask for any closing remarks
 
 ??? Note "Issue deferral"
-    Deferring an issue generally means "this is a good, important issue, but it requires further discussion." This discussion should not interrupt the flow of prioritization, and discussing deferred issues is usually a good final topic.
+    Deferring an issue generally means "this is a good, important issue, but it requires further discussion." This discussion should not interrupt the flow of prioritization.
 
 
 ## Continous Support 
 
-An additional 2 weeks per quarter are dedicated for handling small issues. We refer to this as continious support, as it's suppport time between dedicated sprints. This amounts to roughly 6 hours a week to stay on top of GitHub notifications.  
+An additional 6 hours per week between sprints are dedicated for handling small issues. We refer to this as continious support, as it's suppport time between dedicated sprints. This is mostly to stay on top of GitHub notifications.  
 
-Examples of what is excpected to be worked during these continuous suport hours: 
+Examples of what a developer is excpected to be worked during these continuous suport hours: 
 
 1. Review small PRs 
 1. Iterate on already open PRs 
@@ -82,7 +88,7 @@ Examples of what is excpected to be worked during these continuous suport hours:
 1. Participate in discussion boards
 1. Resolving small issues 
 
-Examples of what is **not** expected to be worked during these continuous support hours: 
+Examples of what a developer is **not** expected to be worked during these continuous support hours: 
 
 1. Resolving complex issues requiring new PRs
 1. Reviewing large PRs 

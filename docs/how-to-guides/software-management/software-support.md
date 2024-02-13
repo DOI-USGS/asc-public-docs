@@ -46,11 +46,6 @@ This email should include:
 ??? Tip "Optional Boilerplate Email for MS Teams Calendar Event"
     This meeting will be used to prioritize the issues found at < link to project board > for the upcoming support sprint scheduled < date range of support >.  The list of issues found on the project board is currently incomplete.  If the list doesn't contain work that you would like to see scheduled during this sprint, then feel free to add items to the list.  For contributors outside the ASC, please note that organizational policy does not currently allow read/write access to internal project boards.  If you'd like work to be scheduled during this sprint, please ensure that an issue has been created and email me at < your email > to get the work scheduled.
 
-??? Danger "For USGS devs: What mechanism do we use to send these emails out?"
-
-    We use GovDelivery to create bulletins. These bulletins are emails which are broadcasted to our subscribers who have signed up with the link mentioned above. If you do not know how to create these bulletins ask the software lead for details of how to sign up for and sign into GovDelivery.
-
-
 ### Step 4: Selecting Additional Issues
 Despite community engagement, contributors do not generally produce enough issues to ensure that there is enough work to fill the sprint.  In this case, the technical lead should select additional issues.  While these issues are chosen at the discretion of the technical lead, the following generally make good candidates for support sprints:
 
@@ -75,12 +70,3 @@ Prioritization meetings are typically a loosely guided discussion in which the t
     Deferring an issue generally means "this is a good, important issue, but it requires further discussion." This discussion should not interrupt the flow of prioritization. 
 
 
-## Continuous Support 
-
-Internal developers have time to perform basic support tasks throughout the week. We refer to this as continuous support, as it's support time between dedicated sprints. This is to stay on top of GitHub notifications. 
-
-As a user, you should expect feedback on an issue within a week of posting. If urgent, you can ping `@DOI-USGS/astrogeology-developers`. If the GitHub issue is open with no activity for a long enough time it will become stale and eventually auto-closed. Often, issues are not ignored, but are saved for a support sprint. 
-
-??? Danger "Continuous Support and internal Developers"
-
-    See the [internal software support docs](https://code.chs.usgs.gov/asc/ASC_Software_Docs/-/blob/main/Software%20Management/Continuous%20Support.md) for more information on continuous support. 

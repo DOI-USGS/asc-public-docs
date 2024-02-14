@@ -3,7 +3,7 @@
 ???+ warning
       Upcoming ISIS version 8.2 and future releases will include the USGSCSM library and does __not__ require a separate installation of the plugin.
 
-      ISIS versions 8.0 LTS and 8.1 _require_ a separate installation of the USGSCSM plugin as shown below.
+      ISIS versions 8.0LTS, 8.1, and earlier _require_ a separate installation of the USGSCSM plugin as shown below.
 
 ## For users
 You can install the latest [USGSCSM](https://github.com/DOI-USGS/usgscsm) library via conda:

@@ -1,15 +1,26 @@
 # Adding USGSCSM Plugin to ISIS
 
+???+ warning
+      Upcoming ISIS version 8.2 and future releases will include the USGSCSM library and does __not__ require a separate installation of the plugin.
+
+      ISIS versions 8.0 LTS and 8.1 _require_ a separate installation of the USGSCSM plugin as shown below.
+
 ## For users
 You can install the latest [USGSCSM](https://github.com/DOI-USGS/usgscsm) library via conda:
 
 ```sh
 conda install conda-forge::usgscsm
 ```
+
 ## For developers
 
+???+ info
+    For USGSCSM versions 2.0 and above, the plugin is installed in `$CONDA_PREFIX/lib/csmplugins/` in an Anaconda environment.
+
 ### Plugin setup
-Update `IsisPreferences` file under `Group = Plugins` and add `"$CONDA_PREFIX/lib/csmplugins/"`, for example:
+If you are testing a new plugin or using older versions of USGSCSM/ISIS, you will need to update your `IsisPreferences` file located under the `ISIS3/isis` directory with the appropriate plugin path change. 
+
+For example, if your `CONDA_PREFIX` path is not the same are your `ISISROOT` path, you can add `"$CONDA_PREFIX/lib/csmplugins/"` to your `IsisPreferences` file under `Group = Plugins`:
 
   ```
   Group = Plugins
@@ -20,9 +31,6 @@ Update `IsisPreferences` file under `Group = Plugins` and add `"$CONDA_PREFIX/li
                     "$HOME/.Isis/csm3.0.3/")
   EndGroup
   ```
-
-??? info
-    If you want to find where the installation path is being defined, look [here](https://github.com/DOI-USGS/usgscsm/blob/main/CMakeLists.txt#L712).
 
 ### Using your local build
 If you are working on USGSCSM, you can build a local conda package of USGSCSM and install that in your ISIS conda environment for testing. 

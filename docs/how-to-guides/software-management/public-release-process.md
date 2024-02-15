@@ -148,7 +148,7 @@ Anaconda leverages caching in many places which can cause issues. If you are get
 * Ensure the OS on the machine you are building the release on is the appropriate operating system (Mac OS 11.6 or Ubuntu 18 LTS). 
 
     ???+ Info "For internal devs"
-        If you do not have access to an Ubuntu 18 LTS, follow the steps here to access an EC2 instance running Ubuntu: ADD-LINK-HERE.
+        If you do not have access to an Ubuntu 18 LTS, follow the steps [here](https://code.chs.usgs.gov/asc/ASC_Software_Docs/-/blob/main/Software%20Management/Public%20Release%20Process%20-%20Internal%20Additions.md?ref_type=heads#step-4-create-the-builds-for-anaconda-cloud) to access an EC2 instance running Ubuntu.
 
 
 ### Part B: Setup Anaconda 
@@ -243,6 +243,9 @@ This step covers how to update the data on the public s3 buckets. This is where 
 
 
 This step covers creating the builds and the installation environments of ISIS for our internal users here on the ASC campus using the shared anaconda installs. Setting up the conda environments involve installing the conda build of ISIS that we just pushed up to Anaconda, and will follow the instructions found in the README.MD of the isis3 repository. These commands must be run as isis3mgr for permission purposes. 
+
+???+ Info "For internal devs"
+    Further info regarding accessing ASC server `prog24` [here](https://code.chs.usgs.gov/asc/ASC_Software_Docs/-/blob/main/Software%20Management/Public%20Release%20Process%20-%20Internal%20Additions.md?ref_type=heads#step-9-create-internal-buildsinstalls-for-astro).
 
 
 ### Part A: Shared Anaconda Installs 
@@ -404,7 +407,7 @@ This problem occurs because we are building ISIS with the shared anaconda on cpk
 ### mpi issue
 If you run into an `mpi`/`mpich` error like below when running `buildCondaRelease.sh`,
 
-![alt text](<Pasted image 20231212113827.png>)
+![mpi error](../../assets/error_screenshots/mpi_error.png)
 
 try removing the cache in the respective `conda-bld/` dir:
 

@@ -27,7 +27,7 @@ In this step, we will update the documents that are stored in the GitHub reposit
 * Update the Changelog 
   * For release candidates we need to update the Changelog to label all the currently unreleased changes as part of this release. Follow the instructions in [CHANGELOG.md](https://raw.githubusercontent.com/DOI-USGS/ISIS3/dev/CHANGELOG.md) for how to do this.
   * For bug fix releases, we need to update the Changelog to label **only the bug fixes** as part of this release. Follow the instructions in [CHANGELOG.md](https://raw.githubusercontent.com/DOI-USGS/ISIS3/dev/CHANGELOG.md) for how to do this.
-* Update code.json with the new version number and the date last modified.
+* Update `code.json` by adding a new entry with the new version number and the date last modified.
   
 
 ### Part B: Update the Authors List 
@@ -91,6 +91,9 @@ In this step, we will prepare the local repository to build from, as well as upd
 
 * Update the `build` section by copying the current contents of `environment.yaml` into the `build` section. Update the `run` section to include any new packages and remove any packages that are no longer needed. 
 
+    ???+ Note
+        Make sure you look closely at the changes in terms of syntax. Our `environment.yaml`s seem to have a looser restriction than what is expected in the `meta.yaml`. Check out conda's [package match specifications](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html#package-match-specifications) for more info.        
+
   
 
 ### Part D: Create a Pull Request
@@ -144,7 +147,8 @@ Anaconda leverages caching in many places which can cause issues. If you are get
 
 * Ensure the OS on the machine you are building the release on is the appropriate operating system (Mac OS 11.6 or Ubuntu 18 LTS). 
 
-    * If you do not have access to a Ubuntu 18 LTS, you can ssh into prog28. 
+    ???+ Info "For internal devs"
+        If you do not have access to an Ubuntu 18 LTS, follow the steps here to access an EC2 instance running Ubuntu: ADD-LINK-HERE.
 
 
 ### Part B: Setup Anaconda 
@@ -195,6 +199,9 @@ After the conda build completes, it should be tested by uploading it to your per
 
 * Follow the standard [installation instructions](https://github.com/DOI-USGS/ISIS3#isis3-installation-with-conda) to install this package locally for testing, but at the installation step, instead of running `conda install -c usgs-astrogeology isis`, run `conda install -c <conda-cloud-username> -c usgs-astrogeology isis`  
 
+    ???+ Note "Troubleshooting conda install"
+        If you are having trouble installing ISIS from your personal account, try specifying the version, e.g., `conda install -c <conda-cloud-username> -c usgs-astrogeology isis=8.1.0_RC1`
+        
 * Run an ISIS application, like `spiceinit -h` and insure that it runs without error. This is testing whether the conda environment set up during the install is complete enough to run ISIS.   
 
 
@@ -373,7 +380,8 @@ Update the [release schedule](https://github.com/DOI-USGS/ISIS3/wiki/Release-Sch
 
 ## Problems 
 
-If you test the conda environment you created for the ISIS build, i.e., isis3.7.1, on prog26 as isis3mgr and get the following warning: 
+### _Could not find conda environment_
+If you test the conda environment you created for the ISIS build, i.e., isis3.7.1, on prog24 as isis3mgr and get the following warning: 
 
 ``` 
 
@@ -392,3 +400,14 @@ source /usgs/cpkgs/anaconda3_macOS/etc/profile.d/conda.sh
 ``` 
 
 This problem occurs because we are building ISIS with the shared anaconda on cpkgs instead of /jessetest/miniconda3 (which is the version of anaconda being sourced in .bashrc). You may also do a conda activate with a full path to the environment instead of running the above source command. 
+
+### mpi issue
+If you run into an `mpi`/`mpich` error like below when running `buildCondaRelease.sh`,
+
+![alt text](<Pasted image 20231212113827.png>)
+
+try removing the cache in the respective `conda-bld/` dir:
+
+```sh
+rm -rf ~/mambaforge3/conda-bld/osx-64/.cache
+```

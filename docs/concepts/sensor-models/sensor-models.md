@@ -44,8 +44,8 @@ ALE uses a collection of drivers and class mixins to provide ISDs for a variety 
 #### Bundle Adjustment / Jigsaw
 ISIS's Jigsaw program provides a bundle adjustment algorithm, which is a full 3-dimensional scene reconstruction algorithm that
 
-1. estimates the 3 dimensional coordinates of ground points
-1. estimates sensor exterior orientations
+1. provides estimates of the 3-dimensional coordinates of ground points
+1. provides estimates of the sensor's exterior orientations
 1. minimizes error between the reconstructed scene and observed point locations
 
 Bundle adjustmnet is a critical part of the sensor model ecosystem in that it can be used to iteratively refine and correct a model's geometry, which allows for more accurate transitions between reference frames, i.e. correctly geolocating a ground point from an image plane.
@@ -56,7 +56,7 @@ More information related to bundle adjustment can be found [here](https://isis.a
 Because ISIS predates the CSM, it contains camera models that are not compliant with the CSM API. ISIS contains camera models for framing, pushframe, linescan, radar, point, and rolling shutter cameras. While ISIS's cameras models are authoritative and mathematically correct, they are only usable within the context of ISIS.  However, ISIS has also been modified to interoperate with CSM cameras.  While ISIS camera models are still actively used, efforts are being taken to replace these proprietary models with CSM compliant models via the USGSCSM library.
 
 ### USGS Community Sensor Model (USGSCSM)
-The [USGS Community Sensor Model](https://github.com/DOI-USGS/usgscsm) is a concrete implementation of sensor models according to the standards described in the CSM.  Where the CSM is the set of rules and standards that guides the creation of sensor models, the USGSCSM is a library of sensor models that adheres to those rules.  The USGSCSM library provides generic instances of sensor models for instantaneous (framing) cameras, time-dependent (line-scan) cameras, push-frame cameras, synthetic aperature radar (SAR), and projected sensor models.  Additionally, USGSCSM provides an extensible plugin architecture that allows for additional, interface-compliant sensor models to be dynamically loaded.
+The [USGS Community Sensor Model](https://github.com/DOI-USGS/usgscsm) is a concrete implementation of sensor models according to the standards described in the CSM.  Where the CSM is the set of rules and standards that guides the creation of sensor models, the USGSCSM is a library of sensor models that adheres to those rules.  The USGSCSM library provides generic instances of sensor models for instantaneous (framing) cameras, time-dependent (line-scan) cameras, push-frame cameras, synthetic aperture radar (SAR), and projected sensor models.  Additionally, USGSCSM provides an extensible plugin architecture that allows for additional, interface-compliant sensor models to be dynamically loaded.
 
 A camera model can be instantiated using image support data (ISD), but the CSM does not describe any particular source or format for that information.  USGSCSM allows ISDs to be formatted as [JSON](https://www.json.org/json-en.html), [NITF](https://pro.arcgis.com/en/pro-app/latest/help/data/nitf/introduction-to-nitf-data.htm), or bytestreams.  Because an ISD is intended to provide all the information necessary to instantiate a sensor model, it is required to contain both interior and exterior orientation information.
 
@@ -68,7 +68,7 @@ Sensor models implemented within USGSCSM are stateful in that their underlying g
 
 
 ## Extended Sensor Model Ecosystem
-This section details several packages that are created and maintained outside of the Astrogeology Science Center but that are commonly used in conjunction with elements of the ASC sensor model ecosystem.
+This section details several packages that are created and maintained outside the Astrogeology Science Center but are commonly used in conjunction with elements of the ASC sensor model ecosystem.
 
 ### SOCET Geospatial eXploitation Products (GXP)
 [SOCET GXP](https://www.geospatialexploitationproducts.com/content/socet-gxp/) is a software toolkit used to identify and analyze ground features. While it is possible to use a subset of GXP's capability's with simple sensor models, its core capabilities are largely dependent on rigorous sensor models.  GXP not only includes its own sensor model implementations, but it also allows for external sensor models via CSM plugin support. By leveraging these sensor models, users can perform photogrammetric operations such as triangulation, mensuration, stereo viewing, automated DTM generation, and orthophoto generation.  Unlike ISIS, GXP can be used for both terrestrial and extraterrestrial applications.
@@ -77,7 +77,7 @@ This section details several packages that are created and maintained outside of
 
 The NASA [Ames Stereo Pipeline](https://stereopipeline.readthedocs.io/en/latest/introduction.html) (ASP) is an open-source toolkit used to create cartographic products from stereographic images captured by satellites, rovers, aerial cameras, and historical images.  ASP is commonly used to create digital elevation models (DEMs), orthographic images, 3D models, and bundle adjusted networks of images. (@TODO cite https://stereopipeline.readthedocs.io/en/latest/introduction.html)
 
-While there is considerable overlap in the tools provided by ISIS and ASP, ASP specializes in stereographic imagery, and it provides both terrestrial and non-terrestrial imaging capabilites while ISIS focuses solely on non-terrestrial imagery. ASP adopts the USGSCSM camera model implementation and can therefore easily interoperate with ISIS and the ASC ecosystem.
+While there is considerable overlap in the tools provided by ISIS and ASP, ASP specializes in stereographic imagery, and it provides both terrestrial and non-terrestrial imaging capabilities while ISIS focuses solely on non-terrestrial imagery. ASP adopts the USGSCSM camera model implementation and can therefore easily interoperate with ISIS and the ASC ecosystem.
 
 
 @TODO Create a graphic / flowchart / interface diagram of "requires and provides" to illustrate when/where to use each library.

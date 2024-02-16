@@ -86,6 +86,7 @@ nav:
       - Image Registration:             concepts/control-networks/image-registration.md
       - Multi-Instrument Registration:  concepts/control-networks/multi-instrument-registration.md
     - Sensor Models:
+      - Reference Frames: concepts/sensor-models/reference-frames.md
       - Sensor Models:   concepts/sensor-models/sensor-models.md
   - Manuals: manuals/index.md
 

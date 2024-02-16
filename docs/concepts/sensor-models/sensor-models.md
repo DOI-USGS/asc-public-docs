@@ -79,5 +79,12 @@ The NASA [Ames Stereo Pipeline](https://stereopipeline.readthedocs.io/en/latest/
 
 While there is considerable overlap in the tools provided by ISIS and ASP, ASP specializes in stereographic imagery, and it provides both terrestrial and non-terrestrial imaging capabilities while ISIS focuses solely on non-terrestrial imagery. ASP adopts the USGSCSM camera model implementation and can therefore easily interoperate with ISIS and the ASC ecosystem.
 
-
 @TODO Create a graphic / flowchart / interface diagram of "requires and provides" to illustrate when/where to use each library.
+
+``` mermaid
+graph TD
+  A[/ISIS Data/] --> C
+  B[/PDS Data/] --> C
+  C[ALE] --> |ISD|D[USGSCSM]
+  D <--> |Sensor Model|E[ISIS] & F[SOCET GXP] & G[ASP] --> H(Science Ready Data Product)
+```

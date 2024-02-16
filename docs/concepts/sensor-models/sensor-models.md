@@ -14,7 +14,7 @@ A sensor model provides a mathematical description of the relationship between a
 
 It is important to understand that a camera model itself does not capture any information related to an image observation. As a purely mathematical representation, a camera model is responsible for mapping the location of a line/sample on the sensor to a location on the target body, and it is completely agnostic of the information that is captured by the sensor.  More information related to image observations and digital numbers can be found [here](@TODO).
 
-Sensor models that support full transformation from the image plane to the BCBF coordinate system fall into two general classes -- rigorous models and rational functional models.  Rigorous sensor models function by taking ephemeris information (position, orientation, and velocity; Kidder, 2015) with respect to some reference frame and utilize mathematical models to spatialize the image location onto the target body. (@TODO cite).  Rational functional models approximate this information using rational polynomial coefficients without exposing the interior and exterior orientation of the instrument.  Within this document (and the ASC sensor model ecosystem), we focus on rigorous models.
+Sensor models that support full transformation from the image plane to the BCBF coordinate system fall into two general classes -- rigorous models and rational functional models.  Rigorous sensor models function by taking ephemeris information (position, orientation, and velocity) with respect to some reference frame and utilize mathematical models to spatialize the image location onto the target body [(Laura et al., 2020)](https://doi.org/10.1029/2019EA000713).  Rational functional models approximate this information using rational polynomial coefficients without exposing the interior and exterior orientation of the instrument.  Within this document (and the ASC sensor model ecosystem), we focus on rigorous models due to the availability of interior and exterior orientation information.
 
 
 ## The Community Sensor Model
@@ -75,11 +75,9 @@ This section details several packages that are created and maintained outside th
 
 ### Ames Stereo Pipeline (ASP)
 
-The NASA [Ames Stereo Pipeline](https://stereopipeline.readthedocs.io/en/latest/introduction.html) (ASP) is an open-source toolkit used to create cartographic products from stereographic images captured by satellites, rovers, aerial cameras, and historical images.  ASP is commonly used to create digital elevation models (DEMs), orthographic images, 3D models, and bundle adjusted networks of images. (@TODO cite https://stereopipeline.readthedocs.io/en/latest/introduction.html)
+The NASA [Ames Stereo Pipeline](https://stereopipeline.readthedocs.io/en/latest/introduction.html) (ASP) is an open-source toolkit used to create cartographic products from stereographic images captured by satellites, rovers, aerial cameras, and historical images.  ASP is commonly used to create digital elevation models (DEMs), orthographic images, 3D models, and bundle adjusted networks of images ([Beyer, Ross A., Oleg Alexandrov, and Scott McMichael. 2018](https://doi.org/10.1029/2018EA000409)).
 
 While there is considerable overlap in the tools provided by ISIS and ASP, ASP specializes in stereographic imagery, and it provides both terrestrial and non-terrestrial imaging capabilities while ISIS focuses solely on non-terrestrial imagery. ASP adopts the USGSCSM camera model implementation and can therefore easily interoperate with ISIS and the ASC ecosystem.
-
-@TODO Create a graphic / flowchart / interface diagram of "requires and provides" to illustrate when/where to use each library.
 
 ``` mermaid
 graph TD

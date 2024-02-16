@@ -8,7 +8,11 @@ In order to describe the location of an object, it is necessary to identify a po
 - Spacecraft Reference System: a 3-dimensional (x,y,z) reference system in which the datum is centered on the spacecraft's center of mass. Axes are often represented using 𝜔, 𝜙, 𝜅, which are analogous to yaw, pitch, and roll, but instead of representing axial rotations with respect to onboard navigation, they are expressed with respect to axes of an arbitrary coordinate system.
 - Body Centered Body Fixed (BCBF): a 3-dimensional (x,y,z) reference system in which the datum is centered on the target body's center of mass.
 
-@TODO create a graphic
+<figure markdown>
+  ![Reference Systems](../../assets/sensor_models/ess2507-fig-0001-m.jpg)
+  <figcaption>Reference Systems: (a) Framing sensor image reference frame with origin in upper left corner of the upper left pixel; (b) distorted focal plane reference frame with the distorted origin again in the upper left; (c) sensor (1), gimbal (2a, 2b illustrating an articulated gimbal), and spacecraft (3) reference frames; (d) spacecraft reference frame in the standard configuration with the x axis being the orbital path; (e) body-centered body-fixed (BCBF) reference frame (Laura et al., 2020).</figcaption>
+</figure>
+
 
 # Reference Frames
 It is important to note that a reference system does not provide a description of an object's location, but it instead provides a _means_ for describing locations.  When locations are described using a reference system, the result is a "coordinate reference frame," which offers information related to an object's position, orientation, and velocity at a single instant in time.

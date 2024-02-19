@@ -2,7 +2,7 @@
 This document provides a list of several software packages that implement, manage, or interact with sensor models.  This is not a complete list, and it is only intended to provide examples of how software packages can be used to create or interact with sensor models.
 
 ## The ASC Sensor Model Ecosystem
-The Astrogeology Science Center has created and maintains a suite of software packages to manage the creation and exploitation of sensor models.  These tools provide an end-to-end pipeline for the creation, management, and exploitation of sensor models, including including a metadata specification, a CSM-compliant sensor model implementation, and tools to leverage those sensor models for scientific processing.
+The Astrogeology Science Center has created and maintains a suite of software packages to manage the creation and exploitation of sensor models.  These tools provide an end-to-end pipeline for the creation, management, and exploitation of sensor models, including a metadata specification, a CSM-compliant sensor model implementation, and tools to leverage those sensor models for scientific processing.
 
 
 ### Abstraction Library for Ephemerides (ALE)

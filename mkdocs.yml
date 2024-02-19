@@ -88,6 +88,7 @@ nav:
     - Sensor Models:
       - Reference Frames: concepts/sensor-models/reference-frames.md
       - Sensor Models:   concepts/sensor-models/sensor-models.md
+      - Sensor Model Software:   concepts/sensor-models/sensor-model-software.md
   - Manuals: manuals/index.md
 
 extra_css:

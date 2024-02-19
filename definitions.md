@@ -33,3 +33,4 @@
 *[MAP]: A representation of a three dimensional target such as a sphere, ellipsoid or an irregular shaped body onto a plane 
 *[IAU]: The International Astronomical Union 
 *[Scale]: The map resolution measured in pixels per degree 
+*[ISD]: Image Support Data. The interior and exterior orientation data used to instantiate a camera model.

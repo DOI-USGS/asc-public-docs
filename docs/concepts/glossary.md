@@ -198,3 +198,7 @@
  A camera coordinate system is used to determine positions and directions of objects and vectors with respect to a sensor (i.e. camera). The origin is at the center of the sensor and the axes rotate and move through space with the sensor. These systems are non-inertial, meaning the velocity of the origin is non-constant. The location of the center of a spacecraft and its instruments at a given time are defined in NAIF SPK files. Generally, one or more frames are associated with a particular instrument. 
 ###J2000 Coordinate System
  The J2000 coordinate system (also known as EME2000) is based on the earth mean equator and dynamical equinox at midnight January 1, 2000. The origin is at the solar system barycenter. This system is inertial, since it does not rotate with respect to stars and the origin is not accelerating (i.e it has a constant velocity). This coordinate system is the root reference for NAIF's SPICE files and software. 
+###ISD
+ Image Support Data. The interior and exterior orientation data used to instantiate a camera model.
+###Image Support Data
+ The interior and exterior orientation data used to instantiate a camera model.

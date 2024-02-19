@@ -65,7 +65,7 @@ The [USGS Community Sensor Model](https://github.com/DOI-USGS/usgscsm) is a conc
 
 A camera model can be instantiated using image support data (ISD), but the CSM does not describe any particular source or format for that information.  USGSCSM allows ISDs to be formatted as [JSON](https://www.json.org/json-en.html), [NITF](https://pro.arcgis.com/en/pro-app/latest/help/data/nitf/introduction-to-nitf-data.htm), or bytestreams.  Because an ISD is intended to provide all the information necessary to instantiate a sensor model, it is required to contain both interior and exterior orientation information.
 
-Sensor models implemented within USGSCSM are stateful in that their underlying geometries can be modified.  Moreover, it is possible to save a model's current state to a _state string_ so that a future model can be instantiated with that exact model state.  This is an important capability when performing incremental modifications via a process like bundle adjustment, particularly if the user decides to undo those adjustments or share the modified state with collaborators.
+Sensor models implemented within USGSCSM are stateful in that their underlying geometries can be modified.  Moreover, it is possible to save a model's current state to a _state string_ so that a future model can be instantiated with that exact model state.  This is an important capability when performing incremental modifications via a process like bundle adjustment or [performing alignment](https://stereopipeline.readthedocs.io/en/latest/tools/pc_align.html) between digital terrain models and reference DTMs or point clouds, particularly if the user decides to undo those adjustments or share the modified state with collaborators.
 
 
 ## Extended Sensor Model Ecosystem

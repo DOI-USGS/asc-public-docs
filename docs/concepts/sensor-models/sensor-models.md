@@ -28,4 +28,4 @@ Alone, a CSM is of little practical use. The standard defines an interface but d
 
 
 !!! INFO "Sensor Model Software"
-    While it is _possible_ to represent sensor models without using software, manually representing and interacting with sensor models is prohibitively difficult.  Instead, there are numerous [software packages](../sensor-models/sensor-model-software.md) that allow for the convenient instantiation, management, and exploitation of those software models.
+    There are numerous [software packages](../sensor-models/sensor-model-software.md) that allow for the convenient instantiation, management, and exploitation of those software models.

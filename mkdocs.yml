@@ -15,6 +15,7 @@ theme:
         - navigation.indexes
         - search.suggest
         - search.suggest
+        - content.code.copy
 
     palette:
         # Palette toggle for dark mode
@@ -41,22 +42,25 @@ nav:
     - CSM Stack:
       - Generating an ISD, creating a CSM model, and converting coordinates: getting-started/csm-stack/image-to-ground-tutorial.ipynb
     - "Using ISIS: First Steps":
+      - Introduction to ISIS:              getting-started/using-isis-first-steps/introduction-to-isis.md
       - Locating and Ingesting Image Data: getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md
       - Adding SPICE:                      getting-started/using-isis-first-steps/adding-spice.md
       - Exporting ISIS Data:               getting-started/using-isis-first-steps/exporting-isis-data.md
+      - ISIS FAQ:                          getting-started/using-isis-first-steps/isis-faq.md
   - How-To Guides: 
     - Home: how-to-guides/index.md
     - Environment Setup and Maintenance:
       - Installing ISIS Via Anaconda:      how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md
       - Anaconda in a Network Environment: how-to-guides/environment-setup-and-maintenance/anaconda-in-a-network-environment.md
       - SPICE Kernel Updates in ISIS:      how-to-guides/environment-setup-and-maintenance/spice-kernel-updates-in-isis.md
+      - Adding USGSCSM Plugin to ISIS:     how-to-guides/environment-setup-and-maintenance/adding-usgscsm-plugin-to-isis.md
     - SPICE: 
       - Creating Spice Config Files in SpiceQL: how-to-guides/SPICE/creating-spice-config-files-in-spiceql.md
     - Image Processing:
       - Map Projecting Images:             how-to-guides/image-processing/map-projecting-images.md
       - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md
       - General Utility with FX:           how-to-guides/image-processing/general-utility-with-fx.md
-    - Software Management: 
+    - Software Management:
       - ISIS Public Release Process:       how-to-guides/software-management/public-release-process.md
       - Software Support:                  how-to-guides/software-management/software-support.md
       - Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
@@ -73,6 +77,12 @@ nav:
     - Camera Geometry and Projections:
       - Camera Geometry:                     concepts/camera-geometry-and-projections/camera-geometry.md
       - Learning About Map Projections:      concepts/camera-geometry-and-projections/learning-about-map-projections.md
+    - ISIS Fundamentals:
+      - ISIS Cube Format:                  concepts/isis-fundamentals/cube-format.md
+      - ISIS Attached Spice Format:        concepts/isis-fundamentals/spice-format.md
+      - ISIS Kernel Load Selection:        concepts/isis-fundamentals/kernel-selection.md
+      - Bit Types:                         concepts/isis-fundamentals/bit-types.md
+      - Special Pixels:                    concepts/isis-fundamentals/special-pixels.md
     - SPICE:
       - SPICE Overview:                            concepts/spice/spice-overview.md
       - SPICE Position Functions and Requirements: concepts/spice/spice-position-functions-and-requirements.md
@@ -85,6 +95,10 @@ nav:
       - Autoseed:                       concepts/control-networks/autoseed.md
       - Image Registration:             concepts/control-networks/image-registration.md
       - Multi-Instrument Registration:  concepts/control-networks/multi-instrument-registration.md
+    - Sensor Models:
+      - Reference Frames: concepts/sensor-models/reference-frames.md
+      - Sensor Models:   concepts/sensor-models/sensor-models.md
+      - Sensor Model Software:   concepts/sensor-models/sensor-model-software.md
   - Manuals: manuals/index.md
 
 extra_css:
@@ -96,10 +110,12 @@ extra_css:
 
 extra_javascript: 
   - https://asc-public-docs.s3.us-west-2.amazonaws.com/common/uswds/3.6.0/js/uswds-init.min.js
+  - https://asc-public-docs.s3.us-west-2.amazonaws.com/common/uswds/3.6.0/js/uswds.min.js
 
 plugins:
   - search
   - mknotebooks
+  - mermaid2
 
 markdown_extensions:
   - codehilite
@@ -124,7 +140,11 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg

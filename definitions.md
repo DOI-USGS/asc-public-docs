@@ -2,7 +2,8 @@
 *[Band]: A 3rd dimensional layer of pixels in an image, typically representing spectral information. The number of bands indicates the depth of an image in terms of these layers. 
 *[Bit]: Short for binary digit, which in a computer is the smallest unit of storage. Bits are either "0" or "1". 
 *[Byte]: Short for binary term. A byte is a collection of computer bits. On most modern computers, a byte is a group of eight bits. Typically, computers handle and store information in binary (base-2), and a group of eight bits represents an eight digit binary number.
-*[CSM]: Community Sensor Model. A standard for sensor models USGS uses for interoperability. 
+*[CSM]: Community Sensor Model. A standard for sensor models USGS uses for interoperability.
+*[DN]: Digital Number. The numeric value of a single pixel in an image. The value can represent a measurement in various units, such as reflectance (I/F), radiance, elevation, or radius. Digital Numbers can be discrete integers or floating point values.
 *[EMCAscript]: A standard for scripting languages. C++'s standard library uses the EMCAscript standard for regular expressions.  
 *[SPICE]: Spacecraft & Planetary ephemerides, Instrument C-matrix and Event kernels. SPICE refers to all the information required by ISIS in order to compute and map each image pixel onto a surface with reference to spacecraft position, sun position, instrument, and mission activities. ISIS uses software (ToolKit) supplied by the Navigation and Ancillary Information Facility (NAIF) for SPICE access and kernel management (Refer to spiceinit). 
 *[NAIF]: Navigation and Ancillary Information Facility. They engineered and support the SPICE observation geometry information system. 
@@ -33,3 +34,4 @@
 *[MAP]: A representation of a three dimensional target such as a sphere, ellipsoid or an irregular shaped body onto a plane 
 *[IAU]: The International Astronomical Union 
 *[Scale]: The map resolution measured in pixels per degree 
+*[ISD]: Image Support Data. The interior and exterior orientation data used to instantiate a camera model.

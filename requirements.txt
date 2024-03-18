@@ -1,5 +1,6 @@
 mkdocs 
 mkdocs-material 
+mkdocs-mermaid2-plugin
 neoteroi-mkdocs
 codespell
 linkchecker

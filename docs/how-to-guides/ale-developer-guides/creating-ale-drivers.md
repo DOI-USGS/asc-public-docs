@@ -10,12 +10,12 @@ This guide provides step-by-step instructions for creating an ALE driver for an 
     ```sh
     git clone --recurse-submodules -j8 git@github.com:[username]/ale.git
     ```
-1. Set up an ALE environment
+1. Add ALE to your ISIS environment
     - In a terminal, navigate to the base directory of your cloned ALE repo
-    - Create and activate a conda environment:
+    - Activate your ISIS environment and update with ALE
         ```sh
-        conda env create ale -f environment.yml
-        conda activate ale
+        conda activate <isis> # <isis> should replaced with the name of your isis environment
+        conda env update -n <isis> -f environment.yml
         ```
     - Set variables and add ISIS binaries to PATH:
         ```sh
@@ -41,7 +41,7 @@ This guide provides step-by-step instructions for creating an ALE driver for an 
         spiceinit from= [cubename].isis.cub
         ```
 !!! NOTE "Spiceinit driver order"
-    `spiceinit` uses the first driver that works, first looking for an ALE driver, then using an ISIS driver if all ALE drivers fail.  If you need to initialize a cube with an ISIS driver later, temporarily put a line of code in the ALE driver that will cause it to fail.
+    `spiceinit` uses the first driver that works, and begins by looking for an ALE driver.  If no suitable ALE driver is found, then spiceinit will default to the ISIS implementation.  This design decision encourages a 'fail fast' approach by first checking that basic elements of the image match those in the driver (such as the instrument id).  If you need to initialize a cube with an ISIS driver after creating an ALE driver, it is possible to force a failure in the ALE driver by introducing a syntax error into one of the driver's methods.
 
 ## Creating the ALE driver
 ### Creating and Naming the Class
@@ -50,10 +50,22 @@ This guide provides step-by-step instructions for creating an ALE driver for an 
     - See [Class Signature](#class-signature) for naming conventions
     - Add these common functions (and others as needed):
         - `instrument_id`
-        - map the sensor name to the spacecraft
-            - spacecraft name as shown in the [NAIF Toolkit Docs](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/naif_ids.html)
+            - map the sensor name to the spacecraft name as shown in the [NAIF Toolkit Docs](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/naif_ids.html)
+            ```py
+            @property
+            def instrument_id(self):
+                id_lookup = {
+                    'CaSSIS': 'TGO_CASSIS',
+                }
+                return id_lookup[super().instrument_id]
+            ```
         - `sensor_model_version`
-            - Should almost always return 11. Add a file for your driver
+            - Should almost always return 1.
+            ```py
+            @property
+            def sensor_model_version(self):
+                return 1
+            ```
 !!! TIP "Borrow from existing drivers"
     ALE drivers largely follow the same format.  If you feel stuck, borrow the structure of another driver and customize it to fit your instrument!
 
@@ -184,7 +196,7 @@ The name of the specific sensor on the spacecraft (e.g. AmicaCamera, NarrowAngle
 - If dealing with an ISIS converted cube .lbl -> ISIS Label.
 - If you haven't done a x_to_isis conversion -> PDS3 
 
-#### D - Auxilliary Data Type: IsisSpice or NaifSpice
+#### D - Auxiliary Data Type: IsisSpice or NaifSpice
 - Most common: NaifSpice
 - IsisSpice is rare
 - If the spice data is already attached, IsisSpice can use the data already attached

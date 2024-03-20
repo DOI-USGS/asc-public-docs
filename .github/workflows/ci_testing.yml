@@ -54,7 +54,7 @@ jobs:
           mkdocs build
       - name: codespell Check  
         run: | 
-          codespell site/
+          codespell docs/
       - name: Grammar Check
         run: |
           git remote add origin https://github.com/DOI-USGS/asc-public-docs.git 

@@ -111,6 +111,10 @@ In this step, we will prepare the local repository to build from, as well as upd
 
 ### Part E: Make Github Release 
 
+!!! Warning "Do Not Make a Release for RCs"
+     
+     **Skip this step for Release Candidates (RCs).** Only pull a release if it's a full release (i.e. NOT an RC). RCs should instead be in their own branch until ready for full release.  
+
 * Draft a new github release.  
 
   * Tag the release.  

@@ -83,7 +83,6 @@ nav:
       - ISIS Kernel Load Selection:        concepts/isis-fundamentals/kernel-selection.md
       - Bit Types:                         concepts/isis-fundamentals/bit-types.md
       - Special Pixels:                    concepts/isis-fundamentals/special-pixels.md
-      - Control Networks:                  concepts/isis-fundamentals/control-networks.md 
     - SPICE:
       - SPICE Overview:                            concepts/spice/spice-overview.md
       - SPICE Position Functions and Requirements: concepts/spice/spice-position-functions-and-requirements.md
@@ -96,6 +95,7 @@ nav:
       - Autoseed:                       concepts/control-networks/autoseed.md
       - Image Registration:             concepts/control-networks/image-registration.md
       - Multi-Instrument Registration:  concepts/control-networks/multi-instrument-registration.md
+      - ISIS Control Networks:          concepts/control-networks/isis-control-networks.md 
     - Sensor Models:
       - Reference Frames: concepts/sensor-models/reference-frames.md
       - Sensor Models:   concepts/sensor-models/sensor-models.md

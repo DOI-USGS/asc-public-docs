@@ -5,7 +5,7 @@ labels: [getting-started]
 ---
 
 **Documentation Topic**  
-<!-- The overarching topic of this documentation. -->
+<!-- The overarching topic of the requested documentation. -->
 
 **Lessons-To-Be-Learned**  
 <!-- A list of the lessons that users can learn by following the requested documentation. -->

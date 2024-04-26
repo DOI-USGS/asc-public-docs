@@ -5,7 +5,7 @@ labels: [manual]
 ---
 
 **Documentation Topic**  
-<!-- The overarching topic of this documentation. -->
+<!-- The overarching topic of the requested documentation. -->
 
 **Description of Software**  
 <!-- An overview of the software. -->

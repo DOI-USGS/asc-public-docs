@@ -43,10 +43,10 @@ Before submitting a bug report, please follow the checklist to help us address t
 ## Requesting Documentation
 
 When requesting new documentation, the author of the issue should specify both the topic and category of the desired documentation.  The documentation category must be "Getting Started," "How-To," "Concept," or "Manual," and the specific requirements for posting the issue will be determined by the documentation category.  Each of the documentation categories has an associated issue template that will guide the requester through the following category-specific requirements:
-    - Getting Started: a lesson or list of lessons to be learned (e.g.) and an associated task by which those lessons will be conveyed (e.g. create a map-projected image using CSM).
+    - Getting Started: a lesson or list of lessons to be learned (e.g. how does map projection with CSM work in ISIS) and an associated task by which those lessons will be conveyed (e.g. create a map-projected image using CSM).
     - How-To: a definition of the basic problem that needs to be solved (e.g. how to append to the CSM search directories)
     - Concept: a pending title and the scope of the proposed documentation
-    - Manual: A description of the software, its relationship to the Astrogeology Science Center, and who will maintain the software manual as the library matures.  Additionally, the requester should describe how the software is currently maintained as well as providing information related to the location to which updates are regularly pushed.  Finally, the requester should include a link to existing documentation for the library.
+    - Manual: a description of the software, its relationship to the Astrogeology Science Center, and who will maintain the software manual as the library matures.  Additionally, the requester should describe how the software is currently maintained as well as providing information related to the location to which updates are regularly pushed.  Finally, the requester should include a link to existing documentation for the library.
 
 # Contributions
 

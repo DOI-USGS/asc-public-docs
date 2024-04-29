@@ -37,6 +37,10 @@ The sample and line pixel coordinate (measurement) within a single image cube th
 A network of Control Points. Within the ISIS environment, the control network file is binary file. The network contains multiple fields of information for control points and measures collected between any number of image cubes. 
 ### Control Point
 One or more measurements (image coordinates) that identify the same feature or location in different overlapping images. 
+### CT Position Bias
+"Cross Track Position Bias" - a constant shift in the spacecraft's position perpendicular to the flight path
+### CT Velocity Bias
+"Cross Track Velocity Bias" - a time-dependent linear shift in the spacecraft's position perpendicular to the flight path
 ### Cube
 A cube is a 3-dimensional image with axis: samples, lines, and bands. The physical dimensions of a cube are called the number of samples (NS), number of lines (NL), and number of bands (NB). 
 
@@ -67,6 +71,8 @@ The distance from the geometric center of an ellipsoid to its equator.
 All the NAIF orientation models use three Euler angles to describe body orientation. The Euler angles describe the orientation of the coordinate axes of the 'body equator and prime meridian' system with respect to the J2000 system. 
 
 ## F
+### Focal Bias
+An estimate of the error in the focal length of the camera.
 
 ## G
 
@@ -86,6 +92,10 @@ The International Astronomical Union
 Irradiance/SolarFlux. Unit of DN values for a reference distance of target body from the Sun (5.2 AU). The valid values range between 0.0 and 1.0. 
 ### Incidence Angle
 The incidence angle (INC) is the angle between the sun and the surface normal. ISIS applications use SPICE to compute this angle from the ellipsoid or the elevation model (e.g., local slopes) at every pixel. 
+### IT Position Bias
+"In Track Position Bias" - a constant shift in the spacecraft's position parallel to the flight path 
+### IT Velocity Bias
+"In Track Velocity Bias" - a time-dependent linear shift in the spacecraft's position parallel to the flight path
 
 ## J
 
@@ -93,7 +103,8 @@ The incidence angle (INC) is the angle between the sun and the surface normal. I
 The J2000 coordinate system (also known as EME2000) is based on the earth mean equator and dynamical equinox at midnight January 1, 2000. The origin is at the solar system barycenter. This system is inertial, since it does not rotate with respect to stars and the origin is not accelerating (i.e it has a constant velocity). This coordinate system is the root reference for NAIF's SPICE files and software. 
 
 ## K 
-
+### Kappa Angle
+An exterior orientation angle that describes the rotation around the y-axis of the camera.  Analogous to "pitch."
 ## L
 
 ### Latitude
@@ -158,11 +169,16 @@ The ground distance (in meters) from the left edge to the right edge of a pixel.
 The ground distance (in meters) from the left edge to the right edge of a pixel. This value is based on the oblique detector resolution estimate, rather than the detector resolution and is more accurate (particularly for off-nadir images).
 ### Off Nadir Angle
 From the spacecraft, the Off Nadir is the angle between the nadir vector (subspacecraft vector) and the look vector. Every pixel in the image will result in a different Off Nadir Angle. 
+### Omega Angle
+An exterior orientation angle that describes the rotation around the z-axis of the camera.  Analogous to "yaw."
+
 
 ## P
 
 ### Phase Angle
 The phase angle is the angle between the sun and the spacecraft at a point on the surface. ISIS applications will use SPICE to compute this angle from the ellipsoid or the elevation model (e.g., local slopes) at every pixel. 
+### Phi Angle
+An exterior orientation angle that describes the rotation around the x-axis of the camera.  Analogous to "roll."
 ### Pixel Resolution
 The ground distance in meters from the left edge to the right edge of a pixel. 
 ### Planetary Data System
@@ -196,6 +212,10 @@ Parameter Value Language (PVL) is used extensively by ISIS as a standard keyword
 A measurement describing the amount of electromagnetic energy emitted from an area of a planet. 
 ### Radius
 The distance (vector) value between the center of and a point on a circle, sphere, ellipse or ellipsoid. Refer to qview, camstats, or campt as examples of applications that report radius value at every image pixel location. 
+### Radial Position Bias
+A constant shift in the spacecraft's "vertical positioning," i.e. distance from the target
+### Radial Velocity Bias
+A time-dependent linear shift in the spacecraft's "vertical positioning," i.e. distance from the target
 ### Reference Measure
 Reference Measure is a fundamental component of the control network. For every point within the network, there is always one and only one associated Reference Measure (Reference=True). The Reference Measure refers to a single image and it's pixel coordinate (measure) that best represents a control point location or feature. 
 ### Reflectance

@@ -67,7 +67,7 @@ When making a contribution for the first time, please add your name to the `.zen
 
 ## Category-Specific Documentation Guidelines
 
-When addressing a request for documentation, the committer should post an initial draft pull request and solicit discussion with contributors. The specific category of documentation requested in the issue determines the structue of the draft pull request in accordance with the following guidelines:
+When addressing a request for documentation, the committer should post an initial draft pull request and solicit discussion with contributors. The specific category of documentation requested in the issue determines the structure of the draft pull request in accordance with the following guidelines:
 
 - Getting Started: The draft pull request should include a list of steps to be completed.  This may take the form of a header-only markdown file, jupyter notebook, or content-appropriate file type.
 - How-To: Because how-to guides are often short, and their structure is largely content-specific, the structure of the draft pull request is largely at the discretion of the committer.  While there are limited guidelines as to what the draft should contain, the committer should make a best-effort to publish an outline of the proposed documentation.

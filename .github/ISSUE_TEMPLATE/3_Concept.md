@@ -13,3 +13,5 @@ labels: [concepts]
 **Documentation Scope**  
 <!-- A description of the topics and concepts that should be described in the document. -->
 
+**(Optional) Sources**
+<!-- Sources from which information was gathered. -->

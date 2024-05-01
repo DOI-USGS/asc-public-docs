@@ -16,8 +16,11 @@ labels: [manual]
 **Documentation Maintainer**  
 <!-- The envisioned maintainer of the software manual. -->
 
-**Maintenance Process and Location**  
-<!-- A description of the library's maintenance process and a link to the repository/homepage to which updates are pushed. -->
+**Maintenance Process**  
+<!-- A description of the library's maintenance process and a link to the homepage to which updates are pushed. -->
 
 **Link to Existing Documentation**  
 <!-- A link to the library's existing documentation. -->
+
+**Link to Software Repository**  
+<!-- A link to the library's repository of record. -->

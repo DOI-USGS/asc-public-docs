@@ -45,7 +45,7 @@ Before submitting a bug report, please follow the checklist to help us address t
 When requesting new documentation, the author of the issue should specify both the topic and category of the desired documentation.  The documentation category must be "Getting Started," "How-To," "Concept," or "Manual," and the specific requirements for posting the issue will be determined by the documentation category.  Each of the documentation categories has an associated issue template that will guide the requester through the following category-specific requirements:
     - Getting Started: a lesson or list of lessons to be learned (e.g. how does map projection with CSM work in ISIS) and an associated task by which those lessons will be conveyed (e.g. create a map-projected image using CSM).
     - How-To: a definition of the basic problem that needs to be solved (e.g. how to append to the CSM search directories)
-    - Concept: a pending title and the scope of the proposed documentation
+    - Concept: a pending title, the scope of the proposed documentation, and a list of any sources from which information should be included
     - Manual: a description of the software, its relationship to the Astrogeology Science Center, and who will maintain the software manual as the library matures.  Additionally, the requester should describe how the software is currently maintained as well as providing information related to the location to which updates are regularly pushed.  Finally, the requester should include a link to existing documentation for the library.
 
 # Contributions
@@ -62,14 +62,4 @@ committers should seek to arrive at a consensus by way of addressing concerns be
 by discussion, compromise on the proposed change, or withdrawal of the proposed change.
 
 ## First-time contributor
-
 When making a contribution for the first time, please add your name to the `.zenodo.json` file. We strongly recommend adding your affiliation and ORCiD to the `zenodo.json` file. These additions only have to happen once.
-
-## Category-Specific Documentation Guidelines
-
-When addressing a request for documentation, the committer should post an initial draft pull request and solicit discussion with contributors. The specific category of documentation requested in the issue determines the structure of the draft pull request in accordance with the following guidelines:
-
-- Getting Started: The draft pull request should include a list of steps to be completed.  This may take the form of a header-only markdown file, jupyter notebook, or content-appropriate file type.
-- How-To: Because how-to guides are often short, and their structure is largely content-specific, the structure of the draft pull request is largely at the discretion of the committer.  While there are limited guidelines as to what the draft should contain, the committer should make a best-effort to publish an outline of the proposed documentation.
-- Concept: The draft pull request should follow the same guidelines as a "getting started" page with the added stipulation that the author should include citations for any fact-based claims.
-- Manual: Since software manuals are presented as links to external documentation, there is no need for a draft pull request.

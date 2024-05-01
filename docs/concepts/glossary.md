@@ -208,14 +208,14 @@ Parameter Value Language (PVL) is used extensively by ISIS as a standard keyword
 
 ## R
 
-### Radiance
-A measurement describing the amount of electromagnetic energy emitted from an area of a planet. 
-### Radius
-The distance (vector) value between the center of and a point on a circle, sphere, ellipse or ellipsoid. Refer to qview, camstats, or campt as examples of applications that report radius value at every image pixel location. 
 ### Radial Position Bias
 A constant shift in the spacecraft's "vertical positioning," i.e. distance from the target
 ### Radial Velocity Bias
 A time-dependent linear shift in the spacecraft's "vertical positioning," i.e. distance from the target
+### Radiance
+A measurement describing the amount of electromagnetic energy emitted from an area of a planet. 
+### Radius
+The distance (vector) value between the center of and a point on a circle, sphere, ellipse or ellipsoid. Refer to qview, camstats, or campt as examples of applications that report radius value at every image pixel location. 
 ### Reference Measure
 Reference Measure is a fundamental component of the control network. For every point within the network, there is always one and only one associated Reference Measure (Reference=True). The Reference Measure refers to a single image and it's pixel coordinate (measure) that best represents a control point location or feature. 
 ### Reflectance

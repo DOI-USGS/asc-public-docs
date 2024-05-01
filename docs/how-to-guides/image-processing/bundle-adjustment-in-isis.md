@@ -5,7 +5,7 @@
 This tutorial assumes that the user has access to ISIS command line utilities and an ISISDATA area.
 
 ## Step 1: Creating an Image List
-Bundle adjusment inherently requires multiple observations, and ISIS expects these observations to be in the form of a line-separated text file (.lis) in which each line contains the name of a .cub file.  Assuming that all .cub files are present in the current directory, one convenient means of scraping the full paths of the .cub files into a .lis file is with:
+Bundle adjustment inherently requires multiple observations, and ISIS expects these observations to be in the form of a line-separated text file (.lis) in which each line contains the name of a .cub file.  Assuming that all .cub files are present in the current directory, one convenient means of scraping the full paths of the .cub files into a .lis file is with:
 
 ```console
 ls -d -1 "$PWD/"*.cub > image_list.lis
@@ -38,9 +38,9 @@ findimageoverlaps fromlist=image_list.lis overlaplist=overlap_list.lis
 ```
 
 ## Step 5: Creating a Control Network with autoseed
-In order to perform bundle adjustment, it is necessary to identify a set of locations per image (control points) that correspond to a set of ground locations (control measures).  Together, these points and measures are combined into a "control network." While there are multiple methods for generating a control network, this tutorial uses the `autoseed` utility to automatically generate a simple grid-based control network.
+In order to perform bundle adjustment, it is necessary to identify a set of locations per image (control points) that correspond to a set of ground locations (control measures).  Together, these points and measures are combined into a "control network." While there are multiple methods for generating a control network, this tutorial uses the `autoseed` utility to automatically generate a simple, grid-based control network.
 
-### Configuring the algorithm with the defintion file
+### Configuring the algorithm with the definition file
 `autoseed` requires a "definition file," which is responsible for configuring the algorithm that generates the control points.  To follow along with the tutorial, save the following snippet as `seeder.def`.
 
 ```

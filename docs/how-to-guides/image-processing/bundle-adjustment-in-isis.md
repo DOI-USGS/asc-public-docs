@@ -5,7 +5,7 @@
 This tutorial assumes that the user has access to ISIS command line utilities and an ISISDATA area.
 
 ## Step 1: Creating an Image List
-Bundle adjusment inherently requires multiple observations, and ISIS expects these observations to be in the form of a line-separated text file (.lis) in which each line contains the name of a .cub file.  Assuming that all .cub files are present in the current directory, one convenient means of scraping these .cub files into a .lis file is with:
+Bundle adjusment inherently requires multiple observations, and ISIS expects these observations to be in the form of a line-separated text file (.lis) in which each line contains the name of a .cub file.  Assuming that all .cub files are present in the current directory, one convenient means of scraping the full paths of the .cub files into a .lis file is with:
 
 ```console
 ls -d -1 "$PWD/"*.cub > image_list.lis

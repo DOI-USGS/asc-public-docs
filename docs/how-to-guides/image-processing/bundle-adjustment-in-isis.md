@@ -11,14 +11,30 @@ Bundle adjustment inherently requires multiple observations, and ISIS expects th
 ls -d -1 "$PWD/"*.cub > image_list.lis
 ```
 
-## Step 2: Adding SPICE Information to Images with spiceinit
+## Step 2: Adding Orientation Information to Cubes
 
-SPICE information allows the instrument that captured an observation to be localized, and it includes information related to the interior and exterior orientation of the instrument as well as the orientation of celestial bodies.  In order to perform bundle adjustment, each observation that is included in the adjustment process must have SPICE data attached. SPICE data can be attached using ISIS's `spiceinit` program.
+This tutorial provides two methods of attaching orientation information to cubes -- `spiceinit` and `csminit`.
+
+### Option 1: Attaching SPICE Information with spiceinit
+
+[SPICE information](../../concepts/spice/spice-overview.md) allows the instrument that captured an observation to be localized, and it includes information related to the interior and exterior orientation of the instrument as well as the orientation of celestial bodies.  In order to perform bundle adjustment, each observation that is included in the adjustment process must have SPICE data attached. SPICE data can be attached using ISIS's `spiceinit` program.
 
 While it is possible to `spiceinit` each image individually, ISIS includes a reserved `batchlist` parameter that allows the user to take advantage of the .lis file that was previously created.  In order to batch `spiceinit` each of the files in the input list, the user can issue the following command:
 
 ```console
 spiceinit -batchlist=image_list.lis from=\$1
+```
+
+### Option 2: Attaching a CSM State String with csminit
+
+Similarly to SPICE data, a CSM state string contains all the necessary information to localize an instrument over the duration of its observation.  CSM state strings differ in the sense that they capture the model's state as a mutable object that can be iteratively modified, captured, and transferred.  The `csminit` utility allows CSM states to be generated and attached to ISIS cubes.
+
+The `csminit` utility requires users to pass an ISD alongside the images.  Instructions for ISD generation can be found [here](../../getting-started/csm-stack/image-to-ground-tutorial.ipynb/#2-generate-an-isd-from-a-cube).
+
+This tutorial assumes that ISDs are named by simply appending a .json extension to the full path of the .cub, i.e. the ISD for `my_cube.cub` is stored in `my_cube.cub.json`.  If this requirement is satisfied, then the user can quickly and easily `csminit` a series of images with the batchlist parameter as follows:
+
+```console
+csminit -batchlist=image_list.lis from=\$1 isd=\$1.json
 ```
 
 ## Step 3: Finding the Geospatial Extents of Images with footprintinit
@@ -73,19 +89,51 @@ An explanation of the configuration options passed to autoseed is as follows:
 
 ## Step 6: Performing Bundle Adjustment with Jigsaw
 
-Finally, with all the prerequisite information generated and attached, it is possible to perform bundle adjustment.  Within ISIS, this is performed using the `jigsaw` utility. `jigsaw` is highly configurable, and it has many options that can be viewed [here](https://isis.astrogeology.usgs.gov/8.1.0/Application/presentation/Tabbed/jigsaw/jigsaw.html).  For the purposes of this tutorial, configuration is left to a minimum.
+Finally, with all the prerequisite information generated and attached, it is possible to perform bundle adjustment.  Within ISIS, this is performed using the `jigsaw` utility. `jigsaw` is highly configurable, and it has many options that can be viewed [here](https://isis.astrogeology.usgs.gov/8.1.0/Application/presentation/Tabbed/jigsaw/jigsaw.html). 
+
+### Command Line Usage
+
+#### Option 1: For images without a CSM State String
+If you chose option 1 (spiceinit) for step 2, then you should choose this option for jigsaw.  A basic command line invocation for jigsaw is as follows:
 
 ```console
 jigsaw fromlist=image_list.lis cnet=control_network.net onet=control_network_jig.net update=no file_prefix=jig maxits=10 camsolve=angles camera_angles_sigma=.25
 ```
 
-An explanation of the configuration options passed to jigsaw is as follows:
+#### Option 2: For images with a CSM State String
+If you chose option 2 (csminit) for step 2, then you must also choose this option for jigsaw. When using jigsaw to bundle adjust a `csminit`-ed image, the user must pass CSM-specific parameter names via the `csmsolvelist` parameter.  Allowable values and their descriptions are as follows.
 
-- fromlist: the list of .cubs to be bundle adjusted
-- cnet: the control network containing the control information used to bundle adjust the network
-- onet: the output control network
-- update: whether or not the camera geometries of the input cubes will be adjusted
-- file_prefix: the filename prefix of the output files
-- maxits: the maximum number of iterations
-- camsolve: the camera parameters included in the solution
-- camera_angles_sigma: global uncertainty for camera angles
+| Parameter | Description |
+|---|---|
+| IT Pos. Bias     |  "In Track Position Bias" - a constant shift in the spacecraft's position parallel to the flight path |
+| CT Pos. Bias    |  "Cross Track Position Bias" - a constant shift in the spacecraft's position perpendicular to the flight path |
+| Rad Pos. Bias   |  "Radial Position Bias" - a constant shift in the spacecraft's "vertical positioning," i.e. distance from the target |
+| IT Vel. Bias    |  "In Track Velocity Bias" - a time-dependent linear shift in the spacecraft's position parallel to the flight path |
+| CT Vel. Bias    |  "Cross Track Velocity Bias" - a time-dependent linear shift in the spacecraft's position perpendicular to the flight path |
+| Rad Vel. Bias   |  "Radial Velocity Bias" - a time-dependent linear shift in the spacecraft's "vertical positioning," i.e. distance from the target |
+| Omega Bias      |  The initial omega angle (analogous to "roll") |
+| Phi Bias        |  The initial phi angle (analogous to "pitch") |
+| Kappa Bias      |  The initial kappa angle (analogous to "yaw") |
+| Omega Rate      |  An angular rate that allows the omega angle to vary linearly with time |
+| Phi Rate        |  An angular rate that allows the phi angle to vary linearly with time |
+| Kappa Rate      |  An angular rate that allows the kappa angle to vary linearly with time |
+| Omega Accl      |  An angular acceleration that allows the omega angle to vary quadratically with respect to time |
+| Phi Accl        |  An angular acceleration that allows the phi angle to vary quadratically with respect to time |
+| Kappa Accl      |  An angular acceleration that allows the kappa angle to vary quadratically with respect to time |
+| Focal Bias      |  Estimated error of the camera's focal length |
+
+An example of a jigsaw run using `csminit`-ed images is as follows:
+
+```console
+jigsaw fromlis=cubes.lis cnet=input.net onet=output.net radius=yes csmsolvelist="(Omega Bias, Phi Bias, Kappa Bias)" control_point_coordinate_type_bundle=rectangular control_point_coordinate_type_reports=rectangular point_x_sigma=50 point_y_sigma=50 point_z_sigma=50
+```
+
+### Jigsaw Graphical User Interface
+
+Due to the complexity of jigsaw, some users may find that the graphical user interface is a more convenient starting point than the command line. In order to open the jigsaw GUI, the user can simply run:
+
+```console
+jigsaw
+```
+
+Documentation for each of jigsaw's parameters can be found [here](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/jigsaw/jigsaw.html)

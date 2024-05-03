@@ -82,10 +82,12 @@ nav:
       - Learning About Map Projections:      concepts/camera-geometry-and-projections/learning-about-map-projections.md
     - ISIS Fundamentals:
       - ISIS Cube Format:                  concepts/isis-fundamentals/cube-format.md
+      - ISIS Label Dictionary:             concepts/isis-fundamentals/label-dictionary.md
       - ISIS Attached Spice Format:        concepts/isis-fundamentals/spice-format.md
       - ISIS Kernel Load Selection:        concepts/isis-fundamentals/kernel-selection.md
       - Bit Types:                         concepts/isis-fundamentals/bit-types.md
       - Special Pixels:                    concepts/isis-fundamentals/special-pixels.md
+      - Command Line Usage:                concepts/isis-fundamentals/command-line-usage.md
     - SPICE:
       - SPICE Overview:                            concepts/spice/spice-overview.md
       - SPICE Position Functions and Requirements: concepts/spice/spice-position-functions-and-requirements.md

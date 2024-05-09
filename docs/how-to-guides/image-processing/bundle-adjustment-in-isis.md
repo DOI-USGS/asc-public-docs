@@ -27,7 +27,7 @@ curl https://asc-pds-mars-reconnaissance-orbiter.s3.us-west-2.amazonaws.com/CTX/
 curl https://asc-pds-mars-reconnaissance-orbiter.s3.us-west-2.amazonaws.com/CTX/mrox_0755/data/B06_011821_2045_XI_24N097W.IMG -o B06_011821_2045_XI_24N097W.IMG
 ```
 
-If you would prefer to use an alternate dataset but are unsure where to begin, consider using [PILOT](https://pilot.wr.usgs.gov/) to download a set of at least 3 images with overlapping portions.
+If you prefer to use an alternate dataset but are unsure where to begin, consider using [PILOT](https://pilot.wr.usgs.gov/) to download a set of at least 3 images with overlapping portions.
 
 ### Exporting Data to ISIS Cubes
 Finally, this tutorial requires that images are formatted as ISIS cubes.  ISIS includes ingestion programs that convert data from a variety of sources to ISIS cubes.  To convert the test dataset into ISIS cubes, the user can run the following command:
@@ -342,7 +342,7 @@ Documentation for each of jigsaw's parameters can be found [here](https://isis.a
 While the output listed in the "Output and Verification" of step 6 is useful as a simple confirmation of success and an overview of the jigsaw results, it provides only a summary of the results of the bundle adjustment.  This section provides a brief overview of jigsaw's output.
 
 ### Evaluating the Summary
-From the previous section, a successful run of jigsaw will results in a message like the following:
+From the previous section, a successful run of jigsaw will result in a message like the following:
 
 ```Text
 ...

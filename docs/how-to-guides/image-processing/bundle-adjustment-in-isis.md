@@ -238,13 +238,16 @@ qnet
 
 After opening qnet, the user should:
 
-1. Select "file" from the menu bar, and "open control network and cube list."
-1. Select image_list.lis for the image list
-1. Select select control_network.net for the control network
+<ol>
+<li>Select "file" from the menu bar, and "open control network and cube list."</li>
+<li>Select image_list.lis for the image list</li>
+<li>Select select control_network.net for the control network</li>
+</ol>
 
-This will populate the "Control Network Navigator" window with a list of cubes/control points.  The user should select all the control points (select the top point and shift+click the point at the bottom of the list), and select "view cubes." This will populate the main qnet window with the following cubes:
 
-<img src="../../../assets/bundle_tutorial/qnet.png">
+This will populate the "Control Network Navigator" window with a list of cubes/control points.  The user should select all the control points (select the top point and shift+click the point at the bottom of the list), and select "view cubes." This will populate the main qnet window with the following cubes and control points:
+
+<img src="../../../assets/bundle_tutorial/qnet.png"></img>
 
 </details>
 
@@ -263,30 +266,59 @@ jigsaw fromlist=image_list.lis cnet=control_network.net onet=control_network_jig
 
 <details>
 <summary>Output and Verification</summary>
+After a successful bundle adustment solution, the following text will be output to the terminal:
+
+```Text
+...
+Group = "Iteration3: Final"
+  Sigma0                       = 0.25824389563373
+  Observations                 = 286
+  Constrained_Point_Parameters = 64
+  Constrained_Image_Parameters = 9
+  Unknown_Parameters           = 201
+  Degrees_of_Freedom           = 158
+  Rejected_Measures            = 0
+  Converged                    = TRUE
+  TotalElapsedTime             = 0.104355
+End_Group
+```
+
+Further discussion of these results is provided in Step 7.
+
 </details>
 
 
 #### Option 2: For images with a CSM State String
 If you chose option 2 (csminit) for step 2, then you must also choose this option for jigsaw. When using jigsaw to bundle adjust a `csminit`-ed image, the user must pass CSM-specific parameter names via the `csmsolvelist` parameter.  Allowable values and their descriptions are as follows.
 
+!!! Note "All parameters are in meters or scaled to meters within the sensor model for the purpose of bundle adjustment."
+
 | Parameter | Description | Unit |
 |---|---|---|
-| IT Pos. Bias    |  "In Track Position Bias" - a constant shift in the spacecraft's position parallel to the flight path | |
-| CT Pos. Bias    |  "Cross Track Position Bias" - a constant shift in the spacecraft's position perpendicular to the flight path | |
-| Rad Pos. Bias   |  "Radial Position Bias" - a constant shift in the spacecraft's "vertical positioning," i.e. distance from the target | |
-| IT Vel. Bias    |  "In Track Velocity Bias" - a time-dependent linear shift in the spacecraft's position parallel to the flight path | |
-| CT Vel. Bias    |  "Cross Track Velocity Bias" - a time-dependent linear shift in the spacecraft's position perpendicular to the flight path | |
-| Rad Vel. Bias   |  "Radial Velocity Bias" - a time-dependent linear shift in the spacecraft's "vertical positioning," i.e. distance from the target | |
-| Omega Bias      |  The initial omega angle (analogous to "roll") | |
-| Phi Bias        |  The initial phi angle (analogous to "pitch") | |
-| Kappa Bias      |  The initial kappa angle (analogous to "yaw") | |
-| Omega Rate      |  An angular rate that allows the omega angle to vary linearly with time | |
-| Phi Rate        |  An angular rate that allows the phi angle to vary linearly with time | |
-| Kappa Rate      |  An angular rate that allows the kappa angle to vary linearly with time | |
-| Omega Accl      |  An angular acceleration that allows the omega angle to vary quadratically with respect to time | |
-| Phi Accl        |  An angular acceleration that allows the phi angle to vary quadratically with respect to time | |
-| Kappa Accl      |  An angular acceleration that allows the kappa angle to vary quadratically with respect to time | |
-| Focal Bias      |  Estimated error of the camera's focal length | |
+| IT Pos. Bias    |  "In Track Position Bias" - a constant shift in the spacecraft's position parallel to the flight path | m |
+| CT Pos. Bias    |  "Cross Track Position Bias" - a constant shift in the spacecraft's position perpendicular to the flight path | m |
+| Rad Pos. Bias   |  "Radial Position Bias" - a constant shift in the spacecraft's "vertical positioning," i.e. distance from the target | m |
+| IT Vel. Bias    |  "In Track Velocity Bias" - a time-dependent linear shift in the spacecraft's position parallel to the flight path | m |
+| CT Vel. Bias    |  "Cross Track Velocity Bias" - a time-dependent linear shift in the spacecraft's position perpendicular to the flight path | m |
+| Rad Vel. Bias   |  "Radial Velocity Bias" - a time-dependent linear shift in the spacecraft's "vertical positioning," i.e. distance from the target | m |
+| Omega Bias      |  The initial omega angle (analogous to "roll") | m |
+| Phi Bias        |  The initial phi angle (analogous to "pitch") | m |
+| Kappa Bias      |  The initial kappa angle (analogous to "yaw") | m |
+| Omega Rate      |  An angular rate that allows the omega angle to vary linearly with time | m |
+| Phi Rate        |  An angular rate that allows the phi angle to vary linearly with time | m |
+| Kappa Rate      |  An angular rate that allows the kappa angle to vary linearly with time | m |
+| Omega Accl      |  An angular acceleration that allows the omega angle to vary quadratically with respect to time | m |
+| Phi Accl        |  An angular acceleration that allows the phi angle to vary quadratically with respect to time | m |
+| Kappa Accl      |  An angular acceleration that allows the kappa angle to vary quadratically with respect to time | m |
+| Focal Bias      |  Estimated error of the camera's focal length | m |
+
+!!! Tip "Parameter Correlations"
+    Some parameters are highly correlated with respect to their effects on the bundle solution, and it is not necessary to solve for all parameters within the same bundle adjust process.  
+    
+    A cross-track bias (lateral movement) largely produces the same effect as "rolling" the instrument with an omega bias, so it is uncommon that the user needs to include both parameters in the bundle adjustment solution.  Similarly, adjusting the in-track bias will produce a change that is comparable to adjusting the pitch of the instrument with phi bias. Radial position bias and omega bias both produce unique results, so they are often included in the bundle adjustment solution.
+
+!!! Warning "Velocity and Acceleration Parameters are not available for frame cameras."
+
 
 An example of a jigsaw run using `csminit`-ed images is as follows:
 
@@ -303,3 +335,48 @@ jigsaw
 ```
 
 Documentation for each of jigsaw's parameters can be found [here](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/jigsaw/jigsaw.html)
+
+
+## Step 7: Evaluating and Understanding the Bundle Adjustment Results
+
+While the output listed in the "Output and Verification" of step 6 is useful as a simple confirmation of success and an overview of the jigsaw results, it provides only a summary of the results of the bundle adjustment.  This section provides a brief overview of jigsaw's output.
+
+### Evaluating the Summary
+From the previous section, a successful run of jigsaw will results in a message like the following:
+
+```Text
+...
+Group = "Iteration3: Final"
+  Sigma0                       = 0.25824389563373
+  Observations                 = 286
+  Constrained_Point_Parameters = 64
+  Constrained_Image_Parameters = 9
+  Unknown_Parameters           = 201
+  Degrees_of_Freedom           = 158
+  Rejected_Measures            = 0
+  Converged                    = TRUE
+  TotalElapsedTime             = 0.104355
+End_Group
+```
+
+These keywords are described in the following table:
+
+| Keyword | Description |
+| --- | --- |
+| Sigma0 | "Sigma naught" represents the uncertainty of the solution |
+| Observations | Total number of observations |
+| Constrained_Point_Parameters| Number of known/non-adjusted point parameters |
+| Constrained_Image_Parameters | Number of known/non-adjusted image parameters |
+| Unknown_Parameters| Number of distinct parameters that were estimated as part of the solution |
+| Degrees_of_Freedom | Total number of known/unknown parameters that contributed to the solution |
+| Rejected_Measures | Total number of measures that were rejected as outliers (always 0 unless outlier rejection is used)|
+| Converged | A boolean flag that indicates whether the convergence criterion was reached |
+| TotalElapsedTime| Total time taken to perform the estimation |
+
+!!! Note "Understanding and Remediating Sigma0"
+    Ideally, sigma0 will be close to 1 at convergence.  Users with experience with bundle adjustment process may note that this sigma0 value is not particularly close to 1, which indicates that the solution is not ideal.  When the bundle adjustment process succeeds with a sigma0 that is not close to 0, it may indicate that the solution had bad apriori information (a problematic DEM or poor SPICE information), weak image geometry, measurement error, or that there is an issue with the number/geometry of image measurements (too few, too many, or poorly registered points).
+
+
+### Diving Deeper
+
+While the PVL group above provides a summary of the bundle adjustment process, it does not include the fine-grained details that describe the adjustments made by the network or additional statistics output by jigsaw. This information can be found in three additional files created by jigsaw -- "bundleout.txt," "bundleout_points.csv," and "bundleout_images.csv." Bundleout.txt provides a summary of inputs, outputs, adjustments, and statistics of all images and points in the adjusted network, and the point/image .csv files provide a comma-delimited representation of the adjustments made to points / images, respectively.

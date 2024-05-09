@@ -266,7 +266,7 @@ jigsaw fromlist=image_list.lis cnet=control_network.net onet=control_network_jig
 
 <details>
 <summary>Output and Verification</summary>
-After a successful bundle adustment solution, the following text will be output to the terminal:
+After a successful bundle adjustment solution, the following text will be output to the terminal:
 
 ```Text
 ...

@@ -61,6 +61,7 @@ nav:
       - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md
       - General Utility with FX:           how-to-guides/image-processing/general-utility-with-fx.md
     - Software Management:
+      - Deprecation:                       how-to-guides/software-management/deprecation.md
       - ISIS Public Release Process:       how-to-guides/software-management/public-release-process.md
       - Software Support:                  how-to-guides/software-management/software-support.md
       - Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md

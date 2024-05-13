@@ -72,6 +72,7 @@ nav:
       - Class Requirements For Using Doxygen Tags:    how-to-guides/isis-developer-guides/class-requirements-for-using-doxygen-tags.md
       - Developing ISIS3 with cmake:                  how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md
       - ISIS Development on the Mac M1 ARM System:    how-to-guides/isis-developer-guides/developing-mac-m1-arm-systems.md
+      - Refactor Old ISIS Apps and Tests Tutorial:      how-to-guides/isis-developer-guides/refactor-old-isis-apps-tests-tutorial.md
     - ALE Developer Guides:
       - Creating Ale Drivers: how-to-guides/ale-developer-guides/creating-ale-drivers.md
   - Concepts: 

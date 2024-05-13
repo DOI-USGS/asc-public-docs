@@ -1,4 +1,4 @@
-# Tutorial to Refactor Old ISIS Apps and Tests
+# Building and Contributing to ISIS Tutorial
 
 ## 1. Set Up Your Local ISIS Environment
 
@@ -74,4 +74,8 @@ Accept the terms by checking the box once you have read through this portion.
 
 Complete the pull request process by clicking the green **Create pull request** button under the body of the PR. This will open a PR that is viewable by everyone.
 
-Finally, ping the standup chat or the dev chat to let people know that your PR is ready for review!
+Finally, add this comment on your PR to notify Astro developers that your PR is ready for review:
+
+```
+@DOI-USGS/astrogeology-developers, ready for review
+```

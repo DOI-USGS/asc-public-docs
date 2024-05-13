@@ -65,7 +65,8 @@ nav:
       - ISIS Public Release Process:       how-to-guides/software-management/public-release-process.md
       - Software Support:                  how-to-guides/software-management/software-support.md
       - Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
-      - Guidelines for Pull Requests: how-to-guides/software-management/guidelines-for-pull-requests.md
+      - Guidelines for Pull Requests:      how-to-guides/software-management/guidelines-for-pull-requests.md
+      - ISIS Release Schedule:             how-to-guides/software-management/isis-release-schedule.md
     - ISIS Developer Guides:
       - How To Write ISIS Tests with CTest and GTest: how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md
       - App Testing CookBook:                         how-to-guides/isis-developer-guides/app-testing-cookbook.md

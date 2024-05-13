@@ -1,79 +1,14 @@
 # Tutorial to Refactor Old ISIS Apps and Tests
 
-## 1. Create a Fork of ISIS
-First, on the [main ISIS3 GitHub repo page](https://github.com/DOI-USGS/ISIS3), create a fork of ISIS by clicking on **Fork** at the top of the page. This will take you to a page titled **Create a new fork** where you can specify the **Owner** (your account name) and the repository name (which you can leave as *ISIS3*), then hit the green **Create fork** button at the bottom. This will take you to your new forked ISIS3 repo under your account.
+## 1. Set Up Your Local ISIS Environment
 
-Next, hit the green **<> Code** dropdown option and copy the **SSH** URL under the **Local** tab. 
+Follow these tutorials to set up your local ISIS environment before you get started:
 
-Then, open your terminal and go to the directory where your other repos reside, type:
+1. [Getting Started With GitHub](https://astrogeology.usgs.gov/docs/how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#getting-started-with-github)
+2. [Anaconda and ISIS3 Dependencies](https://astrogeology.usgs.gov/docs/how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#anaconda-and-isis3-dependencies)
+3. [Building ISIS3](https://astrogeology.usgs.gov/docs/how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#building-isis3)
 
-```
-git clone --recurse-submodules <paste-repo-link>
-```
-
-Navigate into the newly cloned directory with `cd ISIS3`.
-
-???+ note 
-
-    If you forget to add the `--recurse-submodules` option, you can get the submodules after cloning with this:
-
-    ```
-    git submodule update --init --recursive
-    ```
-
-## 2. Build ISIS in your dev environment
-
-### Create your conda environment
-
-??? note "For MacOS Apple Silicon (M1, M2, etc.) platforms"
-    Before you create your conda environment, you must specify the architecture since some of our software and other scientific dependencies have not yet released builds compatible with the Apple Silicon platforms:
-    ```
-    export CONDA_SUBDIR=osx-64
-    ```
-
-    You can also set this configuration permanently after creating and activating your conda environment, then:
-    ```
-    conda config --env --set subdir osx-64
-    ```
-
-
-In the root of your `ISIS3` repo, create a dedicated conda environment:
-
-```
-conda env create -n <environment-name> -f environment.yml
-```
-
-Make sure you activate your environment after creation:
-
-```
-source activate <environment-name>
-```
-
-
-### Build ISIS
-In the root of your `ISIS3` repo, create a `build` directory:
-
-```
-mkdir build
-```
-
-Then, set the following environment variables:
-
-```
-export ISISROOT=</path/to/your/ISIS3/build>
-export ISISDATA=</path/to/your/data/directory>
-export ISISTESTDATA=</path/to/your/test/data/directory>
-```
-
-Next, build ISIS inside of your `build` directory:
-
-```
-cd build
-cmake -DJP2KFLAG=OFF -GNinja </path/to/your/ISIS3/isis>
-ninja -j24
-```
-
-## 3. Converting Apps and Tests
+## 2. Converting Apps and Tests
 
 Once you have ISIS built, check out the apps in `ISIS3/isis/src/base/apps`. Apps that need to be refactored only have *app-name.xml* and *main.cpp*, other than the *Makefile* and other possible folders (like `assets` and `tsts`). Take a look at the [bandtrim](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/src/base/apps/bandtrim) app for example. In comparison, apps that have been updated to fit the gtest suite will have *app-name.xml*, *app-name.cpp*, *app-name.h*, and *main.cpp*, like the [campt](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/src/base/apps/campt) app.
 
@@ -86,17 +21,17 @@ A great way to get a grasp on the converting process is by looking at previous e
 - [`gaussstretch` PR #5259](https://github.com/DOI-USGS/ISIS3/pull/5259)
 - [`skypt` PR #5444](https://github.com/DOI-USGS/ISIS3/pull/5444)
   
-## 4. Run Tests
+## 3. Run Tests
 
 Check out [Running Tests](https://astrogeology.usgs.gov/docs/how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#running-tests) to get an idea on how to run your tests.
 
 As an example, let's look at the [`skypt` test suite](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/tests/FunctionalTestsSkypt.cpp). You can run the all of `skypt`'s tests with `ctest -R skypt`. Let's say you want to test only the first test case in *FunctionalTestsSkypt.cpp*, run `ctest -R FunctionalTestSkyptDefault`. 
 
-## 5. Update CHANGELOG
+## 4. Update CHANGELOG
 
 Make sure you update the *CHANGELOG.md* located in the root of the `ISIS3` folder by adding an entry under the **Unreleased** heading and **Changed** subheading.
 
-## 6. Create PR
+## 5. Create PR
 
 Once your tests are in good shape with passing marks, let's create a Pull Request (PR). Go to your forked ISIS3 repo page and select the **Pull requests** tab towards the top of the page. Then, hit the green **New pull request** button which will take you to a page where you select your base and head repositories to compare before creating the pull request. The base repository is the repo you will be pushing your changes *to*, so it should be set to 
 ```

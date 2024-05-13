@@ -5,7 +5,7 @@ This document describes the cadence and schedule for ISIS releases.
 Releases and development of ISIS3 follows a time based schedule with a new release occurring every three months. Below, we illustrate a sample four month snapshot of software development.
 
 <figure markdown>
-  ![Release Cadence](../../assets/release-schedule/release_schedule.png)
+  ![Release Cadence](../../../assets/release-schedule/release_schedule.png)
   <figcaption>Example of ISIS Release Cadence</figcaption>
 </figure>
 

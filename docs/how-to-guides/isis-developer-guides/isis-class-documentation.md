@@ -1,3 +1,5 @@
+# ISIS Class Documentation with Doxygen
+
 A new ISIS3 class needs to have the following Doxygen tags filled out just above the class declaration, as in this example below:
 
 ```/**

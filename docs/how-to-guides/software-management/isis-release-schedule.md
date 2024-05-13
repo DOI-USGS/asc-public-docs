@@ -39,5 +39,6 @@ As described above, we will release on a three month cadence. Releases will be l
 | 7.2.0 | Release | 03.21.23 |
 | 8.0.0 | LTS Release | 8.2.23 |
 | 8.1.0 | Release | 11.2.23 |
+| 8.2.0 | Release | 04.27.24 |
 | 9.0.0 | LTS Release | 8.2.24 |
 | 8.0.* | LTS End of Life | 2.2.25 |

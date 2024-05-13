@@ -4,10 +4,12 @@ This document describes the cadence and schedule for ISIS releases.
 ## Release Cadence
 Releases and development of ISIS3 follows a time based schedule with a new release occurring every three months. Below, we illustrate a sample four month snapshot of software development.
 
-[[images/releaseplanning.png]]
+<figure markdown>
+  ![Release Cadence](../../assets/release-schedule/release_schedule.png)
+  <figcaption>Example of ISIS Release Cadence</figcaption>
+</figure>
 
 
-** NOTE: ** The image above erroneously indicates that RC1, RC2, etc. will be generated for subsequent releases. In reality, we will start every release cycle with RC1. If issues are identified during the RC month, we will release x.y.z_RC# increment # with each subsequent RC release.
 
 At the start of Month 1, a Release Candidate (RC1) is created from the `dev` branch of our GitHub repository. This RC contains all development from the previous (not shown) three months. RC1 is made publicly available as both a labelled branch and via our Anaconda.org (conda) download page. During Month 1, we solicit input and testing from the broader community. Any issues identified in RC1 will be fixed during Month 1. At the conclusion of Month 1, the release is packaged and the next ISIS3 release is made available for the general public using Anaconda.org (and the default `main` label).
 

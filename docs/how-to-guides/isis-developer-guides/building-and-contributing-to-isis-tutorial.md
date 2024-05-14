@@ -10,7 +10,13 @@ Follow these tutorials to set up your local ISIS environment before you get star
 
 ## 2. Converting Apps and Tests
 
-Once you have ISIS built, check out the apps in `ISIS3/isis/src/base/apps`. Apps that need to be refactored only have *app-name.xml* and *main.cpp*, other than the *Makefile* and other possible folders (like `assets` and `tsts`). Take a look at the [bandtrim](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/src/base/apps/bandtrim) app for example. In comparison, apps that have been updated to fit the gtest suite will have *app-name.xml*, *app-name.cpp*, *app-name.h*, and *main.cpp*, like the [campt](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/src/base/apps/campt) app.
+Once you have ISIS built, find apps that still have the old test setup by running:
+
+```
+find isis/src/*/apps/ -regex '.*/tsts' | sed 's:[^/]*$::'
+```
+
+Apps that need to be refactored only have *app-name.xml* and *main.cpp*, other than the *Makefile* and other possible folders (like `assets` and `tsts`). Take a look at the [bandtrim](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/src/base/apps/bandtrim) app for example. In comparison, apps that have been updated to fit the gtest suite will have *app-name.xml*, *app-name.cpp*, *app-name.h*, and *main.cpp*, like the [campt](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/src/base/apps/campt) app.
 
 After finding a suitable app to refactor, follow the steps in [Refactoring ISIS3 Applications](https://astrogeology.usgs.gov/docs/how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest/#refactoring-isis3-applications) in your selected app.
 

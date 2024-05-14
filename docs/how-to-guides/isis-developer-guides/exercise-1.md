@@ -6,7 +6,7 @@ The purpose behind these exercises is to help programmers become familiar with t
 
 ### Test Data
 
-Download a test image, [Peaks.cub.gz](../../assets/exercises/Peaks.cub.gz) (you must uncompress this image). This image is 1024x1024 with 7 bands and it has 19 [LRS](LRS) special pixels.
+Download a test image, [Peaks.cub.gz](../../assets/exercises/Peaks.cub.gz) (you must uncompress this image). This image is 1024x1024 with 7 bands and it has 19 LRS [special pixels](../../concepts/isis-fundamentals/special-pixels.md).
 
 ### ISIS Installation and Setup
 These exercises require the use, modification, and recompilation of ISIS programs. Follow the instructions for [developing ISIS with CMake](../isis-developer-guides/developing-isis3-with-cmake.md). To verify that ISIS was correctly installed, run `qview` on the demo .cub:

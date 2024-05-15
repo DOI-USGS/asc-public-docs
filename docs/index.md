@@ -16,22 +16,22 @@ These docs use a simple system of defining software documentation in four catego
   {
     "title": "Getting Started",
     "content": "Step-by-step tutorials for beginners to get started with different aspects of the Astro software portfolio; this is the best place to learn new things as a beginner to some of our software or those unfamiliar with particular parts of the code.",
-    "url" : getting-started/index.html
+    "url" : getting-started/index.md
   }, 
   {
     "title": "How-To Guides",
     "content": "Examples on how-to complete common software tasks; for intermediate to advanced users who want examples on how to accomplish a particular task.",
-    "url" : how-to-guides/index.html
+    "url" : how-to-guides/index.md
   },
   {
     "title": "Concepts",
     "content": "Write-ups that define and explain concepts that apply to our software; this is for anyone who wants a better understanding of particular higher-level concepts.",
-    "url" : concepts/index.html
+    "url" : concepts/index.md
 },
   {
     "title": "Software Manuals",
     "content": "Links to in-depth software manuals; contains in-depth references to a particular software project's apps and APIs.",
-    "url" : manuals/index.html
+    "url" : manuals/index.md
   },
 ]
 

@@ -68,6 +68,7 @@ nav:
       - Guidelines for Pull Requests:      how-to-guides/software-management/guidelines-for-pull-requests.md
       - ISIS Release Schedule:             how-to-guides/software-management/isis-release-schedule.md
     - ISIS Developer Guides:
+      - Getting Started Contributing to ISIS:         how-to-guides/isis-developer-guides/contributing-to-isis.md
       - How To Write ISIS Tests with CTest and GTest: how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md
       - App Testing CookBook:                         how-to-guides/isis-developer-guides/app-testing-cookbook.md
       - Class Requirements For Using Doxygen Tags:    how-to-guides/isis-developer-guides/class-requirements-for-using-doxygen-tags.md

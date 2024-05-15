@@ -1,2 +1,2 @@
 [codespell]
-skip = *.po,*.ts,*.js,*.map,*.css,*.bsp,*.cub,*.tsc,*.tf,*.ti
+skip = *.po,*.ts,*.js,*.map,*.css,*.bsp,*.cub,*.tsc,*.tf,*.ti,*.pdf

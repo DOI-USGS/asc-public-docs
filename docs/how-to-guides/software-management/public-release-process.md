@@ -1,28 +1,33 @@
-# Public Release Process 
+# Public Software Release Process Step-By-Step Instructions
+-------
+#### Software Table of Contents
 
-This document explains the release process for Official Releases, Release Candidates and custom builds (for example: missions). 
+- [ISIS](#isis-public-release-process)
+- [ALE](#ale-public-release-process)
+- [Plio](#plio-public-release-process)
+- [Knoten](#knoten-public-release-process)
+- [USGSCSM](#usgscsm-public-release-process)
+-------
+
+## **ISIS Public Release Process**
+-------
+This section explains the release process for Official Releases, Release Candidates and custom builds (for example: missions) for [ISIS](https://github.com/DOI-USGS/ISIS3). 
 
   
-
-# Step-By-Step Instructions 
-
-  
-
-## Step 1: Check current false positive test failures 
-
+### Step 1: Check current false positive test failures 
 
 In this step, we check the currently failing tests. This is currently a judgement call on whether the tests are false-positives. This decision should be made by 2+ developers on the development team. 
 
 
 
-## Step 2: Update the GitHub documents
+### Step 2: Update the GitHub documents
 
 **This step is only required for release candidates and bug fix release. If you are creating a full feature release, skip this step.**
 
 In this step, we will update the documents that are stored in the GitHub repository. Our changes will be going into the dev branch, so create a fresh local branch off of the dev branch.
 
 
-### Part A: Collecting the Changes in the Release
+#### Part A: Collecting the Changes in the Release
 
 * Update the Changelog 
   * For release candidates we need to update the Changelog to label all the currently unreleased changes as part of this release. Follow the instructions in [CHANGELOG.md](https://raw.githubusercontent.com/DOI-USGS/ISIS3/dev/CHANGELOG.md) for how to do this.
@@ -30,23 +35,23 @@ In this step, we will update the documents that are stored in the GitHub reposit
 * Update `code.json` by adding a new entry with the new version number and the date last modified.
   
 
-### Part B: Update the Authors List 
+#### Part B: Update the Authors List 
 
 * If there are any new contributors to the project since the last release, ensure that they are added to the [.zenodo.json](https://github.com/DOI-USGS/ISIS3/blob/dev/.zenodo.json) document, and update the `AUTHORS.rst` file from the .zenodo.json file by running `python $ISISROOT/scripts/zenodo_to_authors.py <path_to_your_clone>/.zenodo.json <path_to_your_clone>/AUTHORS.rst`.
 
 
-### Part C: Submit a Pull Request
+#### Part C: Submit a Pull Request
 
 * Submit a pull request into the dev branch with your modifications to the Changelog and the Authors list.
 * For a bug fix release, you will also need to [cherry-pick](https://www.atlassian.com/git/tutorials/cherry-pick) the squashed commit from your pull request into the version branch. If you run into merge conflicts, it may be easier to simply redo the above steps with the version branch instead of dev.
 
 
-## Step 3: Set Up the Local and Remote Repositories 
+### Step 3: Set Up the Local and Remote Repositories 
 
 In this step, we will prepare the local repository to build from, as well as update the remote repository hosted on GitHub. Keep in mind that you will be building from this repo on other systems, so plan accordingly by cloning this repo into a directory that you will still have access to as you switch between the machines. 
 
 
-### Part A: Setup Repository 
+#### Part A: Setup Repository 
 
 * Create a fresh branch off of the appropriate version branch. Branches are created for each minor (i.e. 3.x or 4.x) version of ISIS, and each then specific release is associated with a minor version (i.e. 3.x.x or 4.x.x) tag on that version branch. 
 
@@ -55,7 +60,7 @@ In this step, we will prepare the local repository to build from, as well as upd
     * For release candidates, there may or may not be a branch for the version. If there is not, create a branch off of `dev`. If there is a version branch: `git checkout -b 3.10 upstream/3.10`.
 
 
-### Part B: Update isis/CMakeLists.txt 
+#### Part B: Update isis/CMakeLists.txt 
 
 * Update the VERSION variable to the latest version number. NOTE: Do not add the _RC# 
 
@@ -69,7 +74,7 @@ In this step, we will prepare the local repository to build from, as well as upd
 
   
 
-### Part C: Update recipe/meta.yaml 
+#### Part C: Update recipe/meta.yaml 
 
 * Update the version variable to the version of ISIS you are building. 
 
@@ -96,7 +101,7 @@ In this step, we will prepare the local repository to build from, as well as upd
 
   
 
-### Part D: Create a Pull Request
+#### Part D: Create a Pull Request
 
 * Make a pull request with your local changes into the version (i.e., the version number created above) branch of the repository. 
 
@@ -109,7 +114,7 @@ In this step, we will prepare the local repository to build from, as well as upd
 
   
 
-### Part E: Make Github Release 
+#### Part E: Make Github Release 
 
 !!! Warning "Do Not Make a Release for RCs"
      
@@ -139,7 +144,7 @@ In this step, we will prepare the local repository to build from, as well as upd
 
   * Add a DOI (see Part F)
 
-### Part F: Create a DOI for the release
+#### Part F: Create a DOI for the release
 
   * A DOI is only needed for standard releases.  Release candidates do not need a DOI.
 
@@ -189,7 +194,7 @@ In this step, we will prepare the local repository to build from, as well as upd
 
           * You can save the record without publishing it if the release landing page is not ready.  
 
-## Step 4: Create the Builds for Anaconda Cloud 
+### Step 4: Create the Builds for Anaconda Cloud 
 
 
 In this step, we will create the build(s) for Anaconda Cloud using the conda-build system. There are two builds for standard releases: one for Linux (built on Ubuntu 18 LTS), and one for Mac (built on Mac OS 10.14). Missions may only need one build and not the other. Communicate with your team as to what they need. Repeat this and the upload process process for each necessary system. 
@@ -197,12 +202,12 @@ In this step, we will create the build(s) for Anaconda Cloud using the conda-bui
 Anaconda leverages caching in many places which can cause issues. If you are getting unexpected issues, try a different installation and/or a different machine. 
 
 
-### Part A: Operating System 
+#### Part A: Operating System 
 
 * Ensure the OS on the machine you are building the release on is the appropriate operating system (Mac OS 11.6 or Ubuntu 18 LTS). 
 
 
-### Part B: Setup Anaconda 
+#### Part B: Setup Anaconda 
 
 * Run `conda clean --all` to clean out your package cache and ensure you pull fresh packages for the build. 
 
@@ -225,7 +230,7 @@ commands:
     * If running ```anaconda login``` resulted in an error message similar to ```[ERROR] API server not found. Please check your API url configuration``` run the following command and try again: ```anaconda config --set ssl_verify False```  
 
 
-### Part C: Run the Build 
+#### Part C: Run the Build 
 
 * Go to the root of the repository you set up in [Step 3 Part A](#part-a-setup-repository). Make sure it is up to date. 
 
@@ -241,7 +246,7 @@ commands:
 
   
 
-## Step 5: Test the Conda Build 
+### Step 5: Test the Conda Build 
 
 
 After the conda build completes, it should be tested by uploading it to your personal anaconda cloud account and conda installing it locally.  
@@ -256,7 +261,7 @@ After the conda build completes, it should be tested by uploading it to your per
 * Run an ISIS application, like `spiceinit -h` and insure that it runs without error. This is testing whether the conda environment set up during the install is complete enough to run ISIS.   
 
 
-## Step 6: Upload the Build to Anaconda Cloud 
+### Step 6: Upload the Build to Anaconda Cloud 
 
 
 In this step, we will upload the build(s) that we just created into the Anaconda Cloud to distribute them to our users. Uploading the .tar.bz2 file requires one command, however, non-standard builds (release candidates or custom builds), must be uploaded with a label.  
@@ -274,7 +279,7 @@ In this step, we will upload the build(s) that we just created into the Anaconda
 If the upload fails or displays a prompt for a username and password, try adding an API token for usgs-astrogeology to your environment by running `export ANACONDA_API_TOKEN=<token>`. Ask another developer for the API token. This approach is recommended over adding `-t <token>` to your anaconda upload command, because of a known bug where `-t` is either interpreted as a package type or a token depending on its position in the `anaconda upload` command.  
 
 
-## Step 7: Back up the Build  
+### Step 7: Back up the Build  
 
 Back up the build by copying the .tar.bz2 to: 
 
@@ -283,20 +288,20 @@ Back up the build by copying the .tar.bz2 to:
   * /work/projects/conda-bld/linux-64/ for Ubuntu 18 LTS. 
 
 
-## Step 8: Update Data and TestData Areas on rsync Servers 
+### Step 8: Update Data and TestData Areas on rsync Servers 
 
 
 This step covers how to update the data on the public s3 buckets. This is where our external users will have access to the data necessary for running ISIS. There are two locations, one is the S3 bucket where users directly download data from. The other is and EFS drive that only accessible internally and is mounted for daily use. See the [internal only documentation](https://code.chs.usgs.gov/asc/ASC_Software_Docs/-/blob/main/ISIS/Maintaining%20ISIS%20Data.md) for more info on how these are setup. Action is only required if there are smithed kernels that need to be uploaded to /usgs_data/. 
 
 **Please pay careful attention to where you are rclone'ing the data to on the S3 buckets.
 
-## Step 9: Create Internal Builds/Installs for Astro 
+### Step 9: Create Internal Builds/Installs for Astro 
 
 
 This step covers creating the builds and the installation environments of ISIS for our internal users here on the ASC campus using the shared anaconda installs. Setting up the conda environments involve installing the conda build of ISIS that we just pushed up to Anaconda, and will follow the instructions found in the README.MD of the isis3 repository. These commands must be run as isis3mgr for permission purposes. 
 
 
-### Part A: Shared Anaconda Installs 
+#### Part A: Shared Anaconda Installs 
 
 * You will need to install the new version of ISIS into the two shared Anaconda installs on the ASC campus. 
 
@@ -305,7 +310,7 @@ This step covers creating the builds and the installation environments of ISIS f
     * For MacOS: `/usgs/cpkgs/anaconda3_macOS` 
 
 
-### Part B: Installing ISIS 
+#### Part B: Installing ISIS 
 
 * Follow the standard [installation instructions](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md#isis-installation-with-conda) to install the latest version of ISIS into a new environment. 
 
@@ -320,7 +325,7 @@ This step covers creating the builds and the installation environments of ISIS f
 * Confirm that the environment has been set-up properly by deactivating it, reactivating it, and running an application of your choice. 
 
 
-## Step 10: Update Documentation 
+### Step 10: Update Documentation 
 
 
 **This step is only done for standard feature releases.** 
@@ -328,7 +333,7 @@ This step covers creating the builds and the installation environments of ISIS f
 This step will update the ISIS documentation on our [website](https://isis.astrogeology.usgs.gov/UserDocs/) for our users worldwide.
 
 
-### Part A: Build the documentation 
+#### Part A: Build the documentation 
 
 * Add the new version to Documentation Versions in the [menu.xsl](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/src/docsys/build/menu.xsl#L105).
 
@@ -339,7 +344,7 @@ This step will update the ISIS documentation on our [website](https://isis.astro
 * Run the ```ninja docs``` command from this build directory to build the documentation for this version of the code. 
 
 
-### Part B: Upload the documentation
+#### Part B: Upload the documentation
 
 This step requires that you have an rclone config for the `asc-docs` bucket. You can get credentials from vault.
 
@@ -348,13 +353,13 @@ In the `$ISISROOT` directory run the following commands, but replace <your-confi
 * Optionally add the `--dry-run` flag to test prior to actually uploading, `rclone sync docs/<version-number> <your-config>://asc-docs/isis-site/<version-number>/`
 
 
-## Step 11: Communicate Availability of Build 
+### Step 11: Communicate Availability of Build 
 
 
 This step will will communicate that a new version of ISIS is available. 
 
 
-### Part A: External Announcement 
+#### Part A: External Announcement 
 
 * Create a new topic under the [ISIS Release Notes](https://astrodiscuss.usgs.gov/c/ISIS/isis-release-notes) category on [astrodiscuss](https://astrodiscuss.usgs.gov/). 
 
@@ -417,14 +422,14 @@ There are some important considerations to keep in mind when using this release 
 ``` 
 
 
-### Part B: Internal Announcement 
+#### Part B: Internal Announcement 
 
 
 * Send an email to all of astro (GS-G-AZflg Astro <gs-g-azflg_astro@usgs.gov>) informing them of internal availability. 
 
     * Your e-mail can simply be a link to the external announcement.
 
-## Step 12: Update the Release Schedule
+### Step 12: Update the Release Schedule
 
 Update the [release schedule](https://github.com/DOI-USGS/ISIS3/wiki/Release-Schedule) with the date of the release and update any future releases with the appropriate dates. Releases should be nominally 3 months apart.
 
@@ -466,3 +471,111 @@ try removing the cache in the respective `conda-bld/` dir:
 ```sh
 rm -rf ~/mambaforge3/conda-bld/osx-64/.cache
 ```
+
+------
+## **ALE Public Release Process**
+------
+Step-by-step instructions for the release process of [ALE](https://github.com/DOI-USGS/ale).
+
+### Step 1. Update the Changelog 
+
+Update the Changelog to label all the currently unreleased changes as part of the new release. 
+
+### Step 2. Add new entry to code.json 
+
+Update `code.json` by adding a new entry with the new version number and the date last modified.
+
+### Step 3. Update setup.py Version 
+
+Update version number in `setup.py`.
+
+### Step 4. Update CMakeLists.txt
+
+Update the VERSION variable in `CMakeLists.txt` to the new version number.
+
+### Step 5. Update recipe/meta.yaml
+
+Update the version variable in `recipe/meta.yaml` to the new version number.
+
+### Step 6. Submit a Pull Request
+
+Submit a pull request with the changes from steps 1-5.
+
+### Step 7. Create a Github Release 
+
+Once your pull request as been approved and merged, draft a new github release. Tag the release with the new version. Name the release with the version number and include the changelog information in the description. 
+
+------
+## **Plio Public Release Process**
+------
+Step-by-step instructions for the release process of [Plio](https://github.com/DOI-USGS/plio).
+
+### Step 1. Update the Changelog 
+
+Update the Changelog to label all the currently unreleased changes as part of the new release. 
+
+### Step 2. Add new entry to code.json 
+
+Update `code.json` by adding a new entry with the new version number and the date last modified.
+
+### Step 3. Update setup.py Version 
+
+Update the VERSION variable in `setup.py` to the new version number.
+
+### Step 4. Submit a Pull Request
+
+Submit a pull request with the changes from steps 1-3.
+
+### Step 5. Create a Github Release 
+
+Once your pull request as been approved and merged, draft a new github release. Tag the release with the new version. Name the release with the version number and include the changelog information in the description. 
+
+------
+## **Knoten Public Release Process**
+------
+Step-by-step instructions for the release process of [Knoten](https://github.com/DOI-USGS/knoten).
+
+### Step 1. Update the Changelog 
+
+Update the Changelog to label all the currently unreleased changes as part of the new release. 
+
+### Step 2. Add new entry to code.json 
+
+Update `code.json` by adding a new entry with the new version number and the date last modified.
+
+### Step 3. Update setup.py Version 
+
+Update the VERSION variable in `setup.py` to the new version number.
+
+### Step 4. Submit a Pull Request
+
+Submit a pull request with the changes from steps 1-3.
+
+### Step 5. Make Github Release 
+
+Once your pull request as been approved and merged, draft a new github release. Tag the release with the new version. Name the release with the version number and include the changelog information in the description. 
+
+------
+## **USGSCSM Public Release Process**
+------
+Step-by-step instructions for the release process of [USGSCSM](https://github.com/DOI-USGS/usgscsm).
+
+### Step 1. Update the Changelog 
+
+Update the Changelog to label all the currently unreleased changes as part of the new release.
+
+### Step 2. Add new entry to code.json 
+
+Update `code.json` by adding a new entry with the new version number and the date last modified.
+
+### Step 3. Update CMakeLists.txt
+
+Update the VERSION variable in `CMakeLists.txt` to the new version number.
+
+### Step 4. Submit a Pull Request
+
+Submit a pull request with the changes from steps 1-3.
+
+### Step 5. Make Github Release 
+
+Once your pull request as been approved and merged, draft a new github release. Tag the release with the new version. Name the release with the version number and include the changelog information in the description. 

@@ -60,7 +60,7 @@ These exercises require the use, modification, and recompilation of ISIS program
 1. Add a parameter to the `mirror` application to allow the user to choose either zero or Isis::Null as the output DN for the blank lines and/or samples. Modify the xml file to achieve this.
 2. Verify the results with `qview`.
 
-!!! Tip "Refer to other ISIS3 applications for examples or consult the [ISIS XML documentation](http://isis.astrogeology.usgs.gov/Schemas/Application/documentation/index.html)"
+!!! Tip "Refer to other ISIS3 applications for examples or consult the [ISIS XML documentation](https://isis.astrogeology.usgs.gov/8.1.0/documents/HowToApplicationExamples/index.html)"
 
 ## Task 5 - Allow User to Customize Line or Sample Settings
 

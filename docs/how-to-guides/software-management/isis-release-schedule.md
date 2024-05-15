@@ -11,7 +11,7 @@ Releases and development of ISIS3 follows a time based schedule with a new relea
 
 
 
-At the start of Month 1, a Release Candidate (RC1) is created from the `dev` branch of our GitHub repository. This RC contains all development from the previous (not shown) three months. RC1 is made publicly available as both a labelled branch and via our Anaconda.org (conda) download page. During Month 1, we solicit input and testing from the broader community. Any issues identified in RC1 will be fixed during Month 1. At the conclusion of Month 1, the release is packaged and the next ISIS3 release is made available for the general public using Anaconda.org (and the default `main` label).
+At the start of Month 1, a Release Candidate (RC1) is created from the `dev` branch of our GitHub repository. This RC contains all development from the previous (not shown) three months. RC1 is made publicly available as both a labelled branch and via our Anaconda.org (conda) [download page](https://anaconda.org/usgs-astrogeology/isis). During Month 1, we solicit input and testing from the broader community. Any issues identified in RC1 will be fixed during Month 1. At the conclusion of Month 1, the release is packaged and the next ISIS3 release is made available for the general public using Anaconda.org (and the default `main` label).
 
 During Month 1 through Month 3, we continue with new feature development for RC2. At the start of Month 4, we repeat the same release candidate and release process as described above.
 
@@ -19,7 +19,7 @@ During Month 1 through Month 3, we continue with new feature development for RC2
 When a Release Candidate is branched from the `dev` branch, a feature freeze is put into effect. Any feature additions that occur after a release candidate has been branched will be included in a future RC (and release). In other words, features added prior to the creation of a RC will be included in the next release. The only instances where this may not hold true is if significant, previously unidentified issues are identified during the testing of a RC that are associated with a new feature addition. In that case, we would back out the feature and recreate the RC.
 
 ## Release
-As described above, we will release on a three month cadence. Releases will be labelled via GitHub for those users that wish to build from scratch. Additionally, releases will be uploaded to our Anaconda.org account for `conda` installation.
+As described above, we will release on a three month cadence. Releases will be labelled via GitHub for those users that wish to build from source. Additionally, releases will be uploaded to our Anaconda.org [repository](https://anaconda.org/usgs-astrogeology/isis) for `conda` installation.
 
 ## Release Schedule
 | Version # / Label | Type | Date | 

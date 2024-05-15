@@ -2,7 +2,7 @@
 
 The goal of this exercise is to familiarize the programmer with slightly more advanced features of the ISIS3 API. You will be writing an ISIS3 application that performs simple differences between adjacent pixels in the line or sample directions.
 
-!!! Info "This tutorial assumes that the user has completed [exercise 1](./exercise-1.md) and has access to the ISIS installation and data from that tutorial.
+!!! Info "This tutorial assumes that the user has completed [exercise 1](./exercise-1.md) and has access to the ISIS installation and data from that tutorial."
 
 ## Setup
 

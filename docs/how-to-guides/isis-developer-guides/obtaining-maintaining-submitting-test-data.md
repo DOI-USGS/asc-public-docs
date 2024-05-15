@@ -10,10 +10,10 @@ Application and module tests are regression tests designed to test all the funct
 
 To run existing tests and develop new tests, a full development environment is required. The public releases do not contain the tests or test data or the source code for the tests. Follow these steps to get a working ISIS development environment with all the data:
 
-1. Fork the ISIS source code repository ([https://github.com/DOI-USGS/ISIS3](https://github.com/DOI-USGS/ISIS3)).
+1. Fork the ISIS source code [repository](https://github.com/DOI-USGS/ISIS3).
 2. Get the ISIS source code on your local machine by cloning your fork.
-3. Build the ISIS library and applications ([https://github.com/DOI-USGS/ISIS3/wiki/Developing-ISIS3-with-cmake](https://github.com/DOI-USGS/ISIS3/wiki/Developing-ISIS3-with-cmake)).
-4. Download the ISIS data files (see the [Full ISIS3 Data Download](https://github.com/DOI-USGS/ISIS3)).
+3. [Build](../isis-developer-guides/developing-isis3-with-cmake.md) the ISIS library and applications.
+4. [Download](https://github.com/DOI-USGS/ISIS3) the ISIS data files.
 
 !!! Warning "Be careful where you put the ISISDATA area. It is several hundred GB and growing."
 

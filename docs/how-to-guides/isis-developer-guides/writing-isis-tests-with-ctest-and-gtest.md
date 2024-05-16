@@ -60,6 +60,7 @@ void IsisMain() {
 }
 ```
 
+<a name="if-your-application-uses-applicationlog"></a>
 ??? Warning "If your application uses `Application::Log()`"
      Due to how the Application singleton works, calling `Application::Log()` outside an ISIS application currently causes a segmentation fault. To avoid this, modify the new `appname` function to return a Pvl that contains all the PvlGroups that need to be logged instead of calling `Application::Log()`. Then, change your `main.cpp` to
      
@@ -105,7 +106,7 @@ Once the `appname` function is defined, the `appname(UserInterface &ui)` functio
 
 Most ISIS3 applications were designed to read their inputs from files and then output their results to the command line and/or files. Unfortunately, gtest is very poorly setup to test against files and the command line. To work around this, it is necessary to remove as much file and command line output from the new `appname` functions as possible. Here are some examples of how outputs can be separated from the application logic:
 
-1. Anything that would be logged to the terminal should be simply returned via the log pointer. This way, it can be programmatically validated in gtest. This in fact already needs to be done because of [issues](#if-your-application-uses-applicationlog) with `Application::Log()`.
+1. Anything that would be logged to the terminal should be simply returned via the log pointer. This way, it can be programmatically validated in gtest. This already needs to be done because of [issues](#if-your-application-uses-applicationlog) with `Application::Log()`.
 1. No input filenames should be passed as arguments. All files required by the program should be opened and converted into in-memory objects and then passed to the function. This will help eliminate the need for test data files in many applications. **Make sure that for cubes, the appropriate CubeAttributeInput and CubeAttributeOutput values are set!**
 
 ### Process, helper functions, and global variables

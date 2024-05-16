@@ -61,11 +61,14 @@ nav:
       - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md
       - General Utility with FX:           how-to-guides/image-processing/general-utility-with-fx.md
       - Bundle Adjustment in ISIS:         how-to-guides/image-processing/bundle-adjustment-in-isis.md
+    - ISIS Demos and Workshops:            how-to-guides/isis-demos-and-workshops.md
     - Software Management:
-      - ISIS Public Release Process:       how-to-guides/software-management/public-release-process.md
+      - Deprecation:                       how-to-guides/software-management/deprecation.md
+      - Public Release Process:            how-to-guides/software-management/public-release-process.md
       - Software Support:                  how-to-guides/software-management/software-support.md
       - Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
-      - Guidelines for Pull Requests: how-to-guides/software-management/guidelines-for-pull-requests.md
+      - Guidelines for Pull Requests:      how-to-guides/software-management/guidelines-for-pull-requests.md
+      - ISIS Release Schedule:             how-to-guides/software-management/isis-release-schedule.md
     - ISIS Developer Guides:
       - How To Write ISIS Tests with CTest and GTest: how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md
       - App Testing CookBook:                         how-to-guides/isis-developer-guides/app-testing-cookbook.md
@@ -73,8 +76,13 @@ nav:
       - Developing ISIS3 with cmake:                  how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md
       - ISIS Development on the Mac M1 ARM System:    how-to-guides/isis-developer-guides/developing-mac-m1-arm-systems.md
       - Building and Contributing to ISIS Tutorial:   how-to-guides/isis-developer-guides/building-and-contributing-to-isis-tutorial.md
+      - Obtaining, Maintaining, and Submitting Test Data: how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md
+      - ISIS Programming Exercises:
+        - Exercise 1:                                 how-to-guides/isis-developer-guides/exercise-1.md
+        - Exercise 2:                                 how-to-guides/isis-developer-guides/exercise-2.md
     - ALE Developer Guides:
       - Creating Ale Drivers: how-to-guides/ale-developer-guides/creating-ale-drivers.md
+
   - Concepts: 
     - Home:     concepts/index.md
     - Glossary: concepts/glossary.md
@@ -93,6 +101,7 @@ nav:
       - Command Line Usage:                concepts/isis-fundamentals/command-line-usage.md
       - Preference Dictionary:             concepts/isis-fundamentals/preference-dictionary.md
       - Error Dictionary:                  concepts/isis-fundamentals/error-dictionary.md
+      - Session Logs:                      concepts/isis-fundamentals/session-logs.md
 
     - SPICE:
       - SPICE Overview:                            concepts/spice/spice-overview.md

@@ -128,13 +128,13 @@ nav:
 extra_css:
   - css/neoteroi-mkdocs.css
   - css/extras.css
-  - https://docs.astrogeology.usgs.gov/common/uswds/3.6.0/css/common.css
-  - https://docs.astrogeology.usgs.gov/common/uswds/3.6.0/css/custom.css
+  - css/common.css
+  - css/custom.css
 
 
 extra_javascript: 
-  - https://docs.astrogeology.usgs.gov/common/uswds/3.6.0/js/uswds-init.min.js
-  - https://docs.astrogeology.usgs.gov/common/uswds/3.6.0/js/uswds.min.js
+  - js/uswds-init.min.js
+  - js/uswds.min.js
 
 plugins:
   - search

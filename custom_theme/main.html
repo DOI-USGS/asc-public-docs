@@ -14,7 +14,7 @@
           <div class="grid-col-auto">
             <img
               class="usa-banner__header-flag"
-              src="https://docs.astrogeology.usgs.gov/common/uswds/3.6.0/img/us_flag_small.png"
+              src="{{ base_url }}/img/us_flag_small.png"
               alt="U.S. flag"
             />
           </div>
@@ -44,7 +44,7 @@
           <div class="usa-banner__guidance tablet:grid-col-6">
             <img
               class="usa-banner__icon usa-media-block__img"
-              src="https://docs.astrogeology.usgs.gov/common/uswds/3.6.0/img/icon-dot-gov.svg"
+              src="{{ base_url }}/img/icon-dot-gov.svg"
               role="img"
               alt=""
               aria-hidden="true"
@@ -60,7 +60,7 @@
           <div class="usa-banner__guidance tablet:grid-col-6">
             <img
               class="usa-banner__icon usa-media-block__img"
-              src="https://docs.astrogeology.usgs.gov/common/uswds/3.6.0/img/icon-https.svg"
+              src="{{ base_url }}/img/icon-https.svg"
               role="img"
               alt=""
               aria-hidden="true"
@@ -104,7 +104,7 @@
         <div class="tmp-container">
             <div class="header-search">
              <a class="logo-header" href="https://www.usgs.gov/" title="Home">
-                <img class="img"  src="https://docs.astrogeology.usgs.gov/common/uswds/3.6.0/img/logo.png"  alt="Home" />
+                <img class="img"  src="{{ base_url }}/img/logo.png"  alt="Home" />
               </a>
               <form action="https://www.usgs.gov/science-explorer-results" method="GET" id="search-box">
                <div class="fa-wrapper"><label for="se_search" class="only">Search</label>
@@ -208,6 +208,6 @@
 
 {% block styles %}
 
-  <link href="https://docs.astrogeology.usgs.gov/common/uswds/3.6.0/css/uswds.css" rel="stylesheet" type="text/css" media="screen" /> 
+  <link href="{{ base_url }}/css/uswds.css" rel="stylesheet" type="text/css" media="screen" /> 
   {{ super() }}
 {% endblock %}

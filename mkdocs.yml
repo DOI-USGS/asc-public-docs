@@ -62,7 +62,9 @@ nav:
       - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md
       - General Utility with FX:           how-to-guides/image-processing/general-utility-with-fx.md
       - Bundle Adjustment in ISIS:         how-to-guides/image-processing/bundle-adjustment-in-isis.md
-    - ISIS Demos and Workshops:            how-to-guides/isis-demos-and-workshops.md
+    - ISIS Demos and Workshops:
+      - Demos and Workshops:               how-to-guides/demos/isis-demos-and-workshops.md
+      - Interactive Online Demos:          how-to-guides/demos/isis-demos.md
     - Software Management:
       - LTS Release Process:               how-to-guides/software-management/lts-release-process.md
       - Deprecation:                       how-to-guides/software-management/deprecation.md

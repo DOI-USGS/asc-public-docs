@@ -40,13 +40,13 @@ window):
     collected by space exploration missions to create seamless,
     cartographically accurate, global image maps for use by the
     planetary science community for research and mapping. See our
-    [Map-a-Planet](https://astrogeology.usgs.gov/tools/map-a-planet-2) site to view these
+    [Map-a-Planet](https://astrocloud.wr.usgs.gov/index.php?view=map2) site to view these
     products.
 
   - **Geologic Mapping** : we create accurate base image maps for
     geologists to use in creating geologic maps. See our [Planetary
     Geologic Mapping
-    Program](http://astrogeology.usgs.gov/Projects/PlanetaryMapping/)
+    Program](https://www.usgs.gov/special-topics/planetary-geologic-mapping)
     for more information about this work.
 
   - **Scientific Research** : Using ISIS to mosaic images of a region
@@ -57,7 +57,7 @@ window):
     that were processed and analyzed using ISIS as part of the
     scientific research resulting from the mission: [Textures of the
     Soils and Rocks at Gusev Crater from Spirit's Microscopic
-    Imager](http://astrogeology.usgs.gov/search/details/Mars/MER/ImagerFindings/ScienceMI824/pdf).
+    Imager](https://www.usgs.gov/media/files/textures-soils-and-rocks-gusev-crater-spirits-mi).
 
 ## User Interface for ISIS
 

@@ -22,14 +22,13 @@ In this step, we check the currently failing tests. This is currently a judgemen
 
 ### Step 2: Update the GitHub documents
 
-**This step is only required for release candidates and bug fix release. If you are creating a full feature release, skip this step.**
-
 In this step, we will update the documents that are stored in the GitHub repository. Our changes will be going into the dev branch, so create a fresh local branch off of the dev branch.
 
 
 #### Part A: Collecting the Changes in the Release
 
 * Update the Changelog 
+  * For full feature releases, we need to update the release date to the day it is being officially released. All the cumulative changes in this release should have already been appropriately added in iterative release candidates leading up to the full feature release.
   * For release candidates we need to update the Changelog to label all the currently unreleased changes as part of this release. Follow the instructions in [CHANGELOG.md](https://raw.githubusercontent.com/DOI-USGS/ISIS3/dev/CHANGELOG.md) for how to do this.
   * For bug fix releases, we need to update the Changelog to label **only the bug fixes** as part of this release. Follow the instructions in [CHANGELOG.md](https://raw.githubusercontent.com/DOI-USGS/ISIS3/dev/CHANGELOG.md) for how to do this.
 * Update `code.json` by adding a new entry with the new version number and the date last modified.

@@ -1,5 +1,16 @@
 # Bit-Type
 
+<script src="https://asc-public-docs.s3.us-west-2.amazonaws.com/common/scripts/isis-demos/jquery-3.7.1.min.js"></script>
+<link href="../../../css/isis-demos.css" media="all" rel="stylesheet"/>
+
+
+<script type="text/javascript">
+if (typeof window.isisDemosLoaded == 'undefined') {
+    var isisDemosLoaded = true;
+    $.getScript("https://asc-public-docs.s3.us-west-2.amazonaws.com/common/scripts/isis-demos/easeljs-0.8.1.min.js").done( function(s,t) { $.getScript("../../../js/isisDemos.js");});
+}
+</script>
+
 ## Bit-Type Basics
 -----
 
@@ -182,6 +193,10 @@ by 100 lines:
     </tr>
   </tbody>
 </table>
+
+### File Size Calculator
+
+<div class="app-container" id="isis-image-data-size"></div>
 
 ## How do I set the bit-type?
 

@@ -1,5 +1,16 @@
 # ISIS Cube Format
 
+<script src="https://asc-public-docs.s3.us-west-2.amazonaws.com/common/scripts/isis-demos/jquery-3.7.1.min.js"></script>
+<link href="../../../css/isis-demos.css" media="all" rel="stylesheet"/>
+
+
+<script type="text/javascript">
+if (typeof window.isisDemosLoaded == 'undefined') {
+    var isisDemosLoaded = true;
+    $.getScript("https://asc-public-docs.s3.us-west-2.amazonaws.com/common/scripts/isis-demos/easeljs-0.8.1.min.js").done( function(s,t) { $.getScript("../../../js/isisDemos.js");});
+}
+</script>
+
 ## What Is A Cube?
 ---------------
 
@@ -62,11 +73,18 @@ A cube is a 3-dimensional image with axis: samples, lines, and bands. The physic
 ## What Are Pixels?
 ----------------
 
-The individual cells within a cube are called pixels. Each pixel in a cube has a location, which is similar to rectangular coordinates (i.e.., (samples, lines, bands)). A cube can be as small as one sample, by one line, by one band (1,1,1). If we had a cube of this size, it would contain only one pixel. A cube can be as large as thousands of samples, by thousands of lines, by thousands of bands. A cube with dimensions (1000, 1000, 1000) would contain one billion pixels.  See the [ISIS Cube Demo](https://doi-usgs.github.io/ISIS3/ISIS_Cube_Format.html#Cube-Demo) for an interactive visual of samples, lines, and bands.
+The individual cells within a cube are called pixels. Each pixel in a cube has a location, which is similar to rectangular coordinates (i.e.., (samples, lines, bands)). A cube can be as small as one sample, by one line, by one band (1,1,1). If we had a cube of this size, it would contain only one pixel. A cube can be as large as thousands of samples, by thousands of lines, by thousands of bands. A cube with dimensions (1000, 1000, 1000) would contain one billion pixels.  See the demo below for an interactive visual of samples, lines, and bands.
+
+### ISIS Cube Demo
+
+<div class="app-container" id="isis-cube"></div>
+
+</br>
 
 !!! tip
 
-    Notice sample 1 is on the left edge of the image and line 1 is on the top edge. Therefore, to figure out the coordinates of a pixel, count lines and samples staring with 1,1 in the upper left corner and move down and to the right.
+    Notice sample 1 is on the left edge of the image and line 1 is on the top edge. Therefore, to figure out the coordinates of a pixel, count lines and samples staring with (1, 1) in the upper left corner and move down and to the right.
+
     
 
 ## Bit-Depth (aka Bit-Type)
@@ -90,12 +108,22 @@ An 8-bit cube needs to represent elevations in meters. Unfortunately, 8-bit pixe
 
 *Base + Multiplier * DN = True DN*
 
+### Core Base and Multiplier Demo
+
+<div class="app-container" id="isis-multiplier"></div>
+
+
 ## Sub-Pixel Positioning
 --------------------
 
 ISIS3 programs and users often need to interact at the sub-pixel level. That is, fractional pixel positions. The integral sample/line position is defined to be the center of a pixel.
 
 Take a pixel centered at (5, 5) for example.  The upper left of the pixel contains the point (4.75, 4.75), and the lower right of the pixel contains the point (5.25, 5.25).  The threshold between pixels is a value ending in .5
+
+## Sub-Pixel Demo
+
+<div class="app-container" id="isis-subpixels"></div>
+
 
 ## Summary
 -------

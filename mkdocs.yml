@@ -48,6 +48,8 @@ nav:
       - Adding SPICE:                      getting-started/using-isis-first-steps/adding-spice.md
       - Exporting ISIS Data:               getting-started/using-isis-first-steps/exporting-isis-data.md
       - ISIS FAQ:                          getting-started/using-isis-first-steps/isis-faq.md
+    - Archive:
+      - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
   - How-To Guides: 
     - Home: how-to-guides/index.md
     - Environment Setup and Maintenance:
@@ -62,7 +64,8 @@ nav:
       - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md
       - General Utility with FX:           how-to-guides/image-processing/general-utility-with-fx.md
       - Bundle Adjustment in ISIS:         how-to-guides/image-processing/bundle-adjustment-in-isis.md
-    - ISIS Demos and Workshops:            how-to-guides/isis-demos-and-workshops.md
+    - ISIS Demos:
+      - Interactive Online Demos:          how-to-guides/demos/isis-demos.md
     - Software Management:
       - LTS Release Process:               how-to-guides/software-management/lts-release-process.md
       - Deprecation:                       how-to-guides/software-management/deprecation.md

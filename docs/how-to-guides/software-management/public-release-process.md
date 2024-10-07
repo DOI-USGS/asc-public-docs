@@ -22,7 +22,11 @@ In this step, we check the currently failing tests. This is currently a judgemen
 
 ### Step 2: Update the GitHub documents
 
-In this step, we will update the documents that are stored in the GitHub repository. Our changes will be going into the dev branch, so create a fresh local branch off of the dev branch.
+In this step, we will update the documents that are stored in the GitHub repository. There will either be one or two PRs as a result of this step depending on:
+- **One PR**: If there is not an existing branch for this release version as stated in [Step 3, Part A](#part-a-setup-repository), *one* PR for updating the documents is needed because that PR is merged into `dev` then the new release branch is cut from `dev`. Since our changes will be going into the `dev` branch, create a fresh local branch off of `dev`.
+- **Two PRs**: If there is an existing branch for this release version, one PR is needed to go into `dev`. Identical changes should be added to the PR in [Step 3, Part D](#part-d-create-a-pull-request).
+
+The update docs PR into `dev` should be merged *after* the release is officially out and at the end of the public release process to ensure the new ISIS docs endpoint is live and working.
 
 
 #### Part A: Collecting the Changes in the Release
@@ -428,7 +432,10 @@ There are some important considerations to keep in mind when using this release 
 
     * Your e-mail can simply be a link to the external announcement.
 
-### Step 12: Update the Release Schedule
+### Step 12: Publish Record to DOI
+Referring to [Part F](#part-f-create-a-doi-for-the-release), make sure to check that the code.usgs.gov link for the release is live and publish the record on DOI.
+
+### Step 13: Update the Release Schedule
 
 Update the [release schedule](https://github.com/DOI-USGS/ISIS3/wiki/Release-Schedule) with the date of the release and update any future releases with the appropriate dates. Releases should be nominally 3 months apart.
 

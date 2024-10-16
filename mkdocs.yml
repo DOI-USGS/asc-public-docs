@@ -48,6 +48,8 @@ nav:
       - Adding SPICE:                      getting-started/using-isis-first-steps/adding-spice.md
       - Exporting ISIS Data:               getting-started/using-isis-first-steps/exporting-isis-data.md
       - ISIS FAQ:                          getting-started/using-isis-first-steps/isis-faq.md
+    - Using Ale:
+      - Generating an ISD:                 getting-started/using-ale/isd-generate.md
     - Archive:
       - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
   - How-To Guides: 

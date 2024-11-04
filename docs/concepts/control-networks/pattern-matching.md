@@ -61,7 +61,7 @@ From the above discussion of pattern and search chips, an intuition should be de
 
 ## Match Algorithms
 
-Rarely in practice will the pixels in a search chip have a one-to-one correspondance with some sub-area of the search chip. Consequently, we introduce match algorithms designed to correlate two chips and find the "best" match within the search area.
+Rarely in practice will the pixels in a search chip have a one-to-one correspondence with some sub-area of the search chip. Consequently, we introduce match algorithms designed to correlate two chips and find the "best" match within the search area.
 
 An objective of the ISIS automatic registration design is to allow for a variety of match algorithms. For example, an algorithm could be developed that works best for matching MGS/MOC wide angle and Odyssey Themis IR cameras. For this objective to be met we will utilize applications which allow automatic registration plugins. This concept is identical to that of applications which utilize camera and/or map projection plugins such as cam2map, map2map, etc.
 
@@ -203,7 +203,7 @@ End_Group
 
 In this case, the whole pixel with the best fit is returned.
 
-As of ISIS3.4.0, the subpixel algorithm was replaced with the algorithm described under SurfaceModeling. To estimate the true registration postion, the previous algorithm used a least squares fit to generate a 2nd degree 2-dimentional polynomial given an NxN window of points from the fit chip. This previous algorithm optionally applied two parameter tolerances that are no longer needed and have been removed, Eccentricity Ratio and Residual Tolerance. If a PVL definition file includes these parameters when applying the new subpixel algorithm, they will simply be ignored.
+As of ISIS3.4.0, the subpixel algorithm was replaced with the algorithm described under SurfaceModeling. To estimate the true registration position, the previous algorithm used a least squares fit to generate a 2nd degree 2-dimentional polynomial given an NxN window of points from the fit chip. This previous algorithm optionally applied two parameter tolerances that are no longer needed and have been removed, Eccentricity Ratio and Residual Tolerance. If a PVL definition file includes these parameters when applying the new subpixel algorithm, they will simply be ignored.
 
 ### Surface Modeling
 
@@ -238,7 +238,7 @@ Group = SurfaceModel
 End_Group
 ```
 
-Here a registration will be rejected if the new position is more than 3.5 pixels away from the original whole-pixel result. The recommended value is 0.5 or 0.75, this assumes that the orignal starting position at the whole pixel level is accurate. This distance test is not a 2D check, but rather, two single dimension checks (line direction and sample direction).
+Here a registration will be rejected if the new position is more than 3.5 pixels away from the original whole-pixel result. The recommended value is 0.5 or 0.75, this assumes that the original starting position at the whole pixel level is accurate. This distance test is not a 2D check, but rather, two single dimension checks (line direction and sample direction).
 
 ### Window Size
 

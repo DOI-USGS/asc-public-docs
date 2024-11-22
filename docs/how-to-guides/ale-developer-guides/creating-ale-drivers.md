@@ -4,7 +4,7 @@ This guide provides step-by-step instructions for creating an ALE driver for an 
 
 ## Prerequisites 
 1. Clone and build [ISIS](https://github.com/USGS-Astrogeology/ISIS3/wiki/Developing-ISIS3-with-cmake) locally.
-1. Download base and mission kernels related to the driver you plan to implement.  One means of downloading this kernels is through ISIS's [downloadIsisData script](https://github.com/DOI-USGS/ISIS3/blob/dev/README.md#partial-download-of-isis-base-data).
+1. Download base and mission kernels related to the driver you plan to implement.  One means of downloading this kernels is through ISIS's [downloadIsisData script](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md#downloading-isisdata).
 1. Fork [the ALE repository](https://github.com/USGS-Astrogeology/ale)
 1. Clone from your fork (with the recursive flag to clone submodules as well):
     ```sh

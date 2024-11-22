@@ -1,61 +1,61 @@
-# ISIS Development on the Mac M1 ARM System
+# ISIS Development on ARM Macs (Apple Silicon)
 
-*Borrowed largely from Kris Becker's original GitHub post [here.](https://github.com/DOI-USGS/ISIS3/issues/5188)*
+*Initially borrowed from [Kris Becker's GitHub post](https://github.com/DOI-USGS/ISIS3/issues/5188).*
 
-There are at least two ways to develop ISIS on the M1. The current ISIS configuration can be built on the M1 in the Rosetta Translation Environment using the x86_i386 Intel-based instruction set. Building ISIS natively using the x86_64 ARM instruction set is not yet possible. The instructions to set up both environments is provided here, but the x86_i386 is recommended until all the required dependencies are available in the ARM environment.
+There two ways to develop ISIS on Apple Silicon. ISIS can be built on ARM Macs with Rosetta Translation, using the x86 instruction set. Building ISIS natively for ARM on Apple Silicon is not as reliable. The instructions for both ways are provided here, but for now, the x86 environment is recommended, and ARM builds are considered experimental.
 
 
-???+ note
+## Rosetta, the Terminal, and Conda
 
-    This guide is based on a M1 Mac system running Apple macOS Monterey. Here is some additional information regarding the system used to install, configure and build ISIS on the M1:
+Building ISIS requires Conda.  The installation of Conda will depend on whether your terminal is running natively on ARM or with x86 translation.  Whether your terminal is running natively or on ARM depends on Rosetta.  That means you should proceed in this order:
 
-    ```
-    Hardware Overview
-      Model Name:	MacBook Pro
-      Model Identifier:	MacBookPro18,2
-      Chip:	Apple M1 Max
-      Total Number of Cores:	10 (8 performance and 2 efficiency)
-      Memory:	32 GB
-    Graphics/Display
-      Type:	GPU
-      Bus:	Built-In
-      Total Number of Cores:	24
-    System Software Overview:
-      System Version:	macOS 12.6.3 (21G419)
-      Kernel Version:	Darwin 21.6.0
-    ```
-    The methods and processes described below pertains to the Monterey OS. Apparently, it is different in the Ventura OS since it no longer allows duplication of the Terminal app, but there are [alternative ways](https://stackoverflow.com/questions/74198234/duplication-of-terminal-in-macos-ventura) to make it possible in Ventura. Also, it is unknown if this will work with the Mac M2 ARM chip.
+1.  Install Rosetta
+1.  Set up a terminal to use Rosetta
+1.  Install Conda in the Rosetta Terminal
+1.  Use a Conda environment to build and run ISIS
 
-    To determine which environment you are running in, run the following command in `Terminal`:
+Apple's [Rosetta Translation Environment](https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment) runs applications that use the Intel-based x86_64 instruction set. Using Rosetta, ISIS can be compiled and run on Apple Silicon.
 
-    ```
-    # Rosetta Intel
-    % uname -m
-    x86_64
-    % uname -p
-    i386
+!!! warning "Rosetta is not easy to remove"
 
-    # Native ARM
-    % uname -m
-    arm64
-    % uname -p
-    arm
-    ```
+    If want to test building or using ISIS on a pure ARM system, you may want to consider leaving your ARM Mac without Rosetta.  Uninstalling Rosetta is not supported by Apple.  Removal is reportedly possible, but involves disabling System Integrity Protection.  If you have installed Rosetta, you could use a [virtual machine](https://mac.getutm.app) to test how ISIS runs/builds without Rosetta.
 
-## Mac M1 Rosetta x86_i386 Intel Configuration Steps
-Apple provides the [Rosetta Translation Environment](https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment) to run applications that contain the Intel-based x86_64 instruction set. Using this environment, the current ISIS configuration can be used to compile and run the resulting ISIS build on the Apple M1 platform.
+There are a few ways to set up the Rosetta environment.  We recommend getting a second terminal and configuring it to run in Rosetta as described below.  Alternatively, [Taylor Reiter's blog](https://taylorreiter.github.io/2022-04-05-Managing-multiple-architecture-specific-installations-of-conda-on-apple-M1/) shows how to set up an ARM miniforge and an x86 miniconda environment side by side.  [Conda Forge](https://conda-forge.org/docs/user/tipsandtricks/#installing-apple-intel-packages-on-apple-silicon) has a instructions for enabling Rosetta on a per-conda-environment basis.
 
-Before building ISIS, it is essential to install the conda environment on the Mac M1. Refer to the [Anaconda and ISIS dependencies](https://astrogeology.usgs.gov/docs/how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#anaconda-and-isis3-dependencies) for guidance on downloading Anaconda. Alternatively, find instructions for downloading Miniconda [here](https://docs.conda.io/projects/miniconda/en/latest/). 
+!!! warning "Using different terminals"
 
-While there are various ways to set up the Rosetta development environment, creating a copy of the Terminal app in /Applications folder and configuring it to run in the Rosetta environment automatically is considered the most straightforward method. The instructions in this [blog](https://www.courier.com/blog/tips-and-tricks-to-setup-your-apple-m1-for-development/) are followed to set up a Rosetta Terminal before installing Miniconda and building ISIS. 
+    Some sources initially suggested making a *copy* of the terminal app so you can use your initial terminal for ARM environments and the copied terminal for x86 environments.  On recent versions of macOS, copying the included `Terminal.app` has been reported not to work, or to cause complications.  A copied app may be removed when updating.
+    
+    A similar setup can be achieved by installing a second, third party terminal like [iTerm2](https://iterm2.com), and this is now recommended instead.
 
-There is an option to install just the Intel version of Miniconda, or a more [complex procedure](https://towardsdatascience.com/how-to-install-miniconda-x86-64-apple-m1-side-by-side-on-mac-book-m1-a476936bfaf0) can be used to install both the ARM and Rosetta Intel versions side-by-side, with potential consequences. 
+Once your terminal is set up, building ISIS will require a conda environment, as described in [Anaconda and ISIS dependencies](https://astrogeology.usgs.gov/docs/how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#anaconda-and-isis3-dependencies).
 
-For simplicity, the instructions below describe only the Rosetta Intel x86_i386 environment configuration install, as the native ARM-based ISIS development environment is not expected to be available for a while (refer to the [Native ARM configuration](#mac-m1-native-x86_arm64-arm-configuration-steps) section below for details). 
 
-Prior to attempting these steps, duplication of the Terminal app (or application of a suitable alternative) is necessary. **NOTE:** It's important to note that a significant complication to the duplication approach is that every time there is an update to a new version of Monterey, the `Terminal Rosetta` app is removed, requiring recreation after each update.
+## Setting Up a Rosetta Terminal
 
-1. Run the `Terminal Rosetta` app.
+A Rosetta Terminal is a terminal run inside the Rosetta translation layer.  This gives you an terminal environment to run x86 apps in on Macs with ARM processors.  Here's how to set it up:
+
+1.  Install Rosetta (accepting its license terms):
+
+    `/usr/sbin/softwareupdate --install-rosetta --agree-to-license`
+
+1.  Get a second terminal.
+    -   Installing a third party terminal like [iTerm2](https://iterm2.com) is recommended.
+    -   3rd-party Terminal + mac-included Terminal.app = 2 terminals.
+    -   You will probably want 2 terminals so you can run native ARM apps in one and x86 apps in the other!
+
+1.  Pick one terminal to be your **ARM native terminal**, and the other to be your **x86 Rosetta Terminal**.
+
+1.  For the **x86 Rosetta Terminal**, right click the app in the `/Applications` (or `/Applications/Utilities`) folder, and click `Get Info`.
+
+1.  Check the `Open using Rosetta` box.  This is now your Rosetta Terminal.
+
+![The Terminal.app listing in the mac finder app is being right-clicked, and a checkbox labeled 'open with Rosetta' is being checked in the info pane.](../../assets/isis-dev-guides/terminal-open-with-rosetta.png "Setting a Terminal to Open with Rosetta")
+
+
+## Installing Miniconda on a Rosetta Terminal
+
+1. Run the `Rosetta Terminal` app (the x86 Terminal you set up above).
     * `uname -m` should report `x86_64`
 2. Install the Bash version of [Mac Intel Miniconda](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh)
     * `bash Miniconda3-latest-MacOSX-x86_64.sh`
@@ -66,14 +66,24 @@ Prior to attempting these steps, duplication of the Terminal app (or application
     * `mkdir -p IsisMacIntel`
     * `cd IsisMacIntel`
     * `git clone --recurse-submodules https://github.com/DOI-USGS/ISIS3.git`
-5. Build ISIS using the instructions as documented [here.](https://astrogeology.usgs.gov/docs/how-to-guides/isis-developer-guides/developing-isis3-with-cmake/)
-    * `ninja install`
+5. [Build ISIS](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md#building-isis3)
 
-The build times are quite impressive - 11 minutes - using the Rosetta Translation Environment. Behavior is similar to other Mac platforms since ISIS installs/uses the Anaconda [cpp-compiler](https://anaconda.org/conda-forge/cxx-compiler).
 
 ## Mac M1 Native x86_arm64 ARM Configuration Steps
 
-Building the ARM version of ISIS is easier than the Intel version because there are no additional special setup requirements as there are for Rosetta. However, support for ARM is relatively new in Miniconda, [released](https://www.anaconda.com/blog/new-release-anaconda-distribution-now-supporting-m1) on May 5, 2022. If the Rosetta Intel installation above was followed, the environment must be removed unless an appropriate alternative procedure was used. To remove a Miniconda installation, follow the [recommended instructions](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html#uninstalling-anaconda-or-miniconda). Then, open a native Terminal and prepare to [install](https://conda.io/projects/conda/en/stable/user-guide/install/macos.html#install-macos) the ARM version of Miniconda. 
+Building the ARM version of ISIS is easier than the Intel version because 
+there are no additional special setup requirements as there are for Rosetta. 
+However, ARM still tends to be a bit less supported than x86 as of 2024. 
+
+If the Rosetta Intel installation above was followed, that environment must be removed. 
+(Alternative Procedures [[Side-by-side]](https://taylorreiter.github.io/2022-04-05-Managing-multiple-architecture-specific-installations-of-conda-on-apple-M1/) 
+[[Per-conda-env]](https://conda-forge.org/docs/user/tipsandtricks/#installing-apple-intel-packages-on-apple-silicon) 
+may let you keep Rosetta x86 and native ARM environments simultaneously.) 
+To remove a Miniconda installation, follow  
+[Conda's docs](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html#uninstalling-anaconda-or-miniconda). 
+
+Open a native Terminal and prepare to 
+[install](https://conda.io/projects/conda/en/stable/user-guide/install/macos.html#install-macos) the ARM version of Miniconda:
 
 1. Ensure you are running the native Terminal app.
     * `uname -m` should report `arm64`
@@ -89,36 +99,19 @@ Building the ARM version of ISIS is easier than the Intel version because there 
 5. Configure ISIS
     * `conda env create -n IsisArmDev -f environment.yml`
 
-Here are the results of the first attempt to install the ISIS development dependencies on the Mac M1 ARM platform:
+!!! warning "GUI Applications not Visible?"
 
-```
-Collecting package metadata (repodata.json): done
-Solving environment: failed
+    As reported in [issue #4773](https://github.com/DOI-USGS/ISIS3/issues/4773), 
+    GUI (Qt) applications may not display until you run the following in your terminal:
 
-ResolvePackageNotFound:
-  - usgs-astrogeology::bullet
-  - inja
-  - qt[version='>=5.9.6,<5.15.0']
-  - usgs-astrogeology::kakadu==1
-  - tnt
-  - xalan-c
-  - jama
-  - nn
-  - ale=0.8.6
-  - embree[version='>=2.17,<3']
-  - csm[version='>=3.0.3,<3.0.4']
-  - boost=1.72
-  - armadillo
-  - ninja==1.7.2
-```
-ISIS make configuration fails due to missing dependencies. ISIS cannot be built natively on the Mac M1 because 14 conda package dependencies are missing. Some are pinned to a specific version that is not available for the M1; [Qt](https://anaconda.org/anaconda/qt) was initially not supported per the [release notes](https://www.anaconda.com/blog/new-release-anaconda-distribution-now-supporting-m1). However, support was officially added in the October 18, 2022 [release](https://docs.anaconda.com/free/anaconda/release-notes/) but only for 5.15.2 and higher. Other ISIS dependency packages have no native Mac M1 version available and may never have one as support for some of them may have been completely dropped. And, there are some dependency packages the USGS maintains that currently do not have a Mac M1 version. It is unclear how/when/if any of these packages may be available for the Mac M1.
+    ```sh
+    export QT_MAC_WANTS_LAYER=1
+    ```
 
-**Note:** Qt applications will not display until you `export QT_MAC_WANTS_LAYER=1` in the terminal as was reported in [#4773](https://github.com/DOI-USGS/ISIS3/issues/4773).
 
-## Summary/Comments
-It is possible to use the Apple Mac M1 ARM platform to develop ISIS applications. However, it currently must be done using the Rosetta Translation environment.
+## Concluding Remarks
 
-The process to set up Rosetta on the M1 is complex and different under Monterey and Ventura. Apple's Rosetta support seems to continue to evolve and will likely be sunsetted at some point. It is unknown at this time if this process can be used with the M2 chip.
+It is possible to use the Apple ARM platform to develop ISIS applications.  For now, you may need Rosetta to translate.  ARM Support continues to evolve.
 
-Amazon also provides [EC2 Mac instances](https://aws.amazon.com/ec2/instance-types/mac/), which include M1 systems with Monterey installed. This may help those who have access to such resources.
+Amazon provides [EC2 Mac instances](https://aws.amazon.com/ec2/instance-types/mac/), which include Apple ARM systems with macOS installed; a possibility for ISIS ARM development if you don't have an ARM system.  If you do have an ARM Mac, a [virtual machine](https://mac.getutm.app) may be useful to test ISIS in a clean environment (without Rosetta!).
 

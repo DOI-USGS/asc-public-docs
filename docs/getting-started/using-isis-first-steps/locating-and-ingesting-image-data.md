@@ -12,13 +12,12 @@ Atlas
 
 Planetary Image Atlas
 
-The internet has greatly improved the ability to locate and download
-planetary data. The Planetary Data System (PDS) Planetary Image Atlas is
+The Planetary Data System (PDS) Planetary Image Atlas is
 the most comprehensive source for planetary data from current and past
-planetary missions. The web site provides tools to help you find image
+planetary missions. It provides tools to help you find image
 data that covers your area of interest in the vast quantities available.
 
-[Planetary Data System Image Atlas.](http://pdsimg.jpl.nasa.gov/Atlas)
+[Planetary Data System Image Atlas.](https://pds-imaging.jpl.nasa.gov/search)
 
 Data can be found for each planet, some example missions and instruments listed below.
 

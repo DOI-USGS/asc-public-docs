@@ -76,9 +76,9 @@
     Some ISIS software updates include mission specific command updates motivated by new information (updated kernels, format changes, etc.) from mission teams. When the software is updated the data area should also be updated, see [Mission Specific Data Downloads][5].
 
     [3]: https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/spiceinit/spiceinit.html
-    [4]: https://github.com/DOI-USGS/ISIS3?tab=readme-ov-file#full-isis-data-download
-    [5]: https://github.com/DOI-USGS/ISIS3?tab=readme-ov-file#mission-specific-data-downloads
-    [6]: https://github.com/DOI-USGS/ISIS3?tab=readme-ov-file#isis-spice-web-service
+    [4]: ../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md#full-download
+    [5]: ../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md#mission-specific-data-areas
+    [6]: ../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md#isis-spice-web-service
     [7]: ../../getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md
 
 ???+ abstract "Additional Helpful Docs"

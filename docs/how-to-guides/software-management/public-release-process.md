@@ -256,7 +256,7 @@ After the conda build completes, it should be tested by uploading it to your per
 
 * Use the command ```anaconda upload -u <conda-cloud-username> <path-to-the-.tar.bz2-file>``` to upload the conda build to your personal anaconda channel. 
 
-* Follow the standard [installation instructions](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md#isis-installation-with-conda) to install this package locally for testing, but at the installation step, instead of running `conda install -c usgs-astrogeology isis`, run `conda install -c <conda-cloud-username> -c usgs-astrogeology isis`  
+* Follow the standard [installation instructions](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md) to install this package locally for testing, but at the installation step, instead of running `conda install -c usgs-astrogeology isis`, run `conda install -c <conda-cloud-username> -c usgs-astrogeology isis`  
 
     ???+ Note "Troubleshooting conda install"
         If you are having trouble installing ISIS from your personal account, try specifying the version, e.g., `conda install -c <conda-cloud-username> -c usgs-astrogeology isis=8.1.0_RC1`
@@ -315,7 +315,7 @@ This step covers creating the builds and the installation environments of ISIS f
 
 #### Part B: Installing ISIS 
 
-* Follow the standard [installation instructions](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md#isis-installation-with-conda) to install the latest version of ISIS into a new environment. 
+* Follow the standard [installation instructions](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md) to install the latest version of ISIS into a new environment. 
 
     * For a standard release, the environment should be named `isisX.Y.Z`. 
 

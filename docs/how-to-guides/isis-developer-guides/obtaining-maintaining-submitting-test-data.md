@@ -1,7 +1,5 @@
 # ISIS Test Data
 
-## Kinds of Tests
-
 ### GTests and Legacy Makefile-based Tests
 
 ISIS has of two types of tests: custom **Makefile** based tests, and **GTests**. The GTests use data from the ISIS repo along with the source, so no special data is required to run those, aside from the ISIS data area.

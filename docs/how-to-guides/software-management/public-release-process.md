@@ -11,203 +11,140 @@
 
 ## **ISIS Public Release Process**
 -------
-This section explains the release process for Official Releases, Release Candidates and custom builds (for example: missions) for [ISIS](https://github.com/DOI-USGS/ISIS3). 
-
   
-### Step 1: Check current false positive test failures 
+ISIS release process chjanges depending on the type of release: 
 
-In this step, we check the currently failing tests. This is currently a judgement call on whether the tests are false-positives. This decision should be made by 2+ developers on the development team. 
+* **RC**: Release Cadidate, new feature releases (e.g. going from `8.0`->`8.1` or `8.5`->`9.0`) are released first as RCs.
+* **LR**: Live Release, if no changes are suggested for the RC after a month, we do a LR from the RC.  
+* **LTS**: Long Term Support, the previous major release is supported for a year in LTS. It only recieves bug fixes, no feature adds. 
 
+### 1. **Check current test failures**
 
+Check the [AWS CodeBuild test results](https://us-west-2.codebuild.aws.amazon.com/project/eyJlbmNyeXB0ZWREYXRhIjoiNDJNZ2MxbHFKTkwxV1RyQUxJekdJY3FIanNqU29rMHB4Nk1YUzk4REIrZUZDeEtEaW9HQlZ1dTZOSHpML2VUTGVDekYydmVFcU9sUHJKN20wQzd1Q0UzSzJscnB0MElDb1M3Ti9GTlJYR1RuMWJTV3V1SkJTa3NoYmc9PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF3U2NTSGlDcEtCc29YVnEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D) for whatever branch you plan to release. If false positives are suspected, at least two contributing devlopers need to agree before moving forward. 
 
-### Step 2: Update the GitHub documents
+!!! Success "Step 1 Complete"
+    
+    Move on to step 2 when you confirmed builds are passing or have accounted for the false positives. 
+
+### 2. **Update the GitHub documents**
 
 In this step, we will update the documents that are stored in the GitHub repository. There will either be one or two PRs as a result of this step depending on:
-- **One PR**: If there is not an existing branch for this release version as stated in [Step 3, Part A](#part-a-setup-repository), *one* PR for updating the documents is needed because that PR is merged into `dev` then the new release branch is cut from `dev`. Since our changes will be going into the `dev` branch, create a fresh local branch off of `dev`.
-- **Two PRs**: If there is an existing branch for this release version, one PR is needed to go into `dev`. Identical changes should be added to the PR in [Step 3, Part D](#part-d-create-a-pull-request).
 
-The update docs PR into `dev` should be merged *after* the release is officially out and at the end of the public release process to ensure the new ISIS docs endpoint is live and working.
-
-
-#### Part A: Collecting the Changes in the Release
-
-* Update the Changelog 
-  * For full feature releases, we need to update the release date to the day it is being officially released. All the cumulative changes in this release should have already been appropriately added in iterative release candidates leading up to the full feature release.
-  * For release candidates we need to update the Changelog to label all the currently unreleased changes as part of this release. Follow the instructions in [CHANGELOG.md](https://raw.githubusercontent.com/DOI-USGS/ISIS3/dev/CHANGELOG.md) for how to do this.
-  * For bug fix releases, we need to update the Changelog to label **only the bug fixes** as part of this release. Follow the instructions in [CHANGELOG.md](https://raw.githubusercontent.com/DOI-USGS/ISIS3/dev/CHANGELOG.md) for how to do this.
-* Update `code.json` by adding a new entry with the new version number and the date last modified.
-  
-
-#### Part B: Update the Authors List 
-
-* If there are any new contributors to the project since the last release, ensure that they are added to the [.zenodo.json](https://github.com/DOI-USGS/ISIS3/blob/dev/.zenodo.json) document, and update the `AUTHORS.rst` file from the .zenodo.json file by running `python $ISISROOT/scripts/zenodo_to_authors.py <path_to_your_clone>/.zenodo.json <path_to_your_clone>/AUTHORS.rst`.
+!!! warning "Update docs at the end" 
+    The update docs PR into `dev` should be merged *after* the release is officially out and at the end of the public release process to ensure the new ISIS docs endpoint is live and working.
 
 
-#### Part C: Submit a Pull Request
 
-* Submit a pull request into the dev branch with your modifications to the Changelog and the Authors list.
-* For a bug fix release, you will also need to [cherry-pick](https://www.atlassian.com/git/tutorials/cherry-pick) the squashed commit from your pull request into the version branch. If you run into merge conflicts, it may be easier to simply redo the above steps with the version branch instead of dev.
+=== "RC" 
+
+    - [ ] Update the Changelog. Label all the currently unreleased changes as part of this release. See comments on the  [CHANGELOG.md](https://raw.githubusercontent.com/DOI-USGS/ISIS3/dev/CHANGELOG.md) for instructions. 
+    - [ ] Update `code.json` by adding a new entry with the RC version. e.g. an 8.0.0 release candidate would be labeled `8.0_RC1` for the first RC, `8.0_RC2` for the second, etc. 
+    - [ ] **Update the Authors List**:  If there are any new contributors to the project since the last release, update the `AUTHORS.rst` file to include them.
+    - [ ] Submit a Pull Request: Submit a pull request into the dev branch. If a release branch exists, create a PR there as well.
+
+=== "LR"
+
+    - [ ] Update the Changelog: Update the release date on the version to be released in the changelog. See comments on the  [CHANGELOG.md](https://raw.githubusercontent.com/DOI-USGS/ISIS3/dev/CHANGELOG.md) for instructions. 
+    - [ ] Update `code.json` by adding a new entry with the new version number and the date last modified.   
+    - [ ] **Update the Authors List**:  If there are any new contributors to the project since the last release, update the `AUTHORS.rst` file to include them.
+    - [ ] Submit a Pull Request: Submit a pull request into the dev branch. If a release branch exists, create a PR there as well. 
+
+=== "LTS"
+
+    - [ ] Update the Changelog. Move **only the bug fixes** under this release. Follow the instructions in [CHANGELOG.md](https://raw.githubusercontent.com/DOI-USGS/ISIS3/dev/CHANGELOG.md) for how to do this.
+    - [ ] Update `code.json` by adding a new entry with the LTS version. e.g. an 8.0.0 LTS would be released as 8.0 (no LTS in the version name).
+    - [ ] **Update the Authors List**:  If there are any new contributors to the project since the last release, update the `AUTHORS.rst` file to include them.
+    - [ ] Submit a Pull Request: Submit a pull request into the release branch. 
 
 
-### Step 3: Set Up the Local and Remote Repositories 
+!!! Success "Step 2 Complete" 
+    
+    Move on to step 3 after your PR(s) are merged. 
 
-In this step, we will prepare the local repository to build from, as well as update the remote repository hosted on GitHub. Keep in mind that you will be building from this repo on other systems, so plan accordingly by cloning this repo into a directory that you will still have access to as you switch between the machines. 
+### Step 3: Set Up Git repos
 
-
-#### Part A: Setup Repository 
-
-* Create a fresh branch off of the appropriate version branch. Branches are created for each minor (i.e. 3.x or 4.x) version of ISIS, and each then specific release is associated with a minor version (i.e. 3.x.x or 4.x.x) tag on that version branch. 
-
-    * For releases, there should already be a branch for this version created during the release candidate process. If there is not already a branch for this version, you will need to create a branch for this release off of `dev`. If you are doing a release for ISIS 3.10, the git command to create a branch and checkout to it is `git checkout -b 3.10 upstream/dev`. If there is already a version branch: `git checkout -b 3.10 upstream/3.10` 
-
-    * For release candidates, there may or may not be a branch for the version. If there is not, create a branch off of `dev`. If there is a version branch: `git checkout -b 3.10 upstream/3.10`.
+Clone the repo locally with git clone. 
 
 
-#### Part B: Update isis/CMakeLists.txt 
+=== "RC" 
 
-* Update the VERSION variable to the latest version number. NOTE: Do not add the _RC# 
+    - [ ] Create a branch from dev with `x.x.x_RCy` where `x.x.x` is the version and y (e.g. `8.1.2_RC1` or `5.4.1_RC3`). 
+        * Example: `git checkout -b 8.1.2_RC1 upstream/dev`.
+    - [ ] Update VERSION variable in CMakeLists.txt, do not add `_RC` here.
+    - [ ] Update RELEASE_STAGE variable in CMakeLists.txt to `beta``
+    - [ ] Update `recipe/meta.yaml` to match the name of the RC branch. i.e. **with** the `_RC#`.
+    - [ ] Update the `build` section by copying the current contents of `environment.yaml` into the `build` section. 
+    - [ ] Update the `run` section to include any new packages and remove any packages that are no longer needed. 
+    - [ ] Push the new branch into upstream
 
-* Update the RELEASE_STAGE variable: 
+=== "LR" 
 
-    * 'stable' is for full releases. 
+    - [ ] Create a branch from the RC branch.
+        * Example: `git checkout -b 8.1.2 upstream/8.1.2_RC1`.
+    - [ ] Check VERSION variable in CMakeLists.txt matches release version.
+    - [ ] Update RELEASE_STAGE variable in CMakeLists.txt to `stable`.
+    - [ ] Update `recipe/meta.yml` to match the LC version. i.e. **without** the `_RC#`.
+    - [ ] Update the `run` section to include any new packages and remove any packages that are no longer needed. Rare for LRs, often no changes are needed. 
+    - [ ] Push the new branch into upstream 
 
-    * 'beta' is for RC's. 
+=== "LTS"
 
-    * 'alpha' is for developer release or custom mission builds. 
+    - [ ] Create a branch from the previous LTS.
+        * Example: `git checkout -b 8.1.3 upstream/8.1.2`.
+    - [ ] Update VERSION variable in CMakeLists.txt.
+    - [ ] Check RELEASE_STAGE variable in CMakeLists.txt is set to `stable`.
+    - [ ] Update the `run` section to include any new packages and remove any packages that are no longer needed. Rare for LRs, often no changes are needed.
+    - [ ] Push the new branch into upstream  
 
-  
+!!! Danger "Ensure to update the version and build_number is set to 0 in recipe/meta.yml"
 
-#### Part C: Update recipe/meta.yaml 
+    The build number should be incremented for each build produced at the **same version** of source code and should always begin at 0 for each release version. **Uploading the a new build using the same build number AND version number will overwrite the previous release**.
 
-* Update the version variable to the version of ISIS you are building. 
+??? Note "meta.yml vs environment.yml versions"
+     Make sure you look closely at the changes in terms of syntax. Our `environment.yaml`s seem to have a looser restriction than what is expected in the `meta.yaml`. Check out conda's [package match specifications](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html#package-match-specifications) for more info.        
 
-    * If you are building a standard release, use the same version number as in [Part B](#part-b-update-isiscmakeliststxt). 
+!!! Success 
+    Move on to step 4 after you successfully create the new branch on the upstream repo. 
 
-    * If you are building a release candidate, include "_RCx".  
 
-        * For the first ISIS3.6.1 release candidate, it would be: "3.6.1_RC1". 
-
-    * If you are creating a custom build, include a unique tag.  
-
-        * For a custom ISIS3.6.1 CaSSIS build, it would be: "3.6.1_cassis1". 
-
-* Ensure the build_number is set to 0. 
-
-  * The build number should be incremented for each build produced at the **same version** of source code and should always begin at 0 for each release version.  
-
-  * ****Please note that this step is important as this is how the file to be uploaded to Anaconda Cloud is named by conda build. If a file with the same name already exists on USGS-Astrogeology channel in Anaconda Cloud, it will be overwritten with the new upload.**** 
-
-* Update the `build` section by copying the current contents of `environment.yaml` into the `build` section. Update the `run` section to include any new packages and remove any packages that are no longer needed. 
-
-    ???+ Note
-        Make sure you look closely at the changes in terms of syntax. Our `environment.yaml`s seem to have a looser restriction than what is expected in the `meta.yaml`. Check out conda's [package match specifications](https://docs.conda.io/projects/conda-build/en/latest/resources/package-spec.html#package-match-specifications) for more info.        
-
-  
-
-#### Part D: Create a Pull Request
-
-* Make a pull request with your local changes into the version (i.e., the version number created above) branch of the repository. 
-
-  
-
-<!--- 
-   * To create a new branch, first prepare your local repo by pulling down the merged changes you made earlier (e.g. `git pull upstream dev`) 
-
-   * Next, create a branch with the appropriate name for the release version in the format `<major version>.<minor version>`, by running for example: `git branch -b 3.10`. After creation, this branch can be pushed directly to upstream. (`git push upstream 3.10`.)--->
-
-  
-
-#### Part E: Make Github Release 
+### Step 4: Create a release
 
 !!! Warning "Do Not Make a Release for RCs"
-     
-     **Skip this step for Release Candidates (RCs).** Only pull a release if it's a full release (i.e. NOT an RC). RCs should instead be in their own branch until ready for full release.  
 
-* Draft a new github release.  
+    **Skip this step for Release Candidates (RCs).** Only pull a release if it's a full release (i.e. NOT an RC). RCs should instead be in their own branch until ready for full release.  
 
-  * Tag the release.  
+=== "LR" 
 
-      * Make sure to change the target from `dev` to the appropriate version branch for your release. 
+    - [ ] In the release tab on GitHub, draft a release and set the target branch to the branch created in Step 3.
+    - [ ] On the same page, create a new tag for the release version.
+    - [ ] Name the release "ISISX.Y.Z Public Release".
 
-      * The release "Tag version" must be the \<version\> from the meta.yaml file you modified in [Part C](#part-c-update-recipemetayaml). 
+=== "LTS"
 
-      * Mission and non-standard builds (including release candidates) must be tagged as pre-release. 
+    - [ ] In the release tab on GitHub, draft a release and set the target branch to the branch created in Step 3.
+    - [ ] On the same page, create a new tag for the release version.
+    - [ ] Name the release "ISISX.Y.Z LTS". 
 
-  * Name the release. 
+!!! Note "If releasing a custom build"
 
-      * If it is a standard release, name it "ISISX.Y.Z Public Release". 
+    Mission and non-standard builds (including release candidates) must be tagged as pre-release. 
+ 
 
-      * If it is a release candidate, name it "ISISX.Y.Z Release Candidate N". 
+!!! Success 
 
-  * Describe the release. 
-
-      * If it is a standard release, description should state "The official release for ISIS version X.Y.Z". 
-
-      * If it is a release candidate, description should state "[First/Second/Third/...] release candidate for ISIS X.Y.Z". 
-
-  * Add a DOI (see Part F)
-
-#### Part F: Create a DOI for the release
-
-  * A DOI is only needed for standard releases.  Release candidates do not need a DOI.
-
-  * Go to the [USGS Asset Identifier Service (AIS)](https://www1.usgs.gov/identifiers/) and click `Manage DOIs` to Login.
-      
-      * You will need the assistance of USGS staff for this.
-
-      * The AIS has known compatibility issues with Firefox, if you have trouble logging in, switch browsers.
-    
-  * Click `Create DOI` and Reserve a DOI.
-
-      * **Title**: `Integrated Software for Imagers and Spectrometers (ISIS) X.Y.Z`
-
-      * **Data Source**: `Astrogeology Science Center`
-
-      * ISIS `Does Not` use the *ScienceBase Data Release Process*.
-
-      * Clicking `Reserve My DOI` returns the DOI that's on hold.
-      
-          * Record this number in the GitHub release, and in the ISIS Readme at the top as a badge and in the Citing ISIS section.
-
-  * Add More Information
-
-      * Under "Manage Record"
-
-          * Add other USGS Staff members who can manage the DOI.
-
-      * Under "Required Information"
-
-          * **Creator(s) / Author(s)**: Add the ISIS Team Lead
-
-          * **Landing Page URL**: https://code.usgs.gov/astrogeology/isis/-/tags/[X.Y.Z]
-
-          * **Resource Type**: Software
-
-          * **IPDS Number**: IP-141314 for ISIS 8.x.x releases.  Major Versions will need a new number/release approval from [IPDS](https://ipds.usgs.gov).
-
-          * This product **is not** associated with a primary USGS-authored publication.
-
-      * Under "Recommended Information"
-
-          * Fill info if available.
-    
-      * Saving and Publishing
-
-          * Once the Landing Page URL on code.usgs.gov is live, publish the record to DataCite.
-
-          * You can save the record without publishing it if the release landing page is not ready.  
-
-### Step 4: Create the Builds for Anaconda Cloud 
+    When you create the release, move on to step 5. 
 
 
-In this step, we will create the build(s) for Anaconda Cloud using the conda-build system. There are two builds for standard releases: one for Linux (built on Ubuntu 18 LTS), and one for Mac (built on Mac OS 10.14). Missions may only need one build and not the other. Communicate with your team as to what they need. Repeat this and the upload process process for each necessary system. 
+### Step 5: Create the Builds for Anaconda Cloud 
 
-Anaconda leverages caching in many places which can cause issues. If you are getting unexpected issues, try a different installation and/or a different machine. 
+!!! Warning 
+   
+    Anaconda leverages caching in many places which can cause issues. If you are getting unexpected issues, try a different installation and/or a different machine. You can also try running `conda clean -a`
 
 
 #### Part A: Operating System 
 
-* Ensure the OS on the machine you are building the release on is the appropriate operating system (Mac OS 11.6 or Ubuntu 18 LTS). 
+* Ensure the OS on the machine you are building the release on is the appropriate operating system (Mac OS 11.6+ or Ubuntu 18 LTS). 
 
 
 #### Part B: Setup Anaconda 
@@ -360,6 +297,57 @@ In the `$ISISROOT` directory run the following commands, but replace <your-confi
 
 
 This step will will communicate that a new version of ISIS is available. 
+
+
+#### Step 5: Create a DOI for the release
+
+  * A DOI is only needed for standard releases.  Release candidates do not need a DOI.
+
+  * Go to the [USGS Asset Identifier Service (AIS)](https://www1.usgs.gov/identifiers/) and click `Manage DOIs` to Login.
+      
+      * You will need the assistance of USGS staff for this.
+
+      * The AIS has known compatibility issues with Firefox, if you have trouble logging in, switch browsers.
+    
+  * Click `Create DOI` and Reserve a DOI.
+
+      * **Title**: `Integrated Software for Imagers and Spectrometers (ISIS) X.Y.Z`
+
+      * **Data Source**: `Astrogeology Science Center`
+
+      * ISIS `Does Not` use the *ScienceBase Data Release Process*.
+
+      * Clicking `Reserve My DOI` returns the DOI that's on hold.
+      
+          * Record this number in the GitHub release, and in the ISIS Readme at the top as a badge and in the Citing ISIS section.
+
+  * Add More Information
+
+      * Under "Manage Record"
+
+          * Add other USGS Staff members who can manage the DOI.
+
+      * Under "Required Information"
+
+          * **Creator(s) / Author(s)**: Add the ISIS Team Lead
+
+          * **Landing Page URL**: https://code.usgs.gov/astrogeology/isis/-/tags/[X.Y.Z]
+
+          * **Resource Type**: Software
+
+          * **IPDS Number**: IP-141314 for ISIS 8.x.x releases.  Major Versions will need a new number/release approval from [IPDS](https://ipds.usgs.gov).
+
+          * This product **is not** associated with a primary USGS-authored publication.
+
+      * Under "Recommended Information"
+
+          * Fill info if available.
+    
+      * Saving and Publishing
+
+          * Once the Landing Page URL on code.usgs.gov is live, publish the record to DataCite.
+
+          * You can save the record without publishing it if the release landing page is not ready.  
 
 
 #### Part A: External Announcement 

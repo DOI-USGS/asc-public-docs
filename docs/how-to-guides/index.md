@@ -1,6 +1,6 @@
 # How-To Guides
 
-How-to guides are much like recipes in a recipe book. Write how-to docs to solve specific problems quickly, sometimes copy-pastable. Think of how-to guides as pre-emptive StackOverflow-like problems.
+How-to guides are much like recipes in a recipe book. Write how-to docs to solve specific problems quickly, sometimes copy-pastable. Think of how-to guides as preemptive StackOverflow-like problems.
 
 
 ## For Readers 

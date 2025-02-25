@@ -52,6 +52,8 @@ nav:
       - Generating an ISD:                 getting-started/using-ale/isd-generate.md
     - Archive:
       - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
+    - Using SpiceQL:
+      - Exploring SpiceQL's REST, Python, and C++ APIs: getting-started/using-spiceql/exploring-spiceqls-rest-python-and-cpp-apis.md
   - How-To Guides: 
     - Home: how-to-guides/index.md
     - Environment Setup and Maintenance:

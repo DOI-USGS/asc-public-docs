@@ -405,7 +405,7 @@ The values are case insensitive. That is, Yes, YES, True, T, etc. work as well.
 
 ## Inclusive and Exclusive Parameters
 
-The GUI has the ability to include or exclude parameters via stipling (graying out parameters). The application programs will throw an error if certain parameters are incorrectly included or excluded when executing a command in command line mode. See the following _grid_ example, and notice the user errors:
+The GUI has the ability to include or exclude parameters via stippling (graying out parameters). The application programs will throw an error if certain parameters are incorrectly included or excluded when executing a command in command line mode. See the following _grid_ example, and notice the user errors:
 ```
 grid from=0145r_cal.cub to=gridtest.cub baseline=10 basesamp=20
 

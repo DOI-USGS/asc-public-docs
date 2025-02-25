@@ -51,7 +51,7 @@ Concrete things your tutorial needs:
    or [Project Preference File](../concepts/isis-fundamentals/preference-dictionary.md#project-preference-file) 
    for more info on custom ISISPreferences files.
    ```
-- [ ] If your tutorial has data, use generative data or data that is in the repo. Avoid external data dependencies. Before data is committed into the repo, check if [existing data can be re-used](https://github.com/DOI-USGS/asc-public-docs/tree/main/docs/assets). If new data needs to be committed, minimize the size so as not to increase the data burden. 
+- [ ] If your tutorial has data, use generative data or data that is in the repo. Avoid external data dependencies. Before data is committed into the repo, check if [existing data can be reused](https://github.com/DOI-USGS/asc-public-docs/tree/main/docs/assets). If new data needs to be committed, minimize the size so as not to increase the data burden. 
 - [ ] Make the objectives clear in the title. Also, clarify the tutorial with a summary of objectives. 
 
 See the [git repo](https://code.usgs.gov/astrogeology/asc-public-docs) for more in-depth info on how to contribute new docs. 

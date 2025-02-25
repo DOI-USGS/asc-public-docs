@@ -49,6 +49,7 @@ nav:
       - Exporting ISIS Data:               getting-started/using-isis-first-steps/exporting-isis-data.md
       - ISIS FAQ:                          getting-started/using-isis-first-steps/isis-faq.md
     - Using Ale:
+      - ALE Quickstart:                    getting-started/using-ale/ale-quickstart.md
       - Generating an ISD:                 getting-started/using-ale/isd-generate.md
     - Archive:
       - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md

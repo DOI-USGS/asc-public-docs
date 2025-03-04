@@ -58,7 +58,7 @@ Below is a comparison between a GeoTIFF with overviews and a GeoTIFF with no ove
 
 ![Alt Text](../../assets/gdal_data/overview_blink.gif)
 
-For information on creating overviews, checkout the section on [Working with GDAL Products Outside of ISIS](gdal_support.md#working-with-gdal-products-outside-of-isis).
+For information on creating overviews, checkout the section on [Working with GDAL Products Outside of ISIS](gdal-support.md#working-with-gdal-products-outside-of-isis).
 
 ### ISIS Specific GeoTIFF Data
 

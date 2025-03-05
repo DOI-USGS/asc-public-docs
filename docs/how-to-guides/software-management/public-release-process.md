@@ -356,7 +356,7 @@ This step will update the ISIS documentation on our [website](https://isis.astro
     </li>
 ```
 
-The usa-current class hightlights the version. This will allow the user to know which version of isis they are currently viewing.
+The usa-current class highlights the version. This will allow the user to know which version of isis they are currently viewing.
 
 This is a visual of these html code changes:
 

@@ -1,3 +1,12 @@
+# SPICE Kernel Updates in ISIS
+
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: Setting up the  __ISIS Data Area__](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md)
+- [:octicons-arrow-right-24: Using ISIS in __other conda envs__](../../how-to-guides/environment-setup-and-maintenance/using-isis-in-other-conda-envs.md)
+
+</div>
+
 SPICE kernels are required for the use of most ISIS applications. ISIS provides SPICE kernels for each mission
 in the [ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md).
 

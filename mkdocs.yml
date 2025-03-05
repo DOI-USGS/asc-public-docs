@@ -54,13 +54,13 @@ nav:
       - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
   - How-To Guides: 
     - Home: how-to-guides/index.md
-    - Environment Setup and Maintenance:
-      - Installing ISIS:                   how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md
-      - Setting up the ISIS Data Area:     how-to-guides/environment-setup-and-maintenance/isis-data-area.md
-      - Using ISIS in other Conda Envs:    how-to-guides/environment-setup-and-maintenance/using-isis-in-other-conda-envs.md
-      - Anaconda in a Network Environment: how-to-guides/environment-setup-and-maintenance/anaconda-in-a-network-environment.md
-      - SPICE Kernel Updates in ISIS:      how-to-guides/environment-setup-and-maintenance/spice-kernel-updates-in-isis.md
-      - Adding USGSCSM Plugin to ISIS:     how-to-guides/environment-setup-and-maintenance/adding-usgscsm-plugin-to-isis.md
+    - ISIS Environment Setup and Maintenance:
+      - 1. Installing ISIS:                   how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md
+      - 2. Setting up the ISIS Data Area:     how-to-guides/environment-setup-and-maintenance/isis-data-area.md
+      - 2a. SPICE Kernel Updates in ISIS:     how-to-guides/environment-setup-and-maintenance/spice-kernel-updates-in-isis.md
+      - 3. Using ISIS in other Conda Envs:    how-to-guides/environment-setup-and-maintenance/using-isis-in-other-conda-envs.md
+      - (ISIS ≤ 8.1 Only) The USGSCSM Plugin:  how-to-guides/environment-setup-and-maintenance/adding-usgscsm-plugin-to-isis.md
+      - (Internal) USGS Networked Conda Envs: how-to-guides/environment-setup-and-maintenance/anaconda-in-a-network-environment.md
     - SPICE: 
       - Creating Spice Config Files in SpiceQL: how-to-guides/SPICE/creating-spice-config-files-in-spiceql.md
     - Image Processing:
@@ -71,25 +71,27 @@ nav:
     - ISIS Demos:
       - Interactive Online Demos:          how-to-guides/demos/isis-demos.md
     - Software Management:
-      - LTS Release Process:               how-to-guides/software-management/lts-release-process.md
-      - Deprecation:                       how-to-guides/software-management/deprecation.md
-      - Public Release Process:            how-to-guides/software-management/public-release-process.md
-      - Software Support:                  how-to-guides/software-management/software-support.md
-      - Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
-      - Guidelines for Pull Requests:      how-to-guides/software-management/guidelines-for-pull-requests.md
-      - ISIS Release Schedule:             how-to-guides/software-management/isis-release-schedule.md
+      - 1. Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
+      - 2. Guidelines for Pull Requests:      how-to-guides/software-management/guidelines-for-pull-requests.md
+      - 2a. Deprecation:                      how-to-guides/software-management/deprecation.md
+      - 3. Software Support:                  how-to-guides/software-management/software-support.md
+      - 4. ISIS Release Schedule:             how-to-guides/software-management/isis-release-schedule.md
+      - 5. USGS ASC Release Processes (Internal):
+        - 5a. Public Release Process Step-By-Step: how-to-guides/software-management/public-release-process.md
+        - 5b. LTS Release Process:                 how-to-guides/software-management/lts-release-process.md
     - ISIS Developer Guides:
-      - Contributing to ISIS:                         how-to-guides/isis-developer-guides/contributing-to-isis.md
-      - Writing Tests with CTest and GTest:           how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md
-      - App Testing CookBook:                         how-to-guides/isis-developer-guides/app-testing-cookbook.md
-      - Doxygen Tag Class Requirement:                how-to-guides/isis-developer-guides/class-requirements-for-using-doxygen-tags.md
-      - Developing ISIS3 with cmake:                  how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md
-      - ISIS Development on ARM Macs:    how-to-guides/isis-developer-guides/developing-mac-m1-arm-systems.md
-      - Building and Contributing to ISIS Tutorial:   how-to-guides/isis-developer-guides/building-and-contributing-to-isis-tutorial.md
-      - ISIS Test Data:                               how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md
-      - ISIS Programming Exercises:
-        - Exercise 1:                                 how-to-guides/isis-developer-guides/exercise-1.md
-        - Exercise 2:                                 how-to-guides/isis-developer-guides/exercise-2.md
+      - 1. Developing ISIS3 with cmake:        how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md
+      - 1a. ISIS Development on ARM Macs:      how-to-guides/isis-developer-guides/developing-mac-m1-arm-systems.md
+      - 2. ISIS Test Data:                     how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md
+      - 3. Contributing to ISIS - Overview:    how-to-guides/isis-developer-guides/contributing-to-isis.md
+      - 4. Contributing to ISIS - Tutorial:    how-to-guides/isis-developer-guides/building-and-contributing-to-isis-tutorial.md
+      - 5. Writing Tests with CTest and GTest: how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md
+      - 6. Code Templates & Style:
+        - 6a. App Testing Templates:           how-to-guides/isis-developer-guides/app-testing-cookbook.md
+        - 6b. Doxygen Tag Class Requirement:   how-to-guides/isis-developer-guides/class-requirements-for-using-doxygen-tags.md
+      - 7. ISIS Programming Exercises:
+        - 7a. Exercise 1 - mirror:             how-to-guides/isis-developer-guides/exercise-1.md
+        - 7b. Exercise 2 - diff:               how-to-guides/isis-developer-guides/exercise-2.md
     - ALE Developer Guides:
       - Creating Ale Drivers: how-to-guides/ale-developer-guides/creating-ale-drivers.md
 

@@ -1,5 +1,12 @@
 # ISIS Test Data
 
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: __Developing and Building__ ISIS](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md)
+- [:octicons-arrow-right-24: __Contributing to ISIS__: Overview](../../how-to-guides/isis-developer-guides/contributing-to-isis.md)
+
+</div>
+
 ### GTests and Legacy Makefile-based Tests
 
 ISIS has of two types of tests: custom **Makefile** based tests, and **GTests**. The GTests use data from the ISIS repo along with the source, so no special data is required to run those, aside from the ISIS data area.

@@ -1,5 +1,11 @@
 # Using ISIS in other Conda Environments
 
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: Setting up the  __ISIS Data Area__](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md)
+
+</div>
+
 The ISIS conda package pins some of its requirements, 
 which may clash with other packages. 
 

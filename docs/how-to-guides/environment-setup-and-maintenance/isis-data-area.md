@@ -1,5 +1,12 @@
 # Setting Up the ISIS Data Area
 
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: __Installing__ ISIS](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+- [:octicons-arrow-right-24: SPICE Kernel __Updates__](../../how-to-guides/environment-setup-and-maintenance/spice-kernel-updates-in-isis.md)
+
+</div>
+
 Many ISIS apps need extra data to carry out their functions.  This data varies depending on the mission, and may be **quite large**, so it is **not included** with the ISIS binaries. It resides in the **ISIS Data Area**.
 
 ??? info "More Info on the ISIS Data Area"

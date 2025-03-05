@@ -1,6 +1,13 @@
-# Exercises 1
+# ISIS Programming Exercise 1: `mirror`
 
-The purpose behind these exercises is to help programmers become familiar with the ISIS3 environment, the ISIS3 API, and ISIS3 standards.
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: __Doxygen Tags__ (class requirement)](../../how-to-guides/isis-developer-guides/class-requirements-for-using-doxygen-tags.md)
+- [:octicons-arrow-right-24: ISIS Programming Exercise 2: `diff`](../../how-to-guides/isis-developer-guides/exercise-2.md)
+
+</div>
+
+The purpose behind these exercises is to help programmers become familiar with the ISIS environment, the ISIS API, and ISIS standards.
 
 ## Prerequisites
 

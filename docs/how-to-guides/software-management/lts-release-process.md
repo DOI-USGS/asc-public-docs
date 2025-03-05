@@ -1,5 +1,12 @@
 # LTS Release Process
 
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: Detailed __Release Process__](../../how-to-guides/software-management/public-release-process.md)
+- [:octicons-arrow-right-24: RFC8: ISIS __Long Term Support__](https://github.com/DOI-USGS/ISIS3/discussions/4691)
+
+</div>
+
 This page shows the steps on creating an LTS (Long Term Support) release and supporting older LTS versions. 
 
 Quick rundown of what LTS entails:

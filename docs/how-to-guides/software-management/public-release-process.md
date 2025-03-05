@@ -333,28 +333,82 @@ This step covers creating the builds and the installation environments of ISIS f
 
 **This step is only done for standard feature releases.** 
 
-This step will update the ISIS documentation on our [website](https://isis.astrogeology.usgs.gov/UserDocs/) for our users worldwide.
+This step will update the ISIS documentation on our [website](https://isis.astrogeology.usgs.gov) for our users worldwide.
 
 
 #### Part A: Build the documentation 
 
-* Add the new version to Documentation Versions in the [menu.xsl](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/src/docsys/build/menu.xsl#L105).
+1. Add the new version to Documentation Versions in the [menu.xsl](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/src/docsys/build/menu.xsl#L105) under dev. Remove the class "usa-current" from the dev's `<li>` and add it to your newly create `<li>` element. For example:
 
-* Perform a local build (not a conda build) using the instructions for [developing ISIS with cmake](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md).
+```diff
+- <li class="usa-sidenav__item usa-current">
++ <li class="usa-sidenav__item">
+    <a href="https://isis.astrogeology.usgs.gov/dev/">Dev</a>
+  </li>
++ <li class="usa-sidenav__item" usa-current>
++ <a href="https://isis.astrogeology.usgs.gov/NEW VERSION/">NEW VERSION</a>
++ </li>
+    <li class="usa-sidenav__item">
+    <a href="https://isis.astrogeology.usgs.gov/8.3.0/">8.3.0</a>
+    </li>
+    <li class="usa-sidenav__item">
+    <a href="https://isis.astrogeology.usgs.gov/8.2.0/">8.2.0</a>
+    </li>
+```
 
-* setisis to the build directory from [Step 3 Part A](#part-a-setup-repository). 
+The usa-current class hightlights the version. This will allow the user to know which version of isis they are currently viewing.
 
-* Run the ```ninja docs``` command from this build directory to build the documentation for this version of the code. 
+This is a visual of these html code changes:
+
+![Menu Before](../../../assets/release-process/menu1.png) ![Menu After](../../../assets/release-process/menu2.png)
+
+!!! Warning "Do Not Push these changes to the Dev Branch"
+     
+    Only use these code changes for running `ninja docs` and pushing to the S3. See Part C for instructions on what to push back into dev.
+
+2. Run cmake command in build directory. See [developing ISIS with cmake](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md) for details.
+
+3. Run the ```ninja docs``` command from this build directory to build the documentation for this version of the code. 
 
 
-#### Part B: Upload the documentation
+#### Part B: Upload the documentation 
 
-This step requires that you have an rclone config for the `asc-docs` bucket. You can get credentials from vault.
+1. This step requires that you have aws sso configured for the aws production account. 
+    
+    Run `aws sso login --profile {insert your configured prod account name}`
 
-In the `$ISISROOT` directory run the following commands, but replace <your-config> with your config for `asc-docs` and <version-number> with the version of ISIS you are releasing. For example if you config is called `s3-docs` and you are releasing 8.1.0, the first command would be `rclone sync --dry-run docs/8.1.0 s3-docs://asc-docs/isis-site/8.1.0/`
+2. Run a dryrun of copying new docs to the S3 bucket: 
 
-* Optionally add the `--dry-run` flag to test prior to actually uploading, `rclone sync docs/<version-number> <your-config>://asc-docs/isis-site/<version-number>/`
+    `aws s3 cp --recursive docs/{insert_new_version_here}/ s3://asc-public-docs/isis-site/{insert_new_version_here}/ --profile {insert your configured prod account name} --dryrun`
 
+    example: `aws s3 cp --recursive docs/9.0.0/ s3://asc-public-docs/isis-site/9.0.0/ --profile prod-account --dryrun`
+
+3. Confirm that the dry run is copying your docs to the correct location. If it is, run the actual copy command by removing `--dryrun`:
+
+    `aws s3 cp --recursive docs/{insert_new_version_here}/ s3://asc-public-docs/isis-site/{insert_new_version_here}/ --profile {insert your configured prod account}`
+
+    example: `aws s3 cp --recursive docs/9.0.0/ s3://asc-public-docs/isis-site/9.0.0/ --profile prod-account`
+
+#### Part C: Update Menu Code in Dev Branch
+
+The only difference from what we changed in Part A1 is that, instead of moving the "usa-current" class, we are keeping it under "dev" for the biweekly dev doc builds.
+
+The only change that needs to be pushed to the dev branch is the new version `<li>` element under "dev." Ensure that the "usa-current" class is removed from this new version `<li>` element.
+
+```diff
+<li class="usa-sidenav__item" usa-current>
+    <a href="https://isis.astrogeology.usgs.gov/dev/">Dev</a>
+  </li>
++ <li class="usa-sidenav__item">
++ <a href="https://isis.astrogeology.usgs.gov/NEW VERSION/">NEW VERSION</a>
++ </li>
+    <li class="usa-sidenav__item">
+    <a href="https://isis.astrogeology.usgs.gov/8.3.0/">8.3.0</a>
+    </li>
+    <li class="usa-sidenav__item">
+    <a href="https://isis.astrogeology.usgs.gov/8.2.0/">8.2.0</a>
+    </li>
+```
 
 ### Step 11: Communicate Availability of Build 
 

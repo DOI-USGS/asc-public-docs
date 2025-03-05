@@ -106,6 +106,13 @@ The environment is now ready to download ISIS and its dependencies:
     ```
 
 
+=== "Dev"
+
+    ```sh
+    conda install -c usgs-astrogeology/label/dev isis
+    ```
+
+
 ## Environmental Variables
 
 ISIS requires these environment variables to be set in order to run correctly:

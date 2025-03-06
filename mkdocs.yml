@@ -54,6 +54,7 @@ nav:
       - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
     - Using SpiceQL:
       - Exploring SpiceQL's REST, Python, and C++ APIs: getting-started/using-spiceql/exploring-spiceqls-rest-python-and-cpp-apis.md
+      - Visualizing with pyspiceql:        getting-started/using-spiceql/visualizing-with-pyspiceql-tutorial.ipynb
   - How-To Guides: 
     - Home: how-to-guides/index.md
     - Environment Setup and Maintenance:

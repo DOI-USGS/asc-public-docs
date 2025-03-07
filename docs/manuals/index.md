@@ -29,4 +29,9 @@ hide:
   url:     ./plio/
   image:   https://raw.githubusercontent.com/DOI-USGS/plio/main/docs/PLIO_Logo.svg
 
+- title:   SpiceQL
+  content: Spice Query Library
+  url:     ./spiceql/
+  image:   https://github.com/DOI-USGS/SpiceQL/blob/c3cd99a0660c14d8e31927bd25cc5d38315375cb/docs/assets/banner3.png?raw=true
+
 ::/cards::

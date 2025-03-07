@@ -372,20 +372,20 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```json
-        {"statusCode":200,"body":{"return":-896556653.900884,"kernels":{"lsk":{"kernels":[["/base/kernels/lsk/naif0012.tls"]]}}}}
+        {"statusCode":200,"body":{"return":-896556653.900884,"kernels":{"lsk":["/Volumes/t7-shield/isis_data/base/kernels/lsk/naif0012.tls"]}}}
         ```
 
     === "Python"
 
         ```py
-        (-896556653.900884, {'lsk': {'kernels': [['/base/kernels/lsk/naif0012.tls']]}})
+        (-896556653.900884, {'lsk': ['/base/kernels/lsk/naif0012.tls']})
     
         ```
 
     === "C++"
 
         ```c++
-        {-896556653.900884,{"lsk":{"kernels":[["/base/kernels/lsk/naif0012.tls"]]}}}
+        {-896556653.900884,{"lsk":["/Volumes/t7-shield/isis_data/base/kernels/lsk/naif0012.tls"]}}
         ```
 
 

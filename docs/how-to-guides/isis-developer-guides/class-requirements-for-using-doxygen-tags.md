@@ -1,4 +1,13 @@
-A new ISIS3 class needs to have the following Doxygen tags filled out just above the class declaration, as in this example below:
+# Doxygen Tags
+
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: __Templates__ for app testing](../../how-to-guides/isis-developer-guides/app-testing-cookbook.md)
+- [:octicons-arrow-right-24: ISIS Programming Exercise: `mirror`](../../how-to-guides/isis-developer-guides/exercise-1.md)
+
+</div>
+
+A new ISIS class needs to have the following Doxygen tags filled out just above the class declaration, as in this example below:
 
 ```C++
    /**

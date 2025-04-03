@@ -1,4 +1,12 @@
 # ISIS Release Schedule
+
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: Astro __Software Support Process__](../../how-to-guides/software-management/software-support.md)
+- [:octicons-arrow-right-24: Detailed __Release Process__](../../how-to-guides/software-management/public-release-process.md)
+
+</div>
+
 This document describes the cadence and schedule for ISIS releases.
 
 ## Release Cadence

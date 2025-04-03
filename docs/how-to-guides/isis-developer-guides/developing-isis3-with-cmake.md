@@ -1,3 +1,12 @@
+# Developing ISIS with cmake
+
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: __Introduction__ to ISIS](../../getting-started/using-isis-first-steps/introduction-to-isis.md)
+- [:octicons-arrow-right-24: ISIS __Test Data__](../../how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md)
+
+</div>
+
 ## Getting Started With GitHub
 To get started, you want a fresh copy of ISIS to work on. You first want to create a fork of the ISIS3 repo by going to the [main ISIS3 repo page](https://github.com/DOI-USGS/ISIS3) and clicking on "Fork" at the top of the page.
 

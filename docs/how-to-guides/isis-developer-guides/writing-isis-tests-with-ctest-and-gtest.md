@@ -1,4 +1,11 @@
-# How To Write ISIS Tests with CTest and GTest
+# Writing ISIS Tests with CTest & GTest
+
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: __Contributing to ISIS__: Tutorial](../../how-to-guides/isis-developer-guides/building-and-contributing-to-isis-tutorial.md)
+- [:octicons-arrow-right-24: __Templates__ for app testing](../../how-to-guides/isis-developer-guides/app-testing-cookbook.md)
+
+</div>
 
 ??? Tip "Helpful External documentation"
 
@@ -22,7 +29,7 @@
     - [ ] New tests passing on Jenkins
     - [ ] Old test data removed
 
-## Refactoring ISIS3 Applications
+## Refactoring ISIS Applications
 
 In order to better integrate with the gtest unit test framework, all of our application logic needs to be callable programmatically.
 

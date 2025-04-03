@@ -1,4 +1,12 @@
 # Public Software Release Process Step-By-Step Instructions
+
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: ISIS __Release Schedule__](../../how-to-guides/software-management/isis-release-schedule.md)
+- [:octicons-arrow-right-24: __LTS__ Release Process](../../how-to-guides/software-management/lts-release-process.md)
+
+</div>
+
 -------
 #### Software Table of Contents
 

@@ -1,4 +1,12 @@
 # Deprecation
+
+<div class="grid cards" markdown>
+
+- [:octicons-arrow-left-24: __Contribute Fixes__ with Pull Requests](../../how-to-guides/software-management/guidelines-for-pull-requests.md)
+- [:octicons-arrow-right-24: Astro __Software Support Process__](../../how-to-guides/software-management/software-support.md)
+
+</div>
+
 This document is intended to provide guidelines for the deprecation process.
 
 ## 1. Deprecation Proposal

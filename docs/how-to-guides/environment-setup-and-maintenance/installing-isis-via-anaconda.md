@@ -68,7 +68,7 @@ bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis
 
 ```sh
 
-# Add mamba-forge and usgs-astrogeology channels
+# Add conda-forge and usgs-astrogeology channels
 mamba config --env --add channels conda-forge
 mamba config --env --add channels usgs-astrogeology
 

@@ -1,4 +1,4 @@
-# ISIS Software Installation Script Documentation
+# ISIS Software Installation Script 
 
 This document provides a comprehensive explanation of the `install_isis.sh` script used to install the USGS ISIS (Integrated Software for Imagers and Spectrometers) software.
 
@@ -42,14 +42,18 @@ The script performs the following steps:
 
 ## Install ISIS in a pipeline
 
-```bash 
-wget -O install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh"
-```
-- OR - 
+=== "wget"
 
-```bash
-curl -fsSLo install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh" 
-```
+    ```bash 
+    wget -O install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh"
+    ```
+
+=== "curl"
+
+    ```bash
+    curl -fsSLo install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh" 
+    ```
+
 In order to install ISIS in a CI or other automated pipeline, set flags for the label, version, env name and `--no-data` to skip data install. Install data via [downloadIsisData.py](isis-data-area.md). 
 
 ## Command Line Examples 

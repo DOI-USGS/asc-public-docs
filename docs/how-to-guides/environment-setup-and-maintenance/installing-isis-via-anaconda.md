@@ -1,16 +1,8 @@
 # Installing ISIS
 
-<div class="grid cards" markdown>
-
-- [:octicons-arrow-left-24: __Introduction__ to ISIS](../../getting-started/using-isis-first-steps/introduction-to-isis.md)
-- [:octicons-arrow-right-24: Setting up the  __ISIS Data Area__](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md)
-
-</div>
-
-
 ## Install via script 
 
-You can install miniforge and ISIS at the same time using a bash script. This will walk you through the process and set environmment variables for you. 
+You can install miniforge and ISIS at the same time using a bash script. This will walk you through the process and set environmment variables for you. See [ISIS Install Script](../../how-to-guides/environment-setup-and-maintenance/install-isis-script.md) for more info.
 
 ```bash 
 bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh)

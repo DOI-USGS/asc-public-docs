@@ -22,7 +22,7 @@ The `install_isis.sh` script is a bash script that automates the installation pr
 Before running the installation script, ensure you have:
 
 - A Linux or macOS operating system
-- Sufficient disk space (at least 20GB recommended for software + base data)
+- Sufficient disk space (at least 40GB recommended for software + base data)
 - Internet connection
 - Bash shell
 
@@ -92,7 +92,7 @@ In order to install ISIS in a CI or other automated pipeline, set flags for the 
 === "Specific Version"
 
     ```bash
-    ./install_isis.sh -l main -v 8.3.0 -n isis8.3.0 -p $HOME/isisdata --download-base
+    ./install_isis.sh --force-mamba -m $HOME/miniforge/ -l main -v 8.3.0 -n isis8.3.0 -p $HOME/isisdata --download-base
     ```
 
 ## After install consideratrions 

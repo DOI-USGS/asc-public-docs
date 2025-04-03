@@ -120,6 +120,10 @@ ISIS requires these environment variables to be set in order to run correctly:
 - `ISISROOT` - Directory path containing your ISIS install
 - `ISISDATA` - Directory path containing the [ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md)
 
+We also recommend setting:
+
+- `PATH` - Where your computer looks for runnable apps, including ISIS apps.
+
 ???+ example "Setting Environmental Variables"
 
     The **Conda Env** method is recommended, and the **Python Script** automates that method:
@@ -146,9 +150,9 @@ ISIS requires these environment variables to be set in order to run correctly:
             # conda config vars set KEY=VALUE
             ```
 
-        1.  This command sets both required variables (fill in your `ISISDATA` path):
+        1.  This command sets both required variables and the PATH (fill in your `ISISDATA` location):
 
-                conda env config vars set ISISROOT=$CONDA_PREFIX ISISDATA=[your data path]
+                conda env config vars set ISISROOT=$CONDA_PREFIX ISISDATA=[your data path] PATH=$PATH:$CONDA_PREFIX/bin
 
         1.  Re-activate your isis environment. 
             ```sh
@@ -161,6 +165,10 @@ ISIS requires these environment variables to be set in order to run correctly:
 
     === "Python Script"
 
+        You should have your conda environment active before running this script:
+        
+            conda activate isis
+        
         By default, running this script will set `ISISROOT=$CONDA_PREFIX` and `ISISDATA=$CONDA_PREFIX/data`:
 
             python $CONDA_PREFIX/scripts/isisVarInit.py
@@ -168,6 +176,10 @@ ISIS requires these environment variables to be set in order to run correctly:
         You can specify a different path for `$ISISDATA` using the optional value:
 
             python $CONDA_PREFIX/scripts/isisVarInit.py --data-dir=[path to data directory]
+
+        Optionally, set the path variable:
+
+            conda env config vars set PATH=$PATH:$CONDA_PREFIX/bin
 
         Now every time the isis environment is activated, `$ISISROOT` and `$ISISDATA` will be set to the values passed to isisVarInit.py.
         This does not happen retroactively, so re-activate the isis environment:
@@ -183,6 +195,7 @@ ISIS requires these environment variables to be set in order to run correctly:
         ```sh
         export ISISROOT=[path to ISIS]
         export ISISDATA=[path to data]
+        export PATH=$PATH:[path to ISIS]/bin
         ```
 
 

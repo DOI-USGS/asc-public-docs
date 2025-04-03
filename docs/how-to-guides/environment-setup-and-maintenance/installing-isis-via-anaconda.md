@@ -1,8 +1,5 @@
 # Installing ISIS
 
-<<<<<<< Updated upstream
-## Prerequisites
-=======
 <div class="grid cards" markdown>
 
 - [:octicons-arrow-left-24: __Introduction__ to ISIS](../../getting-started/using-isis-first-steps/introduction-to-isis.md)
@@ -10,7 +7,6 @@
 
 </div>
 
->>>>>>> Stashed changes
 
 ## Install via script 
 
@@ -127,7 +123,14 @@ The environment is now ready to download ISIS and its dependencies:
     ```
 
 
-### Environmental Variables
+=== "Dev"
+
+    ```sh
+    conda install -c usgs-astrogeology/label/dev isis
+    ```
+
+
+## Environmental Variables
 
 ISIS requires these environment variables to be set in order to run correctly:
 

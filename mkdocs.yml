@@ -115,6 +115,7 @@ nav:
     - ISIS Fundamentals:
       - Download ISIS Data Script:         concepts/isis-fundamentals/install-isis-script.md
       - ISIS Cube Format:                  concepts/isis-fundamentals/cube-format.md
+      - Gdal Support:                      concepts/isis-fundamentals/gdal-support.md
       - ISIS Label Dictionary:             concepts/isis-fundamentals/label-dictionary.md
       - ISIS Attached Spice Format:        concepts/isis-fundamentals/spice-format.md
       - ISIS Kernel Load Selection:        concepts/isis-fundamentals/kernel-selection.md

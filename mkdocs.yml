@@ -54,7 +54,7 @@ nav:
       - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
   - How-To Guides: 
     - Home: how-to-guides/index.md
-    - Environment Setup and Maintenance:
+    - ISIS Environment Setup and Maintenance:
       - Installing ISIS:                   how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md
       - Setting up the ISIS Data Area:     how-to-guides/environment-setup-and-maintenance/isis-data-area.md
       - Using ISIS in other Conda Envs:    how-to-guides/environment-setup-and-maintenance/using-isis-in-other-conda-envs.md

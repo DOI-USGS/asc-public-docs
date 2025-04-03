@@ -87,7 +87,7 @@ The script can download various types of ISIS data:
 - **Base Data**: Essential data required for ISIS functionality
 - **Mission-specific Data**: Data for specific planetary missions
 
-We reccomend only installing base, and use web spice for most spice operations. See [ISIS Data Docs](isis-data-area.md) for more information.
+We recommend only installing base, and use web spice for most spice operations. See [ISIS Data Docs](isis-data-area.md) for more information.
 
 ## Environment Variables
 
@@ -97,7 +97,7 @@ Key environment variables set up by the script:
 - `ISISDATA`: Points to the ISIS data directory
 - `PATH`: Updated to include ISIS binaries
 
-On activation, the environment will automatically set ISISROOT, ISISDATA, and PATH for you. To change these variables after installation in case they were set incorrrectly or your ISISDATA folder changes, see [Conda's docs on setting environment variables](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables). 
+On activation, the environment will automatically set ISISROOT, ISISDATA, and PATH for you. To change these variables after installation in case they were set incorrectly or your ISISDATA folder changes, see [Conda's docs on setting environment variables](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables). 
 
 ## Updating ISIS
 

@@ -52,7 +52,7 @@ bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis
 
     ```sh
     # ARM Macs Only - Setup the new environment as x86_64
-    export mamba_SUBDIR=osx-64
+    export CONDA_SUBDIR=osx-64
     
     #Create a new mamba environment to install ISIS in
     mamba create -n isis python>=3.9
@@ -69,14 +69,14 @@ bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis
 ```sh
 
 # Add mamba-forge and usgs-astrogeology channels
-mamba config --env --add channels mamba-forge
+mamba config --env --add channels conda-forge
 mamba config --env --add channels usgs-astrogeology
 
 # Check channel order
 mamba config --show channels
 ```
 
-??? warning "Channel Order: `usgs-astrogeology` must be higher than `mamba-forge`"
+??? warning "Channel Order: `usgs-astrogeology` must be higher than `conda-forge`"
     
     Show the channel order with:
 
@@ -89,11 +89,11 @@ mamba config --show channels
     ```
     channels:
         - usgs-astrogeology
-        - mamba-forge
+        - conda-forge
         - defaults
     ```
 
-    If `mamba-forge` is before `usgs-astrogeology`, add usgs-astrogeology again to bring up.  Set channel priority to flexible instead of strict.
+    If `conda-forge` is before `usgs-astrogeology`, add usgs-astrogeology again to bring up.  Set channel priority to flexible instead of strict.
 
     ```sh
     mamba config --env --add channels usgs-astrogeology
@@ -165,7 +165,7 @@ ISIS requires these environment variables to be set in order to run correctly:
 
         1.  This command sets both required variables (fill in your `ISISDATA` path):
 
-                mamba env config vars set ISISROOT=$mamba_PREFIX ISISDATA=[your data path]
+                mamba env config vars set ISISROOT=$CONDA_PREFIX ISISDATA=[your data path]
 
         1.  Re-activate your isis environment. 
             ```sh
@@ -178,13 +178,13 @@ ISIS requires these environment variables to be set in order to run correctly:
 
     === "Python Script"
 
-        By default, running this script will set `ISISROOT=$mamba_PREFIX` and `ISISDATA=$mamba_PREFIX/data`:
+        By default, running this script will set `ISISROOT=$CONDA_PREFIX` and `ISISDATA=$CONDA_PREFIX/data`:
 
-            python $mamba_PREFIX/scripts/isisVarInit.py
+            python $CONDA_PREFIX/scripts/isisVarInit.py
         
         You can specify a different path for `$ISISDATA` using the optional value:
 
-            python $mamba_PREFIX/scripts/isisVarInit.py --data-dir=[path to data directory]
+            python $CONDA_PREFIX/scripts/isisVarInit.py --data-dir=[path to data directory]
 
         Now every time the isis environment is activated, `$ISISROOT` and `$ISISDATA` will be set to the values passed to isisVarInit.py.
         This does not happen retroactively, so re-activate the isis environment:

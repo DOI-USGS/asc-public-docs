@@ -103,7 +103,6 @@ nav:
       - Camera Geometry:                     concepts/camera-geometry-and-projections/camera-geometry.md
       - Learning About Map Projections:      concepts/camera-geometry-and-projections/learning-about-map-projections.md
     - ISIS Fundamentals:
-      - Download ISIS Data Script:         concepts/isis-fundamentals/install-isis-script.md
       - ISIS Cube Format:                  concepts/isis-fundamentals/cube-format.md
       - Gdal Support:                      concepts/isis-fundamentals/gdal-support.md
       - ISIS Label Dictionary:             concepts/isis-fundamentals/label-dictionary.md

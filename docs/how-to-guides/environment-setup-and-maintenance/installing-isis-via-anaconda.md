@@ -51,49 +51,49 @@ bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis
     4. **Download Data**: Fetches required data files based on specified options
     5. **Set Up Environment Variables**: Configures necessary environment variables
 
-## Install ISIS in a pipeline
+    ## Install ISIS in a pipeline
 
-=== "wget"
+    === "wget"
 
-    ```bash 
-    wget -O install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh"
-    ```
+        ```bash 
+        wget -O install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh"
+        ```
 
-=== "curl"
+    === "curl"
 
-    ```bash
-    curl -fsSLo install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh" 
-    ```
+        ```bash
+        curl -fsSLo install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh" 
+        ```
 
-In order to install ISIS in a CI or other automated pipeline, set flags for the label, version, env name and `--no-data` to skip data install. Install data via [downloadIsisData.py](isis-data-area.md). 
+    In order to install ISIS in a CI or other automated pipeline, set flags for the label, version, env name and `--no-data` to skip data install. Install data via [downloadIsisData.py](isis-data-area.md). 
 
-## Command Line Examples 
+    ## Command Line Examples 
 
-### Install the latest dev version of ISIS 
+    ### Install the latest dev version of ISIS 
 
-=== "main"
+    === "main"
 
-    ```bash 
-    ./install_isis.sh -l main -v latest -n isislatest -p $HOME/isisdata --no-data
-    ```
+        ```bash 
+        ./install_isis.sh -l main -v latest -n isislatest -p $HOME/isisdata --no-data
+        ```
 
-=== "dev"
+    === "dev"
 
-    ```bash
-    ./install_isis.sh -l dev -m $HOME/miniforge -v latest -n isisdev -p $HOME/isisdata --no-data
-    ```
+        ```bash
+        ./install_isis.sh -l dev -m $HOME/miniforge -v latest -n isisdev -p $HOME/isisdata --no-data
+        ```
 
-=== "lts"
-    
-    ```bash 
-    ./install_isis.sh -l lts -v latest -n isislts -p $HOME/isisdata --no-data
-    ```
+    === "lts"
+        
+        ```bash 
+        ./install_isis.sh -l lts -v latest -n isislts -p $HOME/isisdata --no-data
+        ```
 
-=== "Specific Version"
+    === "Specific Version"
 
-    ```bash
-    ./install_isis.sh --force-mamba -m $HOME/miniforge/ -l main -v 8.3.0 -n isis8.3.0 -p $HOME/isisdata --download-base
-    ```
+        ```bash
+        ./install_isis.sh --force-mamba -m $HOME/miniforge/ -l main -v 8.3.0 -n isis8.3.0 -p $HOME/isisdata --download-base
+        ```
 
 ## After install consideratrions 
 

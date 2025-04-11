@@ -13,87 +13,87 @@ bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis
 
     If you use the script, we require removing a basic anaconda ior miniconda install for [miniforge.](https://github.com/conda-forge/miniforge). Miniforge is far faster. ISIS can take hours to resolve on a anaconda installation compared to a few minutes for miniforge. 
 
-## Details
+??? info "Bash Script Details"
 
-The `install_isis.sh` script is a bash script that automates the installation process of the USGS ISIS software.
+    The `install_isis.sh` script is a bash script that automates the installation process of the USGS ISIS software.
 
-## Prerequisites
+    ## Prerequisites
 
-Before running the installation script, ensure you have:
+    Before running the installation script, ensure you have:
 
-- A Linux or macOS operating system
-- Sufficient disk space (at least 40GB recommended for software + base data)
-- Internet connection
-- Bash shell
+    - A Linux or macOS operating system
+    - Sufficient disk space (at least 40GB recommended for software + base data)
+    - Internet connection
+    - Bash shell
 
-## Script Parameters
+    ## Script Parameters
 
-The script accepts several command-line arguments to customize the installation:
+    The script accepts several command-line arguments to customize the installation:
 
-| Parameter | Description |
-|-----------|-------------|
-| `-m, --miniforge-dir` | Installation directory |
-| `-l, --anaconda-label` | Conda channel to use (default: `usgs-astrogeology`) |
-| `-p, --data-prefix`    | The directory where ISISDATA is located |
-| `-v, --isis-version` | ISIS version to install, `latest` always installs latest |
-| `-n, --env-name` | Name of the conda environment |
-| `--no-data` | Skip Data Downloads (flag) |
-| `--download-base` | Download Base Data |
-| `-h, --help` | Display help information |
+    | Parameter | Description |
+    |-----------|-------------|
+    | `-m, --miniforge-dir` | Installation directory |
+    | `-l, --anaconda-label` | Conda channel to use (default: `usgs-astrogeology`) |
+    | `-p, --data-prefix`    | The directory where ISISDATA is located |
+    | `-v, --isis-version` | ISIS version to install, `latest` always installs latest |
+    | `-n, --env-name` | Name of the conda environment |
+    | `--no-data` | Skip Data Downloads (flag) |
+    | `--download-base` | Download Base Data |
+    | `-h, --help` | Display help information |
 
-## Installation Process
+    ## Installation Process
 
-The script performs the following steps:
+    The script performs the following steps:
 
-1. **Install Miniforge** (if method is `conda`): Downloads and installs Miniconda if not already available
-2. **Create Environment**: Sets up a conda environment with required packages
-3. **Install ISIS**: Installs ISIS software either from conda packages or source code
-4. **Download Data**: Fetches required data files based on specified options
-5. **Set Up Environment Variables**: Configures necessary environment variables
+    1. **Install Miniforge** (if method is `conda`): Downloads and installs Miniconda if not already available
+    2. **Create Environment**: Sets up a conda environment with required packages
+    3. **Install ISIS**: Installs ISIS software either from conda packages or source code
+    4. **Download Data**: Fetches required data files based on specified options
+    5. **Set Up Environment Variables**: Configures necessary environment variables
 
-## Install ISIS in a pipeline
+    ## Install ISIS in a pipeline
 
-=== "wget"
+    === "wget"
 
-    ```bash 
-    wget -O install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh"
-    ```
+        ```bash 
+        wget -O install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh"
+        ```
 
-=== "curl"
+    === "curl"
 
-    ```bash
-    curl -fsSLo install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh" 
-    ```
+        ```bash
+        curl -fsSLo install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh" 
+        ```
 
-In order to install ISIS in a CI or other automated pipeline, set flags for the label, version, env name and `--no-data` to skip data install. Install data via [downloadIsisData.py](isis-data-area.md). 
+    In order to install ISIS in a CI or other automated pipeline, set flags for the label, version, env name and `--no-data` to skip data install. Install data via [downloadIsisData.py](isis-data-area.md). 
 
-## Command Line Examples 
+    ## Command Line Examples 
 
-### Install the latest dev version of ISIS 
+    ### Install the latest dev version of ISIS 
 
-=== "main"
+    === "main"
 
-    ```bash 
-    ./install_isis.sh -l main -v latest -n isislatest -p $HOME/isisdata --no-data
-    ```
+        ```bash 
+        ./install_isis.sh -l main -v latest -n isislatest -p $HOME/isisdata --no-data
+        ```
 
-=== "dev"
+    === "dev"
 
-    ```bash
-    ./install_isis.sh -l dev -m $HOME/miniforge -v latest -n isisdev -p $HOME/isisdata --no-data
-    ```
+        ```bash
+        ./install_isis.sh -l dev -m $HOME/miniforge -v latest -n isisdev -p $HOME/isisdata --no-data
+        ```
 
-=== "lts"
-    
-    ```bash 
-    ./install_isis.sh -l lts -v latest -n isislts -p $HOME/isisdata --no-data
-    ```
+    === "lts"
+        
+        ```bash 
+        ./install_isis.sh -l lts -v latest -n isislts -p $HOME/isisdata --no-data
+        ```
 
-=== "Specific Version"
+    === "Specific Version"
 
-    ```bash
-    ./install_isis.sh --force-mamba -m $HOME/miniforge/ -l main -v 8.3.0 -n isis8.3.0 -p $HOME/isisdata --download-base
-    ```
+        ```bash
+        ./install_isis.sh --force-mamba -m $HOME/miniforge/ -l main -v 8.3.0 -n isis8.3.0 -p $HOME/isisdata --download-base
+        ```
 
 ## After install consideratrions 
 

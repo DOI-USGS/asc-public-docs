@@ -13,7 +13,7 @@ bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis
 
     If you use the script, we require removing a basic anaconda ior miniconda install for [miniforge.](https://github.com/conda-forge/miniforge). Miniforge is far faster. ISIS can take hours to resolve on a anaconda installation compared to a few minutes for miniforge. 
 
-??? info "Bash Script Details"
+??? info "Script Details"
 
     The `install_isis.sh` script is a bash script that automates the installation process of the USGS ISIS software.
 
@@ -51,7 +51,7 @@ bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis
     4. **Download Data**: Fetches required data files based on specified options
     5. **Set Up Environment Variables**: Configures necessary environment variables
 
-    ## Install ISIS in a pipeline
+??? Info "CLI Examples"
 
     === "wget"
 
@@ -67,23 +67,21 @@ bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis
 
     In order to install ISIS in a CI or other automated pipeline, set flags for the label, version, env name and `--no-data` to skip data install. Install data via [downloadIsisData.py](isis-data-area.md). 
 
-    ## Command Line Examples 
+    ### Specific Install Examples
 
-    ### Install the latest dev version of ISIS 
-
-    === "main"
+    === "Latest main"
 
         ```bash 
         ./install_isis.sh -l main -v latest -n isislatest -p $HOME/isisdata --no-data
         ```
 
-    === "dev"
+    === "Latest dev"
 
         ```bash
         ./install_isis.sh -l dev -m $HOME/miniforge -v latest -n isisdev -p $HOME/isisdata --no-data
         ```
 
-    === "lts"
+    === "Latest lts"
         
         ```bash 
         ./install_isis.sh -l lts -v latest -n isislts -p $HOME/isisdata --no-data

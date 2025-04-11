@@ -180,7 +180,7 @@ On activation, the environment will automatically set ISISROOT, ISISDATA, and PA
     mamba activate isis
     
     # ARM Macs Only - Force installation of x86_64 packages, not ARM64
-    mamba config --env --set subdir osx-64
+    conda config --env --set subdir osx-64
     ```
 
 ### Channels
@@ -188,11 +188,11 @@ On activation, the environment will automatically set ISISROOT, ISISDATA, and PA
 ```sh
 
 # Add conda-forge and usgs-astrogeology channels
-mamba config --env --add channels conda-forge
-mamba config --env --add channels usgs-astrogeology
+conda config --env --add channels conda-forge
+conda config --env --add channels usgs-astrogeology
 
 # Check channel order
-mamba config --show channels
+conda config --show channels
 ```
 
 ??? warning "Channel Order: `usgs-astrogeology` must be higher than `conda-forge`"
@@ -200,7 +200,7 @@ mamba config --show channels
     Show the channel order with:
 
     ```sh
-    mamba config --show channels
+    conda config --show channels
     ```
 
     You should see:
@@ -215,8 +215,8 @@ mamba config --show channels
     If `conda-forge` is before `usgs-astrogeology`, add usgs-astrogeology again to bring up.  Set channel priority to flexible instead of strict.
 
     ```sh
-    mamba config --env --add channels usgs-astrogeology
-    mamba config --env --set channel_priority flexible
+    conda config --env --add channels usgs-astrogeology
+    conda config --env --set channel_priority flexible
     ```
 
 ### Downloading ISIS
@@ -279,7 +279,7 @@ ISIS requires these environment variables to be set in order to run correctly:
             mamba activate isis
 
             # Now you can set variables with:
-            # mamba config vars set KEY=VALUE
+            # conda config vars set KEY=VALUE
             ```
 
         1.  This command sets both required variables (fill in your `ISISDATA` path):

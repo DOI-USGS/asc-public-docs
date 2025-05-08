@@ -157,7 +157,7 @@ based on the camera model information stored in the image labels:
 
   - pha, phal, phac
   - ina, inal, inac
-  - ema, emal, emac
+  - ema, emal, emac   <!-- codespell:ignore emac -->
   - lat
   - lon
   - radius

@@ -65,32 +65,52 @@ bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis
         curl -fsSLo install_isis.sh https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh" 
         ```
 
-    In order to install ISIS in a CI or other automated pipeline, set flags for the label, version, env name and `--no-data` to skip data install. Install data via [downloadIsisData.py](isis-data-area.md). 
+    In order to install ISIS in an automated pipeline, set the flags: 
 
+      1. `-l` to set the label for the conda channel
+      2. `-v` to set the ISIS version
+      3. `-n` to set the env name, use `auto` and the script creates one at runtime
+      4. `--prefix` only if you are installing somewhere other than your default conda directory. 
+      4. Set data flags as needed (you cannot mix these flags): 
+        * `--no-data` to skip data install (you can download data later via [downloadIsisData.py](isis-data-area.md))
+        * `--download-base` to download base data and shape models + calibration files. 
+     
+    !!! warning "Why only base data?"
+     
+        The base data is the most important data for ISIS. It is not necessary to download the entire dataset, but it is recommended to download the base data and enable `web=true` when using [spiceinit](https://isis.astrogeology.usgs.gov/9.0.0/Application/presentation/Tabbed/spiceinit/spiceinit.html). 
+    
     ### Specific Install Examples
+
+    You can add `--download-base` instead of `--no-data` to the end of the command to download base data and shape models + calibration files. 
 
     === "Latest main"
 
         ```bash 
-        ./install_isis.sh -l main -v latest -n isislatest -p $HOME/isisdata --no-data
+        ./install_isis.sh -l main -v latest -n auto -p $HOME/isisdata --no-data
         ```
 
     === "Latest dev"
 
         ```bash
-        ./install_isis.sh -l dev -m $HOME/miniforge -v latest -n isisdev -p $HOME/isisdata --no-data
+        ./install_isis.sh -l dev -v latest -n auto -p $HOME/isisdata --no-data
         ```
 
     === "Latest lts"
         
         ```bash 
-        ./install_isis.sh -l lts -v latest -n isislts -p $HOME/isisdata --no-data
+        ./install_isis.sh -l lts -v latest -n auto -p $HOME/isisdata --no-data
         ```
 
-    === "Specific Version"
+    === "Complex Example"
+        
+        This also: 
+
+          1. Downloads base data, shape models, and calibration files for ISIS 8.3.0 
+          2. Installs ISIS with a custom prefix.
+          3. Force redownload of miniforge 
 
         ```bash
-        ./install_isis.sh --force-mamba -m $HOME/miniforge/ -l main -v 8.3.0 -n isis8.3.0 -p $HOME/isisdata --download-base
+        ./install_isis.sh --force-mamba -m $HOME/miniforge/ -l main -v 8.3.0 -n auto -p $HOME/isisdata --download-base --prefix $HOME/isis_installs/
         ```
 
 ## After install consideratrions 

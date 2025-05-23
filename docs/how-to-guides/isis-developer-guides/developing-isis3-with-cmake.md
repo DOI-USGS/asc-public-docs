@@ -201,7 +201,13 @@ The documentation is placed in `install/docs` (after being copied over from `bui
 1. reconfigure cmake with flag (`-DCMAKE_BUILD_TYPE=DEBUG`)
 2. rebuild
 
-## Identifying Tests
+## Tests
+
+### ISIS Test Data
+
+See [ISIS Test Data](../../how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md) for info on downloading and setting up the data used in legacy makefile-based tests.
+
+### Identifying Tests
 The test names are as follows:   
 
 * unit test : `<modulename>_unit_test_<objectname>`
@@ -210,7 +216,7 @@ The test names are as follows:
 
 All cat tests under base, database, control, qisis, and system are listed under the isis3 module.
 
-## Running Tests
+### Running Tests
 
 ISIS tests now work through [ctest](https://cmake.org/cmake/help/v3.9/manual/ctest.1.html). Unit tests are by default put into the `build/unitTest` directory. The most simple way to run test of a certain type is using the `-R <regex>` option, which only runs tests which match the regex.
 
@@ -229,17 +235,17 @@ ctest -R jigsaw     # run jigsaw's app tests
 ctest -R lro        # run all lro tests
 ctest -E tgo        # Run everything but tgo tests
 ```
-## Building New Tests
+### Building New Tests
 
 The workflow for creating a new tests will be the same as the old ISIS make system besides adding test data. See [Make Truth Replacement](#make-truth-replacement) below for how this set in the process changes.
 
 
-## App Tests and Category Tests
+### App Tests and Category Tests
 
 App/Category tests still leverage the old make system, they work using the standard ISIS app/category test workflow for now.
 App/Category tests can be developed in the ISIS src tree similar to the old make system. As long as the path is pointing to the binaries in the build directory (`build/bin`); `make output`, `make test`, `make compare`, `make truthdata`, and `make ostruthdata` all work. You cannot run all tests from the root of the ISIS source tree. To accomplish this use ctest in the build directory, see above. If there is testdata in the ISIS source tree ctest will test with that data.
 
-## Unit Tests
+### Unit Tests
 
 Unit test no longer rely on the old ISIS make system. The unitTest.cpp of each object are compiled and an executable is made and saved in the unitTest sub-directory of the build directory. A symbolic link of the unit test executable is created in the object's directory. This allows the unit test to get files that it needs inside the object's directory, i.e. unitTest.xml. If a unit test passes, then the symbolic link is removed. If you want to run a passing unit test in debug mode, you will have to create a symbolic link of the unit test in the object's directory yourself. If you are inside the object's directory:
 
@@ -252,7 +258,7 @@ Steps To Create A New UnitTest:
 3. rebuild
 4. Use makeOutput.py (see below) to create new truth data
 
-## Example Ctest Output
+### Example Ctest Output
 
 ```
 98% tests passed, 7 tests failed out of 394
@@ -270,7 +276,7 @@ The following tests FAILED:
 Errors while running CTest
 ```
 
-## Make Truth Replacement
+### Make Truth Replacement
 
 The MakeTruth functionality that exists in the Makefiles of the old make system now exists in a script (makeOutput.py) located in `ISIS3/isis/scripts/makeOutput.py`.
 A developer will want output of a test before setting it as truth data. This is currently done with the following command in the form of:
@@ -302,11 +308,11 @@ When making OS specific truth data, do not add the "-t" flag. Instead, you will 
 * For app tests, you will need to rename the truth directory put in build/testOutputDir as
 `truth.<OStype>.x86_64.<OSname>`. If we wanted to make Mac truth data: "truth.Darwin.x86_64.MacOSX10_13".
 
-## Further Reading
+### Further Reading
 
 [Ctest](https://cmake.org/cmake/help/v3.9/manual/ctest.1.html) functionality extends beyond this wiki. Take a moment to see the ctest documentation for additional capabilities.
 
-## Problems
+## Troubleshooting
 
 **If you get the following error message when trying to set up your environment**:
 

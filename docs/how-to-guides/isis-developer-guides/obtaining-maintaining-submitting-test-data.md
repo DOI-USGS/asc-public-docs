@@ -1,7 +1,5 @@
 # ISIS Test Data
 
-## Kinds of Tests
-
 ### GTests and Legacy Makefile-based Tests
 
 ISIS has of two types of tests: custom **Makefile** based tests, and **GTests**. The GTests use data from the ISIS repo along with the source, so no special data is required to run those, aside from the ISIS data area.
@@ -69,48 +67,73 @@ The environmental variable `ISISTESTDATA` needs to point to the path where you w
 
 ISIS *unit* and *regression* tests require the data and test data directories to be available, and need their respective environment variables (`ISISDATA`, `ISISTESTDATA`) to be set. This allows the tests to read files from these areas and compare results to known truth data.
 
-Test data is hosted in Amazon S3. We recommend using [rclone](https://rclone.org) to download the data. In conda, you can install rclone with:
+??? info "Prerequisite: `rclone`"
 
-```sh
-conda install –c conda-forge rclone
-```
+    Test data is hosted in Amazon S3. We recommend using the `downloadIsisData` script (which depends on rclone), or [rclone](https://rclone.org) itself, to download the data. You can install rclone with homebrew or conda:
 
-Isis's rclone config is located at `isis/config/rclone.conf` in the ISIS repo.  To download the ISIS Test Data:
+    === "homebrew"
 
-```sh
-rclone --config isis/config/rclone.conf sync asc_s3:asc-isisdata/isis_testData/ $ISISTESTDATA
-```
+        ```sh
+        brew install rclone
+        ```
 
-??? quote "Test data rclone command breakdown"
+    === "conda"
 
-    - `$ISISTESTDATA` is an environmental variable pointing to the test data location
-    - `--config .../rclone.conf` points to ISIS's rclone.conf
-    - `asc_s3:` is the name of S3 configuration in ISIS's rclone.conf
-    - `asc-isisdata/isis_testData/` is the name of the S3 bucket you’re downloading from
+        ```sh
+        conda install –c conda-forge rclone
+        ```
 
-??? warning "rclone copy/sync can overwrite data!"
+#### To download the ISIS Test Data:
 
-    Note the difference between rclone `sync` and `copy`:
+=== "downloadIsisData script (easy)"
 
-    -  `copy` will overwrite all data in the destination with data from source.
-    - `sync` replaces only changed data.
-    
-    Syncing or copying in either direction (local → remote; remote → local) results in any changed data being overwritten without warning.
+    ```sh
+    downloadIsisData isistestdata $ISISTESTDATA
+    ```
 
-After running the `rclone` command, `$ISISTESTDATA` should contain a full clone of the ISIS test data for running Makefile-based tests.
+=== "rclone (advanced)"
+
+    ```sh
+    rclone -P --config isis/config/rclone.conf sync isistestdata: $ISISTESTDATA
+    ```
+
+    ??? quote "Test data rclone command breakdown"
+
+        - `$ISISTESTDATA` is an environmental variable pointing to the test data location
+        - `-P` shows the progress during the download
+        - `--config .../rclone.conf` points to ISIS's rclone.conf
+        - `asc_s3:` is the name of S3 configuration in ISIS's rclone.conf
+        - `asc-isisdata/isis_testData/` is the name of the S3 bucket you’re downloading from
+
+    ??? warning "rclone copy/sync can overwrite data!"
+
+        Note the difference between rclone `sync` and `copy`:
+
+        -  `copy` will overwrite all data in the destination with data from source.
+        - `sync` replaces only changed data.
+        
+        Syncing or copying in either direction (local → remote; remote → local) results in any changed data being overwritten without warning.
+
+    After running the `rclone` command, `$ISISTESTDATA` should contain a full clone of the ISIS test data for running Makefile-based tests.
 
 -----
 
 #### Downloading specific files
 
-!!! quote ""
+Download specific files is possible by specifying their path.  Test data is generally organized by mission under `isistestdata:isis/src/[mission]`.
 
-    You can download specific files from the bucket by adding path data or file information to the first argument.  Take note of the [rclone config](https://rclone.org/s3/), or, use the ISIS included `isis/config/rclone.conf`.
-    
-    To download only the `base` folder from the isis_testData bucket:
+To download only the `base` folder from the isis_testData bucket:
+
+=== "downloadIsisData script"
 
     ```sh
-    rclone --config isis/config/rclone.conf sync asc_s3:asc-isisdata/isis_testData/base
+    downloadIsisData isistestdata $ISISTESTDATA --include="{isis/src/base/**}"
+    ```
+
+=== "rclone"
+
+    ```sh
+    rclone -P --config isis/config/rclone.conf sync isistestdata:isis/src/base $ISISTESTDATA/isis/src/base
     ```
 
 -----

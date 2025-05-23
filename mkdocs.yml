@@ -57,7 +57,7 @@ nav:
       - Visualizing with pyspiceql:        getting-started/using-spiceql/visualizing-with-pyspiceql-tutorial.ipynb
   - How-To Guides: 
     - Home: how-to-guides/index.md
-    - Environment Setup and Maintenance:
+    - ISIS Environment Setup and Maintenance:
       - Installing ISIS:                   how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md
       - Setting up the ISIS Data Area:     how-to-guides/environment-setup-and-maintenance/isis-data-area.md
       - Using ISIS in other Conda Envs:    how-to-guides/environment-setup-and-maintenance/using-isis-in-other-conda-envs.md
@@ -106,6 +106,7 @@ nav:
       - Learning About Map Projections:      concepts/camera-geometry-and-projections/learning-about-map-projections.md
     - ISIS Fundamentals:
       - ISIS Cube Format:                  concepts/isis-fundamentals/cube-format.md
+      - Gdal Support:                      concepts/isis-fundamentals/gdal-support.md
       - ISIS Label Dictionary:             concepts/isis-fundamentals/label-dictionary.md
       - ISIS Attached Spice Format:        concepts/isis-fundamentals/spice-format.md
       - ISIS Kernel Load Selection:        concepts/isis-fundamentals/kernel-selection.md

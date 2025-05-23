@@ -405,7 +405,7 @@ The values are case insensitive. That is, Yes, YES, True, T, etc. work as well.
 
 ## Inclusive and Exclusive Parameters
 
-The GUI has the ability to include or exclude parameters via stipling (graying out parameters). The application programs will throw an error if certain parameters are incorrectly included or excluded when executing a command in command line mode. See the following _grid_ example, and notice the user errors:
+The GUI has the ability to include or exclude parameters via stippling (graying out parameters). The application programs will throw an error if certain parameters are incorrectly included or excluded when executing a command in command line mode. See the following _grid_ example, and notice the user errors:
 ```
 grid from=0145r_cal.cub to=gridtest.cub baseline=10 basesamp=20
 
@@ -488,11 +488,12 @@ crop from=input.cub to=output.cub+msb
 ```
 ### Storage Format
 
-The storage format of the file can be tile or band sequential. The default format is tile, which is preferable for most geometric processing programs. To select the format use
+The storage format of a cube can be tile or band sequential. The default format is tile, which is preferable for most geometric processing programs. ISIS also supports GeoTIFFs as a storage format and can be accessed similarly to the tile and band sequential formats. For more information on processing in ISIS using GeoTIFFs see the [GDAL Support](gdal-support.md) page. To select the format use:
 ```
 lowpass from=input.cub to=output.cub+tile
 lowpass from=input.cub to=output.cub+bsq
 lowpass from=input.cub to=output.cub+bandSequential
+lowpass from=input.cub to=output.tiff+GTiff
 ```
 Combining the cube attributes
 ```

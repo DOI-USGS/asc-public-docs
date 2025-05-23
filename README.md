@@ -107,7 +107,7 @@ Examples:
 
 ### How-to Guides 
 
-How-to guides are much like recipes in a recipe book. Write how-to docs to solve specific problems quickly, sometimes copy-pastable. Think of how-to guides as pre-emptive StackOverflow-like problems.
+How-to guides are much like recipes in a recipe book. Write how-to docs to solve specific problems quickly, sometimes copy-pastable. Think of how-to guides as preemptive StackOverflow-like problems.
 
 Similar to getting started guides in that they explain to users how to perform some valuable tasks with the software, but distinct in that they:
 

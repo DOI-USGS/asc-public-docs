@@ -4,7 +4,7 @@ Every spacecraft camera that ISIS supports requires a directory in the [`ISIS da
 
 The environmental variable ISISDATA points to the top-most directory in the ISIS data area. We will create there the subdirectory `${ISISDATA}/chandrayaan2`, and inside of it there will be a directory named ``kernels`` that will have the above-mentioned metadata, which in the planetary data community is called [SPICE kernels](https://naif.jpl.nasa.gov/naif/index.html).
 
-The ``kernels`` directory has subdirectories with names such as ``spk``, ``ck``, ``ik``, etc., whose meaning will be discussed shortly. Ech of these must have one more index files, in plain text, with a name such as ``kernels.0000.db``, that enumerates the SPICE kernels and some of their properties. This normally has four digits, and the number gets incremented if there is more than one index.
+The ``kernels`` directory has subdirectories with names such as ``spk``, ``ck``, ``ik``, etc., whose meaning will be discussed shortly. Ech of these must have one more index files, in plain text, with a name such as ``kernels.0000.db``, that enumerates the SPICE kernels and some of their properties. This file name normally has four digits, and the number gets incremented if there is more than one index.
 
 For ``spk`` and ``ck`` kernels, ISIS3 provides a dedicated tool called [kerneldbgen](https://isis.astrogeology.usgs.gov/9.0.0/Application/presentation/Tabbed/kerneldbgen/kerneldbgen.html). For the others, this index file needs to be set up manually.
 

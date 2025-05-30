@@ -58,8 +58,7 @@ Some ISIS data directories have a script named ``makedb`` that has the precice i
 
 IK (Instrument Kernels) provide detailed information about the instrument's physical properties, such as focal length, pixel scale, and distortion models.
 
-Go to ``$ISISDATA/chandrayaan2/kernels/ik/``. Create a file named kernels.0001.db (or
-kernels.db) with content along the lines of::
+Go to ``$ISISDATA/chandrayaan2/kernels/ik``. Create a file named kernels.0001.db (or kernels.db) with content along the lines of:
 
 ```sh
 

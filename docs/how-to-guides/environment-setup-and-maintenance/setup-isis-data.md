@@ -6,7 +6,7 @@ The environmental variable ISISDATA points to the top-most directory in the ISIS
 
 The ``kernels`` directory has subdirectories with names such as ``spk``, ``ck``, ``ik``, etc., whose meaning will be discussed shortly. Ech of these must have one more index files, in plain text, with a name such as ``kernels.0000.db``, that enumerates the SPICE kernels and some of their properties. This file name normally has four digits, and the number gets incremented if there is more than one index.
 
-For ``spk`` and ``ck`` kernels, ISIS3 provides a dedicated tool called [kerneldbgen](https://isis.astrogeology.usgs.gov/9.0.0/Application/presentation/Tabbed/kerneldbgen/kerneldbgen.html). For the others, this index file needs to be set up manually.
+For ``spk`` and ``ck`` kernels, ISIS3 provides a dedicated tool called [kerneldbgen](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/kerneldbgen/kerneldbgen.html). For the others, this index file needs to be set up manually.
 
 ## SPK kernels
 

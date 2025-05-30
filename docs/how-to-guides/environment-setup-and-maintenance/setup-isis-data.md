@@ -33,7 +33,7 @@ and copy there these files. Run a command as:
 
 ```
 
-It is very important to use simple quotes above, not double quotes, so that the shell does not expand these variables. This also ensures relative paths are created, rather than absolute ones specific to a given file system.
+It is very important to use single quotes above, not double quotes, so that the shell does not expand these variables. This also ensures relative paths are created, rather than absolute ones specific to a given file system.
 
 This will create an index file such as ``kernels.0000.db``. Before rerunning this command, delete any existing ``.db`` files, as otherwise new entries will be made.
 

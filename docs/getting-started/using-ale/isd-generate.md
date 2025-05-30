@@ -70,7 +70,7 @@ isd_generate [--arguments] [your-image-name]
 
 !!! example "isd_generate default run, no arguments"
 
-    To run isd_generate with no arguments on a .cub named [B10_013341_1010_XN_79S172W.cub](../../getting-started/data/image_to_ground/B10_013341_1010_XN_79S172W.cub):
+    To run isd_generate with no arguments on a .cub named [B10_013341_1010_XN_79S172W.cub](../../getting-started/csm-stack/image-to-ground/B10_013341_1010_XN_79S172W.cub):
 
     ```sh
     isd_generate B10_013341_1010_XN_79S172W.cub
@@ -85,7 +85,7 @@ By default, this is your image's name, with a .json file extension (i.e. `B10_01
 
 !!! example "Specifying Output"
 
-    [Example .cub](../../getting-started/data/image_to_ground/B10_013341_1010_XN_79S172W.cub)
+    [Example .cub](../../getting-started/csm-stack/image-to-ground/B10_013341_1010_XN_79S172W.cub)
 
     To output to a specified filename, use `--out` or `-o`.  This example outputs a 'MyIsd.json' file:
 
@@ -121,8 +121,8 @@ When using an NAIF SPICE Data, you can specify a metakernel using the `--kernel`
 !!! example "Using a NaifSpice Driver with a metakernel"
 
     Folder with example NAIF Data: 
-    [[Download as .zip](../../getting-started/data/image_to_ground/image-to-ground.zip)] 
-    [[View in GitHub](https://github.com/DOI-USGS/asc-public-docs/tree/main/docs/getting-started/data/image_to_ground)]
+    [[Download as .zip](../../getting-started/csm-stack/image-to-ground/image-to-ground.zip)] 
+    [[View in GitHub](https://github.com/DOI-USGS/asc-public-docs/tree/main/docs/getting-started/csm-stack/image-to-ground)]
 
     This folder contains NAIF Data consisting of the various kernels 
     necessary to generate an ISD for the `B10_013341_1010_XN_79S172W` image.

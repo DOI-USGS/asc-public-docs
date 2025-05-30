@@ -1,6 +1,8 @@
 # Exploring SpiceQL's REST, Python, and C++ APIs
 
-This tutorial will go over making SpiceQL calls using the USGS-hosted web service at https://astrogeology.usgs.gov/apis/spiceql/latest/ and your local SpiceQL service.
+[Check out SpiceQL's REST OpenAPI Doc](https://astrogeology.usgs.gov/apis/spiceql/latest/docs){ .md-button }
+
+This tutorial will go over making SpiceQL calls using the USGS-hosted web service at [https://astrogeology.usgs.gov/apis/spiceql/latest/](https://astrogeology.usgs.gov/apis/spiceql/latest/) and your local SpiceQL service.
 
 SpiceQL has three APIs that can be accessed to utilize the library:  
 
@@ -38,16 +40,20 @@ The following parameters are universal across the three interfaces:
     === "Python"
 
         ```py
-        tuple ()
+        tuple (*, dict)
         ```
+        - `*`: return data object  
+        - `dict` of kernels used
 
     === "C++"
 
         ```c++
         using namespace std;
 
-        std::pair <>;
+        std::pair <*, nlohmann::json>;
         ```
+        - `*`: return data object  
+        - `nlohmann::json` object of kernels used
 
 
 ## Using USGS's web-hosted SpiceQL
@@ -90,7 +96,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/getTargetStates?ets=[690201375.8323615,690201389.2866975]&target=SUN&observer=Mars&frame=IAU_MARS&mission=ctx&abcorr=LT%2BS&searchKernels=true"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/getTargetStates?ets=\[690201375.8323615,690201389.2866975\]&target=SUN&observer=Mars&frame=IAU_MARS&mission=ctx&abcorr=LT%2BS&searchKernels=true"
         ```
 
     === "Python"
@@ -142,7 +148,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/getTargetOrientations?ets=[690201375.8323615]&toFrame=-74000&refFrame=-74690&mission=ctx&useWeb=True&searchKernels=True"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/getTargetOrientations?ets=\[690201375.8323615\]&toFrame=-74000&refFrame=-74690&mission=ctx&useWeb=True&searchKernels=True"
         ```
 
     === "Python"
@@ -193,7 +199,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/strSclkToEt?frameCode=-74&sclk=1321396563:036&mission=ctx&searchKernels=True"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/strSclkToEt?frameCode=-74&sclk=1321396563:036&mission=ctx&searchKernels=True"
         ```
 
     === "Python"
@@ -244,7 +250,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/doubleSclkToEt?frameCode=-85&sclk=922997380.174174&mission=lro&searchKernels=true"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/doubleSclkToEt?frameCode=-85&sclk=922997380.174174&mission=lro&searchKernels=true"
         ```
 
     === "Python"
@@ -295,7 +301,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/doubleEtToSclk?et=690201375.8323615&frameCode=-74&kernelList=[]&mission=ctx&searchKernels=true"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/doubleEtToSclk?et=690201375.8323615&frameCode=-74&kernelList=\[\]&mission=ctx&searchKernels=true"
         ```
 
     === "Python"
@@ -346,7 +352,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/utcToEt?utc=1971-08-04T16:28:24.9159358&searchKernels=true"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/utcToEt?utc=1971-08-04T16:28:24.9159358&searchKernels=true"
         ```
 
     === "Python"
@@ -396,7 +402,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/etToUtc?et=-896556653.900884&format=C&precision=10&searchKernels=true"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/etToUtc?et=-896556653.900884&format=C&precision=10&searchKernels=true"
         ```
 
     === "Python"
@@ -447,7 +453,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/translateNameToCode?frame=MRO&mission=ctx&searchKernels=true"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/translateNameToCode?frame=MRO&mission=ctx&searchKernels=true"
         ```
 
     === "Python"
@@ -497,7 +503,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/translateCodeToName?frame=-74&mission=ctx&searchKernels=true"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/translateCodeToName?frame=-74&mission=ctx&searchKernels=true"
         ```
 
     === "Python"
@@ -547,7 +553,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/getFrameInfo?frame=-74021&mission=ctx&searchKernels=true"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/getFrameInfo?frame=-74021&mission=ctx&searchKernels=true"
         ```
 
     === "Python"
@@ -597,7 +603,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/getTargetFrameInfo?targetId=499&mission=ctx&searchKernels=True"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/getTargetFrameInfo?targetId=499&mission=ctx&searchKernels=True"
         ```
 
     === "Python"
@@ -647,7 +653,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/findMissionKeywords?key=*-74021*&mission=ctx&searchKernels=True"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/findMissionKeywords?key=*-74021*&mission=ctx&searchKernels=True"
         ```
 
     === "Python"
@@ -697,7 +703,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/findTargetKeywords?key=*499*&mission=ctx&searchKernels=True"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/findTargetKeywords?key=*499*&mission=ctx&searchKernels=True"
         ```
 
     === "Python"
@@ -747,7 +753,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/frameTrace?et=690201382.5595295&initialFrame=-74021&mission=ctx&searchKernels=True"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/frameTrace?et=690201382.5595295&initialFrame=-74021&mission=ctx&searchKernels=True"
         ```
 
     === "Python"
@@ -798,7 +804,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/extractExactCkTimes?observStart=690201375.8323615&observEnd=690201389.2866975&targetFrame=-74021&mission=ctx&searchKernels=True"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/extractExactCkTimes?observStart=690201375.8323615&observEnd=690201389.2866975&targetFrame=-74021&mission=ctx&searchKernels=True"
         ```
 
     === "Python"
@@ -848,7 +854,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -GET "https://astrogeology.usgs.gov/apis/spiceql/latest/getTargetStates?ets=[690201375.8323615,690201389.2866975]&target=sun&observer=moon&frame=MOON_ME&abcorr=LT%2BS&mission=lroc&ckQualities=[reconstructed]&spkQualities=[reconstructed]&searchKernels=false&kernelList=[/moon/tspk/moon_pa_de421_1900-2050.bpc,/lro/tspk/de421.bsp,/base/pck/pck[0-9]{5}.tpc,/moon/pck/moon_080317.tf,/moon/pck/moon_assoc_me.tf]"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/getTargetStates?ets=\[690201375.8323615,690201389.2866975\]&target=sun&observer=moon&frame=MOON_ME&abcorr=LT%2BS&mission=lroc&ckQualities=\[reconstructed\]&spkQualities=\[reconstructed\]&searchKernels=false&kernelList=\[/moon/tspk/moon_pa_de421_1900-2050.bpc,/lro/tspk/de421.bsp,/base/pck/pck[0-9]{5}.tpc,/moon/pck/moon_080317.tf,/moon/pck/moon_assoc_me.tf]"
         ```
 
     === "Python"
@@ -882,7 +888,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
         auto [result, kernels] = SpiceQL::getTargetStates(etStartVec, "sun", "moon", "MOON_ME", "LT+S", "lroc", {"reconstructed"}, {"reconstructed"}, false, true, kernels_to_use);
         ```
 
-    The `kernelList` is a list of kernel paths relative to your `ISISDATA`.
+    The `kernelList` is a list of kernel paths relative to your `SPICEROOT`.
 
 
 ## Using Your Local SpiceQL Server
@@ -895,7 +901,7 @@ Follow the repo's [README](https://github.com/DOI-USGS/SpiceQL?tab=readme-ov-fil
 !!! warning ""
     Set the following environment variables:
 
-    - `ISISDATA`: Path to your ISIS data area 
+    - `SPICEROOT`: Path to your ISIS data area (`ISISDATA` also works)
     - `SPICEQL_CACHE_DIR`: Path to the folder that will contain your database and cached files
     - `SPICEQL_REST_URL`: Your local FastAPI URL, most likely "http://127.0.0.1:8080/"
     - `SPICEQL_LOG_LEVEL`: *(Optional)* Outputs logs based on level of severity [`off`, `critical`, `error`, `warning` (default), `info`, `debug`, `trace`]
@@ -903,15 +909,18 @@ Follow the repo's [README](https://github.com/DOI-USGS/SpiceQL?tab=readme-ov-fil
 
 ### 3. Generate your database
 
-The database is generated over the data in your `ISISDATA` dir and is outputted to an agnostic HDF5 file in your `SPICEQL_CACHE_DIR` path.
+The database is generated over the data in your `SPICEROOT` dir and is outputted to an agnostic HDF5 file in your `SPICEQL_CACHE_DIR` path.
 
 !!! info "Before you proceed..."
 
-    Generating your database over a full `ISISDATA` area may take *a few hours*. We recommend targeting missions specific to your use case for a faster generation time. You can find acceptable mission names at https://astrogeology.usgs.gov/apis/spiceql/latest/ and under the [repo's db/ folder](https://github.com/DOI-USGS/SpiceQL/tree/main/SpiceQL/db) with the format being "<mission\>.json". Mission instrument names can be found in each "<mission\>.json" file as JSON keys. Supplemental names like planetary bodies can be found in the [db/base.json](https://github.com/DOI-USGS/SpiceQL/blob/main/SpiceQL/db/base.json) file as JSON keys.
+    Generating your database over a full `SPICEROOT` area may take *a few hours*. We recommend targeting missions specific to your use case for a faster generation time. You can find acceptable mission names at [https://astrogeology.usgs.gov/apis/spiceql/latest/](https://astrogeology.usgs.gov/apis/spiceql/latest/) or in the SpiceQL installation path at `$CONDA_PREFIX/etc/SpiceQL/db`:
+    ```bash
+    jq -s add * $CONDA_PREFIX/etc/SpiceQL/db | jq '.|= keys'
+    ```
 
-#### Generate database for the entire `ISISDATA` area
+#### Generate database for the entire `SPICEROOT` area
 
-!!! example "Entire `ISISDATA` area"
+!!! example "Entire `SPICEROOT` area"
     ```py
     import pyspiceql as pql
 

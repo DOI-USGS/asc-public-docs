@@ -18,7 +18,7 @@ SPK stands for Spacecraft Position Kernels. They contain the ephemeris (position
 
 ```
 
-and copy there these files. Then, to create the index files with .db extension, run a command as:
+and copy there these files. Run a command as:
 
 ```sh
 
@@ -34,6 +34,8 @@ and copy there these files. Then, to create the index files with .db extension, 
 ```
 
 It is very important to use simple quotes above, not double quotes, so that the shell does not expand these variables. This also ensures relative paths are created, rather than absolute ones specific to a given file system. Before rerunning this command, delete any existing ``.db`` files, as otherwise new entries will be made.
+
+This will create an index file such as ``kernels.0000.db``. This normally has four digits, and the number gets incremented if there is more than one index. 
 
 Save this command to a shell script in the current directory named ``makedb``, so that it keeps a record of how the index ws produced. See also the ``makedb`` script for other datasets, for comparison.
 

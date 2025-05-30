@@ -45,7 +45,7 @@ Save this command to a shell script in the current directory named ``makedb``, s
 
 ```sh
 
-   cd ${ISISDATA}/kernels/ck
+   cd ${ISISDATA}/chandrayaan2/kernels/ck
 
    kerneldbgen                                           \
      to = '$chandrayaan2/kernels/ck/kernels.????.db'     \

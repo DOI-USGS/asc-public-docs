@@ -35,8 +35,6 @@ and copy there these files. Then, to create the index files with .db extension, 
 
 It is very important to use simple quotes above, not double quotes, so that the shell does not expand these variables. This also ensures relative paths are created, rather than absolute ones specific to a given file system. Before rerunning this command, delete any existing .db files, as otherwise new entries will be made.
 
-There may be options for smitheddir and smithedfilter that point to the directory containing "smithed" (predicted or less precise) SPK files. Often, these can be the same as recondir and reconfilter if all your SPK files are in one place. See this program's documentation for details. 
-
 Some ISIS data directories have a script named ``makedb`` that has the precice invocation of this program for that directory. Those can serve as other examples.
 
 ## CK kernels

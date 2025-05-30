@@ -150,4 +150,4 @@ Add an entry of the form::
       Chandrayaan2 = $ISISDATA/chandrayaan2
 ```
 
-to ``isis/IsisPreferences`` in the ISIS source directory for future uses, and to the local version of this file in the installation directory for local use. Ensure that the entry is in the ``DataDirectory`` group, as for other missions.
+to ``isis/IsisPreferences`` in the ISIS source directory for future uses, and to the local version of this file in the installation directory for current use. Ensure that the entry is in the ``DataDirectory`` group, as for other missions.

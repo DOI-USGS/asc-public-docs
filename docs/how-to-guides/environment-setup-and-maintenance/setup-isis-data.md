@@ -52,7 +52,7 @@ Some ISIS data directories have a script named ``makedb`` that has the precice i
     reconfilter = 'ch2*.bc'                                   \
     sclk = "${ISISDATA}/chandrayaan2/kernels/sclk/ch2_sclk_v1.tsc" \
     lsk = "${ISISDATA}/base/kernels/lsk/naif????.tls"
-``
+```
             
 The parameters are identical in meaning to the SPK setup, but type=CK is used.
 

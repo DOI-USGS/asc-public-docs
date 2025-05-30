@@ -250,4 +250,4 @@ There is an ISISTESTDATA area containing files needed to run some of ISIS's olde
 
 ## See also
 
- - [Setting up ISIS data for a new mission](https://astrogeology.usgs.gov/docs/how-to-guides/environment-setup-and-maintenance/setup-isis-data)
+ - [Setting up ISIS data for a new mission](../../how-to-guides/environment-setup-and-maintenance/setup-isis-data.md)

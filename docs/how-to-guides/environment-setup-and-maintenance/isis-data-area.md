@@ -247,3 +247,7 @@ You can also use the `include` argument (like a whitelist) to partially download
 ## The ISIS Test Data Area
 
 There is an ISISTESTDATA area containing files needed to run some of ISIS's older Makefile-based tests.  See [ISIS Test Data](../../how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md) for more info.
+
+## See also
+
+ - [Setting up ISIS data for a new mission](https://astrogeology.usgs.gov/docs/how-to-guides/environment-setup-and-maintenance/setup-isis-data)

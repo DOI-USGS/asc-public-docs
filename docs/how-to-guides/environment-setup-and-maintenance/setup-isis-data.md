@@ -43,50 +43,46 @@ Some ISIS data directories have a script named ``makedb`` that has the precice i
 
 ```sh
 
-  kerneldbgen                                                      \
-    to = "${ISISDATA}/chandrayaan2/kernels/ck/kernels.????.db"     \
-    type = CK                                                      \
-    recondir = "${ISISDATA}/chandrayaan2/kernels/ck"               \
-    reconfilter = 'ch2*.bc'                                   \
-    sclk = "${ISISDATA}/chandrayaan2/kernels/sclk/ch2_sclk_v1.tsc" \
-    lsk = "${ISISDATA}/base/kernels/lsk/naif????.tls"
+   cd ${ISISDATA}
+
+   kerneldbgen                                           \
+     to = '$chandrayaan2/kernels/ck/kernels.????.db'     \
+     type = CK                                           \
+     recondir = '$chandrayaan2/kernels/ck'               \
+     reconfilter = 'ch2*.bc'                             \
+     sclk = '$chandrayaan2/kernels/sclk/ch2_sclk_v1.tsc' \
+     lsk = 'base/kernels/lsk/naif????.tls'
 ```
-            
-The parameters are identical in meaning to the SPK setup, but type=CK is used.
 
-3. Manual set up of other kernel types
+## IK Kernels
 
-For the following kernel types, kerneldbgen is not used. Simply create a plain
-text kernels.db (or kernels.0001.db) file in the respective directory and list
-the specific kernel files ISIS should load.
+IK (Instrument Kernels) provide detailed information about the instrument's physical properties, such as focal length, pixel scale, and distortion models.
 
-3.1 IK Kernels (Instrument Kernels)
+Go to ``$ISISDATA/chandrayaan2/kernels/ik/``. Create a file named kernels.0001.db (or
+kernels.db) with content along the lines of::
 
-IK kernels provide detailed information about the instrument's physical properties, such as focal length, pixel scale, and distortion models. They are essential for accurate camera modeling.
+```sh
 
-Navigate to your mission's IK kernel directory (e.g.,
-$ISISDATA/chandrayaan2/kernels/ik/). Create a file named kernels.0001.db (or
-kernels.db) with content like this, listing the .ti files and their
-corresponding InstrumentId values:
+   Object = Instrument
+     Group = Selection
+       Match = ("Instrument", "InstrumentId","IIR")
+       File  = ("chandrayaan2", "kernels/ik/ch2_iir_v01.ti")
+     EndGroup
 
-Object = Instrument
-  Group = Selection
-    Match = ("Instrument","InstrumentId","IIR")
-    File  = ("chandrayaan2", "kernels/ik/ch2_iir_v01.ti")
-  EndGroup
+     Group = Selection
+       Match = ("Instrument", "InstrumentId","OHR")
+       File  = ("chandrayaan2", "kernels/ik/ch2_ohr_v01.ti")
+     EndGroup
 
-  Group = Selection
-    Match = ("Instrument","InstrumentId","OHR")
-    File  = ("chandrayaan2", "kernels/ik/ch2_ohr_v01.ti")
-  EndGroup
+     Group = Selection
+       Match = ("Instrument", "InstrumentId","TMC-2")
+       File  = ("chandrayaan2", "kernels/ik/ch2_tmc_v01.ti")
+     EndGroup
+   EndObject
 
-  Group = Selection
-    Match = ("Instrument","InstrumentId","TMC-2")
-    File  = ("chandrayaan2", "kernels/ik/ch2_tmc_v01.ti")
-  EndGroup
-EndObject
+```
 
-The Match parameter's InstrumentId must precisely match the ID defined within the .ti kernel file itself. Otherwise one may get errors about a null instrument.
+It is very imporant to have the precise name of each instrument, and to ensure the proper .ti files are passed in.
 
 Consider also inspecting the analogous files for other missions, for comparison.
 

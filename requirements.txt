@@ -4,4 +4,5 @@ mkdocs-mermaid2-plugin
 neoteroi-mkdocs
 codespell
 linkchecker
+mkdocs-redirects
 git+https://github.com/Kelvinrr/mknotebooks.git

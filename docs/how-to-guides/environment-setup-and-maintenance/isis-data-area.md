@@ -195,6 +195,13 @@ If you are only working with a few missions, save space by downloading just thos
     | Voyager 1 | `downloadIsisData voyager1 $ISISDATA` |
     | Voyager 2 | `downloadIsisData voyager2 $ISISDATA` |
 
+#### Excluding Kernels
+
+You can exclude common kernel subdirectories from your download with the `--no-kernels` flag.  For example, to download only calibration files for the MRO mission:
+```sh
+downloadIsisData mro ~/data/testdata --no-kernels
+```
+
 -----
 
 ## ISIS SPICE Web Service

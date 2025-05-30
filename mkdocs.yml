@@ -74,13 +74,17 @@ nav:
     - ISIS Demos:
       - Interactive Online Demos:          how-to-guides/demos/isis-demos.md
     - Software Management:
-      - LTS Release Process:               how-to-guides/software-management/lts-release-process.md
       - Deprecation:                       how-to-guides/software-management/deprecation.md
-      - Public Release Process:            how-to-guides/software-management/public-release-process.md
       - Software Support:                  how-to-guides/software-management/software-support.md
       - Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
       - Guidelines for Pull Requests:      how-to-guides/software-management/guidelines-for-pull-requests.md
       - ISIS Release Schedule:             how-to-guides/software-management/isis-release-schedule.md
+      - Releases:                          
+        - Home:                            how-to-guides/software-management/releases/index.md
+        - Releasing ISIS:                   how-to-guides/software-management/releases/isis-release-process.md
+        - Releasing Other Astro Software:   how-to-guides/software-management/releases/general-release-process.md
+        - ISIS Release Schedule:             how-to-guides/software-management/isis-release-schedule.md
+        - LTS Release Process:               how-to-guides/software-management/lts-release-process.md
     - ISIS Developer Guides:
       - Contributing to ISIS:                         how-to-guides/isis-developer-guides/contributing-to-isis.md
       - Writing Tests with CTest and GTest:           how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md
@@ -153,6 +157,9 @@ plugins:
   - search
   - mknotebooks
   - mermaid2
+  - redirects:
+      redirect_maps:
+        'how-to-guides/software-management/public-release-process.md': 'how-to-guides/software-management/releases/index.md'
 
 markdown_extensions:
   - codehilite

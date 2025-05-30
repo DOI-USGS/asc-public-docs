@@ -33,4 +33,4 @@ _**Note: Automation of Steps 1 - 3 is TBD. The PR in Step 3 will be manually rev
 ### Step 4: Increment LTS Patch Version
 * Increment the patch version of the LTS build.
 * Release the newly versioned build via Anaconda.
-* Further guidelines on the [Public Release Process](../software-management/public-release-process.md)
+* Further guidelines on the [Public Release Process](../software-management/releases/isis-release-process.md)

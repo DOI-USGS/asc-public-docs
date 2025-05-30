@@ -1,6 +1,6 @@
 # Exploring SpiceQL's REST, Python, and C++ APIs
 
-[Check out SpiceQL's REST OpenAPI Doc](https://astrogeology.usgs.gov/apis/spiceql/latest/docs){ .md-button }
+[Check out SpiceQL's REST OpenAPI :material-file-document-outline:](https://astrogeology.usgs.gov/apis/spiceql/latest/docs){ .md-button }
 
 This tutorial will go over making SpiceQL calls using the USGS-hosted web service at [https://astrogeology.usgs.gov/apis/spiceql/latest/](https://astrogeology.usgs.gov/apis/spiceql/latest/) and your local SpiceQL service.
 

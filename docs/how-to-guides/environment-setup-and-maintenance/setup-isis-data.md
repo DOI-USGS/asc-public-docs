@@ -58,7 +58,7 @@ Some ISIS data directories have a script named ``makedb`` that has the precice i
 
 IK (Instrument Kernels) provide detailed information about the instrument's physical properties, such as focal length, pixel scale, and distortion models.
 
-Go to ``$ISISDATA/chandrayaan2/kernels/ik``. Create a file named kernels.0001.db (or kernels.db) with content along the lines of:
+Go to ``$ISISDATA/chandrayaan2/kernels/ik``. Create a file named ``kernels.0000.db`` (or ``kernels.db``) with content along the lines of:
 
 ```sh
 
@@ -85,124 +85,56 @@ It is very imporant to have the precise name of each instrument, and to ensure t
 
 Consider also inspecting the analogous files for other missions, for comparison.
 
-3.2. FK Kernels (Frame Kernels)
+## FK Kernels
 
-What they mean: FK kernels define reference frames that are not intrinsically defined by SPICE (like spacecraft frames or instrument frames) and establish relationships between them. They are crucial for transforming data between different coordinate systems.
+FK (Frame Kernels) define reference frames that are not intrinsically defined by SPICE (like spacecraft frames or instrument frames) and establish relationships between them. They are crucial for transforming data between different coordinate systems.
 
-Setup Example (kernels.db content):
+Navigate to your mission's FK kernel directory (for example, ``$ISISDATA/chandrayaan2/kernels/fk``). Create a file named ``kernels.0000.db`` (or ``kernels.db``) with content like this, listing your ``.tf`` (Text Frame) files:
+   
+```sh
 
-Navigate to your mission's FK kernel directory (e.g., $ISISDATA/chandrayaan2/kernels/fk/).
-Create a file named kernels.0001.db (or kernels.db) with content like this, listing your .tf (Text Frame) files:
+   Object = Frame
+     Group = Selection
+       File = ("chandrayaan2", "kernels/fk/ch2_v01.tf")
+     EndGroup
+   EndObject
 
-Object = Frame
-  Group = Selection
-    File = ("chandrayaan2", "kernels/fk/ch2_v01.tf")
-  EndGroup
-EndObject
+```
 
-3.3 SCLK Kernels (Spacecraft Clock Kernels)
+## SCLK Kernels
 
-SCLK kernels contain the mapping between the spacecraft's internal clock time (SCLK) and ephemeris time (ET).
+SLCK (Spacecraft Clock Kernels) contain the mapping between the spacecraft's internal clock time (SCLK) and ephemeris time (ET).
 
-Setup Example (kernels.db content):
+Navigate to your mission's SCLK kernel directory (e.g., ``$ISISDATA/chandrayaan2/kernels/sclk``). Create a file named ``kernels.db`` (or ``kernels.0001.db``) with content like this, listing your .tsc (Text Spacecraft Clock) files:
 
-Navigate to your mission's SCLK kernel directory (e.g., $ISISDATA/chandrayaan2/kernels/sclk/).
-Create a file named kernels.db (or kernels.0001.db) with content like this, listing your .tsc (Text Spacecraft Clock) files:
+```sh
+   
+   Object = SpacecraftClock
+     Group = Selection
+       File = ("chandrayaan2", "kernels/sclk/ch2_sclk_v1.tsc")
+     EndGroup
+   EndObject
+```
 
-Object = SpacecraftClock
-  Group = Selection
-    File = ("chandrayaan2", "kernels/sclk/ch2_sclk_v1.tsc")
-  EndGroup
-EndObject
+## IAK Kernels
 
-3.5. LSK Kernels (Leapsecond Kernels)
-What they mean: LSK kernels define the relationship between Ephemeris Time (ET), Universal Time (UT), and other time systems, accounting for leap seconds. They are fundamental for accurate time conversions in all SPICE computations.
+IAK (Instrument Addendum Kernels) provide additional, instrument-specific information that is not typically found in standard IK files. This can include subtle detector characteristics, advanced distortion models, or unique calibration parameters. 
 
-Setup Example (kernels.db content):
-LSK kernels are typically global to your ISIS3 installation, usually found in $ISISDATA/base/kernels/lsk/.
-Create a file named kernels.db (or kernels.0001.db) in that directory with content like this, listing your .tls (Text Leapsecond) files:
+For Chandrayaan2 data, this file was not supplied and needed to be guessed.
 
-Object = Leapsecond
-  Group = Selection
-    File = ("base", "kernels/lsk/naif????.tls")
-  EndGroup
-EndObject
-Note the use of "base" as the mission name, indicating it's part of the base ISIS3 data.
+Navigate to your mission's IAK kernel directory (e.g., ``$ISISDATA/chandrayaan2/kernels/iak``). If this directory doesn't exist, it needs to be created first.  Create a file named ``kernels.db`` (or ``kernels.0001.db``) with content like:
 
-3.6. PCK Kernels (Planetary Constants Kernels)
-What they mean: PCK kernels provide orientation models for natural bodies (like planets, moons, asteroids) and their physical constants (e.g., radii, rotation rates, gravitational parameters). This allows ISIS to accurately model the shape and orientation of targets.
+```sh
+   Object = InstrumentAddendum
+     Group = Selection
+       Match = ("Instrument","InstrumentId", "TMC-2")
+       File  = ("chandrayaan2", "kernels/iak/ch2_tmc_iak_v01.ti")
+     EndGroup
+   EndObject
+```
 
-Setup Example (kernels.db content):
-PCK kernels are also typically global to your ISIS3 installation, usually found in $ISISDATA/base/kernels/pck/.
-Create a file named kernels.db (or kernels.0001.db) in that directory with content like this, listing your .tpc (Text PCK) or .bpc (Binary PCK) files:
+Ensure that the instrument id and .ti files are correctly specified. If no .ti entries exist, ommit the ``Match`` and ``File`` entries.
 
-Object = PlanetaryConstants
-  Group = Selection
-    File = ("base", "kernels/pck/pck?????.tpc")
-  EndGroup
-  Group = Selection
-    File = ("base", "kernels/pck/moon_366.bpc") # Example for a binary PCK
-  EndGroup
-EndObject
+## Other kernels
 
-Again, "base" indicates it's part of the base ISIS3 data.
-
-3.7. IAK Kernels (Instrument Addendum Kernels)
-
-What they mean: IAK kernels provide additional, instrument-specific information
-that is not typically found in standard IK files. This can include subtle
-detector characteristics, advanced distortion models, or unique calibration
-parameters. For Chandrayaan2 data, this file was not supplied and needed to be
-guessed.
-
-Setup Example (kernels.db content - including empty):
-
-Navigate to your mission's IAK kernel directory (e.g.,
-$ISISDATA/chandrayaan2/kernels/iak/). If this directory doesn't exist, you'll
-need to create it first:
-
-Bash
-
-mkdir -p $ISISDATA/chandrayaan2/kernels/iak
-
-To make an empty IAK database: If you don't have specific IAK files for your
-mission/instrument but ISIS3 is still looking for an IAK database, you can
-create a minimal, empty one. This satisfies spiceinit without actually loading
-any specific IAK data. Create a file named kernels.db (or kernels.0001.db) in
-your iak directory with just the basic object definition:
-
-Object = InstrumentAddendum
-EndObject
-This tells ISIS that an IAK database exists, but it's currently empty.
-
-If you do have specific IAK files (e.g., ch2_tmc_iak_v01.ti):
-Your kernels.db would look like this:
-
-Object = InstrumentAddendum
-  Group = Selection
-    Match = ("Instrument","InstrumentId","TMC-2") # Or the actual InstrumentId from your IAK file
-    File  = ("chandrayaan2", "kernels/iak/ch2_tmc_iak_v01.ti")
-  EndGroup
-EndObject
-
-Ensure that the instrument id is correctly specified.
-
-9. EK Kernels (Event Kernels)
-
-What they mean: EK kernels contain "event" data, which can be anything from
-geological features on a planetary surface to specific mission events. These are
-often used for specialized analyses or to define regions of interest. They are
-less commonly needed for basic spiceinit operations.
-
-Setup Example (kernels.db content):
-
-Navigate to your mission's EK kernel directory (e.g., $ISISDATA/chandrayaan2/kernels/ek/).
-Create a file named kernels.db (or kernels.0001.db) with content like this, listing your .ek files:
-
-Object = Event
-  Group = Selection
-    File = ("chandrayaan2", "kernels/ek/ch2_science_events.ek")
-  EndGroup
-EndObject
-
-By systematically setting up these kernel directories and their corresponding .db files, you provide ISIS3 with all the necessary SPICE information to accurately process and understand your planetary data. Remember to always verify your kernel file patterns and the exact InstrumentIds to ensure a smooth spiceinit experience!
+There exist a few kernels that apply to all missions, and are usually stored in the ``$ISISDATA/base/kernels`` directory. These include LSK (Leapsecond Kernels), PCK (Planetary Constants Kernels), EK (Event Kernels). These should normally already exist in the data area.

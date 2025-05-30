@@ -1,6 +1,6 @@
 # Setting up ISIS data for a new mission
 
-Every spacecraft camera that ISIS supports requires a directory in the [`ISIS data area`](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md). It stores the camera position, orientation, sensor properties, etc.; data that is later added to an image to process with [spiceinit](https://isis.astrogeology.usgs.gov/9.0.0/Application/presentation/Tabbed/spiceinit/spiceinit.html). This page documents how to set up such a directory for a new mission, with the Chandrayaan-2 Lunar orbiter data serving as an example.
+Every spacecraft camera that ISIS supports requires a directory in the [`ISIS data area`](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md). It stores the camera position, orientation, sensor properties, etc.; data that is later added to an image to process with [spiceinit](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/spiceinit/spiceinit.html). This page documents how to set up such a directory for a new mission, with the Chandrayaan-2 Lunar orbiter data serving as an example.
 
 The environmental variable ISISDATA points to the top-most directory in the ISIS data area. We will create there the subdirectory `${ISISDATA}/chandrayaan2`, and inside of it there will be a directory named ``kernels`` that will have the above-mentioned metadata, which in the planetary data community is called [SPICE kernels](https://naif.jpl.nasa.gov/naif/index.html).
 
@@ -22,7 +22,7 @@ and copy there these files. Then, to create the index files with .db extension, 
 
 ```sh
 
-   cd ${ISISDATA}
+   cd ${ISISDATA}/chandrayaan2/kernels/spk
 
    kerneldbgen                                       \
     to = '$chandrayaan2/kernels/spk/kernels.????.db' \
@@ -35,7 +35,7 @@ and copy there these files. Then, to create the index files with .db extension, 
 
 It is very important to use simple quotes above, not double quotes, so that the shell does not expand these variables. This also ensures relative paths are created, rather than absolute ones specific to a given file system. Before rerunning this command, delete any existing ``.db`` files, as otherwise new entries will be made.
 
-Some ISIS data directories have a script named ``makedb`` that has the precise invocation of this program for that directory. Those can serve as other examples.
+Save this command to a shell script in the current directory named ``makedb``, so that it keeps a record of how the index ws produced. See also the ``makedb`` script for other datasets, for comparison.
 
 ## CK kernels
 
@@ -43,7 +43,7 @@ Some ISIS data directories have a script named ``makedb`` that has the precise i
 
 ```sh
 
-   cd ${ISISDATA}
+   cd ${ISISDATA}/kernels/ck
 
    kerneldbgen                                           \
      to = '$chandrayaan2/kernels/ck/kernels.????.db'     \
@@ -138,3 +138,14 @@ Ensure that the instrument id and ``.ti`` files are correctly specified. If no `
 ## Other kernels
 
 There exist a few kernels that apply to all missions, and are usually stored in the ``$ISISDATA/base/kernels`` directory. These include LSK (Leapsecond Kernels), PCK (Planetary Constants Kernels), and EK (Event Kernels). These should normally already exist in the data area.
+
+## Record the new dataset
+
+Add an entry of the form::
+
+```sh
+
+      Chandrayaan2 = $ISISDATA/chandrayaan2
+```
+
+to ``isis/IsisPreferences`` in the ISIS source directory for future uses, and to the local version of this file in the installation directory for local use. Ensure that the entry is in the ``DataDirectory`` group, as for other missions.

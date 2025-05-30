@@ -71,7 +71,7 @@ Go to ``$ISISDATA/chandrayaan2/kernels/ik``. Create a file named ``kernels.0000.
      EndGroup
 
      Group = Selection
-       Match = ("Instrument", "InstrumentId","OHR")
+       Match = ("Instrument", "InstrumentId","OHRC")
        File  = ("chandrayaan2", "kernels/ik/ch2_ohr_v01.ti")
      EndGroup
 

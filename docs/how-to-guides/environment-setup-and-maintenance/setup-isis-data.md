@@ -1,74 +1,58 @@
 # Setting up ISIS data for a new mission
 
-Every spacecraft camera that ISIS supports requires a directory in the [`ISIS data area`](https://astrogeology.usgs.gov/docs/how-to-guides/environment-setup-and-maintenance/isis-data-area/). It stores the camera position, orientation, sensor properties, etc.; data that is later added to an image to process with [spiceinit](https://isis.astrogeology.usgs.gov/9.0.0/Application/presentation/Tabbed/spiceinit/spiceinit.html). This page documents how to set up such a directory for a new mission.
+Every spacecraft camera that ISIS supports requires a directory in the [`ISIS data area`](https://astrogeology.usgs.gov/docs/how-to-guides/environment-setup-and-maintenance/isis-data-area/). It stores the camera position, orientation, sensor properties, etc.; data that is later added to an image to process with [spiceinit](https://isis.astrogeology.usgs.gov/9.0.0/Application/presentation/Tabbed/spiceinit/spiceinit.html). This page documents how to set up such a directory for a new mission, with the Chandrayaan-2 Lunar orbiter data serving as an example.
 
 The environemntal variable ISISDATA points to the top-most directory in the ISIS data area. We will create there the subdirectory `${ISISDATA}/chandrayaan2`, and inside of it there will be a directory named ``kernels`` that will have the above-mentioned metadata, which in the planetary data community is called [SPICE kernels](https://naif.jpl.nasa.gov/naif/index.html).
 
 The ``kernels`` directory has subdirectories with names such as ``spk``, ``ck``, ``ik``, etc., whose meaning will be discussed shortly. Ech of these must have one more index files, in plain text, with a name such as kernels.0000.db, that enumerates the SPICE kernels and some of their properties.
 
-For ck and spk kernels, ISIS3 provides a dedicated tool called [kerneldbgen](https://isis.astrogeology.usgs.gov/8.3.0/Application/presentation/PrinterFriendly/kerneldbgen/kerneldbgen.html). For the others, this index file needs to be set up manually.
+For ``spk`` and ``ck`` kernels, ISIS3 provides a dedicated tool called [kerneldbgen](https://isis.astrogeology.usgs.gov/8.3.0/Application/presentation/PrinterFriendly/kerneldbgen/kerneldbgen.html). For the others, this index file needs to be set up manually.
 
-# CK and SPK kernels
+## SPK kernels
 
-For CK and SPK kernels, ISIS3 provides a dedicated tool called kerneldbgen that
-helps manage the time coverage of the kernels. For other kernel types, 
-the kernels.db files are created manually.
+SPK stands for Spacecraft Position Kernels. They conctain the ephemeris (position and velocity) information for spacecraft, planetary bodies, etc. The kernels usually have the ``.bsp`` extension. Create the directory:
 
-1. SPK Kernels (Spacecraft Position Kernels)
-
-SPK kernels contain the ephemeris (position and velocity) information for
-spacecraft, planetary bodies, etc.
-
-Peek inside a given mission's SPK kernel directory and see if the kernels exist.
-For example, for Chandrayaan2, that directory will be named
+```sh
 
   $ISISDATA/chandrayaan2/kernels/spk
 
-This assumes that the ISISDATA environment variable is set, pointing to the ISIS
-data area.
+```
 
-Run a command as::
+and copy there these files. Then, to create the index files with .db extension, run a command as::
 
-  kerneldbgen                                                   \
-    to = "${ISISDATA}/chandrayaan2/kernels/spk/kernels.????.db" \
-    type = SPK                                                  \
-    recondir = "${ISISDATA}/chandrayaan2/kernels/spk"           \
-    reconfilter = "ch2*.bsp"                                    \
+```sh
+
+   cd ${ISISDATA}
+
+   kerneldbgen                                       \
+    to = '$chandrayaan2/kernels/spk/kernels.????.db' \
+    type = SPK                                       \
+    recondir = '$chandrayaan2/kernels/spk'           \
+    reconfilter = 'ch2*.bsp'                         \
+    lsk = '$base/kernels/lsk/naif????.tls'
+
+```
+
+It is very important to use simple quotes above, not double quotes, so that the shell does not expand these variables. This also ensures relative paths are created, rather than absolute ones specific to a given file system. Before rerunning this command, delete any existing .db files, as otherwise new entries will be made.
+
+There may be options for smitheddir and smithedfilter that point to the directory containing "smithed" (predicted or less precise) SPK files. Often, these can be the same as recondir and reconfilter if all your SPK files are in one place. See this program's documentation for details. 
+
+Some ISIS data directories have a script named ``makedb`` that has the precice invocation of this program for that directory. Those can serve as other examples.
+
+## CK kernels
+
+ CK (Spacecraft Pointing Kernels) contain the attitude (orientation) information for the spacecraft and its instruments. The command for assembling the index file for this is very similar.
+
+```sh
+
+  kerneldbgen                                                      \
+    to = "${ISISDATA}/chandrayaan2/kernels/ck/kernels.????.db"     \
+    type = CK                                                      \
+    recondir = "${ISISDATA}/chandrayaan2/kernels/ck"               \
+    reconfilter = 'ch2*.bc'                                   \
+    sclk = "${ISISDATA}/chandrayaan2/kernels/sclk/ch2_sclk_v1.tsc" \
     lsk = "${ISISDATA}/base/kernels/lsk/naif????.tls"
-
-Here:
-
- - to = ".../kernels.????.db": Specifies the output location and naming convention for the generated SPK database files (e.g., kernels.0001.db, kernels.0002.db).
- 
- - type = SPK: Essential parameter telling kerneldbgen to process SPK files.
- 
- - recondir and reconfilter: Point to the directory containing your "reconstructed" (best available) SPK files and the pattern(s) to match them.
-
-There may be options for smitheddir and smithedfilter that point to the
-directory containing "smithed" (predicted or less precise) SPK files.
-Often, these can be the same as recondir and reconfilter if all your SPK files
-are in one place.
-
-- lsk: Path to your Leapsecond Kernel, which is necessary for time conversions.
-
-Inspect the produced files.
-
-Search the ISIS data area for files with names such as makedb. They have the
-scripts along the lines mentioned above for a few of the existing missions.
-
-2. CK Kernels (Spacecraft Pointing Kernels / C-Kernels)
-
-CK kernels contain the attitude (orientation) information for the spacecraft and its instruments.
-
-Run a command as::
-
-kerneldbgen                                                      \
-  to = "${ISISDATA}/chandrayaan2/kernels/ck/kernels.????.db"     \
-  type = CK                                                      \
-  recondir = "${ISISDATA}/chandrayaan2/kernels/ck"               \
-  reconfilter = 'ch2_att_*.bc'                                   \
-  sclk = "${ISISDATA}/chandrayaan2/kernels/sclk/ch2_sclk_v1.tsc" \
-  lsk = "${ISISDATA}/base/kernels/lsk/naif????.tls"
+``
             
 The parameters are identical in meaning to the SPK setup, but type=CK is used.
 

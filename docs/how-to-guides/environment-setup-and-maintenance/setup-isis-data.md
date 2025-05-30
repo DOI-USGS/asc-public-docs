@@ -37,7 +37,7 @@ It is very important to use simple quotes above, not double quotes, so that the 
 
 This will create an index file such as ``kernels.0000.db``. Before rerunning this command, delete any existing ``.db`` files, as otherwise new entries will be made.
 
-Save this command to a shell script in the current directory named ``makedb``, so that it keeps a record of how the index ws produced. See also the ``makedb`` script for other datasets, for comparison.
+Save this command to a shell script in the current directory named ``makedb``, so that it keeps a record of how the index was produced. See also the ``makedb`` script for other datasets, for comparison.
 
 ## CK kernels
 
@@ -105,7 +105,7 @@ Navigate to your mission's FK kernel directory (for example, ``$ISISDATA/chandra
 
 ## SCLK Kernels
 
-SLCK (Spacecraft Clock Kernels) contain the mapping between the spacecraft's internal clock time (SCLK) and ephemeris time (ET).
+SCLK (Spacecraft Clock Kernels) contain the mapping between the spacecraft's internal clock time (SCLK) and ephemeris time (ET).
 
 Navigate to your mission's SCLK kernel directory (e.g., ``$ISISDATA/chandrayaan2/kernels/sclk``). Create a file named ``kernels.0000.db`` with content like this, listing your ``.tsc`` (Text Spacecraft Clock) files:
 

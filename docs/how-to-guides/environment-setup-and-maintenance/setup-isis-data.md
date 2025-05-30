@@ -33,9 +33,9 @@ and copy there these files. Run a command as:
 
 ```
 
-It is very important to use simple quotes above, not double quotes, so that the shell does not expand these variables. This also ensures relative paths are created, rather than absolute ones specific to a given file system. Before rerunning this command, delete any existing ``.db`` files, as otherwise new entries will be made.
+It is very important to use simple quotes above, not double quotes, so that the shell does not expand these variables. This also ensures relative paths are created, rather than absolute ones specific to a given file system.
 
-This will create an index file such as ``kernels.0000.db``. This normally has four digits, and the number gets incremented if there is more than one index. 
+This will create an index file such as ``kernels.0000.db``. This normally has four digits, and the number gets incremented if there is more than one index. Before rerunning this command, delete any existing ``.db`` files, as otherwise new entries will be made.
 
 Save this command to a shell script in the current directory named ``makedb``, so that it keeps a record of how the index ws produced. See also the ``makedb`` script for other datasets, for comparison.
 
@@ -60,7 +60,7 @@ Save this command to a shell script in the current directory named ``makedb``, s
 
 IK (Instrument Kernels) provide detailed information about the instrument's physical properties, such as focal length, pixel scale, and lens distortion models.
 
-Go to ``$ISISDATA/chandrayaan2/kernels/ik``. Create a file named ``kernels.0000.db`` (or ``kernels.db``) with content along the lines of:
+Go to ``$ISISDATA/chandrayaan2/kernels/ik``. Create a file named ``kernels.0000.db`` with content along the lines of:
 
 ```sh
 
@@ -91,7 +91,7 @@ Consider also inspecting the analogous files for other missions.
 
 FK (Frame Kernels) define reference frames that are not intrinsically defined by SPICE (like spacecraft frames or instrument frames) and establish relationships between them. They are crucial for transforming data between different coordinate systems.
 
-Navigate to your mission's FK kernel directory (for example, ``$ISISDATA/chandrayaan2/kernels/fk``). Create a file named ``kernels.0000.db`` (or ``kernels.db``) with content like this, listing your ``.tf`` (Text Frame) files:
+Navigate to your mission's FK kernel directory (for example, ``$ISISDATA/chandrayaan2/kernels/fk``). Create a file named ``kernels.0000.db`` with content like this, listing your ``.tf`` (Text Frame) files:
    
 ```sh
 
@@ -107,7 +107,7 @@ Navigate to your mission's FK kernel directory (for example, ``$ISISDATA/chandra
 
 SLCK (Spacecraft Clock Kernels) contain the mapping between the spacecraft's internal clock time (SCLK) and ephemeris time (ET).
 
-Navigate to your mission's SCLK kernel directory (e.g., ``$ISISDATA/chandrayaan2/kernels/sclk``). Create a file named ``kernels.db`` (or ``kernels.0001.db``) with content like this, listing your ``.tsc`` (Text Spacecraft Clock) files:
+Navigate to your mission's SCLK kernel directory (e.g., ``$ISISDATA/chandrayaan2/kernels/sclk``). Create a file named ``kernels.0000.db`` with content like this, listing your ``.tsc`` (Text Spacecraft Clock) files:
 
 ```sh
    
@@ -124,7 +124,7 @@ IAK (Instrument Addendum Kernels) provide additional, instrument-specific inform
 
 For Chandrayaan2 data, such kernels were not supplied and needed to be guessed.
 
-Navigate (or create) your mission's IAK kernel directory (e.g., ``$ISISDATA/chandrayaan2/kernels/iak``). Create a file named ``kernels.db`` (or ``kernels.0001.db``) with content like:
+Navigate (or create) your mission's IAK kernel directory (e.g., ``$ISISDATA/chandrayaan2/kernels/iak``). Create a file named ``kernels.0000.db`` with content like:
 
 ```sh
    Object = InstrumentAddendum

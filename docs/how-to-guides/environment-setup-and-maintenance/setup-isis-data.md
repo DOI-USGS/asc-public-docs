@@ -53,7 +53,7 @@ Save this command to a shell script in the current directory named ``makedb``, s
      recondir = '$chandrayaan2/kernels/ck'               \
      reconfilter = 'ch2*.bc'                             \
      sclk = '$chandrayaan2/kernels/sclk/ch2_sclk_v1.tsc' \
-     lsk = 'base/kernels/lsk/naif????.tls'
+     lsk = '$base/kernels/lsk/naif????.tls'
 ```
 
 ## IK Kernels

@@ -854,7 +854,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "REST"
 
         ```bash
-        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/getTargetStates?ets=\[690201375.8323615,690201389.2866975\]&target=sun&observer=moon&frame=MOON_ME&abcorr=LT%2BS&mission=lroc&ckQualities=\[reconstructed\]&spkQualities=\[reconstructed\]&searchKernels=false&kernelList=\[/moon/tspk/moon_pa_de421_1900-2050.bpc,/lro/tspk/de421.bsp,/base/pck/pck[0-9]{5}.tpc,/moon/pck/moon_080317.tf,/moon/pck/moon_assoc_me.tf]"
+        curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/getTargetStates?ets=\[690201375.8323615,690201389.2866975\]&target=sun&observer=moon&frame=MOON_ME&abcorr=LT%2BS&mission=lroc&ckQualities=\[reconstructed\]&spkQualities=\[reconstructed\]&searchKernels=false&kernelList=\[/moon/tspk/moon_pa_de421_1900-2050.bpc,/lro/tspk/de421.bsp,/base/pck/pck[0-9]{5}.tpc,/moon/pck/moon_080317.tf,/moon/pck/moon_assoc_me.tf\]"
         ```
 
     === "Python"

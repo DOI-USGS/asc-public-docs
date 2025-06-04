@@ -35,7 +35,7 @@ and copy there these files. Run a command as:
 
 It is very important to use single quotes above, not double quotes, so that the shell does not expand these variables. This also ensures relative paths are created, rather than absolute ones specific to a given file system.
 
-This will create an index file such as ``kernels.0000.db``. Before rerunning this command, delete any existing ``.db`` files, as otherwise new entries will be made.
+This will create an index file such as ``kernels.0000.db``. Before rerunning this command, delete any existing ``.db`` files, unless adding information complementary to existing ones, as otherwise new entries will be made.
 
 Save this command to a shell script in the current directory named ``makedb``, so that it keeps a record of how the index was produced. See also the ``makedb`` script for other datasets, for comparison.
 
@@ -54,6 +54,22 @@ Save this command to a shell script in the current directory named ``makedb``, s
      reconfilter = 'ch2*.bc'                             \
      sclk = '$chandrayaan2/kernels/sclk/ch2_sclk_v1.tsc' \
      lsk = '$base/kernels/lsk/naif????.tls'
+```
+
+## FK Kernels
+
+FK (Frame Kernels) define reference frames that are not intrinsically defined by SPICE (like spacecraft frames or instrument frames) and establish relationships between them. They are crucial for transforming data between different coordinate systems.
+
+Navigate to your mission's FK kernel directory (for example, ``$ISISDATA/chandrayaan2/kernels/fk``). Create a file named ``kernels.0000.db`` with content like this, listing your ``.tf`` (Text Frame) files:
+   
+```sh
+
+   Object = Frame
+     Group = Selection
+       File = ("chandrayaan2", "kernels/fk/ch2_v01.tf")
+     EndGroup
+   EndObject
+
 ```
 
 ## IK Kernels
@@ -86,22 +102,6 @@ Go to ``$ISISDATA/chandrayaan2/kernels/ik``. Create a file named ``kernels.0000.
 It is very important to have the precise name of each instrument, and to ensure the proper ``.ti`` files are passed in.
 
 Consider also inspecting the analogous files for other missions.
-
-## FK Kernels
-
-FK (Frame Kernels) define reference frames that are not intrinsically defined by SPICE (like spacecraft frames or instrument frames) and establish relationships between them. They are crucial for transforming data between different coordinate systems.
-
-Navigate to your mission's FK kernel directory (for example, ``$ISISDATA/chandrayaan2/kernels/fk``). Create a file named ``kernels.0000.db`` with content like this, listing your ``.tf`` (Text Frame) files:
-   
-```sh
-
-   Object = Frame
-     Group = Selection
-       File = ("chandrayaan2", "kernels/fk/ch2_v01.tf")
-     EndGroup
-   EndObject
-
-```
 
 ## SCLK Kernels
 

@@ -50,6 +50,8 @@ nav:
       - ISIS FAQ:                          getting-started/using-isis-first-steps/isis-faq.md
     - Using Ale:
       - Generating an ISD:                 getting-started/using-ale/isd-generate.md
+    - Using SpiceQL:
+      - Using Web SpiceQL in ISIS and ALE: getting-started/using-spiceql/using-web-spiceql-in-isis-and-ale.md
     - Archive:
       - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
     - Using SpiceQL:

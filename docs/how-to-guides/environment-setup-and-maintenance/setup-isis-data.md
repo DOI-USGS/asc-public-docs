@@ -32,6 +32,9 @@ and copy there these files. Run a command as:
     lsk = '$base/kernels/lsk/naif????.tls'
 
 ```
+??? Info "Determining kernel patterns for kerneldbgen"
+
+    Determining the right patterns usually requires specific knowledge about the instruments. Some missions have files such as `ckinfo.txt` and `spkinfo.txt` that contains information on the qualities includes in the directory and what patterns they follow. If you are making a new configuration, you mostly care about patterns for `reconstructed` kernels, which are usually in `ckinfo.txt` and `spkinfo.txt`.  See [an LRO example](https://naif.jpl.nasa.gov/pub/naif/pds/data/lro-l-spice-6-v1.0/lrosp_1000/data/spk/spkinfo.txt) where reconstructed kernels are described. 
 
 It is very important to use single quotes above, not double quotes, so that the shell does not expand these variables. This also ensures relative paths are created, rather than absolute ones specific to a given file system.
 

@@ -59,6 +59,10 @@ window):
     Soils and Rocks at Gusev Crater from Spirit's Microscopic
     Imager](https://www.usgs.gov/media/files/textures-soils-and-rocks-gusev-crater-spirits-mi).
 
+## Installing ISIS
+
+ISIS is distributed via conda and compatible with Mac and Unix, see [Installing ISIS](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md) when you are ready to get ISIS on your computer.
+
 ## User Interface for ISIS
 
 -----

@@ -51,12 +51,10 @@ nav:
     - Using Ale:
       - Generating an ISD:                 getting-started/using-ale/isd-generate.md
     - Using SpiceQL:
-      - Using Web SpiceQL in ISIS and ALE: getting-started/using-spiceql/using-web-spiceql-in-isis-and-ale.md
-    - Archive:
-      - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
-    - Using SpiceQL:
       - Exploring SpiceQL's REST, Python, and C++ APIs: getting-started/using-spiceql/exploring-spiceqls-rest-python-and-cpp-apis.md
       - Visualizing with pyspiceql:        getting-started/using-spiceql/visualizing-with-pyspiceql-tutorial.ipynb
+    - Archive:
+      - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
   - How-To Guides: 
     - Home: how-to-guides/index.md
     - ISIS Environment Setup and Maintenance:
@@ -68,6 +66,7 @@ nav:
       - Adding USGSCSM Plugin to ISIS:     how-to-guides/environment-setup-and-maintenance/adding-usgscsm-plugin-to-isis.md
     - SPICE: 
       - Creating Spice Config Files in SpiceQL: how-to-guides/SPICE/creating-spice-config-files-in-spiceql.md
+      - Using Web Spice in ISIS and ALE: how-to-guides/SPICE/using-web-spice-in-isis-and-ale.md
     - Image Processing:
       - Map Projecting Images:             how-to-guides/image-processing/map-projecting-images.md
       - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md

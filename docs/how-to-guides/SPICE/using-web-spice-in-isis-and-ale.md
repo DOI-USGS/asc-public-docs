@@ -11,7 +11,7 @@ EndGroup
 ```
 
 !!! tip "spiceinit"
-    The ISIS app *spiceinit* has two driver engines: ISIS and ALE. Setting `web=yes` will use the [old ISIS SPICE webserver](https://astrogeology.usgs.gov/docs/how-to-guides/environment-setup-and-maintenance/isis-data-area/#isis-spice-web-service) but you will still need to download the `base` directory to your `ISISDATA` path. If your *IsisPreferences* has the web SpiceQL feature enabled, *spiceinit* will use SpiceQL via the ALE engine to load kernels and no local data area will be necessary.
+    The ISIS app *spiceinit* has two driver engines: ISIS and ALE. Setting `web=yes` will use the [old ISIS SPICE webserver](https://astrogeology.usgs.gov/docs/how-to-guides/environment-setup-and-maintenance/isis-data-area/#isis-spice-web-service) but you will still need to [download the `base` directory](https://astrogeology.usgs.gov/docs/how-to-guides/environment-setup-and-maintenance/isis-data-area/#the-base-data-area) and [mission-specific shape models](https://astrogeology.usgs.gov/docs/how-to-guides/environment-setup-and-maintenance/isis-data-area/#excluding-kernels) to your `ISISDATA` path. If your *IsisPreferences* has the web SpiceQL feature enabled, *spiceinit* will use SpiceQL via the ALE engine to load kernels and no local data area will be necessary.
 
 
 ## ALE

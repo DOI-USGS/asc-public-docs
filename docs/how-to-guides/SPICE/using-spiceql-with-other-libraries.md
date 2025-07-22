@@ -178,6 +178,25 @@ This is a rewrite of [spiceypy's Cassini Example](https://spiceypy.readthedocs.i
     # kernels are unloaded after leaving the context
     ```
 
+    You can then plot the positions with matplotlib 
+
+    ```python
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d import Axes3D
+
+    positions = (
+        positions.T
+    )  # positions is shaped (4000, 3), let's transpose to (3, 4000) for easier indexing
+    fig = plt.figure(figsize=(9, 9))
+    ax = fig.add_subplot(111, projection="3d")
+    ax.plot(positions[0], positions[1], positions[2])
+    plt.title("SpiceyPy Cassini Position Example from Jun 20, 2004 to Dec 1, 2005")
+    plt.show()
+    ```
+
+    ![Cassini Position Plot Example](../../assets/misc_images/cassini_positions.png)
+
 === "cspice"
     
 

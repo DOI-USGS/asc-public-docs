@@ -259,7 +259,7 @@ This is a rewrite of [spiceypy's Cassini Example](https://spiceypy.readthedocs.i
 
 !!! Info 
   
-    As of ALE 1.0, it is reccommended that you use [isd_generate.py](https://astrogeology.usgs.gov/docs/getting-started/using-ale/isd-generate/) to get SPICE info for a camera. SpiceQL is integrated. 
+    As of ALE 1.0, it is recommended that you use [isd_generate.py](https://astrogeology.usgs.gov/docs/getting-started/using-ale/isd-generate/) to get SPICE info for a camera. SpiceQL is integrated. 
 
 
 

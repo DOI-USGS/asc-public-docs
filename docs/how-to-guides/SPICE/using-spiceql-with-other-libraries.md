@@ -109,7 +109,7 @@ The general workflow is:
         {
             SpiceQL::KernelSet kset(kernels);
             // Do stuff with CSPICE here
-            // Example: call furnsh_c, etc.
+            // Example: call spkpos_c, etc.
         } // kernels are unfurnished here
 
         return 0;

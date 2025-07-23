@@ -223,7 +223,7 @@ A measurement describing the amount of electromagnetic energy emitted from an ar
 ### Radius
 The distance (vector) value between the center of and a point on a circle, sphere, ellipse or ellipsoid. Refer to qview, camstats, or campt as examples of applications that report radius value at every image pixel location. 
 ### Reconstructed 
-Kernels that are "Reconstructed" are NAIF SPICE kernels containing trajectories that were obtained during the instruments mission phase. They are created using actual instrument telemetry data, hence the name "reconstructed".  
+Kernels that are "Reconstructed" are NAIF SPICE kernels containing trajectories that were obtained during the spacecraft's mission phase. They are created using actual instrument telemetry data, hence the name "reconstructed".  
 ### Reference Measure
 Reference Measure is a fundamental component of the control network. For every point within the network, there is always one and only one associated Reference Measure (Reference=True). The Reference Measure refers to a single image and it's pixel coordinate (measure) that best represents a control point location or feature. 
 ### Reflectance

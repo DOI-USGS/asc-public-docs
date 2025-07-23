@@ -198,7 +198,9 @@ The thickness of a polygon is defined as follows:
 ### Positive East Longitude
 The reported longitude values for a target body increase positive to the East. 
 ### Positive West Longitude
-The reported longitude values for a target body increase positive to the West. 
+The reported longitude values for a target body increase positive to the West.
+### Predicted 
+"Predicted" kernels are NAIF SPICE kernels that are created during the planning phase of a mission. These contain expected trajectories, but may or may not be close to the actual trajectories like recontructed or smithed kernels are. 
 ### Prime Meridian
 Prime Meridian (W) location is the third Euler angle which is expressed as a rotation about the North Pole as a function of time. The reference frame is J2000. 
 ### Projection X
@@ -220,6 +222,8 @@ A time-dependent linear shift in the spacecraft's "vertical positioning," i.e. d
 A measurement describing the amount of electromagnetic energy emitted from an area of a planet. 
 ### Radius
 The distance (vector) value between the center of and a point on a circle, sphere, ellipse or ellipsoid. Refer to qview, camstats, or campt as examples of applications that report radius value at every image pixel location. 
+### Reconstructed 
+Kernels that are "Reconstructed" are NAIF SPICE kernels containing trajectories that were obtained during the instruments mission phase. They are created using actual instrument telemetry data, hence the name "reconstructed".  
 ### Reference Measure
 Reference Measure is a fundamental component of the control network. For every point within the network, there is always one and only one associated Reference Measure (Reference=True). The Reference Measure refers to a single image and it's pixel coordinate (measure) that best represents a control point location or feature. 
 ### Reflectance
@@ -227,11 +231,13 @@ The ratio of reflected energy to incoming energy.
 ### Right Ascension
 Right Ascension (RA) is one of two angles of the North Pole of a target body as a function of time. 
 
+
+
 ## S
 ### Sample
 A column of pixels in an image, typically representing spatial information. The number of samples indicates the total width of an image in pixels. 
 ### Sample Resolution
-The ground distance (in meters) from the left edge to the right edge of a pixel. 
+The ground distance (in meters) from the left edgedocs/getting-started/using-spiceql/spiceql-cassini-tutorial.ipynb to the right edge of a pixel. 
 ### Scale
 The map resolution measured in pixels per degree 
 ### Serial Number
@@ -240,6 +246,8 @@ A unique identifier constructed and assigned to each individual image within a c
 The distance from the spacecraft to the point of interest on the surface of the planet. 
 ### Slew Angle
 From the spacecraft, the Slew is the angle between the boresight (i.e., center of framing camera) and the nadir vector (subspacecraft vector). The Slew angle will be a constant value across the image. 
+### Smithed 
+"Smithed" kernels are SPICE SPICE kernels that have gone through additional processing through a geoditic control process to reduce error and improve alignment. Smithed kernels are generally higher quality than Reconstructed kernels.   
 ### Solar Longitude
 The Solar Longitude is the planetocentric longitude of the sun as seen from a point on a body. It is considered a seasonal angle. 
 ### Spacecraft Azimuth

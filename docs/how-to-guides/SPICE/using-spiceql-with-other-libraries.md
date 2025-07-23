@@ -11,7 +11,7 @@ SpiceQL is a C++ library with python bindings for managing and searching SPICE k
 
 SpiceQL enables: 
 
-  * Queries to to select a set of kernels 
+  * Queries to select a set of kernels 
   * An interface to furnish kernels in a fixed scope 
 
 The general workflow is: 
@@ -123,10 +123,10 @@ This is a rewrite of [spiceypy's Cassini Example](https://spiceypy.readthedocs.i
 
 === "spiceypy"
 
-    First, import and spicepy and spiceql 
+    First, import spicepy and spiceql 
 
     ```python
-    import spiceypy
+    import spiceypy as spice
     import pyspiceql as spql   
     ```
     

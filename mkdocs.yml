@@ -53,9 +53,9 @@ nav:
     - Archive:
       - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
     - Using SpiceQL:
+      - SpiceQL Cassini Tutorial:          getting-started/using-spiceql/spiceql-cassini-tutorial.ipynb
       - Exploring SpiceQL's REST, Python, and C++ APIs: getting-started/using-spiceql/exploring-spiceqls-rest-python-and-cpp-apis.md
       - Visualizing with pyspiceql:        getting-started/using-spiceql/visualizing-with-pyspiceql-tutorial.ipynb
-      - SpiceQL Cassini Tutorial:          getting-started/using-spiceql/spiceql-cassini-tutorial.ipynb
   - How-To Guides: 
     - Home: how-to-guides/index.md
     - ISIS Environment Setup and Maintenance:

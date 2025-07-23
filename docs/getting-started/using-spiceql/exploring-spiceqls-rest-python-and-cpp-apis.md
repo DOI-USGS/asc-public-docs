@@ -22,7 +22,7 @@ SpiceQL has three APIs that can be accessed to utilize the library:
   
     !!! abstract "Limiting CKs and SPKs"
 
-        In comparison to SpiceQL, ISIS retrieves quality kernels that cover the range of the image and then iterates through the selected kernels to return the latest, high-priority quality kernels.      
+        Regarding quality kernel indexing, ISIS retrieves quality kernels that cover the range of the image and then iterates through the selected kernels to return the latest, high-priority quality kernels. SpiceQL retrieves the highest priority SPK and all matching CKs by default.    
 
         *`extractExactCkTimes()` defaults `limitCk` to `1` as it extracts all times associated with segments within a given ephemeris start and stop time in *one* CK file.
 

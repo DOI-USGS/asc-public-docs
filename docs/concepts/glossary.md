@@ -109,6 +109,8 @@ The J2000 coordinate system (also known as EME2000) is based on the earth mean e
 ## K 
 ### Kappa Angle
 An exterior orientation angle that describes the rotation around the y-axis of the camera.  Analogous to "pitch."
+### Kernel Qualities 
+NAIF SPICE kernel data for CKs (instrument pointing) and SPKs (instrument positions) can come in different quality levels. From lowest to highest: nadir (for pointing only), predicted, reconstructed, and smithed. Some summary kernels combine a mix of qualities. Astro software labels the quality for a kernel or a kernel set by the highest quality in the kernels. For example, a large CK covering 2025 with a mix of reconstructed and predicted data would be considered reconstructed. Similarly, in SpiceQL, when mixed qualities are requested, a list of CKs with a mix of predicted and reconstructed kernels will also be labeled reconstructed.  
 
 ## L
 ### Latitude

@@ -16,7 +16,7 @@ SpiceQL has three APIs that can be accessed to utilize the library:
 
     - `searchKernels`: Boolean flag to search through SpiceQL's kernels  
     - `fullKernelPath`: Boolean flag to return kernels with relative paths (default) or absolute
-    - `limitCk`*: Number of CKs to return, default is `-1` which retrieves all matching CKs
+    - `limitCk`[^1]: Number of CKs to return, default is `-1` which retrieves all matching CKs
     - `limitSpk`: Number of SPKs to return, default is `1` which retrieves only the highest priority
     - `kernelList`: A list of kernels to be furnished 
   
@@ -24,7 +24,7 @@ SpiceQL has three APIs that can be accessed to utilize the library:
 
         Regarding quality kernel indexing, ISIS retrieves quality kernels that cover the range of the image and then iterates through the selected kernels to return the latest, high-priority quality kernels. SpiceQL retrieves the highest priority SPK and all matching CKs by default.    
 
-        \*`extractExactCkTimes()` defaults `limitCk` to `1` as it extracts all times associated with segments within a given ephemeris start and stop time in *one* CK file.
+    [^1]: `extractExactCkTimes()` defaults `limitCk` to `1` as it extracts all times associated with segments within a given ephemeris start and stop time in *one* CK file.
 
 
 ### Response Types
@@ -100,7 +100,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "getTargetStates"
 
-    #### getTargetStates
+    #### [getTargetStates](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-gettargetstates)
 
     <h3>Function calls</h3>
 
@@ -152,7 +152,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "getTargetOrientations"
 
-    #### getTargetOrientations
+    #### [getTargetOrientations](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-gettargetorientations)
 
     <h3>Function calls</h3>
 
@@ -203,7 +203,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "strSclkToEt"
 
-    #### strSclkToEt
+    #### [strSclkToEt](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-strsclktoet)
 
     <h3>Function calls</h3>
 
@@ -254,7 +254,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "doubleSclkToEt"
 
-    #### doubleSclkToEt
+    #### [doubleSclkToEt](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-doublesclktoet)
 
     <h3>Function calls</h3>
 
@@ -305,7 +305,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "doubleEtToSclk"
 
-    #### doubleEtToSclk
+    #### [doubleEtToSclk](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-doubleettosclk)
 
     <h3>Function calls</h3>
 
@@ -356,7 +356,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "utcToEt"
 
-    #### utcToEt
+    #### [utcToEt](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-utctoet)
 
     <h3>Function calls</h3>
 
@@ -406,7 +406,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "etToUtc"
 
-    #### etToUtc
+    #### [etToUtc](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-ettoutc)
 
     <h3>Function calls</h3>
 
@@ -457,7 +457,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     
 ??? example "translateNameToCode"
 
-    #### translateNameToCode
+    #### [translateNameToCode](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-translatenametocode)
 
     <h3>Function calls</h3>
 
@@ -507,7 +507,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "translateCodeToName"
 
-    #### translateCodeToName
+    #### [translateCodeToName](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-translatecodetoname)
 
     <h3>Function calls</h3>
 
@@ -557,7 +557,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "getFrameInfo"
 
-    #### getFrameInfo
+    #### [getFrameInfo](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-getframeinfo)
 
     <h3>Function calls</h3>
 
@@ -607,7 +607,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "getTargetFrameInfo"
 
-    #### getTargetFrameInfo
+    #### [getTargetFrameInfo](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-gettargetframeinfo)
 
     <h3>Function calls</h3>
 
@@ -657,7 +657,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "findMissionKeywords"
 
-    #### findMissionKeywords
+    #### [findMissionKeywords](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-findmissionkeywords)
 
     <h3>Function calls</h3>
 
@@ -707,7 +707,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "findTargetKeywords"
 
-    #### findTargetKeywords
+    #### [findTargetKeywords](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-findtargetkeywords)
 
     <h3>Function calls</h3>
 
@@ -757,7 +757,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "frameTrace"
 
-    #### frameTrace
+    #### [frameTrace](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-frametrace)
 
     <h3>Function calls</h3>
 
@@ -808,7 +808,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "extractExactCkTimes"
 
-    #### extractExactCkTimes
+    #### [extractExactCkTimes](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-extractexactcktimes)
 
     <h3>Function calls</h3>
 
@@ -860,7 +860,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "getExactTargetOrientations"
 
-    #### getExactTargetOrientations
+    #### [getExactTargetOrientations](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-getexacttargetorientations)
 
     <h3>Function calls</h3>
 
@@ -912,7 +912,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
 
 ??? example "searchForKernelsets"
 
-    #### searchForKernelsets
+    #### [searchForKernelsets](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-searchforkernelsets)
 
     <h3>Function calls</h3>
 

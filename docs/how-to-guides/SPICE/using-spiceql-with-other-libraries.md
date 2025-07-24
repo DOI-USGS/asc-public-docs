@@ -1,8 +1,12 @@
 ## Using SpiceQL With Other Tools
 
-SpiceQL is a C++ library with python bindings for managing and searching SPICE kernels, and it can be used in conjunction with other planetary science tools such as [ALE](https://github.com/USGS-Astrogeology/ale) and [SpiceyPy](https://github.com/AndrewAnnex/SpiceyPy). This guide demonstrates how to integrate SpiceQL with both ALE and SpiceyPy in your workflow.
+SpiceQL is a C++ library with python bindings for managing and searching SPICE kernels, and it can be used in conjunction with other planetary science tools such as [ALE](https://github.com/USGS-Astrogeology/ale) and [SpiceyPy](https://github.com/AndrewAnnex/SpiceyPy). This guide demonstrates how to integrate SpiceQL with both ALE and SpiceyPy in your workflow. 
 
-!!! Info 
+!!! info "Using Just SpiceQL"
+  
+    If you want to see how to do this same task using just SpiceQL, check out the [getting-started tutorial](../../getting-started/using-spiceql/spiceql-cassini-tutorial.ipynb).
+
+!!! warning "Getting Local Kernels" 
   
     Before following these steps, make sure you have your kernels downloaded locally. Follow [these instructions](https://astrogeology.usgs.gov/docs/manuals/spiceql/) for more info. 
 

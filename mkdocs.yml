@@ -51,6 +51,7 @@ nav:
     - Using Ale:
       - Generating an ISD:                 getting-started/using-ale/isd-generate.md
     - Using SpiceQL:
+      - SpiceQL Cassini Tutorial:          getting-started/using-spiceql/spiceql-cassini-tutorial.ipynb
       - Exploring SpiceQL's REST, Python, and C++ APIs: getting-started/using-spiceql/exploring-spiceqls-rest-python-and-cpp-apis.md
       - Visualizing with pyspiceql:        getting-started/using-spiceql/visualizing-with-pyspiceql-tutorial.ipynb
     - Archive:
@@ -157,7 +158,8 @@ extra_javascript:
 
 plugins:
   - search
-  - mknotebooks
+  - mknotebooks: 
+      include_source: True
   - mermaid2
   - redirects:
       redirect_maps:

@@ -41,6 +41,7 @@ nav:
   - Getting Started: 
     - Home: getting-started/index.md
     - CSM Stack:
+      - CSM Sandbox: getting-started/csm-stack/csm-sandbox.ipynb
       - Generating an ISD, creating a CSM model, and converting coordinates: getting-started/csm-stack/image-to-ground-tutorial.ipynb
       - Knoten - Basic Camera Operations: getting-started/csm-stack/knoten-camera-tutorial.ipynb
     - "Using ISIS: First Steps":

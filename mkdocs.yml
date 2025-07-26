@@ -159,6 +159,21 @@ extra_javascript:
 
 plugins:
   - search
+  - llmstxt:
+      full_output: llms-full.txt
+      sections:
+        Getting Started:
+          - getting-started/index.md : index page for getting started
+          - getting-started/* : tutorials used by new users looking for how to get started
+        How-To Guides:
+          - how-to-guides/index.md : index page for how-to-guides
+          - how-to-guides/* : how-to-guides
+        Concepts:
+          - concepts/index.md : index page for concepts
+          - concepts/* : concepts
+        Manuals:
+          - manuals/index.md : index page for manuals
+          - manuals/* : manuals
   - mknotebooks: 
       include_source: True
   - mermaid2

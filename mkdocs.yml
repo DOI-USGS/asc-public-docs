@@ -1,4 +1,5 @@
 site_name: USGS Astrogeology Software Docs
+site_url: https://astrogeology.usgs.gov/docs/
 
 theme:
     name: material

@@ -1,4 +1,5 @@
 site_name: USGS Astrogeology Software Docs
+site_url: https://astrogeology.usgs.gov/docs/
 
 theme:
     name: material
@@ -160,6 +161,21 @@ extra_javascript:
 
 plugins:
   - search
+  - llmstxt:
+      full_output: llms-full.txt
+      sections:
+        Getting Started:
+          - getting-started/index.md : index page for getting started
+          - getting-started/* : Tutorials used by new users looking for how to get started
+        How-To Guides:
+          - how-to-guides/index.md : index page for how-to-guides
+          - how-to-guides/* : how-to-guides, including environment setup and maintenance, SPICE, image processing, ISIS demos, software management, ISIS developer guides, ALE developer guides
+        Concepts:
+          - concepts/index.md : index page for concepts
+          - concepts/* : concepts, including camera geometry and projections, ISIS fundamentals, SPICE, image processing, control networks, sensor models, history
+        Manuals:
+          - manuals/index.md : index page for manuals
+          - manuals/* : manuals, including ISIS, ALE, and other software manuals
   - mknotebooks: 
       include_source: True
   - mermaid2

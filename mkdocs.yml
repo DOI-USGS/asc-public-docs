@@ -126,6 +126,11 @@ nav:
       - Preference Dictionary:             concepts/isis-fundamentals/preference-dictionary.md
       - Error Dictionary:                  concepts/isis-fundamentals/error-dictionary.md
       - Session Logs:                      concepts/isis-fundamentals/session-logs.md
+    - Missions:
+      - Home:                              concepts/missions/index.md
+      - MGS (Mars Global Surveyor):
+        - Home:                            concepts/missions/mgs/index.md
+        - MOC (Mars Orbiter Camera):                             concepts/missions/mgs/moc-mars-orbiter-camera.md
     - SPICE:
       - SPICE Overview:                            concepts/spice/spice-overview.md
       - SPICE Position Functions and Requirements: concepts/spice/spice-position-functions-and-requirements.md
@@ -220,3 +225,4 @@ markdown_extensions:
           - definitions.md
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.blocks.caption

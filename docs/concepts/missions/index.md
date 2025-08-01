@@ -7,6 +7,14 @@
 
     ---
 
-    - [MOC - Mars Orbiter Camera](mgs/moc-mars-orbiter-camera.md)
+    - [MOC - Mars Orbiter Camera Data](mgs/moc-mars-orbiter-camera.md)
+
+-   [![VikingOrbiter_ArtistConcept.png](vik/assets/VikingOrbiter_ArtistConcept.png){width=40 align=right}](vik/assets/VikingOrbiter_ArtistConcept.png "Viking Oribiter Artist's concept drawing")
+    [Viking Orbiter](vik/index.md)  
+    (1976-1980)
+
+    ---
+
+    - [VIS - Viking Camera Data](vik/viking-orbiter-data.md)
 
 </div>

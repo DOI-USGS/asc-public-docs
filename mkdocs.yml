@@ -131,6 +131,9 @@ nav:
       - MGS (Mars Global Surveyor):
         - Home:                            concepts/missions/mgs/index.md
         - MOC (Mars Orbiter Camera):                             concepts/missions/mgs/moc-mars-orbiter-camera.md
+      - Viking Orbiter:
+        - Home:                            concepts/missions/vik/index.md
+        - VIS Data:             concepts/missions/vik/viking-orbiter-data.md
     - SPICE:
       - SPICE Overview:                            concepts/spice/spice-overview.md
       - SPICE Position Functions and Requirements: concepts/spice/spice-position-functions-and-requirements.md

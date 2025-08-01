@@ -1,5 +1,11 @@
 # Mars Global Surveyor Mission
 
+<div class="grid cards" markdown>
+
+- [Working with MGS MOC Data :octicons-arrow-right-24:](moc-mars-orbiter-camera.md)
+
+</div>
+
 !!! abstract inline end "Artist's Concept"
     [![Mars Global Surveyor](assets/mgs.png)](assets/mgs.png "Mars_global_surveyor.png")
 

@@ -52,7 +52,10 @@ nav:
       - Exporting ISIS Data:               getting-started/using-isis-first-steps/exporting-isis-data.md
       - ISIS FAQ:                          getting-started/using-isis-first-steps/isis-faq.md
     - Using Ale:
-      - Generating an ISD:                 getting-started/using-ale/isd-generate.md
+      - Home: getting-started/using-ale/index.md
+      - 1. ALE SPICE Data Setup & Driver Types: getting-started/using-ale/ale-naif-spice-data-setup.md
+      - 2a. Command Line - Generating an ISD: getting-started/using-ale/isd-generate.md
+      - 2b. Python - ale.load & loads:           getting-started/using-ale/ale-python-load-loads.md
     - Archive:
       - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
     - Using SpiceQL:

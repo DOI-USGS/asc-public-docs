@@ -34,11 +34,8 @@ projections.
 </figure>
 
 
-
 For additional information on types and properties of map projections
-see [Map Projection
-(USGS)](http://egsc.usgs.gov/isb//pubs/MapProjections/projections.html)
-.
+see the [USGS Map Projection Poster](https://pubs.usgs.gov/gip/70047422/report.pdf).
 
 
 ## ISIS3 Supported Projections 

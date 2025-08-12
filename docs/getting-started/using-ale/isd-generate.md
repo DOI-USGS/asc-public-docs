@@ -8,7 +8,14 @@ Before you can generate an ISD, you will need:
 - [ALE](https://github.com/DOI-USGS/ale?tab=readme-ov-file#setting-up-dependencies-with-conda-recommended)
 - An image ([Locating Image Data](../../getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md)) 
   formatted according to your driver type.
-- SPICE Data according to your driver type.
+- SPICE Data according to your driver type (optionally, use web-based spice with `-w` flag)
+
+!!! Danger "Using Web Spice"
+
+    Using web-based spicehttps://github.com/DOI-USGS/ale/issues with `-w` might still be buggy for some missions. Report any issues to the [ALE repo](https://github.com/DOI-USGS/ale/issues). 
+
+    
+
 
 ### Driver Types
 
@@ -21,7 +28,7 @@ Before you can generate an ISD, you will need:
     - NAIF SPICE Kernels (See [Setting up NAIF Data](#setting-up-naif-data)).
 
 
-=== "IsisSpice"
+=== "IsisSpice" 
 
     For IsisSpice Drivers, you will need:
     
@@ -30,7 +37,7 @@ Before you can generate an ISD, you will need:
     - AND the image must be [`spiceinit`ed](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/spiceinit/spiceinit.html) with `spiceinit from=<your.cub>`.
     
 
-=== "Pds3Label"
+=== "Pds3Label" 
 
     For Pds3Label Drivers, you will need:
 
@@ -328,6 +335,11 @@ For use of NAIF Data with ISIS, see the [ISIS Data Area](../../how-to-guides/env
     your machine, indicate the number of processors you want to use.
 
 ### Spice Data
+
+`-w`, `--use_web_spice` 
+:   Indicates that the program should get Kernel information over the web 
+    using the [SpiceQL](https://astrogeology.usgs.gov/docs/manuals/spiceql/) backend. 
+    This is an experimental setting, report any bugs to the [ALE repo](https://github.com/DOI-USGS/ale/issues). 
 
 `-k`, `--kernel` [filename]
 

@@ -6,4 +6,4 @@ codespell
 linkchecker
 mkdocs-redirects
 git+https://github.com/Kelvinrr/mknotebooks.git
-mkdocs-llmstxt
+mkdocs-llmstxt==0.3.0

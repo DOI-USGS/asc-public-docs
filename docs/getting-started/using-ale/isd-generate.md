@@ -12,7 +12,7 @@ Before you can generate an ISD, you will need:
 
 !!! Danger "Using Web Spice"
 
-    Using web-based spicehttps://github.com/DOI-USGS/ale/issues with `-w` might still be buggy for some missions. Report any issues to the [ALE repo](https://github.com/DOI-USGS/ale/issues). 
+    Using web-based spice with `-w` might still be buggy for some missions. Report any issues to the [ALE repo](https://github.com/DOI-USGS/ale/issues). 
 
     
 

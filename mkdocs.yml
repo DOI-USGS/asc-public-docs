@@ -113,6 +113,7 @@ nav:
     - Camera Geometry and Projections:
       - Camera Geometry:                     concepts/camera-geometry-and-projections/camera-geometry.md
       - Learning About Map Projections:      concepts/camera-geometry-and-projections/learning-about-map-projections.md
+      - PROJ Map Projections:                concepts/camera-geometry-and-projections/proj-projections.md
     - ISIS Fundamentals:
       - ISIS Cube Format:                  concepts/isis-fundamentals/cube-format.md
       - Gdal Support:                      concepts/isis-fundamentals/gdal-support.md

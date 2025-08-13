@@ -134,6 +134,16 @@ nav:
       - Viking Orbiter:
         - Home:                            concepts/missions/vik/index.md
         - VIS Data:             concepts/missions/vik/viking-orbiter-data.md
+      - MRO (Mars Reconnaissance Orbiter):
+        - Home:                            concepts/missions/mro/index.md
+        - CTX Data:                        concepts/missions/mro/ctx-data.md
+        - HiRISE:                          
+          - Home:                               concepts/missions/mro/hirise/index.md
+          - HiRISE Level0:                      concepts/missions/mro/hirise-level-0.md
+          - HiRISE Level1:                      concepts/missions/mro/hirise-level-1.md
+          - HiRISE Level2:                      concepts/missions/mro/hirise-level-2.md
+          - HiRISE Anaglyphs:                   concepts/missions/mro/hirise-anaglyphs.md
+          - HiRISE to HiRISE Geometric Control: concepts/missions/mro/hirise-geometric-control.md
     - SPICE:
       - SPICE Overview:                            concepts/spice/spice-overview.md
       - SPICE Position Functions and Requirements: concepts/spice/spice-position-functions-and-requirements.md

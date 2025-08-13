@@ -128,6 +128,11 @@ nav:
       - Session Logs:                      concepts/isis-fundamentals/session-logs.md
     - Missions:
       - Home:                              concepts/missions/index.md
+      - LRO (Lunar Reconnaissance Orbiter):
+        - Home:                            concepts/missions/lro/index.md
+        - NAC Data:                        concepts/missions/lro/lroc-nac-data.md
+        - WAC Data:                        concepts/missions/lro/lroc-wac-data.md
+        - MiniRF Data:                     concepts/missions/lro/lro-minirf-data.md
       - MGS (Mars Global Surveyor):
         - Home:                            concepts/missions/mgs/index.md
         - MOC (Mars Orbiter Camera):                             concepts/missions/mgs/moc-mars-orbiter-camera.md

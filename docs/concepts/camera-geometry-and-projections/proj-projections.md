@@ -67,24 +67,52 @@ Add images of output
 ### Ographic vs Ocentric Latitudes
 
 PROJ and ISIS approach ocentic and ographic latitudes differently. 
-PROJ will always use ographic latitudes for its projections but ocentric and ographic are the same if your semi-major and semi-minor radii are the same. 
-So if your PROJ string only defined one radii you will get ocentric latitudes for the projection.
+PROJ will always use ographic latitudes for its projections.
+If your PROJ string only defines one radii, you will get ocentric latitudes for the projection since ocentric and ographic are eqaul if your semi-major and semi-minor radii are equal.
 
 ISIS allows the user to specify ocentric or ographic latitudes independent of the projection chosen. 
-Many projections in ISIS only support sphereical definitions of the projection, but the user can still specify either latitude.
+Many projections in ISIS only support sphereical definitions of the projection, but the user can still specify either
+ocentric or ographic latitudes.
 
 #### Suggested Ographic and Ocentric Specifications
 
 ??? info "Same Semi-major Semi-minor radii and Ographic Latitude"
 
     ISIS and PROJ will produce the same output projection when using the same semi-major and semi-minor radii
-    and ographic latitudes. Not all projections have been tested but both are expected to be equivalent.
+    and ographic latitudes. Not all projections have been tested but both are expected to be equivalent. 
+    
+    Below are two images, one projected with an ISIS Projection the othe with PROJ. Both used 3396190 meters for the semi major radii, 
+    3376200 meters for the semi-minor radii, and planetographic latitudes.
+
+    <div class="grid cards" markdown>
+
+    - [![600px-isisproj-ographic.png](assets/600px-isisproj-ographic.png)](assets/600px-isisproj-ographic.png "Projected image using ISIS Projection")  
+        *Projected image using ISIS Projection*
+
+    - [![600px-PROJ-ographic.png](assets/600px-PROJ-ographic.png)](assets/600px-PROJ-ographic.png "Projected image using PROJ")  
+        *Projected image using PROJ*
+
+    </div>
+
 
 ??? info "Same Semi-major radii and Ocentric Latitude"
 
     ISIS and PROJ will produce the same output projection when using the same semi-major radii
     and ocentric latitudes. Not all projections have been tested but both are expected to be equivalent.
-    ISIS will still report the semi-minor radii but it will not be used when computing the ocentric latitude
+    ISIS will still report the semi-minor radii but it will not be used when computing the ocentric latitude.
+
+    Below are two images, one projected with an ISIS Projection the othe with PROJ. Both used 3396190 meters for the semi major radii, 
+    and planetocentric latitudes.
+
+    <div class="grid cards" markdown>
+
+    - [![600px-isisproj-ocentric.png](assets/600px-isisproj-ocentric.png)](assets/600px-isisproj-ocentric.png "Projected image using ISIS Projection")  
+        *Projected image using ISIS Projection*
+
+    - [![600px-PROJ-ocentric.png](assets/600px-PROJ-ocentric.png)](assets/600px-PROJ-ocentric.png "Projected image using PROJ")  
+        *Projected image using PROJ*
+
+    </div>
 
 ### Longitude Domain
 
@@ -95,6 +123,16 @@ Because of this users should plan on all projections being in the -180 to 180 do
 the domain can be changed using [`gdalwarp`](https://gdal.org/en/stable/programs/gdalwarp.html). Specifically
 using the `+lon_warp` and `+over` elements in the srs defition.
 
+To convert the `input.tiff` image created with the following Proj4 string to 0 - 360 degree longitude domain:
+```
++proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +R=3396190 +units=m +no_defs
+```
+
+You would use the following command:
+```
+gdalwarp input.tiff output.tiff -t_srs '+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=180 +x_0=0 +y_0=0 +R=3396190 +units=m +no_defs +lon_warp=180 +over'
+```
+
 ### Longitude Direction
 
 ISIS and PROJ both support Positive East and Positive West longitude directions. However ISIS does not play well with PROJ defined longitude directions.
@@ -103,3 +141,13 @@ In the IProj projection longitude direction of Positve East is used when creatin
 Because of this users should plan on all projections using a Positive East longitude direction while working with ISIS. If need be,
 the longitude direction can be changed using [`gdalwarp`](https://gdal.org/en/stable/programs/gdalwarp.html). Specifically
 using the `+axis` element in the srs defition.
+
+To convert the `input.tiff` image created with the following Proj4 string to positve west:
+```
++proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +R=3396190 +units=m +no_defs
+```
+
+You would use the following command:
+```
+gdalwarp input.tiff output.tiff -t_srs '+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +R=3396190 +units=m +no_defs +axis=wnu'
+```

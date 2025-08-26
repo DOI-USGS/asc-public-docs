@@ -67,13 +67,13 @@ End_Group
 ```
 Both will produce an identical image footprint when projected.
 
-## Noteable differences between ISIS and PROJ
+## Notable differences between ISIS and PROJ
 
 ### Ographic vs Ocentric Latitudes
 
 PROJ and ISIS approach ocentic and ographic latitudes differently. 
 PROJ will always use ographic latitudes for its projections.
-If your PROJ string only defines one radii, you will get ocentric latitudes for the projection since ocentric and ographic are eqaul if your semi-major and semi-minor radii are equal.
+If your PROJ string only defines one radii, you will get ocentric latitudes for the projection since ocentric and ographic are equal if your semi-major and semi-minor radii are equal.
 
 ISIS allows the user to specify ocentric or ographic latitudes independent of the projection chosen. 
 Many projections in ISIS only support sphereical definitions of the projection, but the user can still specify either
@@ -86,7 +86,7 @@ ocentric or ographic latitudes.
     ISIS and PROJ will produce the same output projection when using the same semi-major and semi-minor radii
     and ographic latitudes. Not all projections have been tested but both are expected to be equivalent. 
     
-    Below are two images, one projected with an ISIS Projection the othe with PROJ. Both used 3396190 meters for the semi major radii, 
+    Below are two images, one projected with an ISIS Projection the other with PROJ. Both used 3396190 meters for the semi major radii, 
     3376200 meters for the semi-minor radii, and planetographic latitudes.
 
     <div class="grid cards" markdown>
@@ -126,7 +126,7 @@ In the IProj projection a domain of -180 to 180 is used when creating a mapping 
 
 Because of this users should plan on all projections being in the -180 to 180 domain while working with ISIS. If need be,
 the domain can be changed using [`gdalwarp`](https://gdal.org/en/stable/programs/gdalwarp.html). Specifically
-using the `+lon_warp` and `+over` elements in the srs defition.
+using the `+lon_warp` and `+over` elements in the srs definition.
 
 To convert a GeoTIFF called `input.tiff`, created with the following Proj4 string to 0 - 360 degree longitude domain:
 ```
@@ -141,13 +141,13 @@ gdalwarp input.tiff output.tiff -t_srs '+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=180 
 ### Longitude Direction
 
 ISIS and PROJ both support Positive East and Positive West longitude directions. However ISIS does not play well with PROJ defined longitude directions.
-In the IProj projection longitude direction of Positve East is used when creating a mapping group and the PROJ string is not examined.
+In the IProj projection longitude direction of Positive East is used when creating a mapping group and the PROJ string is not examined.
 
 Because of this users should plan on all projections using a Positive East longitude direction while working with ISIS. If need be,
 the longitude direction can be changed using [`gdalwarp`](https://gdal.org/en/stable/programs/gdalwarp.html). Specifically
-using the `+axis` element in the srs defition.
+using the `+axis` element in the srs definition.
 
-To convert a GeoTIFF called `input.tiff`, created with the following Proj4 string to positve west:
+To convert a GeoTIFF called `input.tiff`, created with the following Proj4 string to positive west:
 ```
 +proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +R=3396190 +units=m +no_defs
 ```

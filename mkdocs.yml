@@ -72,9 +72,12 @@ nav:
       - Creating Spice Config Files in SpiceQL: how-to-guides/SPICE/creating-spice-config-files-in-spiceql.md
       - Using SpiceQL with Other Libraries: how-to-guides/SPICE/using-spiceql-with-other-libraries.md
     - Image Processing:
-      - Map Projecting Images:             how-to-guides/image-processing/map-projecting-images.md
-      - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md
-      - General Utility with FX:           how-to-guides/image-processing/general-utility-with-fx.md
+      - Home:                              how-to-guides/image-processing/index.md
+      - DN Manipulation:
+        - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md
+        - General Utility with FX:           how-to-guides/image-processing/general-utility-with-fx.md
+      - Image Projection:
+        - Map Projecting Images:             how-to-guides/image-processing/map-projecting-images.md
       - Bundle Adjustment in ISIS:         how-to-guides/image-processing/bundle-adjustment-in-isis.md
     - ISIS Demos:
       - Interactive Online Demos:          how-to-guides/demos/isis-demos.md
@@ -113,7 +116,7 @@ nav:
     - Camera Geometry and Projections:
       - Camera Geometry:                     concepts/camera-geometry-and-projections/camera-geometry.md
       - Learning About Map Projections:      concepts/camera-geometry-and-projections/learning-about-map-projections.md
-      - PROJ Map Projections:                concepts/camera-geometry-and-projections/proj-projections.md
+      - PROJ Map Projecting Images:          concepts/camera-geometry-and-projections/proj-projections.md
     - ISIS Fundamentals:
       - ISIS Cube Format:                  concepts/isis-fundamentals/cube-format.md
       - Gdal Support:                      concepts/isis-fundamentals/gdal-support.md

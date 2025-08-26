@@ -106,7 +106,7 @@ ocentric or ographic latitudes.
     and ocentric latitudes. Not all projections have been tested but both are expected to be equivalent.
     ISIS will still report the semi-minor radii but it will not be used when computing the ocentric latitude.
 
-    Below are two images, one projected with an ISIS Projection the othe with PROJ. Both used 3396190 meters for the semi major radii, 
+    Below are two images, one projected with an ISIS Projection the other with PROJ. Both used 3396190 meters for the semi major radii, 
     and planetocentric latitudes.
 
     <div class="grid cards" markdown>

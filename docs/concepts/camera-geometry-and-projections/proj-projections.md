@@ -1,16 +1,22 @@
-# Making Projections Using PROJ
+# Projecting Images Using PROJ
 
 ??? warning "Understanding Projection Concepts"
 
     If you are unfamiliar with map projection and concepts surrounding them, please checkout [Learning About Map Projections](learning-about-map-projections.md).
 
-This page is dedicated to using [PROJ](https://proj.org/en/stable/) in ISIS and how the two differ when paramatizing for projections
+This page is dedicated to using [PROJ](https://proj.org/en/stable/) in ISIS and how the two differ when paramatizing for projections. If you are unfamiliar with
+projecting images in __ISIS__ please read [Map Projecting Images](../../how-to-guides/image-processing/map-projecting-images.md) before continuing.
 
 ## Using PROJ in ISIS
 
 Currently, ISIS supports using PROJ through the same [Mapping Group](learning-about-map-projections.md/#defining-a-map-in-isis3) that all ISIS projections operate with. 
 The two keys that are used to define the PROJ Mapping Group from other ISIS Mapping Groups are the `ProjectionName` key, which will be set to `IProj` and the `ProjString` key. 
 `ProjString` is a PROJ4 string that PROJ can read to build a projection from.
+
+For a detaited list of projections and there parameters see [PROJ Projections](https://proj.org/en/stable/operations/projections/index.html). 
+For more details about parameterizing a PROJ projection see [PROJ Cartographic Projections](https://proj.org/en/stable/usage/projections.html)
+
+## ISIS Mapping Group Comparison
 
 In the example below, a Equirectangular projection is defined in a ISIS IProj Mapping Group.
 
@@ -59,8 +65,7 @@ Group = Mapping
   CenterLongitude    = 0.0 <degrees>
 End_Group
 ```
-
-Add images of output
+Both will produce an identical image footprint when projected.
 
 ## Noteable differences between ISIS and PROJ
 
@@ -123,7 +128,7 @@ Because of this users should plan on all projections being in the -180 to 180 do
 the domain can be changed using [`gdalwarp`](https://gdal.org/en/stable/programs/gdalwarp.html). Specifically
 using the `+lon_warp` and `+over` elements in the srs defition.
 
-To convert the `input.tiff` image created with the following Proj4 string to 0 - 360 degree longitude domain:
+To convert a GeoTIFF called `input.tiff`, created with the following Proj4 string to 0 - 360 degree longitude domain:
 ```
 +proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +R=3396190 +units=m +no_defs
 ```
@@ -142,7 +147,7 @@ Because of this users should plan on all projections using a Positive East longi
 the longitude direction can be changed using [`gdalwarp`](https://gdal.org/en/stable/programs/gdalwarp.html). Specifically
 using the `+axis` element in the srs defition.
 
-To convert the `input.tiff` image created with the following Proj4 string to positve west:
+To convert a GeoTIFF called `input.tiff`, created with the following Proj4 string to positve west:
 ```
 +proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +R=3396190 +units=m +no_defs
 ```

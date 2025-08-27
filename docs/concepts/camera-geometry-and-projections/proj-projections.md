@@ -4,7 +4,7 @@
 
     If you are unfamiliar with map projection and concepts surrounding them, please checkout [Learning About Map Projections](learning-about-map-projections.md).
 
-This page is dedicated to using [PROJ](https://proj.org/en/stable/) in ISIS and how the two differ when paramatizing for projections. If you are unfamiliar with
+This page is dedicated to using [PROJ](https://proj.org/en/stable/) in ISIS and how the two differ when parameterizing for projections. If you are unfamiliar with
 projecting images in __ISIS__ please read [Map Projecting Images](../../how-to-guides/image-processing/map-projecting-images.md) before continuing.
 
 ## Using PROJ in ISIS
@@ -13,7 +13,7 @@ Currently, ISIS supports using PROJ through the same [Mapping Group](learning-ab
 The two keys that are used to define the PROJ Mapping Group from other ISIS Mapping Groups are the `ProjectionName` key, which will be set to `IProj` and the `ProjString` key. 
 `ProjString` is a PROJ4 string that PROJ can read to build a projection from.
 
-For a detaited list of projections and there parameters see [PROJ Projections](https://proj.org/en/stable/operations/projections/index.html). 
+For a detailed list of projections and their parameters see [PROJ Projections](https://proj.org/en/stable/operations/projections/index.html). 
 For more details about parameterizing a PROJ projection see [PROJ Cartographic Projections](https://proj.org/en/stable/usage/projections.html)
 
 ## ISIS Mapping Group Comparison
@@ -76,7 +76,7 @@ PROJ will always use ographic latitudes for its projections.
 If your PROJ string only defines one radii, you will get ocentric latitudes for the projection since ocentric and ographic are equal if your semi-major and semi-minor radii are equal.
 
 ISIS allows the user to specify ocentric or ographic latitudes independent of the projection chosen. 
-Many projections in ISIS only support sphereical definitions of the projection, but the user can still specify either
+Many projections in ISIS only support spherical definitions of the projection, but the user can still specify either
 ocentric or ographic latitudes.
 
 #### Suggested Ographic and Ocentric Specifications

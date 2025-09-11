@@ -44,6 +44,11 @@ The main application to project an image is
   - For detailed information about Map Projections within ISIS refer to
     [Learning About Map Projections](../../concepts/camera-geometry-and-projections/learning-about-map-projections.md) .
 
+[**PROJ Projections**](../../concepts/camera-geometry-and-projections/proj-projections.md)
+
+  - ISIS also supports using PROJ for map projections, see [PROJ projections](https://proj.org/en/stable/operations/projections/index.html#)
+  for a detailed list of projections and see [PROJ Map Projecting Images](../../concepts/camera-geometry-and-projections/proj-projections.md) to see how to access them within ISIS.
+
 
 ## Defining an Output Map 
 

@@ -14,6 +14,7 @@ theme:
         - navigation.tabs
         - navigation.path
         - navigation.indexes
+        - navigation.footer
         - search.suggest
         - search.suggest
         - content.code.copy

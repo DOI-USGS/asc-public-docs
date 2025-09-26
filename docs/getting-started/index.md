@@ -1,13 +1,89 @@
-# Getting Started Tutorials
+# Getting Started
 
-Getting Started tutorials are *lessons*. Readers should be able to follow these tutorials step-by-step with no external guidance given some reasonable starting point. They are learning-oriented documents designed with the purpose of enabling new users to get started with a particular part of the software portfolio. 
+## ISIS
 
-## For Readers 
-[comment]: <> (This is a good place to mention any places for someone to start looking in. Highlight specific docs with high value or that we identify readers commonly want to see. You can also put info for users trying to get notebooks/tutorials running)
+ISIS (Integrated Software for Imagers and Spectrometers) is a [collection of apps](https://isis.astrogeology.usgs.gov/Application/index.html) for working with planetary imagery. It includes command-line and interactive visual apps.  ISIS can import images from various spacecraft, and create mosaics and maps from multiple images.
 
-Browse tutorials using the table of contents on the left. 
+<div class="grid cards" markdown>
 
-FAQ for readers:
+-   :octicons-book-16:{ .lg .middle } __Learn ISIS basics__
+
+    ---
+
+    - [All About ISIS](using-isis-first-steps/introduction-to-isis.md)
+    - [Find Image Data](using-isis-first-steps/locating-and-ingesting-image-data.md)
+    - [Add SPICE Data](using-isis-first-steps/adding-spice.md)
+
+-   :octicons-download-16:{ .lg .middle } __Run ISIS on your computer__
+
+    ---
+
+    Use our script to install ISIS and set up the data area.
+
+    [:octicons-arrow-right-24: Install ISIS](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+
+
+</div>
+
+## CSM Stack
+
+The CSM (Community Sensor Model) Stack is a collection of apps ([ALE](https://github.com/DOI-USGS/ale), [Knoten](https://github.com/DOI-USGS/knoten)) that allow for programmatic processing of planetary image data and related spacecraft positional data.
+
+<div class="grid cards" markdown>
+
+-   :material-rotate-orbit:{ .lg .middle } __Using ALE__
+
+    ---
+
+    Calculate spacecraft orientation information.
+
+    [:octicons-arrow-right-24: Generate an ISD file](#)
+
+-   :material-camera-marker:{ .lg .middle } __Using Knoten/CSM__
+
+    ---
+
+    Convert coordinates from image to ground reference frames.
+
+    [:octicons-arrow-right-24: CSM Image-to-ground](#)
+
+-   :octicons-book-16:{ .lg .middle } __Sensor Model Concepts__
+
+    ---
+
+    - [Reference Frames](../concepts/sensor-models/reference-frames.md)
+    - [Sensor Models](../concepts/sensor-models/sensor-models.md)
+    - [USGS Software](../concepts/sensor-models/sensor-model-software.md)
+
+
+</div>
+
+## SpiceQL
+
+SpiceQL is a library for indexing and querying information from spacecraft SPICE kernels.
+
+<div class="grid cards" markdown>
+
+-   :material-database-search:{ .lg .middle } __SpiceQL Example__
+
+    ---
+
+    Get positional data for the Cassini Spacecraft.
+
+    [:octicons-arrow-right-24: Make a simple query](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+
+-   :material-list-box:{ .lg .middle } __SpiceQL API__
+
+    ---
+
+    Examples and basics of the REST, Python, and C++ APIs for SpiceQL.
+
+    [:octicons-arrow-right-24: Explore the API](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+
+
+</div>
+
+## FAQ
 
 ??? Question annotate "If the tutorial has dependencies, how do I install them?"
 	We recommend using [miniforge's instructions](https://github.com/conda-forge/miniforge#install) as the package manager of choice for installing dependencies. This is a lite installation that comes with `mamba`, which is a C++ re-implementation of conda that solves packages much faster than conda. For some dependencies like ISIS, this can save a lot of time. Instructions will assume you are using mamba. (1) 
@@ -30,28 +106,33 @@ FAQ for readers:
     jupyter notebook
     ``` 
 
-## For Authors
+-----
 
-When creating a new getting-started tutorial, first you need to make sure what you are creating is a tutorial. Ask yourself: 
+??? info "Contributing/Writing *Getting Started* Pages"
 
-* What is the lesson? Tutorials should have a lesson that the user is expected to learn. 
-* Does your tutorial have a concrete beginning? Tutorials should always have an obvious start with clear instructions on how to get any lesson examples running. 
-* Does your tutorial have a goal? Tutorials should have a clear goal that the user will accomplish. 
+    Getting Started tutorials are lessons. Readers should be given a reasonable starting point, and should able to follow the tutorials with no external guidance. They are learning-oriented documents designed with the purpose of enabling new users to get started with a particular part of the software portfolio. 
 
-??? Info "Examples"
+    When creating a new getting-started tutorial, first you need to make sure what you are creating is a tutorial. Ask yourself: 
+
+    * What is the lesson? Tutorials should have a lesson that the user is expected to learn. 
+    * Does your tutorial have a concrete beginning? Tutorials should always have an obvious start with clear instructions on how to get any lesson examples running. 
+    * Does your tutorial have a goal? Tutorials should have a clear goal that the user will accomplish. 
+
+    ### Examples
+
     * Getting Started: ISIS image ingestion to map projected image, ingesting, bundling, and projecting an image list 
     * Getting Started: Generating an ISD and CSM camera model
     * Getting Started: Generate a control network with an image matcher 
 
-Concrete things your tutorial needs: 
+    ### Items to Include 
 
-- [ ] If your tutorial requires software, list the software with versions and installation instructions. Feel free to link to existing docs with boilerplate info, for example:
-   ```
-   See [User Preferences File](../concepts/isis-fundamentals/preference-dictionary.md#user-preference-file) 
-   or [Project Preference File](../concepts/isis-fundamentals/preference-dictionary.md#project-preference-file) 
-   for more info on custom ISISPreferences files.
-   ```
-- [ ] If your tutorial has data, use generative data or data that is in the repo. Avoid external data dependencies. Before data is committed into the repo, check if [existing data can be reused](https://github.com/DOI-USGS/asc-public-docs/tree/main/docs/assets). If new data needs to be committed, minimize the size so as not to increase the data burden. 
-- [ ] Make the objectives clear in the title. Also, clarify the tutorial with a summary of objectives. 
+    - [ ] If your tutorial requires software, list the software with versions and installation instructions. Feel free to link to existing docs with boilerplate info, for example:
+    ```
+    See [User Preferences File](../concepts/isis-fundamentals/preference-dictionary.md#user-preference-file) 
+    or [Project Preference File](../concepts/isis-fundamentals/preference-dictionary.md#project-preference-file) 
+    for more info on custom ISISPreferences files.
+    ```
+    - [ ] If your tutorial has data, use generative data or data that is in the repo. Avoid external data dependencies. Before data is committed into the repo, check if [existing data can be reused](https://github.com/DOI-USGS/asc-public-docs/tree/main/docs/assets). If new data needs to be committed, minimize the size so as not to increase the data burden. 
+    - [ ] Make the objectives clear in the title. Also, clarify the tutorial with a summary of objectives. 
 
-See the [git repo](https://code.usgs.gov/astrogeology/asc-public-docs) for more in-depth info on how to contribute new docs. 
+    See the [git repo](https://code.usgs.gov/astrogeology/asc-public-docs) for more in-depth info on how to contribute new docs. 

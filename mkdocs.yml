@@ -65,10 +65,11 @@ nav:
     - ISIS Environment Setup and Maintenance:
       - Installing ISIS:                   how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md
       - Setting up the ISIS Data Area:     how-to-guides/environment-setup-and-maintenance/isis-data-area.md
+      - SPICE Kernel Updates in ISIS:      how-to-guides/environment-setup-and-maintenance/spice-kernel-updates-in-isis.md
+      - Setting Up ISIS Data for New Missions: how-to-guides/environment-setup-and-maintenance/setup-isis-data.md
+      - Adding USGSCSM Plugin to ISIS:     how-to-guides/environment-setup-and-maintenance/adding-usgscsm-plugin-to-isis.md
       - Using ISIS in other Conda Envs:    how-to-guides/environment-setup-and-maintenance/using-isis-in-other-conda-envs.md
       - Anaconda in a Network Environment: how-to-guides/environment-setup-and-maintenance/anaconda-in-a-network-environment.md
-      - SPICE Kernel Updates in ISIS:      how-to-guides/environment-setup-and-maintenance/spice-kernel-updates-in-isis.md
-      - Adding USGSCSM Plugin to ISIS:     how-to-guides/environment-setup-and-maintenance/adding-usgscsm-plugin-to-isis.md
     - SPICE: 
       - Creating Spice Config Files in SpiceQL: how-to-guides/SPICE/creating-spice-config-files-in-spiceql.md
       - Using SpiceQL with Other Libraries: how-to-guides/SPICE/using-spiceql-with-other-libraries.md
@@ -84,26 +85,25 @@ nav:
     - ISIS Demos:
       - Interactive Online Demos:          how-to-guides/demos/isis-demos.md
     - Software Management:
-      - Deprecation:                       how-to-guides/software-management/deprecation.md
-      - Software Support:                  how-to-guides/software-management/software-support.md
       - Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
       - Guidelines for Pull Requests:      how-to-guides/software-management/guidelines-for-pull-requests.md
+      - Deprecation:                       how-to-guides/software-management/deprecation.md
+      - Software Support:                  how-to-guides/software-management/software-support.md
+    - Releases:                          
+      - Home:                            how-to-guides/software-management/releases/index.md
+      - Releasing ISIS:                   how-to-guides/software-management/releases/isis-release-process.md
+      - Releasing Other Astro Software:   how-to-guides/software-management/releases/general-release-process.md
       - ISIS Release Schedule:             how-to-guides/software-management/isis-release-schedule.md
-      - Releases:                          
-        - Home:                            how-to-guides/software-management/releases/index.md
-        - Releasing ISIS:                   how-to-guides/software-management/releases/isis-release-process.md
-        - Releasing Other Astro Software:   how-to-guides/software-management/releases/general-release-process.md
-        - ISIS Release Schedule:             how-to-guides/software-management/isis-release-schedule.md
-        - LTS Release Process:               how-to-guides/software-management/lts-release-process.md
+      - LTS Release Process:               how-to-guides/software-management/lts-release-process.md
     - ISIS Developer Guides:
+      - Developing ISIS3 with cmake:                  how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md
+      - ISIS Development on ARM Macs:    how-to-guides/isis-developer-guides/developing-mac-m1-arm-systems.md
+      - ISIS Test Data:                               how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md
       - Contributing to ISIS:                         how-to-guides/isis-developer-guides/contributing-to-isis.md
+      - Building and Contributing to ISIS Tutorial:   how-to-guides/isis-developer-guides/building-and-contributing-to-isis-tutorial.md
       - Writing Tests with CTest and GTest:           how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md
       - App Testing CookBook:                         how-to-guides/isis-developer-guides/app-testing-cookbook.md
       - Doxygen Tag Class Requirement:                how-to-guides/isis-developer-guides/class-requirements-for-using-doxygen-tags.md
-      - Developing ISIS3 with cmake:                  how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md
-      - ISIS Development on ARM Macs:    how-to-guides/isis-developer-guides/developing-mac-m1-arm-systems.md
-      - Building and Contributing to ISIS Tutorial:   how-to-guides/isis-developer-guides/building-and-contributing-to-isis-tutorial.md
-      - ISIS Test Data:                               how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md
       - ISIS Programming Exercises:
         - Exercise 1:                                 how-to-guides/isis-developer-guides/exercise-1.md
         - Exercise 2:                                 how-to-guides/isis-developer-guides/exercise-2.md

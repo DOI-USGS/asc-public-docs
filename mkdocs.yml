@@ -1,6 +1,10 @@
 site_name: USGS Astrogeology Software Docs
 site_url: https://astrogeology.usgs.gov/docs/
 
+repo_name: asc-public-docs
+repo_url: https://github.com/DOI-USGS/asc-public-docs
+edit_uri: edit/main/docs/
+
 theme:
     name: material
     custom_dir: custom_theme/
@@ -19,6 +23,8 @@ theme:
         - search.suggest
         - content.code.copy
         - content.footnote.tooltips
+        - content.action.edit
+        - content.action.view
 
     palette:
         # Palette toggle for dark mode

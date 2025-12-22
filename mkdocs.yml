@@ -48,18 +48,17 @@ nav:
   - Home: index.md
   - Getting Started: 
     - Home: getting-started/index.md
-    - CSM Stack:
-      - CSM Sandbox: getting-started/csm-stack/csm-sandbox.ipynb
+    - ISIS:
+      - Introduction to ISIS:               getting-started/using-isis-first-steps/introduction-to-isis.md
+      - Locating and Ingesting Image Data:  getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md
+      - Adding SPICE:                       getting-started/using-isis-first-steps/adding-spice.md
+      - Exporting ISIS Data:                getting-started/using-isis-first-steps/exporting-isis-data.md
+      - ISIS FAQ:                           getting-started/using-isis-first-steps/isis-faq.md
+    - CSM Stack (ALE, Knoten):
+      - Generating an ISD:                  getting-started/using-ale/isd-generate.md
       - Generating an ISD, creating a CSM model, and converting coordinates: getting-started/csm-stack/image-to-ground-tutorial.ipynb
-      - Knoten - Basic Camera Operations: getting-started/csm-stack/knoten-camera-tutorial.ipynb
-    - "Using ISIS: First Steps":
-      - Introduction to ISIS:              getting-started/using-isis-first-steps/introduction-to-isis.md
-      - Locating and Ingesting Image Data: getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md
-      - Adding SPICE:                      getting-started/using-isis-first-steps/adding-spice.md
-      - Exporting ISIS Data:               getting-started/using-isis-first-steps/exporting-isis-data.md
-      - ISIS FAQ:                          getting-started/using-isis-first-steps/isis-faq.md
-    - Using Ale:
-      - Generating an ISD:                 getting-started/using-ale/isd-generate.md
+      - Knoten - Basic Camera Operations:   getting-started/csm-stack/knoten-camera-tutorial.ipynb
+      - CSM Sandbox:                        getting-started/csm-stack/csm-sandbox.ipynb
     - Using SpiceQL:
       - SpiceQL Cassini Tutorial:          getting-started/using-spiceql/spiceql-cassini-tutorial.ipynb
       - Exploring SpiceQL's REST, Python, and C++ APIs: getting-started/using-spiceql/exploring-spiceqls-rest-python-and-cpp-apis.md

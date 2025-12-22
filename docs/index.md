@@ -15,7 +15,8 @@ These docs use a simple system of defining software documentation in four catego
 [
   {
     "title": ":material-clock-fast: <u>__Getting Started__</u>",
-    "content": "Step-by-step tutorials for beginners to get started with different aspects of the Astro software portfolio; this is the best place to learn new things as a beginner to some of our software or those unfamiliar with particular parts of the code.",
+    "content": " First stop for learning about USGS Astrogeology's software: ISIS, the CSM Stack (ALE, Knoten), and SpiceQL.
+    ",
     "url" : getting-started/index.md
   }, 
   {

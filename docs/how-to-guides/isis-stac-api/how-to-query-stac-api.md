@@ -126,7 +126,7 @@ ISIS uses its integrated GDAL support to read GeoTIFF shape models directly from
 The `spiceinit` application includes a `WEB` option under the `SHAPE` parameter that allows shape model selection via the STAC API.
 If no matching shape model is found, spiceinit falls back to the `SYSTEM` option, which searches for a shape model in the local data area.
 
-`spiceinit from=default.cub to=spiced-default.cub shape=web`
+`spiceinit from=default.cub shape=web`
 
 #### Example PVL output:
 ```

@@ -11,14 +11,14 @@ STAC collection and item endpoints for browsing.
 
 ## Base URL
 
-`https://3hr5l9mbj6.execute-api.us-west-2.amazonaws.com/prod`
+`https://isis-stac.prod-asc.chs.usgs.gov/`
 
 ---
 
 ## ISIS Global DTMs Collection URL
 Use this endpoint for browsing and spatial queries (e.g., bbox):
 
-`https://3hr5l9mbj6.execute-api.us-west-2.amazonaws.com/prod/collections/isis-global-dtms/items`
+`https://isis-stac.prod-asc.chs.usgs.gov/collections/isis-global-dtms/items`
 
 ---
 
@@ -26,7 +26,7 @@ Use this endpoint for browsing and spatial queries (e.g., bbox):
 
 The `/search` endpoint is optimized for automated ISIS workflows and returns a single, recommended shape model per request.
 
-`https://3hr5l9mbj6.execute-api.us-west-2.amazonaws.com/prod/search`
+`https://isis-stac.prod-asc.chs.usgs.gov/search`
 
 ### Query Options
 
@@ -47,7 +47,7 @@ Specifies the planetary body for which a shape model is requested.
 ### Example Curl Request
 
 ```
-curl -X POST "https://3hr5l9mbj6.execute-api.us-west-2.amazonaws.com/prod/search" \
+curl -X POST "https://isis-stac.prod-asc.chs.usgs.gov/search" \
   -H "Content-Type: application/json" \
   -d '{"query":{"target":{"eq":"Mars"}}}'
 ```

@@ -201,11 +201,11 @@ Clone the repo locally with git clone.
     - [ ] Name the release "ISISX.Y.Z Production". 
 
 ??? example "CI/CD: Conda Release"
-    `github-release.yml` builds ISIS (with kakadu) and uploads those builds to conda.
+    `github-release.yml` builds ISIS (with kakadu) and uploads those builds to conda.  It also updates the ISIS Docs for the release version.
 
     Triggered by GitHub Releases, pushes to `*.*.*_RC*` or `*.*.*_LTS` branches, or manually.
     
-    - If this action fails, make sure to complete the conda build/upload manually.
+    - If this action fails, make sure to complete the conda build/upload manually, and keep the docs up to date.
     
     - Make sure the images this action relies on are up to date.
     Only the most recent two mac versions are supported, 

@@ -114,6 +114,8 @@ nav:
         - Exercise 2:                                 how-to-guides/isis-developer-guides/exercise-2.md
     - ALE Developer Guides:
       - Creating Ale Drivers: how-to-guides/ale-developer-guides/creating-ale-drivers.md
+    - ISIS STAC API: 
+      - How to query ISIS STAC API: how-to-guides/isis-stac-api/how-to-query-stac-api.md
 
   - Concepts: 
     - Home:     concepts/index.md

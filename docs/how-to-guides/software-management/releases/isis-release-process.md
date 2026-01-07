@@ -174,20 +174,7 @@ Clone the repo locally with git clone.
 !!! Success ""
     Move on to step 5 after **creating the new branch on the upstream repo**. 
 
-
-### 5. **Update Version in AWS S3** (for [ISIS Application Docs](https://isis.astrogeology.usgs.gov))
-
-!!! info "Not for RC.  For LR, LTS, and Prod."
-
-- [ ] Add the new version to `versions.json` in AWS S3  
-    `arn:aws:s3:::asc-public-docs/isis-site/versions.json`
-
-!!! Success "" 
-    
-    Move on to step 6 after **updating versions.json**. 
-
-
-### 6. **Create a release**
+### 5. **Create a release**
 
 === "RC"
 
@@ -232,7 +219,7 @@ Clone the repo locally with git clone.
 
     Move on to step 7 after **creating the release**. 
 
-### 7. **Publish Record to DOI**
+### 6. **Publish Record to DOI**
 
 !!! info "LR/LTS/Prod only, not for RCs."
 
@@ -304,7 +291,7 @@ Clone the repo locally with git clone.
     
     Include the DOI number in the announcement in step 8 below!
 
-### 8. **Announce the Build** 
+### 7. **Announce the Build** 
 
 - [ ] Create a new [ISIS3 GitHub Discussion](https://github.com/DOI-USGS/ISIS3/discussions/categories/announcements)
     in the announcements category.

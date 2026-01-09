@@ -41,6 +41,14 @@ A camera model can be instantiated using image support data (ISD), but the CSM d
 
 Sensor models implemented within USGSCSM are stateful in that their underlying geometries can be modified.  Moreover, it is possible to save a model's current state to a _state string_ so that a future model can be instantiated with that exact model state.  This is an important capability when performing incremental modifications via a process like bundle adjustment or [performing alignment](https://stereopipeline.readthedocs.io/en/latest/tools/pc_align.html) between digital terrain models and reference DTMs or point clouds, particularly if the user decides to undo those adjustments or share the modified state with collaborators.
 
+!!! WARNING "Serial Number"
+    Images processed by ISIS and CSM engines will result in different serial number formats. Running `spiceinit` and `csminit` appends the `Instrument` and `CSMInfo` PVL Group to the processed image, respectively. The table below shows the PVL Group name with the child PVL Keywords used to create a serial number.
+
+    | PVL Group in Cube Label     | Serial Number Format                                   |
+    | --------------------------- | ------------------------------------------------------ |
+    | `Instrument`                | `SpacecraftName`/`InstrumentId`/`SpacecraftClockCount` |
+    | `CSMInfo`                   | `CSMPlatformID`/`CSMInstrumentId`/`ReferenceTime`      |
+
 
 ## Extended Sensor Model Ecosystem
 This section details several packages that are created and maintained outside the Astrogeology Science Center but are commonly used in conjunction with elements of the ASC sensor model ecosystem.

@@ -36,3 +36,4 @@
 *[IAU]: The International Astronomical Union 
 *[Scale]: The map resolution measured in pixels per degree 
 *[ISD]: Image Support Data. The interior and exterior orientation data used to instantiate a camera model.
+*[Serial Number]: A unique identifier constructed and assigned to each individual image within a control network. The serial number (SN) is constructed by most of the control network applications "in real time" from specific instrument keywords on the image labels (Instrument keywords are populated by mission specific ingestion applications).

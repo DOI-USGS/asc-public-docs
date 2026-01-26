@@ -310,7 +310,7 @@ When making OS specific truth data, do not add the "-t" flag. Instead, you will 
 
 ## Checking Test Coverage 
 
-ISIS uses `gcovr` to track test coverage, PRs will not be apporoved if they drop coverage by more than 2%, excpetions can be made for large feature adds. This step is taken after tests have run, as coverage is detected based on the last ctest run. 
+ISIS uses `gcovr` to track test coverage, PRs will not be approved if they drop coverage by more than 2%, exceptions can be made for large feature adds. This step is taken after tests have run, as coverage is detected based on the last ctest run. 
 
 ```bash
 ninja test_coverage_ascii # generate ascii table to stdout 

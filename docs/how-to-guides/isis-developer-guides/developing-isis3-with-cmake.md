@@ -315,7 +315,7 @@ When making OS specific truth data, do not add the "-t" flag. Instead, you will 
 * For app tests, you will need to rename the truth directory put in build/testOutputDir as
 `truth.<OStype>.x86_64.<OSname>`. If we wanted to make Mac truth data: "truth.Darwin.x86_64.MacOSX10_13".
 
-## Checking Test Coverage 
+### Checking Test Coverage 
 
 ISIS uses `gcovr` to track test coverage. PRs will not be approved if they drop coverage by more than 2%, though exceptions can be made for large feature adds. This step happens after tests have run, as coverage is detected based on the last ctest run. 
 
@@ -371,7 +371,7 @@ When reading CI coverage on [ISIS CI builds](https://us-west-2.codebuild.aws.ama
 
 You should check your results to the last dev build to see if your coverage increased or decreased.
 
-## Static Code Checking
+### Static Code Checking
 
 ISIS uses [`cppcheck`](https://cppcheck.sourceforge.io) for static code checking, to catch errors that other methods may miss.  In [ISIS CI](https://us-west-2.codebuild.aws.amazon.com/project/eyJlbmNyeXB0ZWREYXRhIjoiNDJNZ2MxbHFKTkwxV1RyQUxJekdJY3FIanNqU29rMHB4Nk1YUzk4REIrZUZDeEtEaW9HQlZ1dTZOSHpML2VUTGVDekYydmVFcU9sUHJKN20wQzd1Q0UzSzJscnB0MElDb1M3Ti9GTlJYR1RuMWJTV3V1SkJTa3NoYmc9PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF3U2NTSGlDcEtCc29YVnEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D), this is checked after running tests, close to the end of the log.
 

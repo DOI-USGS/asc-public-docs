@@ -373,7 +373,7 @@ You should check your results to the last dev build to see if your coverage incr
 
 ### Static Code Checking
 
-ISIS uses [`cppcheck`](https://cppcheck.sourceforge.io) for static code checking, to catch errors that other methods may miss.  In [ISIS CI](https://us-west-2.codebuild.aws.amazon.com/project/eyJlbmNyeXB0ZWREYXRhIjoiNDJNZ2MxbHFKTkwxV1RyQUxJekdJY3FIanNqU29rMHB4Nk1YUzk4REIrZUZDeEtEaW9HQlZ1dTZOSHpML2VUTGVDekYydmVFcU9sUHJKN20wQzd1Q0UzSzJscnB0MElDb1M3Ti9GTlJYR1RuMWJTV3V1SkJTa3NoYmc9PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF3U2NTSGlDcEtCc29YVnEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D), this is checked after running tests, close to the end of the log.
+ISIS uses [`cppcheck`](https://cppcheck.sourceforge.io) for static code checking, to catch security vulnerabilities and undefined behavior that other methods may miss.  In [ISIS CI](https://us-west-2.codebuild.aws.amazon.com/project/eyJlbmNyeXB0ZWREYXRhIjoiNDJNZ2MxbHFKTkwxV1RyQUxJekdJY3FIanNqU29rMHB4Nk1YUzk4REIrZUZDeEtEaW9HQlZ1dTZOSHpML2VUTGVDekYydmVFcU9sUHJKN20wQzd1Q0UzSzJscnB0MElDb1M3Ti9GTlJYR1RuMWJTV3V1SkJTa3NoYmc9PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF3U2NTSGlDcEtCc29YVnEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D), this is checked after running tests, close to the end of the log.
 
 ```bash
 cppcheck your-new-contribution.cpp --enable=all --suppress=missingInclude --suppress=missingIncludeSystem --suppress=unmatchedSuppression

@@ -33,19 +33,19 @@ Check out [Running Tests](https://astrogeology.usgs.gov/docs/how-to-guides/isis-
 
 As an example, let's look at the [`skypt` test suite](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/tests/FunctionalTestsSkypt.cpp). You can run the all of `skypt`'s tests with `ctest -R skypt`. Let's say you want to test only the first test case in *FunctionalTestsSkypt.cpp*, run `ctest -R FunctionalTestSkyptDefault`. 
 
-## 4. Run Coverage Checks
+## 4. Run Coverage Checks and Static Checks
 
-Check out [Running Tests](https://astrogeology.usgs.gov/docs/how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#checking-test-coverage) to see how coverage works. 
+Check out [Running Tests](https://astrogeology.usgs.gov/docs/how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#checking-test-coverage) to see how coverage and static checks work.
 
-If you run a partial test, then you should only look at how coverage changed for the class or application you updated. 
+If you run a partial test, just look at how coverage changed for the specific class or application you updated.
 
-## 4. Update CHANGELOG
+## 5. Update CHANGELOG
 
-Make sure you update the *CHANGELOG.md* located in the root of the `ISIS3` folder by adding an entry under the **Unreleased** heading and **Changed** subheading.
+Update the *CHANGELOG.md* located in the root of the `ISIS3` folder by adding an entry under the **Unreleased** heading and **Changed** subheading.
 
-## 5. Create PR
+## 6. Create PR
 
-Once your tests are in good shape with passing marks, let's create a Pull Request (PR). Go to your forked ISIS3 repo page and select the **Pull requests** tab towards the top of the page. Then, hit the green **New pull request** button which will take you to a page where you select your base and head repositories to compare before creating the pull request. The base repository is the repo you will be pushing your changes *to*, so it should be set to 
+Once your tests are in good shape with passing marks, create a Pull Request (PR). Go to your forked ISIS3 repo page and select the **Pull requests** tab towards the top of the page. Then, hit the green **New pull request** button which will take you to a page where you select your base and head repositories to compare before creating the pull request. The base repository is the repo you will be pushing your changes *to*, so it should be set to 
 ```
 base repository: **DOI-USGS/ISIS3**, base: **dev**
 ```

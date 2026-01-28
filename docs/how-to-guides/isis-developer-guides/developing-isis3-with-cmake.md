@@ -258,23 +258,30 @@ Steps To Create A New UnitTest:
 3. rebuild
 4. Use makeOutput.py (see below) to create new truth data
 
-### Example Ctest Output
+??? example "Example Ctest Output"
 
-```
-98% tests passed, 7 tests failed out of 394
+    ```
+    98% tests passed, 7 tests failed out of 394
 
-Total Test time (real) = 171.11 sec
+    Total Test time (real) = 171.11 sec
 
-The following tests FAILED:
-	 11 - isis3_unit_test_Application (Failed)
-	 97 - isis3_unit_test_IException (Failed)
-	174 - isis3_unit_test_Pipeline (Failed)
-	201 - isis3_unit_test_ProcessExportPds4 (Failed)
-	211 - isis3_unit_test_ProgramLauncher (Failed)
-	303 - isis3_unit_test_UserInterface (Failed)
-	338 - isis3_unit_test_MosaicSceneWidget (Failed)
-Errors while running CTest
-```
+    The following tests FAILED:
+        11 - isis3_unit_test_Application (Failed)
+        97 - isis3_unit_test_IException (Failed)
+        174 - isis3_unit_test_Pipeline (Failed)
+        201 - isis3_unit_test_ProcessExportPds4 (Failed)
+        211 - isis3_unit_test_ProgramLauncher (Failed)
+        303 - isis3_unit_test_UserInterface (Failed)
+        338 - isis3_unit_test_MosaicSceneWidget (Failed)
+    Errors while running CTest
+    ```
+
+<div class="grid cards" markdown>
+
+- To learn more about **Ctest**, check out the 
+  [Ctest Docs :octicons-arrow-right-24:](https://cmake.org/cmake/help/v3.9/manual/ctest.1.html)
+
+</div>
 
 ### Make Truth Replacement
 
@@ -310,7 +317,7 @@ When making OS specific truth data, do not add the "-t" flag. Instead, you will 
 
 ## Checking Test Coverage 
 
-ISIS uses `gcovr` to track test coverage, PRs will not be approved if they drop coverage by more than 2%, exceptions can be made for large feature adds. This step is taken after tests have run, as coverage is detected based on the last ctest run. 
+ISIS uses `gcovr` to track test coverage. PRs will not be approved if they drop coverage by more than 2%, though exceptions can be made for large feature adds. This step happens after tests have run, as coverage is detected based on the last ctest run. 
 
 ```bash
 ninja test_coverage_ascii # generate ascii table to stdout 
@@ -318,53 +325,59 @@ ninja test_coverage_html  # generate interactive webpage
                           # open HTML at $ISIS_BUILD_DIR/test_coverage_html/index.html
 ```
 
-ISIS CI checks on PR generate an ASCII table; although, it is recommended to use HTML locally, as HTML reports contain interactive access to line hits and misses. 
+The remote CI coverage checks (on the PR) generate an ASCII table.  Locally, generating HTML reports is recommended, as they contain interactive access to line hits and misses. 
 
-When reading CI coverage on [ISIS CI builds](https://us-west-2.codebuild.aws.amazon.com/project/eyJlbmNyeXB0ZWREYXRhIjoiNDJNZ2MxbHFKTkwxV1RyQUxJekdJY3FIanNqU29rMHB4Nk1YUzk4REIrZUZDeEtEaW9HQlZ1dTZOSHpML2VUTGVDekYydmVFcU9sUHJKN20wQzd1Q0UzSzJscnB0MElDb1M3Ti9GTlJYR1RuMWJTV3V1SkJTa3NoYmc9PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF3U2NTSGlDcEtCc29YVnEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D), test coverage will be at the bottom of the logs once CI is complete. So you have to scroll before coverage to see test results. For example: 
+When reading CI coverage on [ISIS CI builds](https://us-west-2.codebuild.aws.amazon.com/project/eyJlbmNyeXB0ZWREYXRhIjoiNDJNZ2MxbHFKTkwxV1RyQUxJekdJY3FIanNqU29rMHB4Nk1YUzk4REIrZUZDeEtEaW9HQlZ1dTZOSHpML2VUTGVDekYydmVFcU9sUHJKN20wQzd1Q0UzSzJscnB0MElDb1M3Ti9GTlJYR1RuMWJTV3V1SkJTa3NoYmc9PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF3U2NTSGlDcEtCc29YVnEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D), test coverage will be at the bottom of the logs once CI is complete.  The CI first **builds**, then **tests**, then checks **test coverage**.  You may have to scroll quite a bit to reach the desired section.
+
+??? example "Test Results and Coverage Report in ISIS CI Build Log"
+
+    ```bash
+    100% tests passed, 0 tests failed out of 2705
+
+    Total Test time (real) = 2145.30 sec
+
+    The following tests did not run:
+        1258 - TempTestingFiles.FunctionalTestJitterfitDefault (Disabled)
+        1302 - TempTestingFiles.UnitTestImageImporterTestJpeg (Disabled)
+        1553 - DefaultCube.FunctionalTestNoprojExpand (Disabled)
+        1900 - MroCtxCube.FunctionalTestCtxcalDefault (Disabled)
+        1903 - MroCtxCube.FunctionalTestCtxcalIofFalse (Disabled)
+    [1/1] Generating gcovr ASCII coverage report.
+    (INFO) Reading coverage data...
+    (INFO) Writing coverage report...
+    ------------------------------------------------------------------------------
+                            GCC Code Coverage Report
+    Directory: .
+    ------------------------------------------------------------------------------
+    File                                       Lines    Exec  Cover   Missing
+    ------------------------------------------------------------------------------
+    src/apollo/apps/apollo2isis/main.cpp         242       0     0%   50-54,56,58-59,61,63,66-68,71-72,74,77-78,80,82-84,87,89-100,102-105,112-116,119-124,126,131-145,147-150,152-155,158-160,163-164,167-176,178-179,181-182,185-188,193-195,198,200-205,207-209,213-216,219,223,228,230-232,234-236,238-244,246-250,252-253,255-257,260-263,265-266,269,272-273,275,278-283,286-288,290-292,295-298,300,302-307,310-315,318-328,331-333,336-338,341-343,347-350,355-357,359-361,363-365,369-371,374-384,386-387,389-393,395,398-401,403,406-408
+    src/apollo/apps/apollocal/apollocal.cpp       38      33    86%   26-29,74
+    src/apollo/apps/apollocal/main.cpp             4       0     0%   16-19
+    .
+    . Snip, many such files
+    .
+    src/voyager/apps/voycal/main.cpp             173     140    80%   69-72,82-85,90-93,118-123,155-160,247,312-314,334,343,345,347,349
+    src/voyager/apps/voyramp/main.cpp             85      71    83%   75-78,82-84,95-99,197-198
+    src/voyager/objs/VoyagerCamera/VoyagerCamera.cpp
+                                                78      67    85%   87-90,111-114,133-135
+    ------------------------------------------------------------------------------
+    TOTAL                                     130854  102073    78%
+    ------------------------------------------------------------------------------
+    lines: 78.0% (102073 out of 130854)
+    functions: 86.4% (7023 out of 8131)
+    branches: 42.6% (121959 out of 286413)
+    ```
+
+You should check your results to the last dev build to see if your coverage increased or decreased.
+
+## Static Code Checking
+
+ISIS uses [`cppcheck`](https://cppcheck.sourceforge.io) for static code checking, to catch errors that other methods may miss.  In [ISIS CI](https://us-west-2.codebuild.aws.amazon.com/project/eyJlbmNyeXB0ZWREYXRhIjoiNDJNZ2MxbHFKTkwxV1RyQUxJekdJY3FIanNqU29rMHB4Nk1YUzk4REIrZUZDeEtEaW9HQlZ1dTZOSHpML2VUTGVDekYydmVFcU9sUHJKN20wQzd1Q0UzSzJscnB0MElDb1M3Ti9GTlJYR1RuMWJTV3V1SkJTa3NoYmc9PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF3U2NTSGlDcEtCc29YVnEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D), this is checked after running tests, close to the end of the log.
 
 ```bash
-100% tests passed, 0 tests failed out of 2705
-
-Total Test time (real) = 2145.30 sec
-
-The following tests did not run:
-	1258 - TempTestingFiles.FunctionalTestJitterfitDefault (Disabled)
-	1302 - TempTestingFiles.UnitTestImageImporterTestJpeg (Disabled)
-	1553 - DefaultCube.FunctionalTestNoprojExpand (Disabled)
-	1900 - MroCtxCube.FunctionalTestCtxcalDefault (Disabled)
-	1903 - MroCtxCube.FunctionalTestCtxcalIofFalse (Disabled)
-[1/1] Generating gcovr ASCII coverage report.
-(INFO) Reading coverage data...
-(INFO) Writing coverage report...
-------------------------------------------------------------------------------
-                           GCC Code Coverage Report
-Directory: .
-------------------------------------------------------------------------------
-File                                       Lines    Exec  Cover   Missing
-------------------------------------------------------------------------------
-src/apollo/apps/apollo2isis/main.cpp         242       0     0%   50-54,56,58-59,61,63,66-68,71-72,74,77-78,80,82-84,87,89-100,102-105,112-116,119-124,126,131-145,147-150,152-155,158-160,163-164,167-176,178-179,181-182,185-188,193-195,198,200-205,207-209,213-216,219,223,228,230-232,234-236,238-244,246-250,252-253,255-257,260-263,265-266,269,272-273,275,278-283,286-288,290-292,295-298,300,302-307,310-315,318-328,331-333,336-338,341-343,347-350,355-357,359-361,363-365,369-371,374-384,386-387,389-393,395,398-401,403,406-408
-src/apollo/apps/apollocal/apollocal.cpp       38      33    86%   26-29,74
-src/apollo/apps/apollocal/main.cpp             4       0     0%   16-19
-.
-. Snip, many such files
-.
-src/voyager/apps/voycal/main.cpp             173     140    80%   69-72,82-85,90-93,118-123,155-160,247,312-314,334,343,345,347,349
-src/voyager/apps/voyramp/main.cpp             85      71    83%   75-78,82-84,95-99,197-198
-src/voyager/objs/VoyagerCamera/VoyagerCamera.cpp
-                                              78      67    85%   87-90,111-114,133-135
-------------------------------------------------------------------------------
-TOTAL                                     130854  102073    78%
-------------------------------------------------------------------------------
-lines: 78.0% (102073 out of 130854)
-functions: 86.4% (7023 out of 8131)
-branches: 42.6% (121959 out of 286413)
+cppcheck your-new-contribution.cpp --enable=all --suppress=missingInclude --suppress=missingIncludeSystem --suppress=unmatchedSuppression
 ```
-
-You should check your results to the last dev build to see if your coverage increased or decreased. 
-
-## Further Reading
-
-[Ctest](https://cmake.org/cmake/help/v3.9/manual/ctest.1.html) functionality extends beyond this wiki. Take a moment to see the ctest documentation for additional capabilities.
 
 ## Troubleshooting
 

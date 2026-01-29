@@ -167,6 +167,7 @@ If you are only working with a few missions, save space by downloading just thos
     | Apollo 17 | `downloadIsisData apollo17 $ISISDATA` |
     | Cassini | `downloadIsisData cassini $ISISDATA` | 
     | Chandrayaan 1 | `downloadIsisData chandrayaan1 $ISISDATA` |
+    | Chandrayaan 2 | `downloadIsisData chandrayaan2 $ISISDATA` |
     | Clementine 1 | `downloadIsisData clementine1 $ISISDATA` |
     | Dawn | `downloadIsisData dawn $ISISDATA` |
     | ExoMars | `downloadIsisData tgo $ISISDATA` |

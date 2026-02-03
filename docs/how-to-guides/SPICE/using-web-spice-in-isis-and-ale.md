@@ -5,8 +5,8 @@
 Update your *IsisPreferences* under `$CONDA_PREFIX` to enable the web SpiceQL feature.
 
 ```
-Group = WebSpice
-  UseWebSpice = "true"
+Group = SpiceQL
+  UseSpiceQL = "true"
 EndGroup
 ```
 

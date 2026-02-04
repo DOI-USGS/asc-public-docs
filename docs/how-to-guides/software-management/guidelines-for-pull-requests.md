@@ -1,6 +1,6 @@
 # Guidelines for Pull Requests
 
-This page provides guidelines for creating a successful pull request.  These guidelines are intended to promote a style of pull request that benefits both the creator of the pull request and the reviewer.
+*Intended to promote a style of Pull Request that benefits both the creator of the pull request and the reviewer.*
 
 ## PR Creators
 
@@ -18,6 +18,11 @@ This page provides guidelines for creating a successful pull request.  These gui
 - Follow the established coding style if one exists for the repository
 - Ensure that your changes are accompanied by an entry in the changelog
 - Write tests to cover any functionality that is added or changed
+
+-----
+[:octicons-arrow-right-24: See Also: __Deprecation__](../../how-to-guides/software-management/deprecation.md)
+
+-----
 
 
 ### When Creating the Pull Request
@@ -40,24 +45,24 @@ Use the following checklist to ensure that your PR follows best practices that w
 
 This section describes best practices for the reviewers of incoming PRs.
 
-### Code Review Checklist
-The purpose of this checklist is to prompt discussion between the reviewer and submitter. Any questions or concerns that come from this checklist should be discussed during the code review.
+???+ abstract "Code Review Checklist"
 
+    The purpose of this checklist is to prompt discussion between the reviewer and submitter. Any questions or concerns that come from this checklist should be discussed during the code review.
 
-* Does the code work? Does it perform its intended function, the logic is correct etc?
-* Do the changes make sense (in terms of the big picture/ticket/etc.)?
-* Did they complete their developer checklist? Double check their checklist?
-* Does the code include tests?
-* Does the code meet non-functional requirements (scalability, robustness, extensibility, modularity)?
-* Does the code introduce new dependencies?  If so, are they necessary?
-* Is this code in the right place? (are the correct classes/apps handling these things, are they at the right level, does the order make sense)
-* Is there unnecessary duplication in the code or duplication of any code in the repository?
-* Does all this code need to exist? (e.g. extraneous mutators etc.)
-* Are they adding [tech debt](https://www.agileweboperations.com/technical-debt)?
-* Is the code easily understandable (i.e. [squint test](https://robertheaton.com/2014/06/20/code-review-without-your-eyes/))?
-* Does the code handle potential exceptions, return values, invalid inputs...?
-* Is the code needlessly complex?
-* Is there low-hanging fruit that is easily refactorable?
-* Do new classes/functions have well-defined, documented responsibilities? Are these responsibilities too broad?
-* Are the API documentation and comments useful? Are comments explaining why?
-* Are all style choices and changes appropriate?
+    - [ ] Does the code work? Does it perform its intended function, the logic is correct etc?
+    - [ ] Do the changes make sense (in terms of the big picture/ticket/etc.)?
+    - [ ] Did they complete their developer checklist? Double check their checklist?
+    - [ ] Does the code include tests?
+    - [ ] Does the code meet non-functional requirements (scalability, robustness, extensibility, modularity)?
+    - [ ] Does the code introduce new dependencies?  If so, are they necessary?
+    - [ ] Is this code in the right place? (are the correct classes/apps handling these things, are they at the right level, does the order make sense)
+    - [ ] Is there unnecessary duplication in the code or duplication of any code in the repository?
+    - [ ] Does all this code need to exist? (e.g. extraneous mutators etc.)
+    - [ ] Are they adding [tech debt](https://www.agileweboperations.com/technical-debt)?
+    - [ ] Is the code easily understandable (i.e. [squint test](https://robertheaton.com/2014/06/20/code-review-without-your-eyes/))?
+    - [ ] Does the code handle potential exceptions, return values, invalid inputs...?
+    - [ ] Is the code needlessly complex?
+    - [ ] Is there low-hanging fruit that is easily refactorable?
+    - [ ] Do new classes/functions have well-defined, documented responsibilities? Are these responsibilities too broad?
+    - [ ] Are the API documentation and comments useful? Are comments explaining why?
+    - [ ] Are all style choices and changes appropriate?

@@ -1,4 +1,4 @@
-# How To Write ISIS Tests with CTest and GTest
+# Writing ISIS Tests with CTest & GTest
 
 ??? Tip "Helpful External documentation"
 
@@ -22,7 +22,7 @@
     - [ ] New tests passing on Jenkins
     - [ ] Old test data removed
 
-## Refactoring ISIS3 Applications
+## Refactoring ISIS Applications
 
 In order to better integrate with the gtest unit test framework, all of our application logic needs to be callable programmatically.
 

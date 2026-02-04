@@ -1,5 +1,4 @@
-# Contributing to ISIS
-This document serves as a concise guide on how to contribute to ISIS.
+# Contributing to ISIS - Overview
 
 ## Build ISIS
 Begin by referring to our [Developing ISIS3 with CMake](./developing-isis3-with-cmake.md) page for instructions on setting up a local clone of ISIS and configuring an Anaconda environment for building. Once you've followed the steps outlined there, you'll have a local build of ISIS ready for development.

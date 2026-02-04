@@ -1,5 +1,9 @@
 # Creating a shared Anaconda installation
 
+!!! info "Internal Procedures"
+
+    This document is intended primarily for internal use at the USGS Astrogeology Science center.  It details setup that is specific to our internal network.  It is likely not very useful for those who don't either work for the USGS ASC or have access to our network.
+
 ## Introduction
 
 Here at the USGS Astrogeology Science Center (ASC) we have a software development team consisting of roughly a dozen full or part time developers, another dozen or so technical users, and a few dozen scientists who all need consistent access to software builds and releases. As we moved to using Anaconda for dependency management and software installation, our IT group quickly flagged an issue where users' Home directories were growing astronomically large from each having their own Anaconda installation. Along with that, we had many users who had never used Anaconda before having to manage and debug their own installations. Fairly quickly, we settled upon having shared Anaconda installations that users could access and use across systems without having to manage their own Anaconda installation or update their environments.

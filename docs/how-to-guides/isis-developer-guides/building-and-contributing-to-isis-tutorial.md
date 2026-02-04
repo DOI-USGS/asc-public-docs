@@ -1,4 +1,4 @@
-# Building and Contributing to ISIS Tutorial
+# Contributing to ISIS - Tutorial
 
 ## 1. Set Up Your Local ISIS Environment
 

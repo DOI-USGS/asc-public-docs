@@ -71,10 +71,10 @@ nav:
       - Installing ISIS:                   how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md
       - Setting up the ISIS Data Area:     how-to-guides/environment-setup-and-maintenance/isis-data-area.md
       - SPICE Kernel Updates in ISIS:      how-to-guides/environment-setup-and-maintenance/spice-kernel-updates-in-isis.md
-      - Setting Up ISIS Data for New Missions: how-to-guides/environment-setup-and-maintenance/setup-isis-data.md
-      - Adding USGSCSM Plugin to ISIS:     how-to-guides/environment-setup-and-maintenance/adding-usgscsm-plugin-to-isis.md
       - Using ISIS in other Conda Envs:    how-to-guides/environment-setup-and-maintenance/using-isis-in-other-conda-envs.md
-      - Anaconda in a Network Environment: how-to-guides/environment-setup-and-maintenance/anaconda-in-a-network-environment.md
+      - Setting Up ISIS Data for New Missions: how-to-guides/environment-setup-and-maintenance/setup-isis-data.md
+      - (ISIS ≤ 8.1 Only) USGSCSM Plugin:     how-to-guides/environment-setup-and-maintenance/adding-usgscsm-plugin-to-isis.md
+      - (Internal) USGS Networked Conda Envs: how-to-guides/environment-setup-and-maintenance/anaconda-in-a-network-environment.md
     - SPICE: 
       - Creating Spice Config Files in SpiceQL: how-to-guides/SPICE/creating-spice-config-files-in-spiceql.md
       - Using SpiceQL with Other Libraries: how-to-guides/SPICE/using-spiceql-with-other-libraries.md
@@ -104,11 +104,12 @@ nav:
       - Developing ISIS3 with cmake:                  how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md
       - ISIS Development on ARM Macs:    how-to-guides/isis-developer-guides/developing-mac-m1-arm-systems.md
       - ISIS Test Data:                               how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md
-      - Contributing to ISIS:                         how-to-guides/isis-developer-guides/contributing-to-isis.md
-      - Building and Contributing to ISIS Tutorial:   how-to-guides/isis-developer-guides/building-and-contributing-to-isis-tutorial.md
+      - Contributing to ISIS - Overview:                         how-to-guides/isis-developer-guides/contributing-to-isis.md
+      - Contributing to ISIS - Tutorial:   how-to-guides/isis-developer-guides/building-and-contributing-to-isis-tutorial.md
       - Writing Tests with CTest and GTest:           how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md
-      - App Testing CookBook:                         how-to-guides/isis-developer-guides/app-testing-cookbook.md
-      - Doxygen Tag Class Requirement:                how-to-guides/isis-developer-guides/class-requirements-for-using-doxygen-tags.md
+      - Code Templates & Style:
+        - Doxygen Tag Class Requirement:                how-to-guides/isis-developer-guides/class-requirements-for-using-doxygen-tags.md
+        - App Testing Templates:                         how-to-guides/isis-developer-guides/app-testing-cookbook.md
       - ISIS Programming Exercises:
         - Exercise 1:                                 how-to-guides/isis-developer-guides/exercise-1.md
         - Exercise 2:                                 how-to-guides/isis-developer-guides/exercise-2.md

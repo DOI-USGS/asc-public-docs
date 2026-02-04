@@ -10,26 +10,27 @@ If looking for something specific, you can use the search function.
 
 These docs use a simple system of defining software documentation in four categories based on the composition and goal of a particular piece of documentation: 
 
-::cards:: cols=1 
+::cards:: cols=2
 
 [
   {
-    "title": "Getting Started",
-    "content": "Step-by-step tutorials for beginners to get started with different aspects of the Astro software portfolio; this is the best place to learn new things as a beginner to some of our software or those unfamiliar with particular parts of the code.",
+    "title": ":material-clock-fast: <u>__Getting Started__</u>",
+    "content": " First stop for learning about USGS Astrogeology's software: ISIS, the CSM Stack (ALE, Knoten), and SpiceQL.
+    ",
     "url" : getting-started/index.md
   }, 
   {
-    "title": "How-To Guides",
+    "title": ":material-check-all: <u>__How-To Guides__</u>",
     "content": "Examples on how-to complete common software tasks; for intermediate to advanced users who want examples on how to accomplish a particular task.",
     "url" : how-to-guides/index.md
   },
   {
-    "title": "Concepts",
+    "title": ":material-text-long: <u>__Concepts__</u>",
     "content": "Write-ups that define and explain concepts that apply to our software; this is for anyone who wants a better understanding of particular higher-level concepts.",
     "url" : concepts/index.md
 },
   {
-    "title": "Software Manuals",
+    "title": ":material-book-open-variant-outline: <u>__Software Manuals__</u>",
     "content": "Links to in-depth software manuals; contains in-depth references to a particular software project's apps and APIs.",
     "url" : manuals/index.md
   },

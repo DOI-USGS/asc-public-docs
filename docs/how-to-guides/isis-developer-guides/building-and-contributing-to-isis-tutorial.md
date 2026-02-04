@@ -33,6 +33,12 @@ Check out [Running Tests](https://astrogeology.usgs.gov/docs/how-to-guides/isis-
 
 As an example, let's look at the [`skypt` test suite](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/tests/FunctionalTestsSkypt.cpp). You can run the all of `skypt`'s tests with `ctest -R skypt`. Let's say you want to test only the first test case in *FunctionalTestsSkypt.cpp*, run `ctest -R FunctionalTestSkyptDefault`. 
 
+## 4. Run Coverage Checks
+
+Check out [Running Tests](https://astrogeology.usgs.gov/docs/how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#checking-test-coverage) to see how coverage works. 
+
+If you run a partial test, then you should only look at how coverage changed for the class or application you updated. 
+
 ## 4. Update CHANGELOG
 
 Make sure you update the *CHANGELOG.md* located in the root of the `ISIS3` folder by adding an entry under the **Unreleased** heading and **Changed** subheading.

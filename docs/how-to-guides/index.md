@@ -4,13 +4,23 @@
 
 <div class="grid cards" markdown>
 
--   :octicons-download-24:{ .lg .middle } __Ready to use ISIS?__
+-   :octicons-download-24:{ .lg .middle } __Use our script to install ISIS__
 
     ---
 
-    Install ISIS with `conda` and download data for your mission.
+    ```sh
+    bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh)
+    ```
 
-    [:octicons-arrow-right-24: Install ISIS](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+    [:octicons-arrow-right-24: More on Installing ISIS](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+
+-   :material-data-matrix-edit:{ .lg .middle } __Image Processing__
+
+    ---
+
+    Manipulate pixels, remove noise, and align multiple images together.
+
+    [:octicons-arrow-right-24: Work on Images in ISIS](../how-to-guides/image-processing/index.md)
 
 -   :octicons-code-square-24:{ .lg .middle } __ISIS Development Guides__
 
@@ -24,7 +34,7 @@
 
     ---
 
-    Learn about how to report issues with ISIS and how the maintainers respond to issues.
+    Learn how to report issues with ISIS and how the maintainers respond to issues.
 
     [:octicons-arrow-right-24: Report an Issue](../how-to-guides/software-management/guidelines-for-reporting-issues.md)
 
@@ -32,9 +42,11 @@
 
 -----
 
-How-to guides are much like recipes in a recipe book. They show how to carry out a specific task quickly, and can be copy-pastable. Think of how-to guides as preemptive StackOverflow-like answers.
+How-to guides are much like recipes in a recipe book. Write how-to docs to solve specific problems quickly, sometimes copy-pastable. Think of how-to guides as preemptive StackOverflow-like problems.
 
-Use the table of contents on the left to start browsing guides.  Check out the above cards if you aren't sure where to start.  Use the search bar if you're looking for something specific.
+[comment]: <> (This is a good place to mention any places for someone to start looking in. Highlight specific docs with high value or we identify readers commonly want to see)
+
+Use the table of contents on the left to start browsing guides. Check out the above cards if you aren't sure where to start.  Use the search bar if you're looking for something specific.
 
 -----
 
@@ -51,4 +63,5 @@ Use the table of contents on the left to start browsing guides.  Check out the a
         - Cookbook of common operations in a library
 
     On the other hand, docs in the **getting started** category detail specific tasks for users who may not have much experience; docs in the **concepts** category provide an understanding of a topic without necessarily going into detail on how to carry out specific tasks. 
+ 
     

@@ -109,6 +109,8 @@ The J2000 coordinate system (also known as EME2000) is based on the earth mean e
 ## K 
 ### Kappa Angle
 An exterior orientation angle that describes the rotation around the y-axis of the camera.  Analogous to "pitch."
+### Kernel Qualities 
+NAIF SPICE kernel data for CKs (instrument pointing) and SPKs (instrument positions) can come in different quality levels. From lowest to highest: nadir (for pointing only), predicted, reconstructed, and smithed. Some summary kernels combine a mix of qualities. Astro software labels the quality for a kernel or a kernel set by the highest quality in the kernels. For example, a large CK covering 2025 with a mix of reconstructed and predicted data would be considered reconstructed. Similarly, in SpiceQL, when mixed qualities are requested, a list of CKs with a mix of predicted and reconstructed kernels will also be labeled reconstructed.  
 
 ## L
 ### Latitude
@@ -198,7 +200,9 @@ The thickness of a polygon is defined as follows:
 ### Positive East Longitude
 The reported longitude values for a target body increase positive to the East. 
 ### Positive West Longitude
-The reported longitude values for a target body increase positive to the West. 
+The reported longitude values for a target body increase positive to the West.
+### Predicted 
+"Predicted" kernels are NAIF SPICE kernels that are created during the planning phase of a mission. These contain expected trajectories, but may or may not be close to the actual trajectories like reconstructed or smithed kernels are. 
 ### Prime Meridian
 Prime Meridian (W) location is the third Euler angle which is expressed as a rotation about the North Pole as a function of time. The reference frame is J2000. 
 ### Projection X
@@ -220,12 +224,16 @@ A time-dependent linear shift in the spacecraft's "vertical positioning," i.e. d
 A measurement describing the amount of electromagnetic energy emitted from an area of a planet. 
 ### Radius
 The distance (vector) value between the center of and a point on a circle, sphere, ellipse or ellipsoid. Refer to qview, camstats, or campt as examples of applications that report radius value at every image pixel location. 
+### Reconstructed 
+Kernels that are "Reconstructed" are NAIF SPICE kernels containing trajectories that were obtained during the spacecraft's mission phase. They are created using actual instrument telemetry data, hence the name "reconstructed".  
 ### Reference Measure
 Reference Measure is a fundamental component of the control network. For every point within the network, there is always one and only one associated Reference Measure (Reference=True). The Reference Measure refers to a single image and it's pixel coordinate (measure) that best represents a control point location or feature. 
 ### Reflectance
 The ratio of reflected energy to incoming energy. 
 ### Right Ascension
 Right Ascension (RA) is one of two angles of the North Pole of a target body as a function of time. 
+
+
 
 ## S
 ### Sample
@@ -240,6 +248,8 @@ A unique identifier constructed and assigned to each individual image within a c
 The distance from the spacecraft to the point of interest on the surface of the planet. 
 ### Slew Angle
 From the spacecraft, the Slew is the angle between the boresight (i.e., center of framing camera) and the nadir vector (subspacecraft vector). The Slew angle will be a constant value across the image. 
+### Smithed 
+"Smithed" kernels are SPICE SPICE kernels that have gone through additional processing through a geodetic control process to reduce error and improve alignment. Smithed kernels are generally higher quality than Reconstructed kernels.   
 ### Solar Longitude
 The Solar Longitude is the planetocentric longitude of the sun as seen from a point on a body. It is considered a seasonal angle. 
 ### Spacecraft Azimuth

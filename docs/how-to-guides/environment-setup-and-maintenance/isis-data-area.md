@@ -167,6 +167,7 @@ If you are only working with a few missions, save space by downloading just thos
     | Apollo 17 | `downloadIsisData apollo17 $ISISDATA` |
     | Cassini | `downloadIsisData cassini $ISISDATA` | 
     | Chandrayaan 1 | `downloadIsisData chandrayaan1 $ISISDATA` |
+    | Chandrayaan 2 | `downloadIsisData chandrayaan2 $ISISDATA` |
     | Clementine 1 | `downloadIsisData clementine1 $ISISDATA` |
     | Dawn | `downloadIsisData dawn $ISISDATA` |
     | ExoMars | `downloadIsisData tgo $ISISDATA` |
@@ -194,6 +195,13 @@ If you are only working with a few missions, save space by downloading just thos
     | Viking 2 | `downloadIsisData viking2 $ISISDATA` |
     | Voyager 1 | `downloadIsisData voyager1 $ISISDATA` |
     | Voyager 2 | `downloadIsisData voyager2 $ISISDATA` |
+
+#### Excluding Kernels
+
+You can exclude common kernel subdirectories from your download with the `--no-kernels` flag.  For example, to download only calibration files for the MRO mission:
+```sh
+downloadIsisData mro ~/data/testdata --no-kernels
+```
 
 -----
 
@@ -240,3 +248,7 @@ You can also use the `include` argument (like a whitelist) to partially download
 ## The ISIS Test Data Area
 
 There is an ISISTESTDATA area containing files needed to run some of ISIS's older Makefile-based tests.  See [ISIS Test Data](../../how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md) for more info.
+
+## See also
+
+ - [Setting up ISIS data for a new mission](../../how-to-guides/environment-setup-and-maintenance/setup-isis-data.md)

@@ -1,4 +1,9 @@
 site_name: USGS Astrogeology Software Docs
+site_url: https://astrogeology.usgs.gov/docs/
+
+repo_name: asc-public-docs
+repo_url: https://github.com/DOI-USGS/asc-public-docs
+edit_uri: edit/main/docs/
 
 theme:
     name: material
@@ -13,9 +18,13 @@ theme:
         - navigation.tabs
         - navigation.path
         - navigation.indexes
+        - navigation.footer
         - search.suggest
         - search.suggest
         - content.code.copy
+        - content.footnote.tooltips
+        - content.action.edit
+        - content.action.view
 
     palette:
         # Palette toggle for dark mode
@@ -39,59 +48,71 @@ nav:
   - Home: index.md
   - Getting Started: 
     - Home: getting-started/index.md
-    - CSM Stack:
+    - ISIS:
+      - Introduction to ISIS:               getting-started/using-isis-first-steps/introduction-to-isis.md
+      - Locating and Ingesting Image Data:  getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md
+      - Adding SPICE:                       getting-started/using-isis-first-steps/adding-spice.md
+      - Exporting ISIS Data:                getting-started/using-isis-first-steps/exporting-isis-data.md
+      - ISIS FAQ:                           getting-started/using-isis-first-steps/isis-faq.md
+    - CSM Stack (ALE, Knoten):
+      - Generating an ISD:                  getting-started/using-ale/isd-generate.md
       - Generating an ISD, creating a CSM model, and converting coordinates: getting-started/csm-stack/image-to-ground-tutorial.ipynb
-      - Knoten - Basic Camera Operations: getting-started/csm-stack/knoten-camera-tutorial.ipynb
-    - "Using ISIS: First Steps":
-      - Introduction to ISIS:              getting-started/using-isis-first-steps/introduction-to-isis.md
-      - Locating and Ingesting Image Data: getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md
-      - Adding SPICE:                      getting-started/using-isis-first-steps/adding-spice.md
-      - Exporting ISIS Data:               getting-started/using-isis-first-steps/exporting-isis-data.md
-      - ISIS FAQ:                          getting-started/using-isis-first-steps/isis-faq.md
-    - Using Ale:
-      - Generating an ISD:                 getting-started/using-ale/isd-generate.md
+      - Knoten - Basic Camera Operations:   getting-started/csm-stack/knoten-camera-tutorial.ipynb
+      - CSM Sandbox:                        getting-started/csm-stack/csm-sandbox.ipynb
+    - Using SpiceQL:
+      - SpiceQL Cassini Tutorial:          getting-started/using-spiceql/spiceql-cassini-tutorial.ipynb
+      - Exploring SpiceQL's REST, Python, and C++ APIs: getting-started/using-spiceql/exploring-spiceqls-rest-python-and-cpp-apis.md
+      - Visualizing with pyspiceql:        getting-started/using-spiceql/visualizing-with-pyspiceql-tutorial.ipynb
     - Archive:
       - Demos and Workshops:               getting-started/archive/isis-demos-and-workshops.md
   - How-To Guides: 
     - Home: how-to-guides/index.md
     - ISIS Environment Setup and Maintenance:
-      - 1. Installing ISIS:                   how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md
-      - 2. Setting up the ISIS Data Area:     how-to-guides/environment-setup-and-maintenance/isis-data-area.md
-      - 2a. SPICE Kernel Updates in ISIS:     how-to-guides/environment-setup-and-maintenance/spice-kernel-updates-in-isis.md
-      - 3. Using ISIS in other Conda Envs:    how-to-guides/environment-setup-and-maintenance/using-isis-in-other-conda-envs.md
-      - (ISIS ≤ 8.1 Only) The USGSCSM Plugin:  how-to-guides/environment-setup-and-maintenance/adding-usgscsm-plugin-to-isis.md
+      - Installing ISIS:                   how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md
+      - Setting up the ISIS Data Area:     how-to-guides/environment-setup-and-maintenance/isis-data-area.md
+      - SPICE Kernel Updates in ISIS:      how-to-guides/environment-setup-and-maintenance/spice-kernel-updates-in-isis.md
+      - Using ISIS in other Conda Envs:    how-to-guides/environment-setup-and-maintenance/using-isis-in-other-conda-envs.md
+      - Setting Up ISIS Data for New Missions: how-to-guides/environment-setup-and-maintenance/setup-isis-data.md
+      - (ISIS ≤ 8.1 Only) USGSCSM Plugin:     how-to-guides/environment-setup-and-maintenance/adding-usgscsm-plugin-to-isis.md
       - (Internal) USGS Networked Conda Envs: how-to-guides/environment-setup-and-maintenance/anaconda-in-a-network-environment.md
     - SPICE: 
       - Creating Spice Config Files in SpiceQL: how-to-guides/SPICE/creating-spice-config-files-in-spiceql.md
+      - Using SpiceQL with Other Libraries: how-to-guides/SPICE/using-spiceql-with-other-libraries.md
+      - Using Web Spice in ISIS and ALE: how-to-guides/SPICE/using-web-spice-in-isis-and-ale.md
     - Image Processing:
-      - Map Projecting Images:             how-to-guides/image-processing/map-projecting-images.md
-      - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md
-      - General Utility with FX:           how-to-guides/image-processing/general-utility-with-fx.md
+      - Home:                              how-to-guides/image-processing/index.md
+      - DN Manipulation:
+        - Removing Striping Noise:           how-to-guides/image-processing/removing-striping-noise.md
+        - General Utility with FX:           how-to-guides/image-processing/general-utility-with-fx.md
+      - Image Projection:
+        - Map Projecting Images:             how-to-guides/image-processing/map-projecting-images.md
       - Bundle Adjustment in ISIS:         how-to-guides/image-processing/bundle-adjustment-in-isis.md
     - ISIS Demos:
       - Interactive Online Demos:          how-to-guides/demos/isis-demos.md
     - Software Management:
-      - 1. Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
-      - 2. Guidelines for Pull Requests:      how-to-guides/software-management/guidelines-for-pull-requests.md
-      - 2a. Deprecation:                      how-to-guides/software-management/deprecation.md
-      - 3. Software Support:                  how-to-guides/software-management/software-support.md
-      - 4. ISIS Release Schedule:             how-to-guides/software-management/isis-release-schedule.md
-      - 5. USGS ASC Release Processes (Internal):
-        - 5a. Public Release Process Step-By-Step: how-to-guides/software-management/public-release-process.md
-        - 5b. LTS Release Process:                 how-to-guides/software-management/lts-release-process.md
+      - Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
+      - Guidelines for Pull Requests:      how-to-guides/software-management/guidelines-for-pull-requests.md
+      - Deprecation:                       how-to-guides/software-management/deprecation.md
+      - Software Support:                  how-to-guides/software-management/software-support.md
+    - Releases:                          
+      - Home:                            how-to-guides/software-management/releases/index.md
+      - Releasing ISIS:                   how-to-guides/software-management/releases/isis-release-process.md
+      - Releasing Other Astro Software:   how-to-guides/software-management/releases/general-release-process.md
+      - ISIS Release Schedule:             how-to-guides/software-management/isis-release-schedule.md
+      - LTS Release Process:               how-to-guides/software-management/lts-release-process.md
     - ISIS Developer Guides:
-      - 1. Developing ISIS3 with cmake:        how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md
-      - 1a. ISIS Development on ARM Macs:      how-to-guides/isis-developer-guides/developing-mac-m1-arm-systems.md
-      - 2. ISIS Test Data:                     how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md
-      - 3. Contributing to ISIS - Overview:    how-to-guides/isis-developer-guides/contributing-to-isis.md
-      - 4. Contributing to ISIS - Tutorial:    how-to-guides/isis-developer-guides/building-and-contributing-to-isis-tutorial.md
-      - 5. Writing Tests with CTest and GTest: how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md
-      - 6. Code Templates & Style:
-        - 6a. App Testing Templates:           how-to-guides/isis-developer-guides/app-testing-cookbook.md
-        - 6b. Doxygen Tag Class Requirement:   how-to-guides/isis-developer-guides/class-requirements-for-using-doxygen-tags.md
-      - 7. ISIS Programming Exercises:
-        - 7a. Exercise 1 - mirror:             how-to-guides/isis-developer-guides/exercise-1.md
-        - 7b. Exercise 2 - diff:               how-to-guides/isis-developer-guides/exercise-2.md
+      - Developing ISIS3 with cmake:                  how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md
+      - ISIS Development on ARM Macs:    how-to-guides/isis-developer-guides/developing-mac-m1-arm-systems.md
+      - ISIS Test Data:                               how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md
+      - Contributing to ISIS - Overview:                         how-to-guides/isis-developer-guides/contributing-to-isis.md
+      - Contributing to ISIS - Tutorial:   how-to-guides/isis-developer-guides/building-and-contributing-to-isis-tutorial.md
+      - Writing Tests with CTest and GTest:           how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md
+      - Code Templates & Style:
+        - Doxygen Tag Class Requirement:                how-to-guides/isis-developer-guides/class-requirements-for-using-doxygen-tags.md
+        - App Testing Templates:                         how-to-guides/isis-developer-guides/app-testing-cookbook.md
+      - ISIS Programming Exercises:
+        - Exercise 1:                                 how-to-guides/isis-developer-guides/exercise-1.md
+        - Exercise 2:                                 how-to-guides/isis-developer-guides/exercise-2.md
     - ALE Developer Guides:
       - Creating Ale Drivers: how-to-guides/ale-developer-guides/creating-ale-drivers.md
 
@@ -103,8 +124,10 @@ nav:
     - Camera Geometry and Projections:
       - Camera Geometry:                     concepts/camera-geometry-and-projections/camera-geometry.md
       - Learning About Map Projections:      concepts/camera-geometry-and-projections/learning-about-map-projections.md
+      - PROJ Map Projecting Images:          concepts/camera-geometry-and-projections/proj-projections.md
     - ISIS Fundamentals:
       - ISIS Cube Format:                  concepts/isis-fundamentals/cube-format.md
+      - Gdal Support:                      concepts/isis-fundamentals/gdal-support.md
       - ISIS Label Dictionary:             concepts/isis-fundamentals/label-dictionary.md
       - ISIS Attached Spice Format:        concepts/isis-fundamentals/spice-format.md
       - ISIS Kernel Load Selection:        concepts/isis-fundamentals/kernel-selection.md
@@ -114,6 +137,29 @@ nav:
       - Preference Dictionary:             concepts/isis-fundamentals/preference-dictionary.md
       - Error Dictionary:                  concepts/isis-fundamentals/error-dictionary.md
       - Session Logs:                      concepts/isis-fundamentals/session-logs.md
+    - Missions:
+      - Home:                              concepts/missions/index.md
+      - LRO (Lunar Reconnaissance Orbiter):
+        - Home:                            concepts/missions/lro/index.md
+        - NAC Data:                        concepts/missions/lro/lroc-nac-data.md
+        - WAC Data:                        concepts/missions/lro/lroc-wac-data.md
+        - MiniRF Data:                     concepts/missions/lro/lro-minirf-data.md
+      - MGS (Mars Global Surveyor):
+        - Home:                            concepts/missions/mgs/index.md
+        - MOC (Mars Orbiter Camera):                             concepts/missions/mgs/moc-mars-orbiter-camera.md
+      - Viking Orbiter:
+        - Home:                            concepts/missions/vik/index.md
+        - VIS Data:             concepts/missions/vik/viking-orbiter-data.md
+      - MRO (Mars Reconnaissance Orbiter):
+        - Home:                            concepts/missions/mro/index.md
+        - CTX Data:                        concepts/missions/mro/ctx-data.md
+        - HiRISE:                          
+          - Home:                               concepts/missions/mro/hirise/index.md
+          - HiRISE Level0:                      concepts/missions/mro/hirise-level-0.md
+          - HiRISE Level1:                      concepts/missions/mro/hirise-level-1.md
+          - HiRISE Level2:                      concepts/missions/mro/hirise-level-2.md
+          - HiRISE Anaglyphs:                   concepts/missions/mro/hirise-anaglyphs.md
+          - HiRISE to HiRISE Geometric Control: concepts/missions/mro/hirise-geometric-control.md
     - SPICE:
       - SPICE Overview:                            concepts/spice/spice-overview.md
       - SPICE Position Functions and Requirements: concepts/spice/spice-position-functions-and-requirements.md
@@ -149,8 +195,27 @@ extra_javascript:
 
 plugins:
   - search
-  - mknotebooks
+  - llmstxt:
+      full_output: llms-full.txt
+      sections:
+        Getting Started:
+          - getting-started/index.md : index page for getting started
+          - getting-started/* : Tutorials used by new users looking for how to get started
+        How-To Guides:
+          - how-to-guides/index.md : index page for how-to-guides
+          - how-to-guides/* : how-to-guides, including environment setup and maintenance, SPICE, image processing, ISIS demos, software management, ISIS developer guides, ALE developer guides
+        Concepts:
+          - concepts/index.md : index page for concepts
+          - concepts/* : concepts, including camera geometry and projections, ISIS fundamentals, SPICE, image processing, control networks, sensor models, history
+        Manuals:
+          - manuals/index.md : index page for manuals
+          - manuals/* : manuals, including ISIS, ALE, and other software manuals
+  - mknotebooks: 
+      include_source: True
   - mermaid2
+  - redirects:
+      redirect_maps:
+        'how-to-guides/software-management/public-release-process.md': 'how-to-guides/software-management/releases/index.md'
 
 markdown_extensions:
   - codehilite
@@ -163,6 +228,7 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - def_list
+  - footnotes
   - pymdownx.tasklist:
       custom_checkbox: true
       clickable_checkbox: true
@@ -188,3 +254,4 @@ markdown_extensions:
           - definitions.md
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.blocks.caption

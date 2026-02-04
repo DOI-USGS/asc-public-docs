@@ -17,26 +17,42 @@
 
     During the installation process, you can use Anaconda’s syntax for specifying version numbers. 
 
-    To update your version of ISIS, you simply run `conda update -c usgs-astrogeology isis3=<version number>`.
+    To update your version of ISIS, you simply run `conda update -c usgs-astrogeology isis=<version number>`.
 
-    ISIS release candidates are tagged with “RC”. Installing/updating RC’s would require you to explicitly mention the RC label with `-c usgs-astrogeology/label/RC `. 
+    ISIS release candidates are tagged with “RC”. Installing/updating RC’s would require you to explicitly mention the RC label with `-c usgs-astrogeology/label/RC `.  ISIS Long Term Support releases are similarly tagged with "LTS".
 
-    Examples: 
-    `conda install -c usgs-astrogeology isis`, install the latest version of ISIS
-    `conda update -c usgs-astrogeology isis`, update to the latest version of ISIS
-    `conda update -c usgs-astrogeology isis=3.9.1`, update to ISIS version 3.9.1
-    `conda install -c usgs-astrogeology isis=3.9.1`, install ISIS version 3.9.1
-    `conda install -c usgs-astrogeology/label/RC isis=3.9.1`, install release candidate for ISIS version 3.9.1 
+    Examples:   
+    `conda install -c usgs-astrogeology isis`, install the latest version of ISIS   
+    `conda update -c usgs-astrogeology isis`, update to the latest version of ISIS   
+    `conda update -c usgs-astrogeology isis=7.2.0`, update to ISIS version 7.2.0   
+    `conda install -c usgs-astrogeology isis=7.2.0`, install ISIS version 7.2.0   
+    `conda install -c usgs-astrogeology/label/RC isis=7.2.0`, install release candidate for ISIS version 7.2.0   
+    `conda install -c usgs-astrogeology/label/LTS`, install the latest LTS version of ISIS 
 
-    Full list of supported versions including release candidates: [https://anaconda.org/usgs-astrogeology/isis3/files](https://anaconda.org/usgs-astrogeology/isis3/files) 
+    Related:
 
-    Info on maintaining your anaconda packages: [https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html)
+    - [List of ISIS versions on Conda](https://anaconda.org/usgs-astrogeology/isis/files)
+    - [Maintaining your conda packages (conda docs)](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html)
+    - [Semantic Versioning](https://github.com/DOI-USGS/ISIS3/tree/dev#Semantic-Versioning)
+    - [Release Schedule](../../how-to-guides/software-management/isis-release-schedule.md)
+    - [LTS Release Process](../../how-to-guides/software-management/lts-release-process.md)
+    - [ISIS RFC8 - Long Term Support (LTS)](https://github.com/USGS-Astrogeology/ISIS3/discussions/4691)
+    - [ISIS RFC14 - Changing ISIS Release Schedule](https://github.com/DOI-USGS/ISIS3/discussions/5731)
+
 
 ??? question "How do I keep two different versions of ISIS on my system and switch between them?"
 
-    An example of when this functionality may be useful is to test out a release candidate (RC) version of the ISIS3 software (if you have questions about RC’s, see the [Release Schedule][1] info). The solution is to use multiple environments. Follow the steps for installing ISIS using a new environment with a different name (e.g. `isis3.9` vs `isis3.9_RC`).
-
-    [1]: https://github.com/DOI-USGS/ISIS3/wiki/Release-Schedule
+    Yes, use a different conda environment for each version. This is useful for testing a development version of ISIS.  Follow the steps for installing ISIS using a new conda environment with a different name (e.g. `isis-lts` `isis7.2.0`, `isis-dev`).
+    ```sh
+    # Create a conda environment, this name can be whatever you like
+    conda create -n isis7.2.0
+    conda activate isis7.2.0
+    
+    # Install via conda, here you can specify which ISIS version you want to install.
+    # See the previous question for more info on specifying the isis version.
+    conda install -c usgs-astrogeology isis=7.2.0
+    ```
+    *Note: you may need to [add channels](https://astrogeology.usgs.gov/docs/how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda/#channels) before running `conda install [...]`.*
 
 ??? question "I Installed ISIS but I get “<app>: command not found” or similar error."
 
@@ -80,6 +96,30 @@
     [5]: ../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md#mission-specific-data-areas
     [6]: ../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md#isis-spice-web-service
     [7]: ../../getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md
+
+??? question "Can I still use legacy versions of ISIS?"
+
+    ### Supported ISIS Versions
+
+    LTS versions of ISIS are supported for 18 months from their release date ([RFC8](https://github.com/USGS-Astrogeology/ISIS3/discussions/4691), [RFC14](https://github.com/DOI-USGS/ISIS3/discussions/5731)).  Versions before that are not officially supported or maintained, may no longer be hosted by USGS Astrogeology, and/or ***may no longer be installable***.
+    
+    In particular, ISIS2 and Legacy ISIS3 distributions hosted on `isisdist.wr.usgs.gov` and `isisdist.astrogeology.usgs.gov` are no longer available.
+
+    ### Legacy ISIS3 Versions 
+
+    ISIS versions 3.6.1 and above are hosted on conda in the 
+    [usgs-astrogeology channel](https://anaconda.org/usgs-astrogeology/repo). 
+    Versions 3.6.1 to 3.9.1 are under the [isis3 package](https://anaconda.org/usgs-astrogeology/isis3/files), 
+    and versions 3.10.0 onwards are under the [isis package](https://anaconda.org/usgs-astrogeology/isis/files). 
+    
+    Older versions of ISIS may have different setup requirements and/or different scripts to facilitate installation. Check the `README.md` in the GitHub repo (under your version's tag), and/or the [Software Manuals](https://isis.astrogeology.usgs.gov) for more information.
+
+    ISIS versions back to 3.5.x may be viewed in the [ISIS GitHub source code repository](https://github.com/DOI-USGS/ISIS3/tree/v3.5.2) and the [ISIS Software Manuals](https://isis.astrogeology.usgs.gov/3.5.0/).  The [Legacy Install Guide](https://isis.astrogeology.usgs.gov/8.2.0/documents/LegacyInstallGuide/index.html) details the method of installation, but ISIS distributions hosted on `isisdist.astrogeology.usgs.gov` are no longer available.
+
+    ### Legacy ISIS2 Documentation
+
+    Some online ISIS2 documentation pages [remain here](https://isis.astrogeology.usgs.gov/Isis2/html/isis.html) for historical purposes, but they are unmaintained and unsupported.  The [Wayback Machine](https://web.archive.org/web/20030613002511/http://isis.astrogeology.usgs.gov/) may help you find missing pages or broken links.  As of 2025, the ISIS2 software does not appear to be installable; ISIS2 distributions are no longer hosted by USGS Astrogeology.
+   
 
 ???+ abstract "Additional Helpful Docs"
 

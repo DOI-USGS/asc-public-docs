@@ -78,6 +78,7 @@ nav:
     - SPICE: 
       - Creating Spice Config Files in SpiceQL: how-to-guides/SPICE/creating-spice-config-files-in-spiceql.md
       - Using SpiceQL with Other Libraries: how-to-guides/SPICE/using-spiceql-with-other-libraries.md
+      - Using Web Spice in ISIS and ALE: how-to-guides/SPICE/using-web-spice-in-isis-and-ale.md
     - Image Processing:
       - Home:                              how-to-guides/image-processing/index.md
       - DN Manipulation:

@@ -1,206 +1,242 @@
 # GDAL Support
 
-<script src="https://asc-public-docs.s3.us-west-2.amazonaws.com/common/scripts/isis-demos/jquery-3.7.1.min.js"></script>
-<link href="../../../css/isis-demos.css" media="all" rel="stylesheet"/>
-
-
-<script type="text/javascript">
-if (typeof window.isisDemosLoaded == 'undefined') {
-    var isisDemosLoaded = true;
-    $.getScript("https://asc-public-docs.s3.us-west-2.amazonaws.com/common/scripts/isis-demos/easeljs-0.8.1.min.js").done( function(s,t) { $.getScript("../../../js/isisDemos.js");});
-}
-</script>
-
-
-The Geospatial Data Abstraction Library (GDAL) provides a broad range of data formats that ISIS could read or write. Currently, ISIS only supports Geospatial Tag Image File Format (GeoTiff) but has the potential to expand to other desired formats. How to access each format along with any potential quirks of processing using said formats will be detailed below.
+GDAL (Geospatial Data Abstraction Library) has a broad range of data formats. To improve interoperability, ISIS added support for GeoTIFF (Geospatial Tag Image File Format) in [RFC 13](https://github.com/DOI-USGS/ISIS3/discussions/5698).
 
 ## Processing With GeoTIFFs
 
-Users wanting to process using GeoTIFFs only have to use `+GTiff` as an output attribute similar to cube [storage formats](../../concepts/isis-fundamentals/command-line-usage.md#storage-format) in ISIS found under the Command Line Usage page in the Isis Fundamentals. This will produce a `.tiff` file and a `.tiff.msk` file as your output file. For example:
+Use `+GTiff` as an [output attribute](../../concepts/isis-fundamentals/command-line-usage.md#storage-format) to save output as a GeoTIFF. This creates a `.tiff` and a `.tiff.msk` file.
 
-```
-mroctx2isis from=mroraw.img to=mrotiff.tiff+GTiff
-```
-results in
+The GeoTIFF can then be used as input like cubes to other applications.
 
-```
-mrotiff.tiff
-mrotiff.tiff.msk
-```
-The GeoTIFFs can then be used as input like cubes to other applications.
+???+ example "Using the +GTiff Output Attribute"
 
-One can also combine supported output attributes with the `+GTiff` attribute. The `GTiff` attribute will work with all ISIS [pixel type attributes](../../concepts/isis-fundamentals/command-line-usage.md#pixel-type) and [label format attributes](../../concepts/isis-fundamentals/command-line-usage.md#label-format). [Pixel storage order](../../concepts/isis-fundamentals/command-line-usage.md#pixel-storage-order) does not work and will not perform any alterations to the byte ordering.
+    ```sh
+    mroctx2isis from=mroraw.img to=mrotiff.tiff+GTiff
+    ```
+    results in
 
+    ```sh
+    mrotiff.tiff
+    mrotiff.tiff.msk
+    ```
 
-When using +GTiff in ISIS, the current defaults will automatically set a DEFLATE compression with PREDICTOR=2. This type of compression is lossless and supports all bit types. Overviews are not automatically created by ISIS, but they can be added to any TIFF using the GDAL routine gdaladdo.
+### Combining Attributes
 
-Technically, a fully realized GeoTIFF is only enabled when the data is map projected. For images that are not yet map projected, the underlying TIFF format will still be used, but there will be no geospatial map projection in the ISIS or TIFF label. For more information on the Open Geospatial Consortium GeoTIFF specification please [see](https://www.ogc.org/publications/standard/geotiff/).
+Supported output attributes can be combined with the `+GTiff` attribute.
 
-### Processing With Cloud Data
+!!! failure inline end "Unsupported"
 
-GDAL allows for access to online/cloud volumes. Now that ISIS supports reading/writing GeoTIFFs, this includes accessing online/cloud data.
+    #### [Pixel Storage Order](../../concepts/isis-fundamentals/command-line-usage.md#pixel-storage-order)
 
-When working with online/cloud volumes, one can access these volumes by adding `/vsicurl/` in front of the URL for your data. See [this](https://gdal.org/en/stable/user/virtual_file_systems.html) GDAL page for more information on `vsicurl` An example process can look something like this:
-```
-catlab from=/vsicurl/https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/ctx/controlled/usgs/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W-DEM.tif
-```
-Qview can also access files in the same way, one can run
-```
-qview /vsicurl/https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/ctx/controlled/usgs/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W-DEM.tif
-```
-and see cloud data in qview.
+    *+lsb, +msp*
 
-Many cloud volumes will have overviews, or compressed versions of the image that can be requested for display rather than the full resolution image.
+!!! success "Supported"
 
-The best use of overviews is for responsiveness over the web. If an online dataset has overviews, users will be able to stream the overview data rather than the full resolution data. This decreases the amount of data needed to display the image. For example, if someone is displaying a 500 x 500 portion of a 1000 x 1000 image at .25 scale that has overviews, GDAL will extract the DNs from the overview with a downsampling of 8. So instead of having to transfer all 250000 DN values over the network then subsampled, only 15625 downsampled DNs will to be transferred.
+    #### [Pixel Type Attributes](../../concepts/isis-fundamentals/command-line-usage.md#pixel-type)
 
-Below is a comparison between a GeoTIFF with overviews and a GeoTIFF with no overviews. If a GeoTIFF does not have overviews it will be subsampled based on the scale as ISIS already does with cubes. When using overviews, the image will be sampled at the closest resolution to the requested resolution. The images will look slightly different as a result when viewed in Qview. As shown in the gif below, the images look like they are changing but in reality, `B10_013341_1010_XN_79S172W_no_ovr.cal.tiff` is being subsampled while `B10_013341_1010_XN_79S172W.cal.tiff` is using overviews.
+    *+UnsignedByte, +8-bit, +SignedWord, +16-bit, +Real, +32-bit*
 
-![Alt Text](../../assets/gdal_data/overview_blink.gif)
+    #### [Label Format Attributes](../../concepts/isis-fundamentals/command-line-usage.md#label-format)
 
-For information on creating overviews, checkout the section on [Working with GDAL Products Outside of ISIS](gdal-support.md#working-with-gdal-products-outside-of-isis).
+    *+attached, +detached*
+
+-----
+
+### Compression
+
+When using +GTiff in ISIS, the compression defaults to DEFLATE with PREDICTOR=2, which is lossless and supports all bit types. Overviews are not automatically created by ISIS, but they can be added to any TIFF using the GDAL routine `gdaladdo`.
+
+### Projection
+
+Technically, a fully realized GeoTIFF is only enabled when the data is map projected. For images that are not yet map projected, the underlying TIFF format will still be used, but there will be no geospatial map projection in the ISIS or TIFF label.
+
+***[Open Geospatial Consortium GeoTIFF Specification :octicons-arrow-right-16:](https://www.ogc.org/publications/standard/geotiff/)***
+
+-----
+
+### Processing With Cloud Data (`vsicurl`)
+
+GeoTIFFs (and therefore, ISIS as well) support online/cloud volume access.
+
+You can access online volumes by adding `/vsicurl/` in front of the URL for your data. See [GDAL Virtual File Systems](https://gdal.org/en/stable/user/virtual_file_systems.html) for more info.
+
+!!! example "Accessing Online Volumes"
+
+    #### Viewing a Label in `catlab`  
+    ```sh
+    catlab from=/vsicurl/https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/ctx/controlled/usgs/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W-DEM.tif
+    ```
+
+    #### Viewing a cube in `qview`  
+    ```sh
+    qview /vsicurl/https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/ctx/controlled/usgs/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W-DEM.tif
+    ```
+
+### Overviews - Stream Less Data
+
+Many cloud volumes will have **overviews**, or **compressed versions** of the image that can be requested for display rather than the full resolution image.
+
+Use of overviews for responsiveness over the web. If an online dataset has overviews, you can stream overview data rather than full resolution data. This decreases the amount of data needed to display the image. 
+
+For example, if someone is displaying a 500 x 500 portion of a 1000 x 1000 image at .25 scale that has overviews, GDAL will extract the DNs from the overview with a downsampling of 8. So instead of having to transfer all 250000 DN values over the network then subsampled, only 15625 downsampled DNs will to be transferred.
+
+??? abstract "GeoTIFF with and without Overview"
+
+    If a GeoTIFF does not have overviews, it will be subsampled based on the scale as ISIS already does with cubes. When using overviews, the image will be sampled at the closest resolution to the requested one. The images will look slightly different in Qview. As shown in the gif below, the images look like they are changing but in reality, `B10_013341_1010_XN_79S172W_no_ovr.cal.tiff` is being subsampled while `B10_013341_1010_XN_79S172W.cal.tiff` is using overviews.
+
+    ![Alt Text](../../assets/gdal_data/overview_blink.gif)
+
+To create overviews, use GDAL's [`gdaladdo`](https://gdal.org/en/stable/programs/gdaladdo.html#gdaladdo).
 
 ### ISIS Specific GeoTIFF Data
 
-All axiliary processing data used in ISIS will be stored onto the GeoTIFF as JSON. As mentioned in ISIS [RFC 13](https://github.com/DOI-USGS/ISIS3/discussions/5698), each blob/table will be stored as a string under a keyword that represents the blob. All tables are denoted as "Table_`NAME`" and all blobs are "`OBJECT`_`NAME`". For example the ISIS `SunPosition` table can be found under `Table_SunPosition`, and the ISIS `History` blob can be found under `History_IsisCube`.
+All axiliary processing data used in ISIS will be stored in the GeoTIFF as JSON under the "USGS" Domain.
 
-Below is an explicit example of how the table looks on the TIFF vs the Cube:
+Each blob/table is stored as a string under a keyword that represents the blob as `OBJECT_NAME` (i.e, `Table_SunPosition`, `History_IsisCube`, or `Field_J2000X`).
 
-Table Metadata from Cube label
-```
-Object = Table
-  Name                 = SunPosition
-  StartByte            = 493963254
-  Bytes                = 112
-  Records              = 2
-  ByteOrder            = Lsb
-  CacheType            = Linear
-  SpkTableStartTime    = 297088762.24158
-  SpkTableEndTime      = 297088808.37074
-  SpkTableOriginalSize = 2.0
-  Description          = "Created by spiceinit"
-  Kernels              = ($base/kernels/spk/de430.bsp,
-                          $base/kernels/spk/mar097.bsp)
+GeoTIFFs can't store data in binary format like ISIS Cubes, so binary data is converted to hexadecimal and placed at the `Data` key in the GeoTIFF JSON.
 
-  Group = Field
-    Name = J2000X
-    Type = Double
-    Size = 1
-  End_Group
+???+ note "Metadata in GeoTIFF vs Cube Labels"
 
-  Group = Field
-    Name = J2000Y
-    Type = Double
-    Size = 1
-  End_Group
+    === "GeoTIFF (Metadata + Data)"
+    
+        ```json
+        {"Table_SunPosition": 
+            '{
+                "_container_name":"Table",
+                "_type":"object",
+                "Field_J2000X":{
+                    "_container_name":"Field",
+                    "_type":"group",
+                    "Name":"J2000X",
+                    "Type":"Double",
+                    "Size":"1"
+                },
+                "Field_J2000Y":{
+                    "_container_name":"Field",
+                    "_type":"group",
+                    "Name":"J2000Y",
+                    "Type":"Double",
+                    "Size":"1"
+                },
+                "Field_J2000Z":{
+                    "_container_name":"Field",
+                    "_type":"group",
+                    "Name":"J2000Z",
+                    "Type":"Double",
+                    "Size":"1"
+                },
+                "Field_J2000XV":{
+                    "_container_name":"Field",
+                    "_type":"group",
+                    "Name":"J2000XV",
+                    "Type":"Double",
+                    "Size":"1"
+                },
+                "Field_J2000YV":{
+                    "_container_name":"Field",
+                    "_type":"group",
+                    "Name":"J2000YV",
+                    "Type":"Double",
+                    "Size":"1"
+                },
+                "Field_J2000ZV":{
+                    "_container_name":"Field",
+                    "_type":"group",
+                    "Name":"J2000ZV",
+                    "Type":"Double",
+                    "Size":"1"
+                },
+                "Field_ET":{
+                    "_container_name":"Field",
+                    "_type":"group",
+                    "Name":"ET",
+                    "Type":"Double",
+                    "Size":"1"
+                },
+                "Name":"SunPosition",
+                "StartByte":"1",
+                "Bytes":"112",
+                "Records":"2",
+                "ByteOrder":"Lsb",
+                "CacheType":"Linear",
+                "SpkTableStartTime":"297088762.24158",
+                "SpkTableEndTime":"297088808.37074",
+                "SpkTableOriginalSize":"2.0",
+                "Description":"Created by spiceinit",
+                "Kernels":[
+                    "$base/kernels/spk/de430.bsp",
+                    "$base/kernels/spk/mar097.bsp"
+                ],
+                "Data":"4cffffffd401ffffffe62effffffd3ffffffa8ffffffc11d03ffffffffffffff8525495dffffffc157fffffffb03ffffff89ffffff800c404114ffffffd1ffffffa7ffffffb6ffffffecffffffe7ffffffcaffffffbfffffffc6fffffffa48ffffffd7ffffffe1ffffffe637ffffffc0246fffffff93ffffffae39ffffffea25ffffffc074ffffffd83dfffffffa36ffffffb5ffffffb141fffffff6ffffffc264fffffff92effffffd3ffffffa8ffffffc1503cffffffb32a394a5dffffffc1fffffff5fffffff746ffffffceffffff830b4041ffffffc6066d1b4fffffffe3ffffffcaffffffbf6c4f1dffffff80ffffffe1ffffffe637ffffffc03fffffffb246ffffffde39ffffffea25ffffffc0ffffff8fffffffe85e2837ffffffb5ffffffb141"
+            }'
+        }
+        ```
 
-  Group = Field
-    Name = J2000Z
-    Type = Double
-    Size = 1
-  End_Group
+    === "Cube (Metadata)"
 
-  Group = Field
-    Name = J2000XV
-    Type = Double
-    Size = 1
-  End_Group
+        ```
+        Object = Table
+          Name                 = SunPosition
+          StartByte            = 493963254
+          Bytes                = 112
+          Records              = 2
+          ByteOrder            = Lsb
+          CacheType            = Linear
+          SpkTableStartTime    = 297088762.24158
+          SpkTableEndTime      = 297088808.37074
+          SpkTableOriginalSize = 2.0
+          Description          = "Created by spiceinit"
+          Kernels              = ($base/kernels/spk/de430.bsp,
+                                  $base/kernels/spk/mar097.bsp)
 
-  Group = Field
-    Name = J2000YV
-    Type = Double
-    Size = 1
-  End_Group
+          Group = Field
+            Name = J2000X
+            Type = Double
+            Size = 1
+          End_Group
 
-  Group = Field
-    Name = J2000ZV
-    Type = Double
-    Size = 1
-  End_Group
+          Group = Field
+            Name = J2000Y
+            Type = Double
+            Size = 1
+          End_Group
 
-  Group = Field
-    Name = ET
-    Type = Double
-    Size = 1
-  End_Group
-End_Object
-```
+          Group = Field
+            Name = J2000Z
+            Type = Double
+            Size = 1
+          End_Group
 
-Table Metadata and data on TIFF
-```json
-{"Table_SunPosition": 
-    '{
-        "_container_name":"Table",
-        "_type":"object",
-        "Field_J2000X":{
-            "_container_name":"Field",
-            "_type":"group",
-            "Name":"J2000X",
-            "Type":"Double",
-            "Size":"1"
-        },
-        "Field_J2000Y":{
-            "_container_name":"Field",
-            "_type":"group",
-            "Name":"J2000Y",
-            "Type":"Double",
-            "Size":"1"
-        },
-        "Field_J2000Z":{
-            "_container_name":"Field",
-            "_type":"group",
-            "Name":"J2000Z",
-            "Type":"Double",
-            "Size":"1"
-        },
-        "Field_J2000XV":{
-            "_container_name":"Field",
-            "_type":"group",
-            "Name":"J2000XV",
-            "Type":"Double",
-            "Size":"1"
-        },
-        "Field_J2000YV":{
-            "_container_name":"Field",
-            "_type":"group",
-            "Name":"J2000YV",
-            "Type":"Double",
-            "Size":"1"
-        },
-        "Field_J2000ZV":{
-            "_container_name":"Field",
-            "_type":"group",
-            "Name":"J2000ZV",
-            "Type":"Double",
-            "Size":"1"
-        },
-        "Field_ET":{
-            "_container_name":"Field",
-            "_type":"group",
-            "Name":"ET",
-            "Type":"Double",
-            "Size":"1"
-        },
-        "Name":"SunPosition",
-        "StartByte":"1",
-        "Bytes":"112",
-        "Records":"2",
-        "ByteOrder":"Lsb",
-        "CacheType":"Linear",
-        "SpkTableStartTime":"297088762.24158",
-        "SpkTableEndTime":"297088808.37074",
-        "SpkTableOriginalSize":"2.0",
-        "Description":"Created by spiceinit",
-        "Kernels":[
-            "$base/kernels/spk/de430.bsp",
-            "$base/kernels/spk/mar097.bsp"
-        ],
-        "Data":"4cffffffd401ffffffe62effffffd3ffffffa8ffffffc11d03ffffffffffffff8525495dffffffc157fffffffb03ffffff89ffffff800c404114ffffffd1ffffffa7ffffffb6ffffffecffffffe7ffffffcaffffffbfffffffc6fffffffa48ffffffd7ffffffe1ffffffe637ffffffc0246fffffff93ffffffae39ffffffea25ffffffc074ffffffd83dfffffffa36ffffffb5ffffffb141fffffff6ffffffc264fffffff92effffffd3ffffffa8ffffffc1503cffffffb32a394a5dffffffc1fffffff5fffffff746ffffffceffffff830b4041ffffffc6066d1b4fffffffe3ffffffcaffffffbf6c4f1dffffff80ffffffe1ffffffe637ffffffc03fffffffb246ffffffde39ffffffea25ffffffc0ffffff8fffffffe85e2837ffffffb5ffffffb141"
-    }'
-}
-```
+          Group = Field
+            Name = J2000XV
+            Type = Double
+            Size = 1
+          End_Group
+
+          Group = Field
+            Name = J2000YV
+            Type = Double
+            Size = 1
+          End_Group
+
+          Group = Field
+            Name = J2000ZV
+            Type = Double
+            Size = 1
+          End_Group
+
+          Group = Field
+            Name = ET
+            Type = Double
+            Size = 1
+          End_Group
+        End_Object
+        ```
+
 ### Working with GDAL Products Outside of ISIS
-GDAL also provides a suite of applications that work on either GeoTIFFs or cubes. The programs that can be run on ISIS produced images can be found [here](https://gdal.org/en/stable/programs/index.html)
+
+GDAL provides a [suite of applications](https://gdal.org/en/stable/programs/index.html) that support both GeoTIFFs and ISIS Cubes.
 
 While there are plans to update the GeoTiff Driver in GDAL to support and maintain this ISIS JSON metadata, if an external application is used, the ISIS metadata within the GeoTIFF will likely not be recognized or lost during conversion. For example, during a conversion of an ISIS-created GeoTIFF using `gdal_translate`, the output file will not contain the JSON metadata.
 

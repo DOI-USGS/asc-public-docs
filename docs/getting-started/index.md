@@ -70,7 +70,7 @@ SpiceQL is a library for indexing and querying information from spacecraft SPICE
 
     Get positional data for the Cassini Spacecraft.
 
-    [:octicons-arrow-right-24: Make a simple query](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+    [:octicons-arrow-right-24: Make a simple query](../getting-started/using-spiceql/spiceql-cassini-tutorial.ipynb)
 
 -   :material-list-box:{ .lg .middle } __SpiceQL API__
 

@@ -4,7 +4,7 @@ Ale has a few options for getting kernels:
 
 1. Search for kernels locally in $ALESPICEROOT or $ISISDATA (default).
 1. Search for kernels online.
-1. Specify all kernels manually...
+1. Specify kernels manually...
     a. ...in your command.
     b. ...in a metakernel file.
 
@@ -16,7 +16,16 @@ Searching for a local kernel is the default behavior in ALE.
 isd_generate B10_013341_1010_XN_79S172W.cub
 ```
 
-## Search for kernels online
+???+ warning "Kernel Download and Setup Required"
+
+    For ALE to successfully find kernels locally:
+
+    1. The Kernels for your mission must be downloaded
+    1. The $ALESPICEROOT environmental variable must be set.
+
+    See [Setting Up NAIF Data](../../getting-started/using-ale/isd-generate.md#setting-up-naif-data) for more info.
+
+## Search for Kernels Online
 
 Use the -w flag to search for kernels online with the USGS SpiceQL web service.
 

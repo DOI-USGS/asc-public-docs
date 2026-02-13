@@ -55,7 +55,8 @@ nav:
       - Exporting ISIS Data:                getting-started/using-isis-first-steps/exporting-isis-data.md
       - ISIS FAQ:                           getting-started/using-isis-first-steps/isis-faq.md
     - CSM Stack (ALE, Knoten):
-      - Generating an ISD:                  getting-started/using-ale/isd-generate.md
+      - ALE - Generating an ISD:            getting-started/using-ale/isd-generate.md
+      - ALE - Specifying Kernels:           getting-started/using-ale/ale-getting-kernels.md
       - Generating an ISD, creating a CSM model, and converting coordinates: getting-started/csm-stack/image-to-ground-tutorial.ipynb
       - Knoten - Basic Camera Operations:   getting-started/csm-stack/knoten-camera-tutorial.ipynb
       - CSM Sandbox:                        getting-started/csm-stack/csm-sandbox.ipynb

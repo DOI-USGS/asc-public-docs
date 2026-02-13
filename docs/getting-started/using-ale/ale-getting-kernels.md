@@ -1,18 +1,31 @@
-# Specifying Kernels in ALE (isd_generate)
+# Specifying Kernels in ALE
 
 Ale has a few options for getting kernels:
 
 1. Search for kernels locally in $ALESPICEROOT (default).
-1. Search for kernels online.
+1. Search for kernels online (with `-w` or `props={'web' : True}`).
 1. Specify kernels manually.
 
 ## Search for Kernels Locally
 
 Searching for a local kernel is the default behavior in ALE's isd_generate.  Just input your cube's name, no need for additional flags.
 
-```sh
-isd_generate B10_013341_1010_XN_79S172W.cub
-```
+=== "shell"
+
+    ```sh
+    isd_generate B10_013341_1010_XN_79S172W.cub
+    
+    # Output: B10_013341_1010_XN_79S172W.json
+    ```
+
+=== "python"
+
+    ```py
+    import ale
+    isd_dictionary = ale.load('B10_013341_1010_XN_79S172W.cub')
+
+    # Output: Python Dictionary (Use ale.loads for a string)
+    ```
 
 ???+ warning "Kernel Download and Setup Required"
 
@@ -28,13 +41,24 @@ isd_generate B10_013341_1010_XN_79S172W.cub
 
 Use the -w flag to search for kernels online with the USGS SpiceQL web service.  This is a good option if you don't want to download and setup kernels locally on your computer.
 
-```sh
-isd_generate -w B10_013341_1010_XN_79S172W.cub
-```
+=== "shell"
+
+    ```sh
+    isd_generate -w B10_013341_1010_XN_79S172W.cub
+    ```
+
+=== "python"
+
+    ```py
+    import ale
+    isd_dictionary = ale.load('B10_013341_1010_XN_79S172W.cub', props={'web' : True})
+    ```
 
 ## Specify Kernels Manually
 
-To specify kernels in ALE on the command line, use a metakernel file.  In the metakernel file, in the data section (which starts at `\begindata`):
+### List in Metakernel File
+
+To give ALE a list of kernels, use a metakernel file.  In the metakernel file, in the data section (which starts at `\begindata`):
 
 1. Set `PATH_VALUES` to the directory containing the kernels
 1. List the kernels under `KERNELS_TO_LOAD`.  
@@ -42,11 +66,21 @@ To specify kernels in ALE on the command line, use a metakernel file.  In the me
 
 *You can also specify single kernel file or a cube to use as the kernels. But typically, you will need to use a metakernel file to list multiple kernels, for the sake of complete information in the ISD you are generating.*
 
-```sh
-isd_generate -k mro_B10_72W.tm B10_013341_1010_XN_79S172W.cub
-```
+=== "shell"
 
-???+ quote "Metakernel Format"
+    ```sh
+    isd_generate -k mro_B10_72W.tm B10_013341_1010_XN_79S172W.cub
+    ```
+
+=== "python"
+
+    ```py
+    import ale
+
+    ale.load('B10_013341_1010_XN_79S172W.cub', props={'kernels' : 'mro_B10_72W.tm'})
+    ```
+
+??? abstract "Metakernel Format"
 
     This metakernel has a path value of `.`, which tells it to look for other kernels in its own folder.  You could change . to another location if the rest of your kernels were somewhere else.
 
@@ -75,3 +109,32 @@ isd_generate -k mro_B10_72W.tm B10_013341_1010_XN_79S172W.cub
 
     \begintext
     ```
+
+### As props in Python
+
+If you are using `ale.load` or `ale.loads` (but not isd_generate), 
+you can list out all your kernels in the kernels prop.
+
+=== "python"
+
+    ```py
+    import ale
+
+    props = {
+        'kernels': [
+            'B10_013341_1010_XN_79S172W_0.bsp',
+            'B10_013341_1010_XN_79S172W_1.bsp',
+            'mro_ctx_v11.ti',
+            'mro_sc_psp_090526_090601_0_sliced_-74000.bc',
+            'mro_sc_psp_090526_090601_1_sliced_-74000.bc',
+            'mro_sclkscet_00082_65536.tsc',
+            'mro_v16.tf',
+            'naif0012.tls',
+            'pck00008.tpc'
+        ]
+    }
+
+    ale.load('B10_013341_1010_XN_79S172W.cub', props=props)
+    ```
+
+-----

@@ -116,6 +116,13 @@ nav:
         - Exercise 2:                                 how-to-guides/isis-developer-guides/exercise-2.md
     - ALE Developer Guides:
       - Creating Ale Drivers: how-to-guides/ale-developer-guides/creating-ale-drivers.md
+    - Knoten Notebooks:
+      - Bundle Adjustment:                            how-to-guides/knoten-notebooks/bundle-adjust.ipynb
+      - Reduced Normal Equations:                     how-to-guides/knoten-notebooks/reduced-normal-equations.ipynb
+      - Sensor Utils:                                 how-to-guides/knoten-notebooks/sensor-utils.ipynb
+      - USGSCSM and ISIS Comparison:                  how-to-guides/knoten-notebooks/usgscsm-isis-cmp.ipynb
+      - Cassini ISS:                                  how-to-guides/knoten-notebooks/cassini-iss.ipynb
+      - LROC NAC:                                     how-to-guides/knoten-notebooks/lrolroc-nac.ipynb
 
   - Concepts: 
     - Home:     concepts/index.md

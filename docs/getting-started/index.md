@@ -37,7 +37,9 @@ The CSM (Community Sensor Model) Stack is a collection of apps ([ALE](https://gi
 
     Calculate spacecraft orientation information.
 
-    [:octicons-arrow-right-24: Generate an ISD file](#)
+    [:octicons-arrow-right-24: Generate an ISD file](../getting-started/using-ale/ale-getting-kernels.md)
+
+    [:octicons-arrow-right-24: Specifying Kernels](../getting-started/using-ale/ale-getting-kernels.md)
 
 -   :material-camera-marker:{ .lg .middle } __Using Knoten/CSM__
 
@@ -45,7 +47,7 @@ The CSM (Community Sensor Model) Stack is a collection of apps ([ALE](https://gi
 
     Convert coordinates from image to ground reference frames.
 
-    [:octicons-arrow-right-24: CSM Image-to-ground](#)
+    [:octicons-arrow-right-24: CSM Image-to-ground](../getting-started/csm-stack/image-to-ground-tutorial.ipynb)
 
 -   :octicons-book-16:{ .lg .middle } __Sensor Model Concepts__
 

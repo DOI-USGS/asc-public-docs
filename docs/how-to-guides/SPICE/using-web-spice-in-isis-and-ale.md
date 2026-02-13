@@ -16,14 +16,24 @@ EndGroup
 
 ## ALE
 
-Set the `props` param to use web SpiceQL by setting the `web` property to `True`.
+Set the `props` param to use web SpiceQL by setting the `web` property to `True`. 
+Also see [Specifying Kernels in ALE](../../getting-started/using-ale/ale-getting-kernels.md).
 
 !!! example "Generate an ISD"
-    ```py
-    import ale
 
-    ale.load("<path-to-lbl>.cub", props={"web": True}, formatter='ale', verbose=False, only_isis_spice=False, only_naif_spice=True)
-    ```
+    === "python"
+
+        ```py
+        import ale
+
+        ale.load("<path-to-lbl>.cub", props={"web": True}, formatter='ale', verbose=False, only_isis_spice=False, only_naif_spice=True)
+        ```
+
+    === "shell"
+
+        ```sh
+        isd_generate -w <path-to-lbl>.cub
+        ```
 
 ??? info "For developers"
     Additional environment variables that can be set:  

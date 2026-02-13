@@ -121,6 +121,12 @@ is printed to the console, followed by the text of the ISD.  This can be helpful
 
 ### NAIF SPICE Data and Kernels
 
+<div class="grid cards" markdown>
+
+- [ALE - Specifying Kernels :octicons-arrow-right-24: ](../../getting-started/using-ale/ale-getting-kernels.md)
+
+</div>
+
 To ensure the use of a NaifSpice Driver (and NAIF SPICE Data) to generate an ISD, use the `--only_naif_spice` (`-n`) flag.  If you have a `spiceinit`ed .cub and you want to avoid re-`spiceinit`ing it or using NAIF SPICE Data, use the `--only-isis-spice` (`-i`) flag.
 
 When using an NAIF SPICE Data, you can specify a metakernel using the `--kernel` (`-k`) argument, followed by the path to your metakernel.

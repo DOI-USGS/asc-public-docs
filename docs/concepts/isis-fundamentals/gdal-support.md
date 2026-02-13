@@ -44,7 +44,7 @@ Supported output attributes can be combined with the `+GTiff` attribute.
 
 ### Compression
 
-When using +GTiff in ISIS, the compression defaults to DEFLATE with PREDICTOR=2, which is lossless and supports all bit types. Overviews are not automatically created by ISIS, but they can be added to any TIFF using the GDAL routine `gdaladdo`.
+When using +GTiff in ISIS, the compression defaults to DEFLATE with PREDICTOR=2, which is lossless and supports all bit types.
 
 ### Projection
 
@@ -71,22 +71,6 @@ You can access online volumes by adding `/vsicurl/` in front of the URL for your
     ```sh
     qview /vsicurl/https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/ctx/controlled/usgs/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W-DEM.tif
     ```
-
-### Overviews - Stream Less Data
-
-Many cloud volumes will have **overviews**, or **compressed versions** of the image that can be requested for display rather than the full resolution image.
-
-Use of overviews for responsiveness over the web. If an online dataset has overviews, you can stream overview data rather than full resolution data. This decreases the amount of data needed to display the image. 
-
-For example, if someone is displaying a 500 x 500 portion of a 1000 x 1000 image at .25 scale that has overviews, GDAL will extract the DNs from the overview with a downsampling of 8. So instead of having to transfer all 250000 DN values over the network then subsampled, only 15625 downsampled DNs will to be transferred.
-
-??? abstract "GeoTIFF with and without Overview"
-
-    If a GeoTIFF does not have overviews, it will be subsampled based on the scale as ISIS already does with cubes. When using overviews, the image will be sampled at the closest resolution to the requested one. The images will look slightly different in Qview. As shown in the gif below, the images look like they are changing but in reality, `B10_013341_1010_XN_79S172W_no_ovr.cal.tiff` is being subsampled while `B10_013341_1010_XN_79S172W.cal.tiff` is using overviews.
-
-    ![Alt Text](../../assets/gdal_data/overview_blink.gif)
-
-To create overviews, use GDAL's [`gdaladdo`](https://gdal.org/en/stable/programs/gdaladdo.html#gdaladdo).
 
 ### ISIS Specific GeoTIFF Data
 
@@ -240,8 +224,7 @@ GDAL provides a [suite of applications](https://gdal.org/en/stable/programs/inde
 
 While there are plans to update the GeoTiff Driver in GDAL to support and maintain this ISIS JSON metadata, if an external application is used, the ISIS metadata within the GeoTIFF will likely not be recognized or lost during conversion. For example, during a conversion of an ISIS-created GeoTIFF using `gdal_translate`, the output file will not contain the JSON metadata.
 
-Some notable applications are `gdalinfo`, `gdal_translate`, and `gdaladdo`.
+Some notable applications are `gdalinfo` and `gdal_translate`
 
 - [`gdalinfo`](https://gdal.org/en/stable/programs/gdalinfo.html#gdalinfo) provides information on supported GDAL formats
 - [`gdal_translate`](https://gdal.org/en/stable/programs/gdal_translate.html#gdal-translate) can convert one supported GDAL image format into another.
-- [`gdaladdo`](https://gdal.org/en/stable/programs/gdaladdo.html#gdaladdo) builds image overviews. This is largely useful in a cloud computing environment when viewing images, as overviews will transfer less data when requesting DNs over the net.

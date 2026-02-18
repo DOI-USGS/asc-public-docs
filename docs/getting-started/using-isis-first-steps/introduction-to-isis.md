@@ -59,9 +59,13 @@ window):
     Soils and Rocks at Gusev Crater from Spirit's Microscopic
     Imager](https://www.usgs.gov/media/files/textures-soils-and-rocks-gusev-crater-spirits-mi).
 
-## Installing ISIS
 
-ISIS is distributed via conda and compatible with Mac and Unix, see [Installing ISIS](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md) when you are ready to get ISIS on your computer.
+!!! tip "Setting up ISIS"
+
+    - [Installing ISIS](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md): ISIS is distributed via conda and compatible with Mac and Unix
+    - [Setting up the ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md): Download the entire ISIS data area or mission-specific data
+    - [Using Web SPICE in ISIS and ALE](../../how-to-guides/SPICE/using-web-spice-in-isis-and-ale.md): Use web-enabled SPICE data via SpiceQL instead of using local data
+
 
 ## User Interface for ISIS
 

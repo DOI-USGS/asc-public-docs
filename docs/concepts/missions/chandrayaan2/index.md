@@ -30,7 +30,47 @@ are notable for their high resolution images.
 
 ## Obtaining Chandrayaan 2 Images
 
-Chandrayaan 2 images can be downloaded from the [ISRO Website](https://chmapbrowse.issdc.gov.in).  A login is required; new users must register an account.
+Chandrayaan 2 images can be downloaded from the 
+[Chandrayaan 2 Data Explorer (Interactive Map)](https://chmapbrowse.issdc.gov.in) 
+or the [ISRO Science Data Archive](https://pradan.issdc.gov.in/ch2/protected/payload.xhtml) 
+on [Pradan](https://pradan.issdc.gov.in/ch2/) to manually browse files.  A login is required; new users must register an account.
+
+??? info "Using the ISRO Chandrayaan Data Explorer"
+
+    Once you are logged in to the ISRO Website, 
+    you can access the [CH-2 Data Explorer](https://chmapbrowse.issdc.gov.in/MapBrowse/).
+
+    There are two ways to search for data here:
+
+    ### Layers Panel
+
+    ![Layers Panel](assets/ch2browse-layers.png){align=right width="300"}
+
+    Selecting a type of data on this panel will show it as a layer of footprints on the map. 
+    Click on a footprint to select it.  This should bring up the Results Panel.
+
+    *If you are using USGS software, you will most likely be interested in the `CH2_OHRC_Calibrated_Product` and `CH2_TMC_Calibrated_Product` layers.*
+
+    -----
+
+    ### Data Products Search Panel
+
+    ![Search Panel](assets/ch2browse-search.png){align=right width="300"}
+
+    This panel does a search for images.  It can be a ***filtered search***, 
+    narrowed by Instrument, Data Type, Area, and (optionally) observation date, 
+    or an ***ID search***, using part of the PDS Product ID. 
+    For filtered searches, the search area is required and cannot span larger than 5 degrees.
+
+    -----
+
+    ### Results Panel
+
+    ![Results Panel](assets/ch2browse-result.png){align=right width="300"}
+
+    After you have selected one or more image, they will appear in the results panel, and you may download them from here with the download button.
+
+
 
 ??? note "Image Naming Convention"
 
@@ -52,13 +92,40 @@ Chandrayaan 2 images can be downloaded from the [ISRO Website](https://chmapbrow
     | c                    | Imaging Mode/Camera ID/Band:  </br> For OHRC: </br> p - Panchromatic High Resolution Camera </br> For TMC-2: </br> f - Fore Camera </br> n - Nadir Camera </br> a - Aft Camera |
     | YYYYMMDDT HHMMSSssss | Observation Start Time: Year, Month, Day, "T", Hours, Minutes, Seconds, 1/1000 seconds                                                      |
     | P                    | PDS Data Product Categories: </br> d - Data (data directory); </br> b - Browse (browse directory); </br> g - Gridded (geometry directory)                     |
-    | prd                  | PDS Data Product Name: </br> img - Image </br> brw - Browse </br> grd - Gridded                                                                               |
+    | prd                  | PDS Data Product Name: </br> img - Image </br> brw - Browse </br> grd - Gridded </br> dtm - Digital Terrain Model </br> oth - Orthoimage                                                                             |
     | Stn                  | Station ID: </br> d32 - ISSDC Bangalore; </br> d18 - ISSDC Bangalore; </br> gds - Gold Stone, USA </br> cnb - Canberra, Australia                                   |
     | fff                  | File Extension: </br> img - Image Data File </br> xml - Detached Label File </br> jpg - Browse Data File </br> csv - Geometry Data File                             |
 
 ## Using TMC-2 and OHRC Images in ISIS
 
-Chandrayaan 2 images from the TMC-2 and OHRC instruments are available in the PDS-4 standard.  They can be imported into ISIS with [`isisimport`](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/isisimport/isisimport.html).  Templates to import images from either instrument are included and should be autodetected in ISIS versions 10.0 and above.
+??? info "Recommended: Use Calibrated Images"
+
+    Isis can import calibrated Chandrayaan 2 images. 
+    Raw images may work, but might not have the right DNs.
+    Look for the `c` in the middle of the third segment
+    of the filename to confirm if a product is calibrated.
+    In the normal phase of the mission, that segment is  
+    `ncp`, `ncn`, `nca`, or `ncf` for calibrated images in the normal mission phase.
+    
+    Calibrated images:
+    
+    - `ch2_ohr_ncp_20211228T2209123959_d_img_d18` (OHRC)
+    - `ch2_tmc_ncn_20241216T0659485431_d_img_d18` (TMC Nadir)
+    - `ch2_tmc_nca_20221205T1434464659_d_img_d32` (TMC Aft)
+    - `ch2_tmc_ncf_20230205T2054187027_d_img_n18` (TMC Fore)
+
+    Other Data Types:
+
+    - ch2_tmc_nra_20191212T2004326989_d_img_d18 (Raw)
+    - ch2_tmc_ndn_20200109T0733072590_d_dtm_gds (DTM)
+    - ch2_tmc_ndn_20200108T2341257476_d_oth_mad (Ortho)
+
+Calibrated Chandrayaan 2 images from the TMC-2 and OHRC instruments 
+are available in the PDS-4 standard.  They can be imported 
+into ISIS with 
+[`isisimport`](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/isisimport/isisimport.html). 
+Templates to import images from either instrument 
+are included and should be autodetected in ISIS versions 10.0 and above.
 
 !!! example "Importing Chandrayaan 2 Images with `isisimport`"
 

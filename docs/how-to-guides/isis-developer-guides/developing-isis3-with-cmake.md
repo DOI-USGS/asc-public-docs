@@ -22,7 +22,7 @@ Now that the files are on your computer, you can edit them, build ISIS, and cont
     git submodule update --init --recursive
     ```
 
-## The Build Environment
+## Build Environment & Dependencies
 
 ### Getting Conda
 
@@ -169,9 +169,9 @@ ninja install
 ## New Environmental Variable Meanings
 `$ISISROOT` is no longer the ISIS3 source directory. `$ISISROOT` is now either the CMake build directory for development or the install directory for running a deployed copy of ISIS. 
 
-* **Source Directory**: Where the ISIS source code lives. This is the isis directory. If you are in build, this would be `../isis` (i.e. your local repository)
+* **Source Directory**: Where the ISIS source code lives, the lowercase `isis` subdirectory of `ISIS3`. If you are in build, this would be `../isis` as a relative path.  It could be `/Users/username/src/ISIS3/isis` as an absolute path on someone's machine.
 * **Build Directory**: Where generated project files live (Makefiles, Ninja files, Xcode project, etc.) and where binaries are built to.  This is where you spend most of your development time. 
-* **Install Directory**: Where the binaries are placed on install. 
+
 
 ## Custom Data and Test Data Directories
 Custom data and test data directories now have to be relative to the new `$ISISROOT`.   
@@ -181,27 +181,27 @@ Therefore your data or testdata directories must be at the same hierarchical lev
 
 **Using the Ninja Build System:**
 
-Removes all built objects except for those built by the build generator:
-`ninja -t clean` 
+Removes all built objects except for those built by the build generator:  
+  `ninja -t clean` 
 
-Remove all built files specified in rules.ninja:
-`ninja -t clean -r rules` 
+Remove all built files specified in rules.ninja:  
+  `ninja -t clean -r rules` 
 
-Remove all built objects for a specific target:
-`ninja -t clean <target_name>` 
+Remove all built objects for a specific target:  
+  `ninja -t clean <target_name>` 
 
-Get a list of Ninja's targets:
-`ninja -t targets`
+Get a list of Ninja's targets:  
+  `ninja -t targets`
 
 **Manual Cleans**
 
-Cleaning all of ISIS: 
-`rm -rf build install`
+Cleaning all of ISIS:  
+ `rm -rf build`
 
-Cleaning an individual app:
-`cd build && rm bin/<app_name>`
+Cleaning an individual app:  
+ `cd build && rm bin/<app_name>`
 
-Cleaning an individual object:
+Cleaning an individual object:  
  ``cd build && rm `find -name ObjectName.cpp.o` ``
 
 ## Building Individual ISIS3 Applications/Objects

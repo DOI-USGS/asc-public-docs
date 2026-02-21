@@ -54,32 +54,6 @@ conda activate isis-dev-env
     This indicates that you are in an active conda env, 
     which you will need to build ISIS.*
 
-??? Note "For internal developers"
-
-    When developing internally, it is *recommended* when you start working with cmake and anaconda that you use the shared anaconda environments in `/usgs/cpkgs/`. These anaconda environments have the isis3 dependencies installed that are needed for development. This makes setup simple and can make sharing builds easier.
-    You will need to modify your `~/.bashrc` as follows:
-
-    (Linux)
-    ```bash
-    echo -e "\n# Adding shared /usgs/cpkgs/ anaconda3 environment" >> ~/.bashrc
-    echo 'source /usgs/cpkgs/anaconda3_linux/etc/profile.d/conda.sh' >> ~/.bashrc
-    ```
-
-    (macOS)
-    ```bash
-    echo -e "\n# Adding shared /usgs/cpkgs/ anaconda3 environment" >> ~/.bashrc
-    echo 'source /usgs/cpkgs/anaconda3_macOS/etc/profile.d/conda.sh' >> ~/.bashrc
-    ```
-
-    You will then need to `source ~/.bashrc` or open a new `bash` terminal to get the anaconda3 binaries added to your path.
-
-    To activate the isis3 environment and start developing, you can run:
-    ```bash
-    source activate isis3
-    ```
-
-    You can continue to the [Building ISIS3](#building-isis3) section.
-
 ## Building ISIS3 
 
 ### 1. Create a `build` directory
@@ -153,29 +127,6 @@ ninja install
     For Example, to use ddt (with `$ISISROOT` set to the build directory):  
     ```sh
     ddt $ISISROOT/bin/<application_name>
-    ```
-
-??? Note "For internal developers"
-
-    Run the `setisis` command for your build directory:
-    ```bash
-    setisis .
-    ```
-
-    The following error is expected and can be ignored:
-
-    ```
-    Warning: Unable to find binaries.
-    Warning: Unable to find initialization scripts in <build directory>.
-            Unable to set up third party, or data directories. (Use -h for help)
-    Warning: Only ISISROOT set.
-    ISISROOT set to: <build directory>
-    ```
-    (Where `<build directory>` is the directory you have run the setisis command in.) 
-
-    If this does not work (i.e. `no setisis in PATH`), run the following command to add an alias to your `~/.bashrc`:
-    ```bash
-    echo -e "alias setisis='. /usgs/cpkgs/isis3/isis3mgr_scripts/initIsisCmake.sh'" >> ~/.bashrc
     ```
  
 ## Environmental Variables and Common Directories

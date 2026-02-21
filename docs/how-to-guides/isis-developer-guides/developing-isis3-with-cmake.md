@@ -112,7 +112,7 @@ export ISISTESTDATA=/yourDataDirectory/isistestdata
 cd build               # Enter the build directory
 cmake -GNinja ../isis  # run cmake on the ISIS3/isis directory
 ```
-*If you do this from a different directory, change `../isis` to point to the isis subfolder under ISIS3.*
+*If you run `cmake` from a different directory, change `../isis` to point to the `isis` subfolder under `ISIS3`.*
 
 ### 4. Build ISIS
 
@@ -124,24 +124,36 @@ ninja install
 ```
 
 
-??? Tip "Build tips"
-    * The `-GNinja` flag specifies creating Google [Ninja](https://ninja-build.org/manual.html) Makefile (an alternative Make system to the traditional GNU make system). If you instead want to use make, dont set this flag, and replace the ninja commands with their make counterparts.
+??? Tip "Build Flags and Tips"
 
-    * `-Disis3Data` is used to set the location of the isis3 data directory, which includes kernels, icons, templates, etc. *This is needed to successfully run the app and module tests.*
+    Use these flags in the `cmake` command to configure your build.
 
-    * `-Disis3TestData` is used to the location of the isis3 testData directory, which includes input and expected truth files for running and validating tests.
+    `-GNinja`  
+    Makes a [Ninja](https://ninja-build.org/manual.html) Makefile (alternative to GNU `make`). To use `make`, omit this flag and replace the `ninja` commands with their `make` counterparts.
 
-    * `-DJP2KFLAG=ON` enable JP2000 support.  **If you are internal, you SHOULD turn this ON.**
+    `-DJP2KFLAG=ON`  
+    Enables JP2000 support. (Not available on ARM builds.)
 
-    * `-Dpybindings=OFF` disables the bundle adjust python bindings.  This is temporary.
+    `-Dpybindings=OFF`  
+    Disables the bundle adjust python bindings.
 
-    * To build with debug flags add `-DCMAKE_BUILD_TYPE=Debug` to the cmake configuration step.
+    `-DCMAKE_BUILD_TYPE=Debug`  
+    Build with debug flags.
 
-    * Executables are no longer in an application's directory. When running in debug mode, it is important to give the correct path to an application's executable. Executables are located in `build/bin` and `install/bin`. Example using ddt with `$ISISROOT` set to the build directory: `ddt $ISISROOT/bin/<application_name>`
+    ***More Build Options:***  
+    Look for `# Configuration options` in [isis/CMakeLists.txt](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/CMakeLists.txt#L63). 
+    Use `-D` flags to turn these options on or off.  
+    For example, to build ISIS with no tests and no docs:
+    ```sh
+    cmake -DbuildDocs=OFF -DbuildTests=OFF -GNinja ../isis
+    ```
 
-    * Look for `# Configuration options` in [isis/CMakeLists.txt](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/CMakeLists.txt#L63) for more build options.  You can use `-D` flags to turn them on or off, for example:
-        - `cmake -DbuildDocs=OFF -DbuildTests=OFF -GNinja ../isis`  
-          for a quick and dirty build with no tests or docs.
+    ***Executables Location:***  
+    Executables are placed in `build/bin` (and linked in `$CONDA_PREFIX/bin`).  
+    For Example, to use ddt (with `$ISISROOT` set to the build directory):  
+    ```sh
+    ddt $ISISROOT/bin/<application_name>
+    ```
 
 ??? Note "For internal developers"
 
@@ -166,16 +178,32 @@ ninja install
     echo -e "alias setisis='. /usgs/cpkgs/isis3/isis3mgr_scripts/initIsisCmake.sh'" >> ~/.bashrc
     ```
  
-## New Environmental Variable Meanings
-`$ISISROOT` is no longer the ISIS3 source directory. `$ISISROOT` is now either the CMake build directory for development or the install directory for running a deployed copy of ISIS. 
+## Environmental Variables and Common Directories
 
-* **Source Directory**: Where the ISIS source code lives, the lowercase `isis` subdirectory of `ISIS3`. If you are in build, this would be `../isis` as a relative path.  It could be `/Users/username/src/ISIS3/isis` as an absolute path on someone's machine.
-* **Build Directory**: Where generated project files live (Makefiles, Ninja files, Xcode project, etc.) and where binaries are built to.  This is where you spend most of your development time. 
+***$ISISROOT points to either:***  
 
+- (For Dev) The CMake build directory  
+  `ISISROOT=/codedirectory/ISIS3/build`  
 
-## Custom Data and Test Data Directories
-Custom data and test data directories now have to be relative to the new `$ISISROOT`.   
-Therefore your data or testdata directories must be at the same hierarchical level as your build or install directories.
+- (For Production) The install directory for running a deployed copy of ISIS. 
+  `ISISROOT=$CONDA_PREFIX`
+
+***$ISISDATA***  
+Points to the NAIF SPICE Kernels, which contain spacecraft geometric and timing information that ISIS needs to process and align spacecraft images.
+This data must be downloaded, unless you are using the [SpiceQL web service](../../how-to-guides/SPICE/using-web-spice-in-isis-and-ale.md). See [ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md) for more info on how to download and set up `ISISDATA`.
+
+***$ISISTESTDATA***  
+Points to data for legacy ISIS Makefile tests.  This data must be downloaded.  See [ISIS Test Data](../../how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md).
+
+***Source Directory*** (`ISIS3/isis`):  
+Where the ISIS source code lives, the lowercase `isis` subdirectory of `ISIS3`. If you are in build, this would be `../isis` as a relative path.
+
+***Build Directory*** (`ISIS3/build`):  
+Where generated project files live (Makefiles, Ninja files, Xcode project, etc).  Holds the `bin` directory where binaries are built to.
+
+***Custom Data and Test Data***:  
+The addition of test data files should be limited. Contributions to $ISISTESTDATA are no longer accepted. 
+If a [test fixture](../../how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md#test-fixtures) requires extra data, that data should be placed in `ISIS3/isis/tests/data`.
 
 ## Cleaning Builds
 
@@ -228,8 +256,6 @@ and then re-links all the applications/objects/unit tests which have dependencie
 on that object.  In the case of a heavily used class like Pixel, this equates to 865 objects.
 It's still a lot faster then using cmake generated Makefiles.
 
-### Plugins
-
 ## CMake Behavior When Adding/Removing/Modifying an Object
 
 The cmake configure command needs to be executed when adding/removing a new object so that the system sees and compiles it.  
@@ -238,11 +264,17 @@ The cmake configure command needs to be executed when adding/removing a new obje
 
 At present under the current system there is no way to build documentation for individual applications/objects.  To build all documentation using the ninja build system, CD into the build directory and enter the following command:
 
-`ninja docs -j7`
+=== "ninja build system"
 
-If CMake is being used to produce GNU Makefiles, the process is the same, but the command is:
+    ```sh
+    ninja docs -j7
+    ```
 
-`make docs -j7`
+=== "classic make"
+
+    ```sh
+    make docs -j7
+    ```
 
 The documentation is placed in `install/docs` (after being copied over from `build/docs`).
 

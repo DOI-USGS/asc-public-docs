@@ -159,13 +159,13 @@ On activation, the environment will automatically set ISISROOT, ISISDATA, and PA
 # Install Manually Via Miniforge  
 ### Prerequisites
 
-??? "Mamba/Miniforge"
+??? "Miniforge"
 
-    If you don't have mamba yet, download and install it.  We recommend getting mamba through [MiniForge](https://github.com/mamba-forge/miniforge?tab=readme-ov-file#miniforge).
+    If you don't have conda yet, download and install it.  We recommend getting conda through [MiniForge](https://github.com/conda-forge/miniforge).
 
     ```sh
     # Via Miniforge:
-    curl -L -O "https://github.com/mamba-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+    curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
     bash Miniforge3-$(uname)-$(uname -m).sh
     ```
 
@@ -386,7 +386,7 @@ If ISIS was already installed with mamba, you can update it with:
 
 ## Uninstalling ISIS
 
-To uninstall ISIS, deactivate the ISIS mamba Environment, and then remove it.  If you want to uninstall mamba as well, see your mamba installation's website ([Miniforge](https://github.com/mamba-forge/miniforge?tab=readme-ov-file#uninstallation) if you installed mamba with the above instructions).
+To uninstall ISIS, deactivate the ISIS mamba Environment, and then remove it.  If you want to uninstall mamba as well, see your mamba installation's website ([Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file#uninstall) if you installed mamba with the above instructions).
 
 ```sh
 mamba deactivate

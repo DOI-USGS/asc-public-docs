@@ -1,23 +1,58 @@
+# Developing ISIS with cmake
+
 ## Getting Started With GitHub
-To get started, you want a fresh copy of ISIS to work on. You first want to create a fork of the ISIS3 repo by going to the [main ISIS3 repo page](https://github.com/DOI-USGS/ISIS3) and clicking on "Fork" at the top of the page.
 
-Next, you want to create a clone of your fork on your machine. Go to your fork of ISIS3 on the GitHub website, url should be `github.com/<username>/ISIS3`, and click on the "Clone or Download" green button on the right and copy the link that is displayed. Next, you are going to open a terminal, go to the directory you want to make a clone in, and in the terminal, type:
+1. **Make your own fork of ISIS:**  
+   Go to the [main ISIS3 repo](https://github.com/DOI-USGS/ISIS3) and click on "Fork" at the top of the page.
 
-`git clone --recurse-submodules <paste the link>`
+1. **Get a cloning link:**  
+   On your ISIS fork (url should be `github.com/<username>/ISIS3`), click on the green `Clone or Download` button on the right and copy the link.  
 
-This will copy all files in your fork to your current location in the terminal. Then, in your terminal, navigate to the ISIS3 directory by typing:
+1. **Clone ISIS:**  
+   Open a terminal, go to the directory you want to make a clone in, and run:  
+   `git clone --recurse-submodules <your link>`  
 
-`cd ISIS3`
+Now that the files are on your computer, you can edit them, build ISIS, and contribute.
 
-### How to initialize the gtest submodule in an old clone
+???+ note "Cloning Submodules later"
 
-If your clone is older than November 26th 2018 and you update from dev, you will get the gtest submodule but it will be empty! This is because git does not initialize submodules by default. In order to initialize the gtest submodule run the following command at the root of the repository
+    If you have an old clone, or you forgot to add `--recurse-submodules` when you initially cloned ISIS, run this in the `ISIS3` directory to clone the `gtest` submodule:
+    
+    ```sh
+    git submodule update --init --recursive
+    ```
 
-`git submodule update --init --recursive`
+## The Build Environment
 
+### Getting Conda
 
-## Anaconda and ISIS3 Dependencies
-To start building ISIS3 with cmake, you first need anaconda installed. **If you are developing internally to USGS, please expand the `For internal developers` drop-down for more information; otherwise, continue reading the instructions in this section**. 
+Building ISIS requires conda.  If you need conda, install it through [miniforge](https://github.com/conda-forge/miniforge):
+```sh
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+bash Miniforge3-$(uname)-$(uname -m).sh
+```
+
+### Activating an Environment
+
+Conda manages dependencies and 3rd-party libraries to create a build environment (conda env) for ISIS. The cmake build system expects an active [conda env](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment) containing these dependencies, which are listed in the [environment.yml](https://github.com/DOI-USGS/ISIS3/blob/dev/environment.yml).
+
+To create and activate you conda env, run these commands in the ISIS3 directory.
+
+```sh
+# Create
+conda env create -n isis-dev-env -f environment.yml
+
+# Activate
+conda activate isis-dev-env
+```
+
+!!! quote ""
+
+    *We chose the env name, "isis-dev-env", but you can name your env something else if you want.*
+
+    *Your terminal prompt should look now be preceded by (isis-dev-env). 
+    This indicates that you are in an active conda env, 
+    which you will need to build ISIS.*
 
 ??? Note "For internal developers"
 
@@ -45,60 +80,48 @@ To start building ISIS3 with cmake, you first need anaconda installed. **If you 
 
     You can continue to the [Building ISIS3](#building-isis3) section.
 
-Go to [Anaconda's download page](https://www.anaconda.com/download/) and follow the instructions for your operating system. ISIS3 dependencies are managed through Anaconda and ISIS3 uses Anaconda environments when building. Third party libraries are added inside of an environment. The cmake build configuration system expects an active [Anaconda environment](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment) containing these dependencies. There is an environment.yml file in the ISIS3 directory of your clone.  To create the required Anaconda environment, go into the ISIS3 directory and enter the following command:
+## Building ISIS3 
 
-`conda env create -n <environment-name> -f environment.yml` 
+### 1. Create a `build` directory
 
-Give the environment whatever name you choose by substituting it for `<environment-name>`
+```sh
+# From inside the ISIS3 directory:
+mkdir build
+```
 
-Building ISIS requires that the anaconda environment be activated. Activate your anaconda environment with:
+*There should now be a "build" subdirectory alongside the "isis" subdirectory.*
 
-`source activate <environment-name>`
+### 2. Set Env Variables
 
-## Building ISIS3
-**At the top-level directory of an ISIS3 clone**:   
+Set `ISISROOT` to point to your build directory.  
+See [the ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md) to set up ISISDATA and ISISTESTDATA so you can run tests.  
 
-* Create a `build` and an `install` directory at this level:
-    * `mkdir build install`
-    * There should now be a `build/`, `install/`, and `isis/` directory.
+```sh
+export ISISROOT=/yourCodeDirectory/ISIS3/build
 
-* Set your `ISISROOT` to `/the/path/to/your/build`:   
-    * `export ISISROOT=$(pwd)`
-    * **For internal instructions, see `For internal developers` section below.**
+export ISISDATA=/yourDataDirectory/isisdata
+export ISISTESTDATA=/yourDataDirectory/isistestdata
 
-        ??? Note "For internal developers"
+# You may want to add these to your .bashrc or .zshrc, 
+# so you don't have to set them every time.
+```
 
-            Run the `setisis` command for your build directory:
-            ```bash
-            setisis .
-            ```
+### 3. `make` ISIS
 
-            The following error is expected and can be ignored:
+```sh
+cd build               # Enter the build directory
+cmake -GNinja ../isis  # run cmake on the ISIS3/isis directory
+```
+*If you do this from a different directory, change `../isis` to point to the isis subfolder under ISIS3.*
 
-            ```
-            Warning: Unable to find binaries.
-            Warning: Unable to find initialization scripts in <build directory>.
-                    Unable to set up third party, or data directories. (Use -h for help)
-            Warning: Only ISISROOT set.
-            ISISROOT set to: <build directory>
-            ```
-            (Where `<build directory>` is the directory you have run the setisis command in.) 
+### 4. Build ISIS
 
-            If this does not work (i.e. `no setisis in PATH`), run the following command to add an alias to your `~/.bashrc`:
-            ```bash
-            echo -e "alias setisis='. /usgs/cpkgs/isis3/isis3mgr_scripts/initIsisCmake.sh'" >> ~/.bashrc
-            ```
+```sh
+# From inside your build directory
+ninja install
 
-* If you want to run the tests set the `ISISDATA` and `ISISTESTDATA` directories
-    * `export ISISDATA=/path/to/your/data/directory`
-    * `export ISISTESTDATA=/path/to/your/test/data/directory`
-
-* cd into the build directory and configure your build:
-    * `cmake -DJP2KFLAG=OFF -GNinja <source directory>`
-    * `<source directory>` is the root `isis` directory of the ISIS source tree, i.e. `/scratch/this_is_an_example/ISIS3/isis`. From the build directory, this is `../isis`
-
-* Build ISIS inside of your build directory and install it to your install directory:
-    * `ninja install`
+# This may take a while, around 20 min to an hour.
+```
 
 
 ??? Tip "Build tips"
@@ -108,7 +131,7 @@ Building ISIS requires that the anaconda environment be activated. Activate your
 
     * `-Disis3TestData` is used to the location of the isis3 testData directory, which includes input and expected truth files for running and validating tests.
 
-    * `-DJP2KFLAG=OFF` disables JP2000 support.  **If you are internal, you should turn this ON.**
+    * `-DJP2KFLAG=ON` enable JP2000 support.  **If you are internal, you SHOULD turn this ON.**
 
     * `-Dpybindings=OFF` disables the bundle adjust python bindings.  This is temporary.
 
@@ -116,6 +139,32 @@ Building ISIS requires that the anaconda environment be activated. Activate your
 
     * Executables are no longer in an application's directory. When running in debug mode, it is important to give the correct path to an application's executable. Executables are located in `build/bin` and `install/bin`. Example using ddt with `$ISISROOT` set to the build directory: `ddt $ISISROOT/bin/<application_name>`
 
+    * Look for `# Configuration options` in [isis/CMakeLists.txt](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/CMakeLists.txt#L63) for more build options.  You can use `-D` flags to turn them on or off, for example:
+        - `cmake -DbuildDocs=OFF -DbuildTests=OFF -GNinja ../isis`  
+          for a quick and dirty build with no tests or docs.
+
+??? Note "For internal developers"
+
+    Run the `setisis` command for your build directory:
+    ```bash
+    setisis .
+    ```
+
+    The following error is expected and can be ignored:
+
+    ```
+    Warning: Unable to find binaries.
+    Warning: Unable to find initialization scripts in <build directory>.
+            Unable to set up third party, or data directories. (Use -h for help)
+    Warning: Only ISISROOT set.
+    ISISROOT set to: <build directory>
+    ```
+    (Where `<build directory>` is the directory you have run the setisis command in.) 
+
+    If this does not work (i.e. `no setisis in PATH`), run the following command to add an alias to your `~/.bashrc`:
+    ```bash
+    echo -e "alias setisis='. /usgs/cpkgs/isis3/isis3mgr_scripts/initIsisCmake.sh'" >> ~/.bashrc
+    ```
  
 ## New Environmental Variable Meanings
 `$ISISROOT` is no longer the ISIS3 source directory. `$ISISROOT` is now either the CMake build directory for development or the install directory for running a deployed copy of ISIS. 

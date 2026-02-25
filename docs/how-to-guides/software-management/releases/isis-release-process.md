@@ -96,6 +96,9 @@ Check the [AWS CodeBuild test results](https://us-west-2.codebuild.aws.amazon.co
     - [ ] **Update the Authors List**:  If there are any new contributors to the project since the last release, update the `AUTHORS.rst` file to include them.
     - [ ] Submit a Pull Request: Submit a pull request into the Prod release feeder branch (i.e, `9-prod`). 
 
+!!! info ""
+
+    If needed, install towncrier with `conda install towncrier`
 
 !!! Success "" 
     

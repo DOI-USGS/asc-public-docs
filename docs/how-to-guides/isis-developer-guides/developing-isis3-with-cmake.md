@@ -189,6 +189,8 @@ If a [test fixture](../../how-to-guides/isis-developer-guides/writing-isis-tests
 
 ## Building Individual ISIS3 Applications/Objects
 
+!!! note "[Rerun `cmake`](#3-make-isis) whenever you add/remove objects, so the system can see/compile them."
+
 ### Applications 
 
 === "ninja"
@@ -239,9 +241,6 @@ If a [test fixture](../../how-to-guides/isis-developer-guides/writing-isis-tests
     In the case of a heavily used class like Pixel, this equates to 865 objects.
     It's still much faster then using cmake generated Makefiles.
 
-## CMake Behavior When Adding/Removing/Modifying an Object
-
-The cmake configure command needs to be executed when adding/removing a new object so that the system sees and compiles it.  
 
 ## Building Documentation
 
@@ -251,7 +250,7 @@ The cmake configure command needs to be executed when adding/removing a new obje
     ninja docs -j7
     ```
 
-=== "classic"
+=== "make"
 
     ```sh
     make docs -j7
@@ -260,8 +259,20 @@ The cmake configure command needs to be executed when adding/removing a new obje
 The documentation is placed in `build/docs`.
 
 ## Building in Debug Mode
-1. reconfigure cmake with flag (`-DCMAKE_BUILD_TYPE=DEBUG`)
-2. rebuild
+
+=== "ninja"
+
+    ```sh
+    cmake -DCMAKE_BUILD_TYPE=DEBUG -GNinja ../isis   # cmake with debug flag
+    ninja install                                    # Rebuild
+    ```
+
+=== "make"
+
+    ```sh
+    cmake -DCMAKE_BUILD_TYPE=DEBUG ../isis   # cmake with debug flag
+    make install                             # Rebuild
+    ```
 
 ## Tests
 

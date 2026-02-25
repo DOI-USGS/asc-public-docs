@@ -1,6 +1,6 @@
 # Developing ISIS with cmake
 
-## Getting Started With GitHub
+## Fork and Clone from GitHub
 
 1. **Make your own fork of ISIS:**  
    Go to the [main ISIS3 repo](https://github.com/DOI-USGS/ISIS3) and click on "Fork" at the top of the page.
@@ -63,7 +63,8 @@ conda activate isis-dev-env
 mkdir build
 ```
 
-*There should now be a "build" subdirectory alongside the "isis" subdirectory.*
+*There should now be a "build" subdirectory alongside the "isis" subdirectory.*  
+*`ninja` (or `make`) commands should be run from inside the build directory.*
 
 ### 2. Set Env Variables
 
@@ -84,7 +85,7 @@ export ISISTESTDATA=/yourDataDirectory/isistestdata
 ### 3. `make` ISIS
 
 ```sh
-cd build               # Enter the build directory (or wherever cmake was run)
+cd build               # Enter the build directory
 cmake -GNinja ../isis  # run cmake on the ISIS3/isis directory
 ```
 *If you run `cmake` from a different directory, change `../isis` to point to the `isis` subfolder under `ISIS3`.*
@@ -92,7 +93,7 @@ cmake -GNinja ../isis  # run cmake on the ISIS3/isis directory
 ### 4. Build ISIS
 
 ```sh
-# From inside your build directory
+# From inside your build directory (or wherever cmake was run)
 ninja install
 
 # This may take a while, around 20 min to an hour.
@@ -151,7 +152,9 @@ Points to data for legacy ISIS Makefile tests.  This data must be downloaded.  S
 Where the ISIS source code lives, the lowercase `isis` subdirectory of `ISIS3`. If you are in build, this would be `../isis` as a relative path.
 
 ***Build Directory*** (`ISIS3/build`):  
-Where generated project files live (Makefiles, Ninja files, Xcode project, etc).  Holds the `bin` directory where binaries are built to.
+Where generated project files live (Makefiles, Ninja files, Xcode project, etc). 
+Holds the `bin` directory where binaries are built to.
+`ninja` (or `make`) commands should be run from here.
 
 ***Custom Data and Test Data***:  
 The addition of test data files should be limited. Contributions to $ISISTESTDATA are no longer accepted. 
@@ -159,75 +162,102 @@ If a [test fixture](../../how-to-guides/isis-developer-guides/writing-isis-tests
 
 ## Cleaning Builds
 
-**Using the Ninja Build System:**
+=== "ninja"
 
-Removes all built objects except for those built by the build generator:  
-  `ninja -t clean` 
+    Removes all built objects except for those built by the build generator:  
+      `ninja -t clean` 
 
-Remove all built files specified in rules.ninja:  
-  `ninja -t clean -r rules` 
+    Remove all built files specified in rules.ninja:  
+      `ninja -t clean -r rules` 
 
-Remove all built objects for a specific target:  
-  `ninja -t clean <target_name>` 
+    Remove all built objects for a specific target:  
+      `ninja -t clean <target_name>` 
 
-Get a list of Ninja's targets:  
-  `ninja -t targets`
+    Get a list of Ninja's targets:  
+      `ninja -t targets`
 
-**Manual Cleans**
+=== "manual (`rm`)"
 
-Cleaning all of ISIS:  
- `rm -rf build`
+    Cleaning all of ISIS:  
+      `rm -rf build`
 
-Cleaning an individual app:  
- `cd build && rm bin/<app_name>`
+    Cleaning an individual app:  
+      `cd build && rm bin/<app_name>`
 
-Cleaning an individual object:  
- ``cd build && rm `find -name ObjectName.cpp.o` ``
+    Cleaning an individual object:  
+      ``cd build && rm `find -name ObjectName.cpp.o` ``
 
 ## Building Individual ISIS3 Applications/Objects
 
 ### Applications 
 
-The command (from the build directory) is:  
-`make install <appname>`
+=== "ninja"
 
-To build fx:  `make install fx`
+    ```sh
+    # (from the build directory)
+    ninja install <appname>
+
+    # For example, to build fx:
+    ninja install fx
+    ```
+
+=== "make"
+
+    ```sh
+    # (from the build directory)
+    make install <appname>
+
+    # For example, to build fx:
+    make install fx
+    ```
 
 ### Objects
 
-`make install isis3 -j7`: If you make a change to one class in the ISIS3 API, 
-it compiles and builds everything.  This can take awhile.
+=== "ninja"
 
-If you are using Ninja the command is:
+    ```sh
+    ninja install lib<yourLibrary>.dylib
 
-`ninja install libisis3.so`
+    # For example, the isis library
+    ninja install libisis.dylib
+    ```
 
-The nice thing about Ninja is that it re-compiles whatever class you modified,
-and then re-links all the applications/objects/unit tests which have dependencies
-on that object.  In the case of a heavily used class like Pixel, this equates to 865 objects.
-It's still a lot faster then using cmake generated Makefiles.
+=== "make"
+
+    ```sh
+    make install <yourLibrary> -j7
+
+    # For example, the isis library
+    make install isis -j7
+    ```
+
+??? info "`ninja` is faster - it relinks dependencies instead of rebuilding them all."
+
+    `make` compiles and builds everything your class touches again (slow), 
+    but `ninja` just recompiles your class and relinks dependencies (faster). 
+
+    In the case of a heavily used class like Pixel, this equates to 865 objects.
+    It's still much faster then using cmake generated Makefiles.
 
 ## CMake Behavior When Adding/Removing/Modifying an Object
 
 The cmake configure command needs to be executed when adding/removing a new object so that the system sees and compiles it.  
 
-## Building ISIS3 Documentation
+## Building Documentation
 
-At present under the current system there is no way to build documentation for individual applications/objects.  To build all documentation using the ninja build system, CD into the build directory and enter the following command:
-
-=== "ninja build system"
+=== "ninja"
 
     ```sh
     ninja docs -j7
     ```
 
-=== "classic make"
+=== "classic"
 
     ```sh
     make docs -j7
     ```
 
-The documentation is placed in `install/docs` (after being copied over from `build/docs`).
+The documentation is placed in `build/docs`.
 
 ## Building in Debug Mode
 1. reconfigure cmake with flag (`-DCMAKE_BUILD_TYPE=DEBUG`)
@@ -274,12 +304,12 @@ The workflow for creating a new tests will be the same as the old ISIS make syst
 
 ### App Tests and Category Tests
 
-App/Category tests still leverage the old make system, they work using the standard ISIS app/category test workflow for now.
+App/Category tests still use the old make system, with the standard ISIS app/category test workflow.
 App/Category tests can be developed in the ISIS src tree similar to the old make system. As long as the path is pointing to the binaries in the build directory (`build/bin`); `make output`, `make test`, `make compare`, `make truthdata`, and `make ostruthdata` all work. You cannot run all tests from the root of the ISIS source tree. To accomplish this use ctest in the build directory, see above. If there is testdata in the ISIS source tree ctest will test with that data.
 
 ### Unit Tests
 
-Unit test no longer rely on the old ISIS make system. The unitTest.cpp of each object are compiled and an executable is made and saved in the unitTest sub-directory of the build directory. A symbolic link of the unit test executable is created in the object's directory. This allows the unit test to get files that it needs inside the object's directory, i.e. unitTest.xml. If a unit test passes, then the symbolic link is removed. If you want to run a passing unit test in debug mode, you will have to create a symbolic link of the unit test in the object's directory yourself. If you are inside the object's directory:
+Unit tests don't use the old ISIS make system. The unitTest.cpp of each object are compiled and an executable is made and saved in the unitTest sub-directory of the build directory. A symbolic link of the unit test executable is created in the object's directory. This allows the unit test to get files that it needs inside the object's directory, i.e. unitTest.xml. If a unit test passes, then the symbolic link is removed. If you want to run a passing unit test in debug mode, you will have to create a symbolic link of the unit test in the object's directory yourself. If you are inside the object's directory:
 
 `ln -s $ISISROOT/unitTest/<unit_test_name> unitTest`
 

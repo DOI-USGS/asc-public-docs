@@ -36,7 +36,7 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 
 Conda manages dependencies and 3rd-party libraries to create a build environment (conda env) for ISIS. The cmake build system expects an active [conda env](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment) containing these dependencies, which are listed in the [environment.yml](https://github.com/DOI-USGS/ISIS3/blob/dev/environment.yml).
 
-To create and activate you conda env, run these commands in the ISIS3 directory.
+To create and activate a conda env, run these commands in the ISIS3 directory.
 
 ```sh
 # Create
@@ -50,7 +50,7 @@ conda activate isis-dev-env
 
     *We chose the env name, "isis-dev-env", but you can name your env something else if you want.*
 
-    *Your terminal prompt should look now be preceded by (isis-dev-env). 
+    *Your terminal prompt should look now be preceded by `(isis-dev-env)`. 
     This indicates that you are in an active conda env, 
     which you will need to build ISIS.*
 
@@ -68,7 +68,8 @@ mkdir build
 ### 2. Set Env Variables
 
 Set `ISISROOT` to point to your build directory.  
-See [the ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md) to set up ISISDATA and ISISTESTDATA so you can run tests.  
+See [the ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md) 
+to set up ISISDATA and ISISTESTDATA so you can import mission data and run tests.  
 
 ```sh
 export ISISROOT=/yourCodeDirectory/ISIS3/build
@@ -83,7 +84,7 @@ export ISISTESTDATA=/yourDataDirectory/isistestdata
 ### 3. `make` ISIS
 
 ```sh
-cd build               # Enter the build directory
+cd build               # Enter the build directory (or wherever cmake was run)
 cmake -GNinja ../isis  # run cmake on the ISIS3/isis directory
 ```
 *If you run `cmake` from a different directory, change `../isis` to point to the `isis` subfolder under `ISIS3`.*
@@ -187,8 +188,7 @@ Cleaning an individual object:
 
 ### Applications 
 
-The command (from the build directory) is:
-
+The command (from the build directory) is:  
 `make install <appname>`
 
 To build fx:  `make install fx`

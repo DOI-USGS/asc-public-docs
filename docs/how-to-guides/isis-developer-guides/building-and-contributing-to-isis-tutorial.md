@@ -4,9 +4,9 @@
 
 Follow these tutorials to set up your local ISIS environment before you get started:
 
-1. [Getting Started With GitHub](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#getting-started-with-github)
-2. [Anaconda and ISIS3 Dependencies](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#anaconda-and-isis3-dependencies)
-3. [Building ISIS3](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#building-isis3)
+1. [Getting Started With GitHub](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#fork-and-clone-from-github)
+2. [Anaconda and ISIS3 Dependencies](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#build-environment--dependencies)
+3. [Building ISIS3](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#building-isis)
 
 ## 2. Converting Apps and Tests
 
@@ -18,7 +18,7 @@ find isis/src/*/apps/ -regex '.*/tsts' | sed 's:[^/]*$::'
 
 Apps that need to be refactored only have *app-name.xml* and *main.cpp*, other than the *Makefile* and other possible folders (like `assets` and `tsts`). Take a look at the [bandtrim](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/src/base/apps/bandtrim) app for example. In comparison, apps that have been updated to fit the gtest suite will have *app-name.xml*, *app-name.cpp*, *app-name.h*, and *main.cpp*, like the [campt](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/src/base/apps/campt) app.
 
-After finding a suitable app to refactor, follow the steps in [Refactoring ISIS3 Applications](../../how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest/#refactoring-isis3-applications) in your selected app.
+After finding a suitable app to refactor, follow the steps in [Refactoring ISIS3 Applications](../../how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest/#refactoring-isis-applications) in your selected app.
 
 To write a new test suite with gtest, follow the steps in [Creating a new test suite](../../how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest/#creating-a-new-test-suite). 
 

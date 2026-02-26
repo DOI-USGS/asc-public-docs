@@ -1,5 +1,45 @@
 # Developing ISIS with cmake
 
+??? info "Environmental Variables and Common Directories"
+
+    #### Environmental Variables
+
+    ***$ISISROOT points to either:***  
+
+    - (For Dev) The CMake build directory  
+    `ISISROOT=/yourCodeDirectory/ISIS3/build`  
+
+    - (For Production) The install directory for running a deployed copy of ISIS. 
+    `ISISROOT=$CONDA_PREFIX`
+
+    ***$ISISDATA***  
+    Points to the NAIF SPICE Kernels, which contain spacecraft geometric and timing information that ISIS needs to process and align spacecraft images.
+    These kernels must be downloaded to process mission data, unless you are using the [SpiceQL web service](../../how-to-guides/SPICE/using-web-spice-in-isis-and-ale.md). See [ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md) for more info on how to download and set up `ISISDATA`.
+
+    ***$ISISTESTDATA***  
+    Points to data for legacy ISIS Makefile tests.  This data must be downloaded to run legacy tests.  See [ISIS Test Data](../../how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md).
+
+    #### Common Directories
+
+    ***Source Directory*** (`ISIS3/isis`):  
+    Where the ISIS source code lives, the lowercase `isis` subdirectory of `ISIS3`. If you are in build, this would be `../isis` as a relative path.
+
+    ***Build Directory*** (`ISIS3/build`):  
+    Where generated project files live (Makefiles, Ninja files, Xcode project, etc). 
+    Holds the `bin` directory where binaries are built to.
+    `ninja` (or `make`) commands should be run from here.
+
+    ***Executables Directory:***  
+    Executables are placed in `build/bin` (and linked in `$CONDA_PREFIX/bin`).  
+    For Example, to use ddt (with `$ISISROOT` set to the build directory):  
+    ```sh
+    ddt $ISISROOT/bin/<application_name>
+    ```
+
+    ***Custom Data and Test Data***:  
+    The addition of test data files should be limited. Contributions to $ISISTESTDATA are no longer accepted. 
+    If a [test fixture](../../how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md#test-fixtures) requires extra data, that data should be placed in `ISIS3/isis/tests/data`.
+
 ## Fork and Clone from GitHub
 
 1. **Make your own fork of ISIS:**  
@@ -8,13 +48,14 @@
 1. **Get a cloning link:**  
    On your ISIS fork (url should be `github.com/<username>/ISIS3`), click on the green `Clone or Download` button on the right and copy the link.  
 
-1. **Clone ISIS:**  
+1. **Clone ISIS (including submodules):**  
    Open a terminal, go to the directory you want to make a clone in, and run:  
    `git clone --recurse-submodules <your link>`  
 
-Now that the files are on your computer, you can edit them, build ISIS, and contribute.
+Now that the files are on your computer, you can go on to build ISIS for yourself, 
+and maybe even edit its programs or contribute to development.
 
-???+ note "Cloning Submodules later"
+??? note "Cloning Submodules later (if you didn't run `--recurse-submodules`, or are missing `gtest`)"
 
     If you have an old clone, or you forgot to add `--recurse-submodules` when you initially cloned ISIS, run this in the `ISIS3` directory to clone the `gtest` submodule:
     
@@ -54,7 +95,7 @@ conda activate isis-dev-env
     This indicates that you are in an active conda env, 
     which you will need to build ISIS.*
 
-## Building ISIS3 
+## Building ISIS
 
 ### 1. Create a `build` directory
 
@@ -82,7 +123,7 @@ export ISISTESTDATA=/yourDataDirectory/isistestdata
 # so you don't have to set them every time.
 ```
 
-### 3. `make` ISIS
+### 3. Make ISIS with `cmake`
 
 ```sh
 cd build               # Enter the build directory
@@ -90,7 +131,11 @@ cmake -GNinja ../isis  # run cmake on the ISIS3/isis directory
 ```
 *If you run `cmake` from a different directory, change `../isis` to point to the `isis` subfolder under `ISIS3`.*
 
-### 4. Build ISIS
+!!! note ""
+
+    Rerun the `cmake` command whenever you add/remove objects, so the system can see/compile them.
+
+### 4. Build ISIS with `ninja`
 
 ```sh
 # From inside your build directory (or wherever cmake was run)
@@ -99,141 +144,16 @@ ninja install
 # This may take a while, around 20 min to an hour.
 ```
 
+??? info "Ninja vs Make"
 
-??? Tip "Build Flags and Tips"
-
-    Use these flags in the `cmake` command to configure your build.
-
-    `-GNinja`  
-    Makes a [Ninja](https://ninja-build.org/manual.html) Makefile (alternative to GNU `make`). To use `make`, omit this flag and replace the `ninja` commands with their `make` counterparts.
-
-    `-DJP2KFLAG=ON`  
-    Enables JP2000 support. (Not available on ARM builds.)
-
-    `-Dpybindings=OFF`  
-    Disables the bundle adjust python bindings.
-
-    `-DCMAKE_BUILD_TYPE=Debug`  
-    Build with debug flags.
-
-    ***More Build Options:***  
-    Look for `# Configuration options` in [isis/CMakeLists.txt](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/CMakeLists.txt#L63). 
-    Use `-D` flags to turn these options on or off.  
-    For example, to build ISIS with no tests and no docs:
+    We generally use `ninja` to build ISIS, though it is possible to configure cmake for 
+    plain `make builds` as well, ommiting the `-GNinja` flag:
     ```sh
-    cmake -DbuildDocs=OFF -DbuildTests=OFF -GNinja ../isis
+    cmake ../isis
+    make install
     ```
 
-    ***Executables Location:***  
-    Executables are placed in `build/bin` (and linked in `$CONDA_PREFIX/bin`).  
-    For Example, to use ddt (with `$ISISROOT` set to the build directory):  
-    ```sh
-    ddt $ISISROOT/bin/<application_name>
-    ```
- 
-## Environmental Variables and Common Directories
-
-***$ISISROOT points to either:***  
-
-- (For Dev) The CMake build directory  
-  `ISISROOT=/codedirectory/ISIS3/build`  
-
-- (For Production) The install directory for running a deployed copy of ISIS. 
-  `ISISROOT=$CONDA_PREFIX`
-
-***$ISISDATA***  
-Points to the NAIF SPICE Kernels, which contain spacecraft geometric and timing information that ISIS needs to process and align spacecraft images.
-This data must be downloaded, unless you are using the [SpiceQL web service](../../how-to-guides/SPICE/using-web-spice-in-isis-and-ale.md). See [ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md) for more info on how to download and set up `ISISDATA`.
-
-***$ISISTESTDATA***  
-Points to data for legacy ISIS Makefile tests.  This data must be downloaded.  See [ISIS Test Data](../../how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md).
-
-***Source Directory*** (`ISIS3/isis`):  
-Where the ISIS source code lives, the lowercase `isis` subdirectory of `ISIS3`. If you are in build, this would be `../isis` as a relative path.
-
-***Build Directory*** (`ISIS3/build`):  
-Where generated project files live (Makefiles, Ninja files, Xcode project, etc). 
-Holds the `bin` directory where binaries are built to.
-`ninja` (or `make`) commands should be run from here.
-
-***Custom Data and Test Data***:  
-The addition of test data files should be limited. Contributions to $ISISTESTDATA are no longer accepted. 
-If a [test fixture](../../how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md#test-fixtures) requires extra data, that data should be placed in `ISIS3/isis/tests/data`.
-
-## Cleaning Builds
-
-=== "ninja"
-
-    Removes all built objects except for those built by the build generator:  
-      `ninja -t clean` 
-
-    Remove all built files specified in rules.ninja:  
-      `ninja -t clean -r rules` 
-
-    Remove all built objects for a specific target:  
-      `ninja -t clean <target_name>` 
-
-    Get a list of Ninja's targets:  
-      `ninja -t targets`
-
-=== "manual (`rm`)"
-
-    Cleaning all of ISIS:  
-      `rm -rf build`
-
-    Cleaning an individual app:  
-      `cd build && rm bin/<app_name>`
-
-    Cleaning an individual object:  
-      ``cd build && rm `find -name ObjectName.cpp.o` ``
-
-## Building Individual ISIS3 Applications/Objects
-
-!!! note "[Rerun `cmake`](#3-make-isis) whenever you add/remove objects, so the system can see/compile them."
-
-### Applications 
-
-=== "ninja"
-
-    ```sh
-    # (from the build directory)
-    ninja install <appname>
-
-    # For example, to build fx:
-    ninja install fx
-    ```
-
-=== "make"
-
-    ```sh
-    # (from the build directory)
-    make install <appname>
-
-    # For example, to build fx:
-    make install fx
-    ```
-
-### Objects
-
-=== "ninja"
-
-    ```sh
-    ninja install lib<yourLibrary>.dylib
-
-    # For example, the isis library
-    ninja install libisis.dylib
-    ```
-
-=== "make"
-
-    ```sh
-    make install <yourLibrary> -j7
-
-    # For example, the isis library
-    make install isis -j7
-    ```
-
-??? info "`ninja` is faster - it relinks dependencies instead of rebuilding them all."
+    `ninja` tends to be faster - it relinks dependencies instead of rebuilding them all.
 
     `make` compiles and builds everything your class touches again (slow), 
     but `ninja` just recompiles your class and relinks dependencies (faster). 
@@ -241,38 +161,168 @@ If a [test fixture](../../how-to-guides/isis-developer-guides/writing-isis-tests
     In the case of a heavily used class like Pixel, this equates to 865 objects.
     It's still much faster then using cmake generated Makefiles.
 
+## Build Tasks and Custom Builds
 
-## Building Documentation
+??? abstract "Cmake Build Configuration Flags"
 
-=== "ninja"
+    Use these flags in the `cmake` command to configure your build. 
+    All flags with an = sign are shown with their default values. 
+    Some can be turned `ON` or `OFF`, others accept a specific value.
 
+    `-GNinja`  
+    Makes a [Ninja](https://ninja-build.org/manual.html) Makefile (alternative to GNU `make`). To use plain `make` instead, omit this flag and replace the `ninja` commands with their `make` counterparts.
+
+    `-DisisData=OFF`  
+    The ISISDATA directory. If `OFF`, the $ISISDATA environmental variable will be used by default.
+    
+    `-DisisTestData=OFF`  
+    The ISISTESTDATA directory. If `OFF`, the $ISISTESTDATA environmental variable will be used by default.
+
+    `-DtestOutputDir=OFF`  
+    Directory to store app test output folders. If `OFF`, then `${CMAKE_BINARY_DIR}/testOutputDir` will be used by default.
+
+    `-DbuildCore=ON`  
+    Build core ISIS modules.
+
+    `-DbuildMissions=ON`  
+    Build mission-specific modules.
+
+    `-DbuildStaticCore=OFF`  
+    Build libisis static libraries (in addition to dynamic, which are always built).
+
+    `-DbuildTests=ON`  
+    Tests.
+
+    `-DbuildCoverage=ON`  
+    Code coverage.  
+
+    `-DbuildDocs=ON`  
+    Documentation
+
+    `-DJP2KFLAG=OFF`  
+    JPEG2000 support. (Not available on ARM builds.)
+
+    `-Dpybindings=ON`  
+    Bundle adjust python bindings.
+
+    `-DCMAKE_BUILD_TYPE=Release`  
+    Build type. `Release` by default, can also be set to `Debug`.
+
+    ***Build Options Source:***  
+    Most of the above options are spelled out in ISIS's CMakeLists.txt file.
+    Look for `# Configuration options` in [isis/CMakeLists.txt](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/CMakeLists.txt#L63). 
+    Use `-D...` flags to turn these options on or off.
+
+    For example, to build ISIS with no tests and no docs:
     ```sh
-    ninja docs -j7
+    cmake -DbuildDocs=OFF -DbuildTests=OFF -GNinja ../isis
     ```
 
-=== "make"
 
-    ```sh
-    make docs -j7
-    ```
+??? example "Cleaning Builds"
 
-The documentation is placed in `build/docs`.
+    === "ninja"
 
-## Building in Debug Mode
+        Removes all built objects except for those built by the build generator:  
+        `ninja -t clean` 
 
-=== "ninja"
+        Remove all built files specified in rules.ninja:  
+        `ninja -t clean -r rules` 
 
-    ```sh
-    cmake -DCMAKE_BUILD_TYPE=DEBUG -GNinja ../isis   # cmake with debug flag
-    ninja install                                    # Rebuild
-    ```
+        Remove all built objects for a specific target:  
+        `ninja -t clean <target_name>` 
 
-=== "make"
+        Get a list of Ninja's targets:  
+        `ninja -t targets`
 
-    ```sh
-    cmake -DCMAKE_BUILD_TYPE=DEBUG ../isis   # cmake with debug flag
-    make install                             # Rebuild
-    ```
+    === "manual (`rm`)"
+
+        Cleaning all of ISIS:  
+        `rm -rf build`
+
+        Cleaning an individual app:  
+        `cd build && rm bin/<app_name>`
+
+        Cleaning an individual object:  
+        ``cd build && rm `find -name ObjectName.cpp.o` ``
+
+??? example "Building Individual ISIS Applications"
+
+    === "ninja"
+
+        ```sh
+        # (from the build directory)
+        ninja install <appname>
+
+        # For example, to build fx:
+        ninja install fx
+        ```
+
+    === "make"
+
+        ```sh
+        # (from the build directory)
+        make install <appname>
+
+        # For example, to build fx:
+        make install fx
+        ```
+
+??? example "Building Individual ISIS Objects"
+
+    === "ninja"
+
+        ```sh
+        ninja install lib<yourLibrary>.dylib
+
+        # For example, the isis library
+        ninja install libisis.dylib
+        ```
+
+    === "make"
+
+        ```sh
+        make install <yourLibrary> -j7
+
+        # For example, the isis library
+        make install isis -j7
+        ```
+
+
+??? example "Building Only Documentation"
+
+    === "ninja"
+
+        ```sh
+        ninja docs -j7
+        ```
+
+    === "make"
+
+        ```sh
+        make docs -j7
+        ```
+
+    The documentation is placed in `build/docs`. 
+
+    Cmake is configured to build docs by defaults, but if the `-DbuildDocs=OFF` flag was used, 
+    `ninja` and `make` won't be able to build the docs until you run cmake again.
+
+??? example "Building in Debug Mode"
+
+    === "ninja"
+
+        ```sh
+        cmake -DCMAKE_BUILD_TYPE=DEBUG -GNinja ../isis   # cmake with debug flag
+        ninja install                                    # Rebuild
+        ```
+
+    === "make"
+
+        ```sh
+        cmake -DCMAKE_BUILD_TYPE=DEBUG ../isis   # cmake with debug flag
+        make install                             # Rebuild
+        ```
 
 ## Tests
 

@@ -4,9 +4,9 @@
 
 Follow these tutorials to set up your local ISIS environment before you get started:
 
-1. [Getting Started With GitHub](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#fork-and-clone-from-github)
-2. [Anaconda and ISIS3 Dependencies](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#build-environment--dependencies)
-3. [Building ISIS3](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#building-isis)
+1. [Fork and Clone from GitHub](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md/#fork-and-clone-from-github)
+2. [Setup Conda Build Env and Dependencies](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md/#build-environment--dependencies)
+3. [Building ISIS](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md/#building-isis)
 
 ## 2. Converting Apps and Tests
 
@@ -18,9 +18,9 @@ find isis/src/*/apps/ -regex '.*/tsts' | sed 's:[^/]*$::'
 
 Apps that need to be refactored only have *app-name.xml* and *main.cpp*, other than the *Makefile* and other possible folders (like `assets` and `tsts`). Take a look at the [bandtrim](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/src/base/apps/bandtrim) app for example. In comparison, apps that have been updated to fit the gtest suite will have *app-name.xml*, *app-name.cpp*, *app-name.h*, and *main.cpp*, like the [campt](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/src/base/apps/campt) app.
 
-After finding a suitable app to refactor, follow the steps in [Refactoring ISIS3 Applications](../../how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest/#refactoring-isis-applications) in your selected app.
+After finding a suitable app to refactor, follow the steps in [Refactoring ISIS3 Applications](../../how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md/#refactoring-isis-applications) in your selected app.
 
-To write a new test suite with gtest, follow the steps in [Creating a new test suite](../../how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest/#creating-a-new-test-suite). 
+To write a new test suite with gtest, follow the steps in [Creating a new test suite](../../how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md/#creating-a-new-test-suite). 
 
 A great way to get a grasp on the converting process is by looking at previous examples so here are some PRs:
 
@@ -29,13 +29,13 @@ A great way to get a grasp on the converting process is by looking at previous e
   
 ## 3. Run Tests
 
-Check out [Running Tests](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#running-tests) to get an idea on how to run your tests.
+Check out [Running Tests](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md/#running-tests) to get an idea on how to run your tests.
 
 As an example, let's look at the [`skypt` test suite](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/tests/FunctionalTestsSkypt.cpp). You can run the all of `skypt`'s tests with `ctest -R skypt`. Let's say you want to test only the first test case in *FunctionalTestsSkypt.cpp*, run `ctest -R FunctionalTestSkyptDefault`. 
 
 ## 4. Run Coverage Checks and Static Checks
 
-Check out [Running Tests](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake/#checking-test-coverage) to see how coverage and static checks work.
+Check out [Running Tests](../../how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md/#checking-test-coverage) to see how coverage and static checks work.
 
 If you run a partial test, just look at how coverage changed for the specific class or application you updated.
 

@@ -60,7 +60,7 @@ Subsequent Production and LTS releases (with no Major version change, i.e, 8.***
 
     Triggered by pushes (including merged-PRs) to dev.
 
-    When a major update is made, update the branch name that this CI/CD sends new changes to.
+    When a major update is made, make sure the script in github-cherrypick.yml can still find the latest LTS and Production branches (to cherry-pick to) correctly.
 
 !!! Success ""
 

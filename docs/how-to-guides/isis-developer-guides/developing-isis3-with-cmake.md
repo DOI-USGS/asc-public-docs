@@ -147,7 +147,7 @@ ninja install
 ??? info "Ninja vs Make"
 
     We generally use `ninja` to build ISIS, though it is possible to configure cmake for 
-    plain `make builds` as well, ommiting the `-GNinja` flag:
+    plain `make` builds as well, omitting the `-GNinja` flag:
     ```sh
     cmake ../isis
     make install

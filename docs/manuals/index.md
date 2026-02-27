@@ -7,31 +7,28 @@ hide:
 
 # Software Manuals
 
-::cards:: cols=4 image-bg
+<div class="grid cards" markdown>
 
-- title:   ISIS
-  content: Integrated Software for Imagers and Spectrometers
-  url:     https://isis.astrogeology.usgs.gov/
-  image:   https://raw.githubusercontent.com/DOI-USGS/ISIS3/dev/rtd_docs/ISIS_Logo.svg
+-   ![ISIS Logo (A Satellite enclosed in the circle of the top of the sun-staff of the ancient Egyptian god, Isis).](https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/src/docsys/assets/img/image-source-files/ISIS_Logo.svg){ width="150" align=left }  
+    **[ISIS :octicons-arrow-right-16:](https://isis.astrogeology.usgs.gov/)**  
+    Integrated Software for Imagers and Spectrometers
 
-- title:   USGSCSM
-  content: USGS Community Sensor Models
-  url:     ./usgscsm/
-  image:   https://raw.githubusercontent.com/DOI-USGS/usgscsm/main/docs/USGSCSM_Logo.svg
-  
-- title:   ALE
-  content: Abstraction Library for Ephemerides
-  url:     ./ale/
-  image:   https://raw.githubusercontent.com/DOI-USGS/ale/main/docs/ALE_Logo.svg
-  
-- title:   PLIO
-  content: Planetary Input/Output Library
-  url:     ./plio/
-  image:   https://raw.githubusercontent.com/DOI-USGS/plio/main/docs/PLIO_Logo.svg
+-   ![USGS CSM Logo (The hexagonal shutter of a camera lens opening).](https://raw.githubusercontent.com/DOI-USGS/usgscsm/main/docs/USGSCSM_Logo.svg){ width="128" align=left }  
+    **[USGSCSM :octicons-arrow-right-16:](./usgscsm/)**  
+    USGS Community Sensor Model
 
-- title:   SpiceQL
-  content: Spice Query Library
-  url:     ./spiceql/
-  image:   https://github.com/DOI-USGS/SpiceQL/blob/c3cd99a0660c14d8e31927bd25cc5d38315375cb/docs/assets/banner3.png?raw=true
+-   ![Ale Logo (A satellite orbiting a planet)](https://raw.githubusercontent.com/DOI-USGS/ale/main/docs/ALE_Logo.svg){ width="128" align=left }  
+    **[ALE :octicons-arrow-right-16:](./ale/)**  
+    Abstraction Library for Ephemerides
 
-::/cards::
+-   ![PLIO Logo (A planet with arrows forming a Saturn-like ring around it).](https://raw.githubusercontent.com/DOI-USGS/plio/main/docs/PLIO_Logo.svg){ width="128" align=left }  
+    **[PLIO :octicons-arrow-right-16:](./plio/)**  
+    Planetary Input/Output Library
+
+
+-   ![SpiceQL Logo (The words Spice Query Library on a background of the the starts of Milky Way).](https://github.com/DOI-USGS/SpiceQL/blob/c3cd99a0660c14d8e31927bd25cc5d38315375cb/docs/assets/banner3.png?raw=true){ width="128" align=left }  
+    **[SpiceQL :octicons-arrow-right-16:](./spiceql/)**  
+    Spice Query Library
+
+
+</div>

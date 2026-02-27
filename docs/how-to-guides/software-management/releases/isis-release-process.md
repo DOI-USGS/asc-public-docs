@@ -54,6 +54,14 @@ Subsequent Production and LTS releases (with no Major version change, i.e, 8.***
     - [ ] The ISIS github actions auto-cherrypick ***bugfixes*** and ***non-breaking features*** to this branch.  Note which ones have been successfully cherrypicked.
     - [ ] **Manually cherrypick** any bugfixes/features from `dev` that could not be automatically merged by the github actions.
 
+??? example "CI/CD: Cherry-Picking"
+
+    [`gitub-cherrypick.yml`](https://github.com/DOI-USGS/ISIS3/blob/dev/.github/workflows/github-cherrypick.yml) attempts to auto-cherrypick bugfixes to the next LTS branch, and bugfixes + non-breaking features to the next Prod branch, as the changes are merged into the Dev branch.  Identifies bugfixes and/or non-breaking features by the checkboxes from the PR template.  Not all changes are automatically resolveable, so make sure to manually cherry-pick any remaining changes that need to be included in LTS or Prod.
+
+    Triggered by pushes (including merged-PRs) to dev.
+
+    When a major update is made, make sure the script in github-cherrypick.yml can still find the latest LTS and Production branches (to cherry-pick to) correctly.
+
 !!! Success ""
 
     Move on to step 2 after any functional changes have been merged.
@@ -61,6 +69,12 @@ Subsequent Production and LTS releases (with no Major version change, i.e, 8.***
 ### 2. **Check current test failures**
 
 Check the [AWS CodeBuild test results](https://us-west-2.codebuild.aws.amazon.com/project/eyJlbmNyeXB0ZWREYXRhIjoiNDJNZ2MxbHFKTkwxV1RyQUxJekdJY3FIanNqU29rMHB4Nk1YUzk4REIrZUZDeEtEaW9HQlZ1dTZOSHpML2VUTGVDekYydmVFcU9sUHJKN20wQzd1Q0UzSzJscnB0MElDb1M3Ti9GTlJYR1RuMWJTV3V1SkJTa3NoYmc9PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF3U2NTSGlDcEtCc29YVnEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D) for the branch you plan to release. If false positives are suspected, at least two contributing developers need to agree before moving forward. 
+
+??? example "CI/CD: Codebuild"
+
+    [`gitlab-codebuild.yml`](https://github.com/DOI-USGS/ISIS3/blob/dev/.github/workflows/gitlab-codebuild.yml) auto-builds ISIS to check for build and/or test failures.  The auto-build runs in a linux system, so this is a good chance to check for errors that may not occur in a local mac build.
+
+    Triggered by the creation of a PR to any branch.  Makes a push to the internal isis-codebuild-ci repo, and lets that repo's CI/CD do the rest of the work (i.e. talking to AWS codebuild).
 
 !!! Success ""
     
@@ -188,6 +202,19 @@ Clone the repo locally with git clone.
     - [ ] In the release tab on GitHub, draft a release and set the target branch to the branch created in Step 4.
     - [ ] On the same page, create a new tag for the release version.
     - [ ] Name the release "ISISX.Y.Z Production". 
+
+??? example "CI/CD: Conda Release"
+    [`github-release.yml`](https://github.com/DOI-USGS/ISIS3/blob/dev/.github/workflows/github-release.yml) builds ISIS (with kakadu) and uploads those builds to conda.  It also updates the ISIS Docs for the release version.
+
+    Triggered by GitHub Releases, pushes to `*.*.*_RC*` or `*.*.*_LTS` branches, or manually.
+    
+    - If this action fails, make sure to complete the conda build/upload manually, and keep the docs up to date.
+    
+    - Make sure the images this action relies on are up to date.
+    Only the most recent two mac versions are supported, 
+    and an out of date mac image will cause this action to fail. 
+
+    [`dev-weekly-release.yml`](https://github.com/DOI-USGS/ISIS3/blob/dev/.github/workflows/dev-weekly-release.yml) makes a dev build of ISIS each week and uploads it to conda.
 
 !!! note ""
 

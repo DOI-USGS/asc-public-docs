@@ -38,7 +38,7 @@ hide:
     -----
 
     *Advanced*  
-    Gain a better understanding of the higher-level concepts that apply Astro software.
+    Learn higher-level concepts that apply to Astro software.
 
 -   **[:material-book-open-variant-outline: Software Manuals :octicons-arrow-right-16:](manuals/index.md)**
 

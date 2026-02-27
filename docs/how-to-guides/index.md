@@ -4,15 +4,25 @@
 
 <div class="grid cards" markdown>
 
--   :octicons-download-24:{ .lg .middle } __Use our script to install ISIS__
+-   :octicons-download-16:{ .lg .middle } __Install ISIS__
 
     ---
+
+    Our script sets up miniforge, ISIS, and the data area for you.
+    [:octicons-arrow-right-24: More Info](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+
 
     ```sh
     bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh)
     ```
 
-    [:octicons-arrow-right-24: More on Installing ISIS](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+-   :simple-planetscale:{ .lg .middle } __Missions Central__
+
+    ---
+
+    Process Moon & Mars data from specific spacecraft instruments.
+
+    [:octicons-arrow-right-24: Explore](../concepts/missions/index.md)
 
 -   :material-data-matrix-edit:{ .lg .middle } __Image Processing__
 
@@ -22,14 +32,6 @@
 
     [:octicons-arrow-right-24: Work on Images in ISIS](../how-to-guides/image-processing/index.md)
 
--   :octicons-code-square-24:{ .lg .middle } __ISIS Development Guides__
-
-    ---
-
-    Learn how to build, write code for, and contribute to ISIS.
-
-    [:octicons-arrow-right-24: Develop in ISIS](../how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md)
-
 -   :octicons-comment-discussion-24:{ .lg .middle } __I have an Issue!__
 
     ---
@@ -37,6 +39,14 @@
     Learn how to report issues with ISIS and how the maintainers respond to issues.
 
     [:octicons-arrow-right-24: Report an Issue](../how-to-guides/software-management/guidelines-for-reporting-issues.md)
+
+-   :octicons-code-square-24:{ .lg .middle } __ISIS Development Guides__
+
+    ---
+
+    Learn how to build, write code for, and contribute to ISIS.
+
+    [:octicons-arrow-right-24: Develop in ISIS](../how-to-guides/isis-developer-guides/developing-isis3-with-cmake.md)
 
 </div>
 

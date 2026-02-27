@@ -1,5 +1,9 @@
 # Getting Started
 
+!!! info ""
+
+    **Use the :octicons-search-24: search in the upper right corner :material-arrow-top-right: to find something fast!**
+
 ## ISIS
 
 ISIS (Integrated Software for Imagers and Spectrometers) is a [collection of apps](https://isis.astrogeology.usgs.gov/Application/index.html) for working with planetary imagery. It includes command-line and interactive visual apps.  ISIS can import images from various spacecraft, and create mosaics and maps from multiple images.
@@ -13,15 +17,19 @@ ISIS (Integrated Software for Imagers and Spectrometers) is a [collection of app
     - [All About ISIS](using-isis-first-steps/introduction-to-isis.md)
     - [Find Image Data](using-isis-first-steps/locating-and-ingesting-image-data.md)
     - [Add SPICE Data](using-isis-first-steps/adding-spice.md)
+    - [Process Mission Data](../concepts/missions/index.md)
 
--   :octicons-download-16:{ .lg .middle } __Run ISIS on your computer__
+-   :octicons-download-16:{ .lg .middle } __Install ISIS__
 
     ---
 
-    Use our script to install ISIS and set up the data area.
+    Our script sets up miniforge, ISIS, and the data area for you.
 
-    [:octicons-arrow-right-24: Install ISIS](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+    ```sh
+    bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh)
+    ```
 
+    [:octicons-arrow-right-24: More on Installing ISIS](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
 
 </div>
 

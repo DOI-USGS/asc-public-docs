@@ -184,7 +184,6 @@ nav:
   - Manuals: manuals/index.md
 
 extra_css:
-  - css/neoteroi-mkdocs.css
   - css/extras.css
   - https://asc-public-docs.s3.us-west-2.amazonaws.com/common/uswds/3.6.0/css/common.css
   - https://asc-public-docs.s3.us-west-2.amazonaws.com/common/uswds/3.6.0/css/custom.css
@@ -220,7 +219,6 @@ plugins:
 
 markdown_extensions:
   - codehilite
-  - neoteroi.cards
   - abbr
   - tables
   - attr_list

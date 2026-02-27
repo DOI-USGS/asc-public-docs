@@ -4,39 +4,50 @@ hide:
   - toc
 ---
 
-# Where to Look 
+# Mapping the Final Frontier
 
-If looking for something specific, you can use the search function.
+## USGS Astro makes software to help you </br> **process planetary image data**.
 
-These docs use a simple system of defining software documentation in four categories based on the composition and goal of a particular piece of documentation: 
+[Get Started](getting-started/index.md){ .md-button .md-button--primary }
 
-::cards:: cols=2
+-----
 
-[
-  {
-    "title": ":material-clock-fast: <u>__Getting Started__</u>",
-    "content": " First stop for learning about USGS Astrogeology's software: ISIS, the CSM Stack (ALE, Knoten), and SpiceQL.
-    ",
-    "url" : getting-started/index.md
-  }, 
-  {
-    "title": ":material-check-all: <u>__How-To Guides__</u>",
-    "content": "Examples on how-to complete common software tasks; for intermediate to advanced users who want examples on how to accomplish a particular task.",
-    "url" : how-to-guides/index.md
-  },
-  {
-    "title": ":material-text-long: <u>__Concepts__</u>",
-    "content": "Write-ups that define and explain concepts that apply to our software; this is for anyone who wants a better understanding of particular higher-level concepts.",
-    "url" : concepts/index.md
-},
-  {
-    "title": ":material-book-open-variant-outline: <u>__Software Manuals__</u>",
-    "content": "Links to in-depth software manuals; contains in-depth references to a particular software project's apps and APIs.",
-    "url" : manuals/index.md
-  },
-]
+<div class="grid cards" markdown>
 
-::/cards::
+<!--
+
+-   **[:material-clock-fast: Getting Started :octicons-arrow-right-16:](getting-started/index.md)**
+    
+    -----
+    
+    First stop for learning about USGS Astrogeology's software: ISIS, the CSM Stack (ALE, Knoten), and SpiceQL.
+
+-->
+
+-   **[:material-check-all: How-To Guides :octicons-arrow-right-16:](how-to-guides/index.md)**
+
+    -----
+
+    *Intermediate*  
+    Guides for common Astro software tasks.
+
+
+-   **[:material-text-long: Concepts :octicons-arrow-right-16:](concepts/index.md)**
+
+
+    -----
+
+    *Advanced*  
+    Learn higher-level concepts that apply to Astro software.
+
+-   **[:material-book-open-variant-outline: Software Manuals :octicons-arrow-right-16:](manuals/index.md)**
+
+    -----
+
+    *Intermediate, General-Purpose*  
+    In-depth manuals for each software's apps and APIs.
+
+</div>
 
 
 ## Documentation System 

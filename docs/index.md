@@ -12,25 +12,25 @@ These docs use a simple system of defining software documentation in four catego
 
 <div class="grid cards" markdown>
 
--   **[:material-clock-fast: Getting Started](getting-started/index.md)**
+-   **[:material-clock-fast: Getting Started :octicons-arrow-right-16:](getting-started/index.md)**
     
     -----
     
     First stop for learning about USGS Astrogeology's software: ISIS, the CSM Stack (ALE, Knoten), and SpiceQL.
 
--   **[:material-check-all: How-To Guides](how-to-guides/index.md)**
+-   **[:material-check-all: How-To Guides :octicons-arrow-right-16:](how-to-guides/index.md)**
 
     -----
 
     Examples on how-to complete common software tasks; for intermediate to advanced users who want examples on how to accomplish a particular task.
 
--   **[:material-text-long: Concepts](concepts/index.md)**
+-   **[:material-text-long: Concepts :octicons-arrow-right-16:](concepts/index.md)**
 
     -----
 
     Write-ups that define and explain concepts that apply to our software; this is for anyone who wants a better understanding of particular higher-level concepts.
 
--   **[:material-book-open-variant-outline: Software Manuals](manuals/index.md)**
+-   **[:material-book-open-variant-outline: Software Manuals :octicons-arrow-right-16:](manuals/index.md)**
 
     -----
 

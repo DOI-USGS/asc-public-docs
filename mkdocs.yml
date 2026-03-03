@@ -140,6 +140,8 @@ nav:
       - Session Logs:                      concepts/isis-fundamentals/session-logs.md
     - Missions:
       - Home:                              concepts/missions/index.md
+      - Chandrayaan 2:
+        - Home:                            concepts/missions/chandrayaan2/index.md
       - LRO (Lunar Reconnaissance Orbiter):
         - Home:                            concepts/missions/lro/index.md
         - NAC Data:                        concepts/missions/lro/lroc-nac-data.md

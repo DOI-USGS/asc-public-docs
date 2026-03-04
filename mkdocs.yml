@@ -76,6 +76,7 @@ nav:
       - Setting Up ISIS Data for New Missions: how-to-guides/environment-setup-and-maintenance/setup-isis-data.md
       - (ISIS ≤ 8.1 Only) USGSCSM Plugin:     how-to-guides/environment-setup-and-maintenance/adding-usgscsm-plugin-to-isis.md
       - (Internal) USGS Networked Conda Envs: how-to-guides/environment-setup-and-maintenance/anaconda-in-a-network-environment.md
+      - Running Jupyter Notebook Tutorials:   how-to-guides/environment-setup-and-maintenance/running-jupyter-notebook-tutorials.md
     - SPICE: 
       - Creating Spice Config Files in SpiceQL: how-to-guides/SPICE/creating-spice-config-files-in-spiceql.md
       - Using SpiceQL with Other Libraries: how-to-guides/SPICE/using-spiceql-with-other-libraries.md

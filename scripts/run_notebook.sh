@@ -5,7 +5,8 @@ ENV_YAML="environment.yml"
 NOTEBOOK_FILE="temp.ipynb"
 DATA_DIR="data/"
 PORT=8888
-BASE_URL="https://astrogeology.usgs.gov/docs/getting-started/data/downloads"
+# BASE_URL="https://astrogeology.usgs.gov/docs/getting-started/data/downloads"
+BASE_URL="http://127.0.0.1:8000/docs/getting-started/data/downloads"
 ZIP_NAME="temp"
 STOP="return 1 2>/dev/null || exit 1"
 
@@ -194,15 +195,14 @@ if [[ "$ZIP_NAME" != "temp" ]]; then
     NOTEBOOK_FILE=$(ls *.ipynb | head -n 1 2>/dev/null)
 
     # --- VALIDATION ---
-    if [[ -f "$ENV_YAML" && -f "$NOTEBOOK_FILE" && -d "$DATA_DIR" ]]; then
+    if [[ -f "$ENV_YAML" && -f "$NOTEBOOK_FILE" ]]; then
         echo "------------------------------------------------------------"
         echo "SUCCESS: Workspace variables set."
         echo "Environment: $ENV_YAML"
-        echo "Data Folder: $DATA_DIR"
         echo "Notebook:    $NOTEBOOK_FILE"
         echo "------------------------------------------------------------"
     else
-        echo "Error: Zip content missing required 'environment.yml', *.ipynb file, or 'data' folder."
+        echo "Error: Zip content missing required 'environment.yml' and *.ipynb notebook."
         eval $STOP
     fi
 fi
@@ -216,6 +216,11 @@ fi
 if [[ ! -f "$ENV_YAML" ]]; then
     echo "Error: $ENV_YAML not found."
     eval $STOP
+fi
+
+# Optional: Some notebooks do not need a data/ dir
+if  [[ ! -d "$DATA_DIR" ]]; then
+    echo "Note: Data directory not set."
 fi
 
 # --- CONDA/MAMBA INSTALLATION ---

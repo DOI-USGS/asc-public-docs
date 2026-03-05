@@ -1,5 +1,10 @@
 # Chandrayaan 2
 
+<figure markdown="span">
+  ![Image title](assets/ISRO-map.png)
+  <figcaption>TMC-2 Footprints</figcaption>
+</figure>
+
 The Chandrayaan 2 is an Indian Space Research Organisation 
 (ISRO) Lunar Mission. 
 The Chandrayaan 2 Lunar Orbiter was launched in 2019 

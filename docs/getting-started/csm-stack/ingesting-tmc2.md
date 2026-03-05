@@ -36,11 +36,11 @@ conda activate ch2 # activate env
 
 ### Image Data, Label, and Template
 
-The `.img` image and `.xml` label are required to import a TMC image into the ISIS cube format.  These can be downloaded [ISRO's interative map](https://chmapbrowse.issdc.gov.in) or [ISRO's PRADAN system for bulk downloads](https://pradan.issdc.gov.in/ch2/protected/payload.xhtml).  (New users must register an account.)
+The `.img` image and `.xml` label are required to import a TMC image into the ISIS cube format.  These can be downloaded [ISRO's interactive map](https://chmapbrowse.issdc.gov.in) or [ISRO's PRADAN system for bulk downloads](https://pradan.issdc.gov.in/ch2/protected/payload.xhtml).  (New users must register an account.)
 
 !!! Warning "Spice Kernel Coverage"
 
-    SPICE kernels are downloaded directly from ISRO's PRADAN system, SPICE coverage isn't complete so you can download images that do not have kernels avaiable for them yet. Either because PRADAN has no kernels for them for we haven't downloaded them yet as it's a very manual proccess. 
+    SPICE kernels are downloaded directly from ISRO's PRADAN system, SPICE coverage isn't complete so you can download images that do not have kernels available for them yet. Either because PRADAN has no kernels for them for we haven't downloaded them yet as it's a very manual process. 
 
     Check Available kernels with the following CURL command: 
 
@@ -101,7 +101,7 @@ From here you can use the .cub and .json for any CSM compatible tool like Socet 
 
 ### Create an ISIS-compatible image 
 
-To use this image in ISIS, you will need to combine the JSON ISD with the cube. These can be written as an ISIS Cube or Gtiff. Although, we reccommend GTiffs given the large size of CH2 images. 
+To use this image in ISIS, you will need to combine the JSON ISD with the cube. These can be written as an ISIS Cube or Gtiff. Although, we recommend GTiffs given the large size of CH2 images. 
 
     ```
     mamba install usgscsm # if not installed already 
@@ -110,7 +110,7 @@ To use this image in ISIS, you will need to combine the JSON ISD with the cube. 
     ```
 
 You can view the image with `qview`, warning, image is very large and might take a minute to render. 
-Gtiffs can be rendered with anything supporting Tiffs, but pixel scaling might cause them to render as black images. We reccomend `qview`, `qgis`, other tools designed for spatial data. 
+Gtiffs can be rendered with anything supporting Tiffs, but pixel scaling might cause them to render as black images. We recommend `qview`, `qgis`, other tools designed for spatial data. 
 
 ```bash 
 qview ch2_tmc_nra_20230214T2032466433_d_img_n18.tiff 
@@ -120,7 +120,7 @@ qview ch2_tmc_nra_20230214T2032466433_d_img_n18.tiff
 
 Test image on the left, more typical TMC2 image on the right. Test image is smaller than typical TMC2 image. As you can see, TMC images stretch very far (~1/3 of the planets latitude), image on the left is 74k lines, image on the right is 368k lines. Apps like ISIS's `crop` can be used to trim the image while maintaining camera data intact. 
 
-From here you can use the image in other ISIS apps such as footprintinit and camp2map. Initial pointing in TMC2 has errors (as most instruments). So bundle adjustment is neccecary for accuracy. 
+From here you can use the image in other ISIS apps such as footprintinit and camp2map. Initial pointing in TMC2 has errors (as most instruments). So bundle adjustment is necessary for accuracy. 
 
 See for bundle adjustment info: https://astrogeology.usgs.gov/docs/how-to-guides/image-processing/bundle-adjustment-in-isis/ 
 See for stereo info in ASP (similar for TMC2): https://stereopipeline.readthedocs.io/en/latest/examples/chandrayaan2.html#stereo

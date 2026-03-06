@@ -36,7 +36,8 @@ Specifies the planetary body for which a shape model is requested.
 
 - Type: array of strings
 - Required: yes
-- Matching: case-insensitive, matches if any value in the array equals a target
+- Matching: exact string match
+- Expected values: canonical planetary body names (e.g., `"Mars"`, `"Moon"`, `"Europa"`)
 - Source: typically extracted from an ISIS cube label (TargetName)
 
 #### Example:

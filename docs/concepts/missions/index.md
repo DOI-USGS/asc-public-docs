@@ -8,7 +8,7 @@
 
     ---
 
-    - [Tutorial: TMC-2 Data](../../getting-started/csm-stack/knoten-chandrayaan.ipynb)
+    - [Tutorial: TMC-2 Data](../../getting-started/csm-stack/ingesting-tmc2.md)
 
 
 -   [LRO - Lunar Reconnaissance Orbiter](lro/index.md) (2009-2026+)

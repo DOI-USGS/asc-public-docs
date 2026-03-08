@@ -142,7 +142,7 @@ are included and should be autodetected in ISIS versions 10.0 and above.
 
 ## Further Chandrayaan 2 Examples:
 
-- [Chandrayaan 2 TMC-2 Images in Knoten - Astro Docs Jupyter Notebook](../../../getting-started/csm-stack/knoten-chandrayaan.ipynb)
+- [Chandrayaan 2 TMC-2 Images in Knoten - Astro Docs Jupyter Notebook](../../../getting-started/csm-stack/ingesting-tmc2.md)
 - [Chandrayaan 2 OHRC - Ames Stereo Pipeline](https://stereopipeline.readthedocs.io/en/latest/examples/chandrayaan2.html)
 
 ## Sources

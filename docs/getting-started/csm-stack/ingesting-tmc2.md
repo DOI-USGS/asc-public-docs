@@ -40,9 +40,9 @@ The `.img` image and `.xml` label are required to import a TMC image into the IS
 
 !!! Warning "Spice Kernel Coverage"
 
-    SPICE kernels are downloaded directly from ISRO's PRADAN system, SPICE coverage isn't complete so you can download images that do not have kernels available for them yet. Either because PRADAN has no kernels for them for we haven't downloaded them yet as it's a very manual process. 
+    SPICE kernels are downloaded directly from ISRO's PRADAN system, SPICE coverage isn't complete so you can download images that do not have kernels available for them yet. Either because PRADAN has no kernels for them or we haven't downloaded them yet as it's a manual process. 
 
-    Check Available kernels with the following CURL command: 
+    Check available kernels with the following CURL command: 
 
     ```bash
     curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/searchForKernelsets?spiceqlNames=\[chandrayaan2\]&limitCk=-1&limitSpk=-1" | jq
@@ -52,7 +52,7 @@ The `.img` image and `.xml` label are required to import a TMC image into the IS
 
 !!! Example "Example Data"
 
-    To follow along you can download the an example image from [here](https://asc-isisdata.s3.us-west-2.amazonaws.com/staged_data/ch2_tmc2.zip). 
+    To follow along you can download an example image from [here](https://asc-isisdata.s3.us-west-2.amazonaws.com/staged_data/ch2_tmc2.zip). 
 
 ### Set Environmental Variables
 
@@ -106,7 +106,7 @@ To use this image in ISIS, you will need to combine the JSON ISD with the cube. 
     ```
     mamba install usgscsm # if not installed already 
     csminit from=ch2_tmc_nra_20230214T2032466433_d_img_n18.cub isd=ch2_tmc_nra_20230214T2032466433_d_img_n18.json
-    cubeatt from=ch2_tmc_nra_20230214T2032466433_d_img_n18.cub ch2_tmc_nra_20230214T2032466433_d_img_n18.tiff+GTIFF
+    cubeatt from=ch2_tmc_nra_20230214T2032466433_d_img_n18.cub to=ch2_tmc_nra_20230214T2032466433_d_img_n18.tiff+GTIFF
     ```
 
 You can view the image with `qview`, warning, image is very large and might take a minute to render. 
@@ -120,7 +120,8 @@ qview ch2_tmc_nra_20230214T2032466433_d_img_n18.tiff
 
 Test image on the left, more typical TMC2 image on the right. Test image is smaller than typical TMC2 image. As you can see, TMC images stretch very far (~1/3 of the planets latitude), image on the left is 74k lines, image on the right is 368k lines. Apps like ISIS's `crop` can be used to trim the image while maintaining camera data intact. 
 
-From here you can use the image in other ISIS apps such as footprintinit and camp2map. Initial pointing in TMC2 has errors (as most instruments). So bundle adjustment is necessary for accuracy. 
+From here you can use the image in other ISIS apps such as footprintinit and `cam2map`. Initial pointing in TMC2 has errors (as most instruments). So bundle adjustment is necessary for accuracy. 
 
 See for bundle adjustment info: https://astrogeology.usgs.gov/docs/how-to-guides/image-processing/bundle-adjustment-in-isis/ 
+
 See for stereo info in ASP (similar for TMC2): https://stereopipeline.readthedocs.io/en/latest/examples/chandrayaan2.html#stereo

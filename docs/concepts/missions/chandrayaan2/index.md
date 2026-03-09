@@ -149,4 +149,4 @@ are included and should be autodetected in ISIS versions 10.0 and above.
 
 - [Chandrayaan 2 - ISRO Science Data Archive](https://pradan.issdc.gov.in/ch2/)
 - [Chandrayaan 2 Science - ISRO](https://www.isro.gov.in/Chandrayaan2_science.html)
-- [DEMs of the Lunar Surfat from Chandrayaan 2 TMC-2 Imagery Initial Results - LPSC/USRA (PDF)](https://www.hou.usra.edu/meetings/lpsc2020/pdf/1127.pdf)
+- [DEMs of the Lunar surface from Chandrayaan 2 TMC-2 Imagery Initial Results - LPSC/USRA (PDF)](https://www.hou.usra.edu/meetings/lpsc2020/pdf/1127.pdf)

@@ -29,7 +29,7 @@ conda activate ch2 # activate env
     ```sh
     conda create -n ch2 \
         -c conda-forge -c usgs-astrogeology \
-        matplotlib ale=1.1.2 SpiceQL >= 1.2.7 "usgs-astrogeology::isis>=10.0.0"
+        matplotlib ale=1.1.2 SpiceQL >= 1.2.7 "usgs-astrogeology::isis>=10.0.0_RC1"
     conda activate ch2 # activate env
     ```
 

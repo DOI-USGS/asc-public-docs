@@ -11,14 +11,14 @@ STAC collection and item endpoints for browsing.
 
 ## Base URL
 
-'https://3hr5l9mbj6.execute-api.us-west-2.amazonaws.com/prod/'
+'https://astrogeology.usgs.gov/apis/isis-stac/'
 
 ---
 
 ## ISIS Global DTMs Collection URL
 Use this endpoint for browsing and spatial queries (e.g., bbox):
 
-`https://3hr5l9mbj6.execute-api.us-west-2.amazonaws.com/prod/collections/isis-global-dtms/items`
+`https://astrogeology.usgs.gov/apis/isis-stac/collections/isis-global-dtms/items`
 
 ---
 
@@ -26,7 +26,7 @@ Use this endpoint for browsing and spatial queries (e.g., bbox):
 
 The `/search` endpoint is optimized for automated ISIS workflows and returns a single, recommended shape model per request.
 
-`https://3hr5l9mbj6.execute-api.us-west-2.amazonaws.com/prod/search`
+`https://astrogeology.usgs.gov/apis/isis-stac/search`
 
 ### Query Options
 
@@ -119,7 +119,7 @@ This request will return only one Item, which, combined with the descending vers
 ### Example Curl Request
 
 ```
-curl -X POST "https://3hr5l9mbj6.execute-api.us-west-2.amazonaws.com/prod/search"   -H "Content-Type: application/json"   -d '{
+curl -X POST "https://astrogeology.usgs.gov/apis/isis-stac/search"   -H "Content-Type: application/json"   -d '{
      "collections": ["isis-global-dtms"],
      "query": {
        "ssys:targets": {"in": ["Mars"]}
@@ -221,7 +221,7 @@ The endpoint returns a single JSON object.
                 }
             ],
             "assets": {
-                "data": {
+                "image": {
                     "href": "https://asc-isisdata.s3.us-west-2.amazonaws.com/isis-stac/isis-dtm-collection/molaMarsPlanetaryRadius0005.tiff",
                     "type": "image/tiff; application=geotiff"
                 }
@@ -268,9 +268,14 @@ The endpoint returns a single JSON object.
 | `features[0].id`                            | STAC Item ID                     |
 | `features[0].properties.version`            | DEM version                      |
 | `features[0].properties["ssys:targets"][0]`| Target body                       |
-| `features[0].assets.data.href`              | GeoTIFF URL (use `/vsicurl/` to access via GDAL) |
+| `features[0].assets.image.href`              | GeoTIFF URL (use `/vsicurl/` to access via GDAL) |
 | `features[0].links[*]` where `rel="self"`  | STAC JSON URL for the Item       |
 | `features[0].links[*]` where `rel="thumbnail"` | Thumbnail image URL          |
+
+
+### Additional Docs on Querying STAC using stac-client
+
+See https://stac.astrogeology.usgs.gov/docs/tutorials/cli/ for more docs on querying STAC API using stac-client.
 
 ### Inspecting the Shape Model GeoTIFF Using GDAL
 

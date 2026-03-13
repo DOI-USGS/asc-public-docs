@@ -56,3 +56,20 @@ Assemble, mosaic and project single-line VIMS cube (includes use of 'awk' to pro
 ### 4. Specialized VIMS processing  
 [Overview PDF Lesson](../../assets/isis-demos/Vims_specialprocessing.pdf)  
 [Download Hands-On Lesson](../../assets/isis-demos/SpecializedVIMS.tar.gz)
+
+
+## Control Net Workflow (2016)
+
+[ISIS Control Net Workflow](../../assets/isis-demos/ISIS3_ControlNet_Flow_Master.pdf)
+
+- **Slide 1:** Good starting workflow, showing 
+  Image Ingestion :octicons-arrow-right-24: spiceinit :octicons-arrow-right-24: 
+  Radiometric Calibration :octicons-arrow-right-24:, 
+  then branching to Iterative Control Points/Bundle Adjust, or Map Projections.
+
+- **Slide 2:** Advanced Worflow, showing two paths (Image Overlap, Grid Spacing) 
+  to initialize a Control Net, the various cnet apps, then the 
+  autoreg :octicons-arrow-right-24: pointreg :octicons-arrow-right-24: qnet :octicons-arrow-right-24: jigsaw 
+  process to create DEMs and/or smithed kernels.
+
+- The rest of the slides show this workflow in detail.

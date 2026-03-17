@@ -3,9 +3,7 @@
 This API implements a **subset of the STAC Search specification** using
 [`stac-server`](https://github.com/stac-utils/stac-server).
 
-It provides an opinionated search endpoint designed to resolve the most
-to determine the most appropriate ISIS shape model for a given target body, as well as standard
-STAC collection and item endpoints for browsing.
+It provides standard STAC search, collection, and item endpoints for browsing ISIS global DEMs. Multiple versions may exist for each target body.
 
 ---
 
@@ -16,15 +14,17 @@ STAC collection and item endpoints for browsing.
 ---
 
 ## ISIS Global DTMs Collection URL
-Use this endpoint for browsing and spatial queries (e.g., bbox):
+Use this endpoint for browsing:
 
 `https://astrogeology.usgs.gov/apis/isis-stac/collections/isis-global-dtms/items`
+
+Note: Each DEM is global for a given target body. Multiple versions of the DEM may exist over time.
 
 ---
 
 ## STAC Search Endpoint
 
-The `/search` endpoint is optimized for automated ISIS workflows and returns a single, recommended shape model per request.
+Use the `/search` endpoint to query items, including filtering by target body and sorting by version. Multiple versions may exist for each target body.
 
 `https://astrogeology.usgs.gov/apis/isis-stac/search`
 
@@ -55,7 +55,7 @@ Specifies the planetary body for which a shape model is requested.
 
 `sort` (required if you want the latest versioned DEM)
 
-Controls the order of returned Items. Multiple sort fields can be specified; they are applied in order.
+Controls the order of returned items. Multiple sort fields can be specified; they are applied in order.
 
 - Type: array of objects
 - Required: yes if requesting the latest versioned DEM; optional otherwise
@@ -94,7 +94,7 @@ Specifies the maximum number of Items returned in a single response.
 }
 ```
 
-This request will return only one Item, which, combined with the descending version sort, ensures you get the latest version.
+This request will return only one item, which, combined with the descending version sort, ensures you get the latest version.
 
 #### Combined Example: Get the Latest DEM:
 ```

@@ -284,12 +284,15 @@ Clone the repo locally with git clone.
 
         DOI [`12.3456/XXXXXXXX`](https://doi.org/12.3456/XXXXXXXX)
 
-- [ ] Post the DOI number/link to...  
-    - [ ] [GitHub Release Post for this ISIS Version](https://github.com/DOI-USGS/ISIS3/releases)
-    - [ ] [ISIS Readme](https://github.com/DOI-USGS/ISIS3/blob/dev/README.md)
-        - [ ] Badge at the top of the readme
-        - [ ] [Citing ISIS](https://github.com/DOI-USGS/ISIS3/blob/dev/README.md#citing-isis) section:
-            - DOI, Version Number, Release Date, Readme Updated Date
+- [ ] Post the DOI number/link to the [GitHub Release Post for this ISIS Version](https://github.com/DOI-USGS/ISIS3/releases).
+
+??? example "CI/CD: DOI Number and Citations"
+    [`github-release.yml`](https://github.com/DOI-USGS/ISIS3/blob/dev/.github/workflows/github-release.yml) will scan the [release post](https://github.com/DOI-USGS/ISIS3/releases) for a DOI-formatted number, and use it to automatically update the [ISIS Readme](https://github.com/DOI-USGS/ISIS3/blob/dev/README.md):
+
+    ```sh
+    # Look for DOI pattern (10.XXXX/XXXXXX)
+    DOI=$(curl -sL "$RELEASE_URL" | grep -oP '10\.\d+/[A-Z0-9]+' | head -1)
+    ```
 
 !!! success ""
     Move on to step 8 after **getting a DOI number** and posting it to the release and readme.

@@ -122,7 +122,7 @@ bash Miniforge3-$(uname)-$(uname -m).sh
 Don't reuse a conda env used to build an older version of ISIS. This can cause errors if the [dependencies](https://github.com/DOI-USGS/ISIS3/blob/dev/environment.yml) were updated.  If you need to start with a clean slate:
 
 ```sh
-# Remove an Old/Uneeded Environment
+# Remove an Old/Unneeded Environment
 conda env remove -n isis-dev-env -y
 
 # Remove cached packages

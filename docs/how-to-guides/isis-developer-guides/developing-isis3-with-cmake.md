@@ -117,7 +117,7 @@ curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mi
 bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 
-### Cleaning Conda/Envs
+### Cleaning Conda Envs
 
 Don't reuse a conda env used to build an older version of ISIS. This can cause errors if the [dependencies](https://github.com/DOI-USGS/ISIS3/blob/dev/environment.yml) were updated.  If you need to start with a clean slate:
 
@@ -133,13 +133,35 @@ conda clean --all
 
 To create and activate a conda env, run these commands in the ISIS3 directory.
 
-```sh
-# Create
-conda env create -n isis-dev-env -f environment.yml
+=== "x86"
 
-# Activate
-conda activate isis-dev-env
-```
+    ```sh
+    # Create
+    conda env create -n isis-dev-env -f environment.yml
+
+    # Activate
+    conda activate isis-dev-env
+    ```
+
+=== "ARM"
+
+    ```sh
+    # Create
+    conda env create -n isis-dev-env -f environment_arm.yml
+
+    # Activate
+    conda activate isis-dev-env
+    ```
+
+=== "x86 emulation on ARM"
+
+    ```sh
+    # Create
+    conda env create -n isis-dev-env --platform osx-64 -f environment.yml
+
+    # Activate
+    conda activate isis-dev-env
+    ```
 
 !!! quote ""
 

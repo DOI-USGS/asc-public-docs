@@ -191,12 +191,25 @@ cmake -GNinja ../isis  # run cmake on the ISIS3/isis directory
 
 ### 4. Build ISIS with `ninja`
 
-```sh
-# From inside your build directory (or wherever cmake was run)
-ninja install
+=== "Build & Install"
 
-# This may take a while, around 20 min to an hour.
-```
+    ```sh
+    # From inside your build directory (or wherever cmake was run)
+    ninja install
+
+    # This may take a while, around 20 min to an hour.
+    # Binaries, libraries, and headers are linked into the conda env by default.
+    ```
+
+=== "Build Only"
+
+    ```sh
+    # From inside your build directory (or wherever cmake was run)
+    ninja
+
+    # This may take a while, around 20 min to an hour.
+    # Binaries, libraries, and headers are placed in the build directory.
+    ```
 
 ??? info "Ninja vs Make"
 
@@ -220,11 +233,21 @@ ninja install
 ??? abstract "Cmake Build Configuration Flags"
 
     Use these flags in the `cmake` command to configure your build. 
-    All flags with an = sign are shown with their default values. 
+    Flags with an = sign are shown with their default values. 
     Some can be turned `ON` or `OFF`, others accept a specific value.
+
+    ***General cmake Flags***
 
     `-GNinja`  
     Makes a [Ninja](https://ninja-build.org/manual.html) Makefile (alternative to GNU `make`). To use plain `make` instead, omit this flag and replace the `ninja` commands with their `make` counterparts.
+
+    `-DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX$`  
+    Sets the path that ISIS will be installed to when `ninja install` is run.
+
+    `-DCMAKE_BUILD_TYPE=Release`  
+    Build type. `Release` by default, can also be set to `Debug`.
+
+    ***ISIS-Specific Flags***
 
     `-DisisData=OFF`  
     The ISISDATA directory. If `OFF`, the $ISISDATA environmental variable will be used by default.
@@ -259,9 +282,6 @@ ninja install
     `-Dpybindings=ON`  
     Bundle adjust python bindings.
 
-    `-DCMAKE_BUILD_TYPE=Release`  
-    Build type. `Release` by default, can also be set to `Debug`.
-
     ***Build Options Source:***  
     Most of the above options are spelled out in ISIS's CMakeLists.txt file.
     Look for `# Configuration options` in [isis/CMakeLists.txt](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/CMakeLists.txt#L63). 
@@ -272,6 +292,23 @@ ninja install
     cmake -DbuildDocs=OFF -DbuildTests=OFF -GNinja ../isis
     ```
 
+??? example "Installing to a Custom Directory"
+
+    ```sh
+    # Create a directory for your install
+    mkdir install
+
+    # Go to your build dir. Set the install dir in the cmake command.
+    cd build
+    cmake -DCMAKE_INSTALL_DIRECTORY=/path/to/your/install -GNinja ../isis
+
+    # install with ninja
+    ninja install
+
+    # Add install dir to your path so you can run the apps from any directory
+    # Place this command in your .bashrc or .zshrc to make permanent
+    export PATH="$PATH:/path/to/your/install"
+    ```
 
 ??? example "Cleaning Builds"
 
@@ -279,9 +316,6 @@ ninja install
 
         Removes all built objects except for those built by the build generator:  
         `ninja -t clean` 
-
-        Remove all built files specified in rules.ninja:  
-        `ninja -t clean -r rules` 
 
         Remove all built objects for a specific target:  
         `ninja -t clean <target_name>` 

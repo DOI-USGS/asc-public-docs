@@ -45,15 +45,57 @@
 1. **Make your own fork of ISIS:**  
    Go to the [main ISIS3 repo](https://github.com/DOI-USGS/ISIS3) and click on "Fork" at the top of the page.
 
-1. **Get a cloning link:**  
+1. **Get a cloning link**  
    On your ISIS fork (url should be `github.com/<username>/ISIS3`), click on the green `Clone or Download` button on the right and copy the link.  
 
-1. **Clone ISIS (including submodules):**  
+1. **Clone ISIS (including submodules)**  
    Open a terminal, go to the directory you want to make a clone in, and run:  
    `git clone --recurse-submodules <your link>`  
 
+1. **Checkout a branch**  
+   If you plan on contributing, create a branch with a short name to label your changes:  
+   `git checkout -b <branch-name>`
+
 Now that the files are on your computer, you can go on to build ISIS for yourself, 
 and maybe even edit its programs or contribute to development.
+
+??? info "Tracking Changes & Staying Updated - `git` branches & `conda` envs"
+    
+    **Update git repo & dev branch**
+
+    Before you make a new branch, you should make sure your git repository and dev branch are updated.
+    
+    ```sh
+    # Update your git repo
+    # (alternatively, open your repo online and click the sync button)
+    gh repo sync <your-username>/ISIS3
+
+    # Update your dev branch locally
+    git checkout dev
+    git pull
+    ```
+
+    **Checkout new branch**
+
+    For each contribution, create a new branch to track its specific changes:
+
+    ```sh
+    git checkout -b <branch-name>
+    ```
+
+    **Update conda env**
+
+    After making a new branch, make a new conda environment to ensure dependencies are updated.  You may remove environments for branches you are done working on.
+
+    ```sh
+    # Optionally remove old env (needed if you will name the new env the same)
+    conda env remove -n isis-dev-env -y
+
+    # Create new env and activate (from ISIS3 folder)
+    conda env create -n isis-dev-env -f environment.yml
+    conda activate
+    ```
+
 
 ??? note "Cloning Submodules later <br>(if you didn't run `--recurse-submodules`, or are missing `gtest`)"
 
@@ -65,6 +107,8 @@ and maybe even edit its programs or contribute to development.
 
 ## Build Environment & Dependencies
 
+Conda manages dependencies and 3rd-party libraries to create a build environment (conda env) for ISIS. The cmake build system expects an active [conda env](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment) containing these dependencies, which are listed in the [environment.yml](https://github.com/DOI-USGS/ISIS3/blob/dev/environment.yml).
+
 ### Getting Conda
 
 Building ISIS requires conda.  If you need conda, install it through [miniforge](https://github.com/conda-forge/miniforge):
@@ -73,9 +117,19 @@ curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mi
 bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 
-### Activating an Environment
+### Cleaning Conda/Envs
 
-Conda manages dependencies and 3rd-party libraries to create a build environment (conda env) for ISIS. The cmake build system expects an active [conda env](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment) containing these dependencies, which are listed in the [environment.yml](https://github.com/DOI-USGS/ISIS3/blob/dev/environment.yml).
+Don't reuse a conda env used to build an older version of ISIS. This can cause errors if the [dependencies](https://github.com/DOI-USGS/ISIS3/blob/dev/environment.yml) were updated.  If you need to start with a clean slate:
+
+```sh
+# Remove an Old/Uneeded Environment
+conda env remove -n isis-dev-env -y
+
+# Remove cached packages
+conda clean --all
+```
+
+### Creating/Activating an Env
 
 To create and activate a conda env, run these commands in the ISIS3 directory.
 

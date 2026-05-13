@@ -302,60 +302,28 @@ ninja install
 
 ??? example "Building Individual ISIS Applications"
 
-    === "ninja"
+    ```sh
+    # (from the build directory)
+    ninja install <appname>
 
-        ```sh
-        # (from the build directory)
-        ninja install <appname>
-
-        # For example, to build fx:
-        ninja install fx
-        ```
-
-    === "make"
-
-        ```sh
-        # (from the build directory)
-        make install <appname>
-
-        # For example, to build fx:
-        make install fx
-        ```
+    # For example, to build fx:
+    ninja install fx
+    ```
 
 ??? example "Building Individual ISIS Objects"
 
-    === "ninja"
+    ```sh
+    ninja install lib<yourLibrary>.dylib
 
-        ```sh
-        ninja install lib<yourLibrary>.dylib
-
-        # For example, the isis library
-        ninja install libisis.dylib
-        ```
-
-    === "make"
-
-        ```sh
-        make install <yourLibrary> -j7
-
-        # For example, the isis library
-        make install isis -j7
-        ```
-
+    # For example, the isis library
+    ninja install libisis.dylib
+    ```
 
 ??? example "Building Only Documentation"
 
-    === "ninja"
-
-        ```sh
-        ninja docs -j7
-        ```
-
-    === "make"
-
-        ```sh
-        make docs -j7
-        ```
+    ```sh
+    ninja docs -j7
+    ```
 
     The documentation is placed in `build/docs`. 
 
@@ -364,19 +332,10 @@ ninja install
 
 ??? example "Building in Debug Mode"
 
-    === "ninja"
-
-        ```sh
-        cmake -DCMAKE_BUILD_TYPE=DEBUG -GNinja ../isis   # cmake with debug flag
-        ninja install                                    # Rebuild
-        ```
-
-    === "make"
-
-        ```sh
-        cmake -DCMAKE_BUILD_TYPE=DEBUG ../isis   # cmake with debug flag
-        make install                             # Rebuild
-        ```
+    ```sh
+    cmake -DCMAKE_BUILD_TYPE=DEBUG -GNinja ../isis   # cmake with debug flag
+    ninja install                                    # Rebuild
+    ```
 
 ## Tests
 

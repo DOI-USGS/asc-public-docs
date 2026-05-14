@@ -378,7 +378,7 @@ cmake -GNinja ../isis  # run cmake on the ISIS3/isis directory
 ??? example "Building Only Documentation"
 
     ```sh
-    ninja docs -j7
+    ninja docs
     ```
 
     The documentation is placed in `build/docs`. 

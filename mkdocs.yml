@@ -59,6 +59,7 @@ nav:
     - CSM Stack (ALE, Knoten):
       - ALE - Generating an ISD:            getting-started/using-ale/isd-generate.md
       - ALE - Specifying Kernels:           getting-started/using-ale/ale-getting-kernels.md
+      - CSM vs ISIS Camera Models:          getting-started/cms-stack/csm-vs-isis-pipeline.md
       - Generating an ISD, creating a CSM model, and converting coordinates: getting-started/csm-stack/image-to-ground-tutorial.ipynb
       - Knoten - Basic Camera Operations:   getting-started/csm-stack/knoten-camera-tutorial.ipynb
       - CSM Sandbox:                        getting-started/csm-stack/csm-sandbox.ipynb

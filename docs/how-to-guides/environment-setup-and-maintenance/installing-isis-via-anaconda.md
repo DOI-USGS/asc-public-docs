@@ -5,7 +5,7 @@ ISIS is distributed as conda packages on four channels:
  - **Latest** — the current public release (quarterly cadence)
  - **LTS** — long-term support release, 18-month support window
  - **RC** — release candidate for the next quarterly, available roughly one month before promotion
- - **Dev** — built from the `dev` branch every two weeks. Useful for testing recent fixes; not tagged on GitHub and not separately supported.
+ - **Dev** — built from the `dev` branch every two weeks. Useful for testing recent fixes; not tagged on GitHub, and only the latest two-week build is supported.
 
 See the [ISIS Release Schedule](../software-management/isis-release-schedule.md) for full cadence details.
 

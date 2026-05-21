@@ -1,8 +1,14 @@
 # Installing ISIS
 
-
 ## Install via script 
 
+ISIS is distributed as conda packages on three channels:
+ - Latest — the current public release (quarterly cadence)
+ - LTS — long-term support, 18-month window, recommended for production pipelines
+ - Dev — built from the dev branch every two weeks; useful for testing recent fixes, no GitHub release tag
+
+The install script below defaults to Latest; pass -l LTS or -l dev to pick a different channel.
+  
 You can install miniforge and ISIS at the same time using a bash script. This will walk you through the process and set environmment variables for you. 
 
 ```bash 

@@ -22,18 +22,18 @@
     #### Common Directories
 
     ***Source Directory*** (`ISIS3/isis`):  
-    Where the ISIS source code lives, the lowercase `isis` subdirectory of `ISIS3`. If you are in build, this would be `../isis` as a relative path.
+    Where the ISIS source code lives, the lowercase `isis` subdirectory of `ISIS3`. *If you are in `ISIS3/build`, this would be `../isis` as a relative path.*
 
     ***Build Directory*** (`ISIS3/build`):  
     Where generated project files live (Makefiles, Ninja files, Xcode project, etc). 
     Holds the `bin` directory where binaries are built to.
     `ninja` (or `make`) commands should be run from here.
 
-    ***Executables Directory:***  
+    ***Executables Directory*** (`ISIS3/build/bin`):  
     Executables are placed in `build/bin` (and linked in `$CONDA_PREFIX/bin`).  
-    For Example, to use ddt (with `$ISISROOT` set to the build directory):  
+    For example, to run an ISIS app directly (with `$ISISROOT` set to the build directory):  
     ```sh
-    ddt $ISISROOT/bin/<application_name>
+    $ISISROOT/bin/<application_name> from=my_input.cub to=my_output.cub
     ```
 
     ***Custom Data and Test Data***:  

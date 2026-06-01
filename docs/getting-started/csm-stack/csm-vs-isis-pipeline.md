@@ -49,3 +49,11 @@ The ISIS and CSM Camera Models differ slightly from each other. But either way, 
 - Bundle Adjustment
 - Mosaics
 - DEM/Shape Model Creation
+
+## File Structure
+
+### ISD .json
+
+### CSM Camera Model
+
+### ISIS Camera Model

@@ -1,9 +1,19 @@
 # Installing ISIS
 
+ISIS is distributed as conda packages on four channels:
 
-## Install via script 
+ - **Latest** — the current public release (quarterly cadence)
+ - **LTS** — long-term support release, 18-month support window
+ - **RC** — release candidate for the next quarterly, available roughly one month before promotion
+ - **Dev** — built from the `dev` branch every two weeks. Useful for testing recent fixes; not tagged on GitHub, and only the latest two-week build is supported.
 
-You can install miniforge and ISIS at the same time using a bash script. This will walk you through the process and set environmment variables for you. 
+See the [ISIS Release Schedule](../software-management/isis-release-schedule.md) for full cadence details.
+
+## Install via script
+
+The install script below defaults to `-l main` (the public release). Pass `-l lts`, `-l rc`, or `-l dev` to install from a different channel.
+
+You can install miniforge and ISIS at the same time using a bash script. This will walk you through the process and set environment variables for you. 
 
 ```bash 
 bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis/scripts/install_isis.sh)
@@ -161,7 +171,7 @@ On activation, the environment will automatically set ISISROOT, ISISDATA, and PA
 
 ??? "Miniforge"
 
-    If you don't have conda yet, download and install it.  We recommend getting conda through [MiniForge](https://github.com/conda-forge/miniforge).
+    If you don't have mamba yet, download and install it.  We recommend getting mamba through [MiniForge](https://github.com/conda-forge/miniforge?tab=readme-ov-file#miniforge).
 
     ```sh
     # Via Miniforge:
@@ -386,7 +396,7 @@ If ISIS was already installed with mamba, you can update it with:
 
 ## Uninstalling ISIS
 
-To uninstall ISIS, deactivate the ISIS mamba Environment, and then remove it.  If you want to uninstall mamba as well, see your mamba installation's website ([Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file#uninstall) if you installed mamba with the above instructions).
+To uninstall ISIS, deactivate the ISIS mamba Environment, and then remove it.  If you want to uninstall mamba as well, see your mamba installation's website ([Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file#uninstallation) if you installed mamba with the above instructions).
 
 ```sh
 mamba deactivate

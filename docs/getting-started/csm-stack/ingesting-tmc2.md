@@ -3,46 +3,40 @@
 More info on Chandrayaan 2:
 
 - [Chandrayaan 2 Mission - USGS Astro](https://astrogeology.usgs.gov/docs/concepts/missions/chandrayaan2)
-- [OHRC Images - Ames Stereo Pipeline](https://stereopipeline.readthedocs.io/en/latest/examples/chandrayaan2.html)
+- [Processing Chandrayaan 2 OHRC Images](ingesting-ohrc.md)
+- [Chandrayaan 2 Stereo - Ames Stereo Pipeline](https://stereopipeline.readthedocs.io/en/latest/examples/chandrayaan2.html)
 
 ### Environment 
 
 You will need: 
 
-* ALE >= 1.1.2
-* ISIS >= 10.0.0 
+* ISIS 10.0.0_RC2
+* ALE >= 1.1.3
 * SpiceQL >= 1.2.7
 * usgscsm 
 
 To install these with conda:
 ```sh
 conda create -n ch2 \
-    -c conda-forge -c usgs-astrogeology \
-    matplotlib ale=1.1.2 "usgs-astrogeology/label/RC::isis>=10.0.0"
+    -c usgs-astrogeology/label/RC \
+    -c conda-forge \
+    matplotlib isis=10.0.0_RC2 ale=1.1.3 usgscsm=2.0.2
 conda activate ch2 # activate env
 ```
 
-!!! Warning
-   
-    As of writing, the latest version of ISIS that supports Chandrayaan-2 is ISIS 10.0.0 RC1, once ISIS 10.0.0 is out of release candidate (RC) status, you can download it with the command:
+!!! Note "ISIS 10 release candidate"
 
-    ```sh
-    conda create -n ch2 \
-        -c conda-forge -c usgs-astrogeology \
-        matplotlib ale=1.1.2 SpiceQL >= 1.2.7 "usgs-astrogeology::isis>=10.0.0_RC1"
-    conda activate ch2 # activate env
-    ```
+    ISIS 10 has not been formally released yet, so the command above installs the
+    `10.0.0_RC2` release candidate from the `usgs-astrogeology/label/RC` channel.
 
 
 ### Image Data, Label, and Template
 
 The `.img` image and `.xml` label are required to import a TMC image into the ISIS cube format.  These can be downloaded [ISRO's interactive map](https://chmapbrowse.issdc.gov.in) or [ISRO's PRADAN system for bulk downloads](https://pradan.issdc.gov.in/ch2/protected/payload.xhtml).  (New users must register an account.)
 
-!!! Warning "Spice Kernel Coverage"
+!!! Note "SPICE Kernel Coverage"
 
-    SPICE kernels are downloaded directly from ISRO's PRADAN system, SPICE coverage isn't complete so you can download images that do not have kernels available for them yet. Either because PRADAN has no kernels for them or we haven't downloaded them yet as it's a manual process. 
-
-    Check available kernels with the following CURL command: 
+    Chandrayaan 2 SPICE kernels are distributed through the ISIS data area and fetched with `downloadIsisData chandrayaan2 $ISISDATA`. Coverage may still lag for the most recent acquisitions. You can check which kernels are available with the following CURL command: 
 
     ```bash
     curl -XGET "https://astrogeology.usgs.gov/apis/spiceql/latest/searchForKernelsets?spiceqlNames=\[chandrayaan2\]&limitCk=-1&limitSpk=-1" | jq

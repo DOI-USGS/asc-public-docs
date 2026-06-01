@@ -123,7 +123,7 @@ bash <(curl https://raw.githubusercontent.com/DOI-USGS/ISIS3/refs/heads/dev/isis
         ./install_isis.sh --force-mamba -m $HOME/miniforge/ -l main -v 8.3.0 -n auto -p $HOME/isisdata --download-base --prefix $HOME/isis_installs/
         ```
 
-## After install considerations 
+## After-Install Considerations 
 
 ### ISIS DATA
 
@@ -169,7 +169,7 @@ On activation, the environment will automatically set ISISROOT, ISISDATA, and PA
 # Install Manually Via Miniforge  
 ### Prerequisites
 
-??? "Mamba/Miniforge"
+??? "Miniforge"
 
     If you don't have mamba yet, download and install it.  We recommend getting mamba through [MiniForge](https://github.com/conda-forge/miniforge?tab=readme-ov-file#miniforge).
 

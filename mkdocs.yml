@@ -62,6 +62,8 @@ nav:
       - Generating an ISD, creating a CSM model, and converting coordinates: getting-started/csm-stack/image-to-ground-tutorial.ipynb
       - Knoten - Basic Camera Operations:   getting-started/csm-stack/knoten-camera-tutorial.ipynb
       - CSM Sandbox:                        getting-started/csm-stack/csm-sandbox.ipynb
+      - Ingesting Chandrayaan 2 TMC-2 Images: getting-started/csm-stack/ingesting-tmc2.md
+      - Ingesting Chandrayaan 2 OHRC Images:  getting-started/csm-stack/ingesting-ohrc.md
     - Using SpiceQL:
       - SpiceQL Cassini Tutorial:          getting-started/using-spiceql/spiceql-cassini-tutorial.ipynb
       - Exploring SpiceQL's REST, Python, and C++ APIs: getting-started/using-spiceql/exploring-spiceqls-rest-python-and-cpp-apis.md

@@ -1,6 +1,6 @@
-# Exercises 1
+# ISIS Programming Exercise 1: `mirror`
 
-The purpose behind these exercises is to help programmers become familiar with the ISIS3 environment, the ISIS3 API, and ISIS3 standards.
+*Mirror an image to familiarize yourselp with the ISIS environment, the ISIS API, and ISIS standards.*
 
 ## Prerequisites
 

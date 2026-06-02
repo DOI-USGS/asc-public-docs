@@ -1,16 +1,71 @@
 
 # ALE on the Command Line - `isd_generate`
 
-<div class="grid cards" markdown>
+## Prerequisites
 
--   [:octicons-arrow-left-24: ALE SPICE Data Setup](../../getting-started/using-ale/ale-naif-spice-data-setup.md)
+Before you can generate an ISD, you will need:
 
--   [:octicons-arrow-right-24: ALE in Python](../../getting-started/using-ale/ale-python-load-loads.md)
+- [ALE](https://github.com/DOI-USGS/ale?tab=readme-ov-file#setting-up-dependencies-with-conda-recommended)
+- An image ([Locating Image Data](../../getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md)) 
+  formatted according to your driver type.
+- SPICE Data according to your driver type (optionally, use web-based spice with `-w` flag)
 
-</div>
+!!! Danger "Using Web Spice"
+
+    Using web-based spice with `-w` might still be buggy for some missions. Report any issues to the [ALE repo](https://github.com/DOI-USGS/ale/issues). 
+
 
 *See [Getting Started with ALE](../../getting-started/using-ale/index.md) for an overview of ALE Installation, NAIF SPICE Data Setup, and other ALE Topics.*
 
+
+
+### Driver Types
+
+=== "NaifSpice + IsisLabel"
+    
+    For NaifSpice + IsisLabel Drivers, you will need:
+    
+    - An image [imported](../../getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md#introduction-to-importing) into [ISIS](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md) .cub format with a [`-2isis` app](https://isis.astrogeology.usgs.gov/Application/index.html).
+
+    - NAIF SPICE Kernels (See [Setting up NAIF Data](#setting-up-naif-data)).
+
+
+=== "IsisSpice" 
+
+    For IsisSpice Drivers, you will need:
+    
+    - An image [imported](../../getting-started/using-isis-first-steps/locating-and-ingesting-image-data.md#introduction-to-importing) into [ISIS](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md) .cub format with a [`-2isis` app](https://isis.astrogeology.usgs.gov/Application/index.html),
+
+    - AND the image must be [`spiceinit`ed](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/spiceinit/spiceinit.html) with `spiceinit from=<your.cub>`.
+    
+
+=== "Pds3Label" 
+
+    For Pds3Label Drivers, you will need:
+
+    - An image in PDS3 format
+
+    - NAIF SPICE Kernels (See [Setting up NAIF Data](#setting-up-naif-data)).
+
+    
+
+??? info "Driver Types: NaifSpice, IsisSpice, IsisLabel, and Pds3Label."
+
+    *NaifSpice* drivers use the NAIF Kernels to look up spice data to an image, while *IsisSpice* drivers depend on the image already having spice data attached with `spiceinit`.
+
+    *IsisLabel* drivers use images in the ISIS .cub format, while *Pds3Label* drivers use images in the PDS format.
+
+    **NaifSpice + IsisLabel** is the most commonly used driver type, but you can check the ALE driver to find out if IsisSpice or Pds3Label drivers are available instead or in addition:
+    
+    1. Look at the [drivers in the ALE repository](https://github.com/DOI-USGS/ale/tree/main/ale/drivers). 
+    1. Click on the drivers for the spacecraft that captured your image.
+    1. Find the class for your sensor, and look for NaifSpice, IsisSpice, IsisLabel, or Pds3Label next to the class name.
+
+    There may be a class for both NaifSpice and IsisSpice; in that case you can use either, or use the `-n` or `-i` argument to specify which one to use.  You might use `-i` for IsisSpice if you want to avoid re-`spiceinit`ing a .cub.
+
+    By default, ALE will run through different drivers until either it finds one that works (at which point it will stop), or all drivers fail.
+
+-----
 
 ## Using isd_generate
 
@@ -67,6 +122,12 @@ is printed to the console, followed by the text of the ISD.  This can be helpful
 
 
 ### NAIF SPICE Data and Kernels
+
+<div class="grid cards" markdown>
+
+- [ALE - Specifying Kernels :octicons-arrow-right-24: ](../../getting-started/using-ale/ale-getting-kernels.md)
+
+</div>
 
 To ensure the use of a NaifSpice Driver (and NAIF SPICE Data) to generate an ISD, use the `--only_naif_spice` (`-n`) flag.  If you have a `spiceinit`ed .cub and you want to avoid re-`spiceinit`ing it or using NAIF SPICE Data, use the `--only-isis-spice` (`-i`) flag.
 
@@ -171,6 +232,11 @@ isd_generate --version
     your machine, indicate the number of processors you want to use.
 
 ### Spice Data
+
+`-w`, `--use_web_spice` 
+:   Indicates that the program should get Kernel information over the web 
+    using the [SpiceQL](https://astrogeology.usgs.gov/docs/manuals/spiceql/) backend. 
+    This is an experimental setting, report any bugs to the [ALE repo](https://github.com/DOI-USGS/ale/issues). 
 
 `-k`, `--kernel` [filename]
 

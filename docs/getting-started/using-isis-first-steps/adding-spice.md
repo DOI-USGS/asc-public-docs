@@ -1,4 +1,10 @@
 
+!!! tip "Setting up ISIS"
+
+    - [Installing ISIS](../../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md): ISIS is distributed via conda and compatible with Mac and Unix
+    - [Setting up the ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md): Download the entire ISIS data area or mission-specific data
+    - [Using Web SPICE in ISIS and ALE](../../how-to-guides/SPICE/using-web-spice-in-isis-and-ale.md): Use web-enabled SPICE data via SpiceQL instead of using local data
+
 ## Adding SPICE
 
 -----

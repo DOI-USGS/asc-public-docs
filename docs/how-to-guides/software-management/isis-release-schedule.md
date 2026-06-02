@@ -1,44 +1,127 @@
-# ISIS Release Schedule
-This document describes the cadence and schedule for ISIS releases.
+# ISIS Release Schedule and Release Types
 
-## Release Cadence
-Releases and development of ISIS3 follows a time based schedule with a new release occurring every three months. Below, we illustrate a sample four month snapshot of software development.
+#### Key Differences
 
-<figure markdown>
-  ![Release Cadence](../../../assets/release-schedule/release_schedule.png)
-  <figcaption>Example of ISIS Release Cadence</figcaption>
-</figure>
+| Release Type | Supported | RC | Versioning | Updates   | MAJOR | MINOR | PATCH |
+|--------------|-----------|----|------------|-----------|-------|-------|-------|
+| LTS          | 18 months | N  | semver     | biweekly  | N     | N     | Y     |
+| Production   | 12 months | N  | semver     | quarterly | N     | Y     | Y     |
+| Dev          | 2 weeks   | N  | date-based | biweekly  | Y     | Y     | Y     |
+| New Version  | 18 months | Y  | semver     | yearly    | Y     | Y     | Y     |
+
+## Release Types
+
+ISIS has four types of releases:
+
+- **LTS** - Most Stable.  Gets *Bugfixes* but not new *Features* between major releases.
+- **Production** - Gets new *Features* and *Bugfixes* but not *Breaking Updates*.
+- **Dev** - First to get new *Features*, including *Breaking Updates*.
+- **New Version**\* - Updates all other release types with *Breaking Updates*.
+
+!!! note "Notes"
+
+    **Production is the default version of ISIS.**  
+    If you install the `main` version of ISIS, or do not specify a label, 
+    you will get the production version.
+
+    **Releases can be found** in the 
+    [ISIS GitHub repo](https://github.com/DOI-USGS/ISIS3/releases) 
+    and on our [conda channel](https://anaconda.org/usgs-astrogeology/isis).
+
+    The **Dev** version ***does not get a release on GitHub***, 
+    but can be found in the [dev branch](https://github.com/DOI-USGS/ISIS3/tree/dev) of the repo.  
+    It **does** get a release on our conda channel every two weeks.  
+
+    \* The **New Version** release is a special type of LTS release: The ***first LTS release*** of any major version of ISIS (i.e, 9.0.0 LTS, 10.0.0 LTS).
+
+## Types of Updates
+
+Outlined in [Semantic Versioning (external)](https://semver.org), we categorize updates into three types:
+
+- **Major** (breaking) updates can break a workflow that functioned in a previous version.
+- **Minor** (feature) updates add features but shouldn't break previously working workflows.
+- **Patch** (bugfix) updates fix bugs, but don't add features or change functional workflows.
 
 
+## Update Cadence and Type
 
-At the start of Month 1, a Release Candidate (RC1) is created from the `dev` branch of our GitHub repository. This RC contains all development from the previous (not shown) three months. RC1 is made publicly available as both a labelled branch and via our Anaconda.org (conda) [download page](https://anaconda.org/usgs-astrogeology/isis). During Month 1, we solicit input and testing from the broader community. Any issues identified in RC1 will be fixed during Month 1. At the conclusion of Month 1, the release is packaged and the next ISIS3 release is made available for the general public using Anaconda.org (and the default `main` label).
+- **Yearly**: ISIS **LTS** and **Production** releases get *Major* updates.
+- **Quarterly**: The ISIS **Production** release gets *Minor* and *Patch* updates.
+- **Biweekly**:
+    - The **Dev** release may get *Major* updates.
+    - The **LTS** release gets *Patch* updates only.
 
-During Month 1 through Month 3, we continue with new feature development for RC2. At the start of Month 4, we repeat the same release candidate and release process as described above.
+## Flow of Updates
 
-## Feature Freeze
-When a Release Candidate is branched from the `dev` branch, a feature freeze is put into effect. Any feature additions that occur after a release candidate has been branched will be included in a future RC (and release). In other words, features added prior to the creation of a RC will be included in the next release. The only instances where this may not hold true is if significant, previously unidentified issues are identified during the testing of a RC that are associated with a new feature addition. In that case, we would back out the feature and recreate the RC.
+#### Flow of MAJOR, MINOR, and PATCH updates from Dev to LTS and Production
 
-## Release
-As described above, we will release on a three month cadence. Releases will be labelled via GitHub for those users that wish to build from source. Additionally, releases will be uploaded to our Anaconda.org [repository](https://anaconda.org/usgs-astrogeology/isis) for `conda` installation.
+- ***Patch*** updates are merged from Dev into **LTS** and **Production** versions of ISIS.
+- ***Minor*** updates are merged into the **Production** version.
+- ***Major*** updates remain only in **Dev** ISIS, until the yearly RC and LTS Release.
 
-## Release Schedule
-| Version # / Label | Type | Date | 
-|-------------------|------|------------|
-| 4.3.0 | Release | 10.26.20 |
-| 4.4.0 | Release | 2.8.21 |
-| 5.0.0_RC | Release Candidate | 4.1.21 |
-| 5.0.0 | Release | 4.27.21 |
-| 6.0.0_RC | Release Candidate | 8.1.21 | 
-| 6.0.0 | Release | 7.25.21 |
-| 7.0.0_RC1 | Release Candidate | 3.4.22 |
-| 7.0.0_RC2 | Release Candidate | 4.15.22 |
-| 7.0.0 | Release | 5.2.22 |
-| 7.1.0_RC | Release Candidate | 8.1.22 |
-| 7.1.0 | Release | 9.20.22 |
-| 7.2.0_RC | Release Candidate | 11.7.22 |
-| 7.2.0 | Release | 03.21.23 |
-| 8.0.0 | LTS Release | 8.2.23 |
-| 8.1.0 | Release | 11.2.23 |
-| 8.2.0 | Release | 04.27.24 |
-| 9.0.0 | LTS Release | 8.2.24 |
-| 8.0.* | LTS End of Life | 2.2.25 |
+``` mermaid
+%%{init: { 'logLevel': 'debug', 'theme': 'base', 'themeVariables': {'git0': '#d00', 'git1': '#096', 'git2': '#07e', 'tagLabelBorder': '#ea0', 'gitInv1': '#fc0'}, 'gitGraph': {'showBranches': true, 'showCommitLabel':true,'mainBranchName': 'Dev'}} }%%
+gitGraph
+
+    commit id:"2024.24"
+
+    branch LTS
+    checkout LTS
+    commit id:"9.0.0 RC"
+    commit id:"9.0.0 LTS" type: HIGHLIGHT tag: "New Ver."
+
+    branch Prod
+    checkout Prod
+    commit id:"9.0.0 Prod"
+
+    checkout LTS
+    checkout Dev
+    commit id:"2025.1 (PATCH)"
+
+    checkout LTS
+    merge Dev id:"9.0.1 LTS"
+
+    checkout Prod
+    merge Dev id:"9.0.1 Prod"
+
+    checkout Dev
+    commit id:"2025.2 (MINOR)"
+
+    checkout Prod
+    merge Dev id:"9.1.0 Prod"
+
+    checkout Dev
+    commit id:"2025.3 (MAJOR)"
+
+    checkout LTS
+    merge Dev id:"10.0.0 RC"
+    commit id:"10.0.0 LTS" type: HIGHLIGHT tag: "New Ver."
+
+    checkout Dev
+    commit id:"2025.4"
+```
+
+
+## Release Candidates (New Versions of ISIS)
+
+For the yearly New Version Release (i.e, from ***8***.x.x → ***9***.0.0), 
+there is first a *Release Candidate* to test new features before they are included.
+While the RC is out, we solicit feedback and testing from the community, 
+and identify and fix issues before making an Major ISIS release.
+
+This major release will flow to LTS and Prod channels.
+
+### RC Feature Freeze
+
+When a Release Candidate (RC) is branched from the `dev` branch, a feature freeze is put into effect. 
+Any feature additions that occur after an RC has been branched will be included in a future RC (and release). 
+A feature added before the creation of an RC will be included in the next major update, 
+unless issues are found with the new feature. In that case, the feature will be removed and the RC recreated.
+
+## Minor/Patch Releases
+
+For subsequent releases within the same major version 
+(i.e, 8.***2***.0 → 8.***3***.0, 9.0.***1*** → 9.0.***2***), 
+there is no release candidate. 
+Updates are accumulated on a release-feeder branch for LTS or Production, 
+then released.

@@ -6,7 +6,7 @@ This document provides information about the software support process. That is, 
 !!! Note "How to Submit Issues" 
     Our code is managed [via GitHub](https://github.com/DOI-USGS)
 
-    Any issues with our software portfolio should be tracked in our repos through [GitHub issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues). Links for some our more active repos: 
+    Any issues with our software portfolio should be tracked in our repos through [GitHub issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues).  See [Guidelines for Reporting Issues](../../how-to-guides/software-management/guidelines-for-reporting-issues.md).  Here are links to the issue pages for some of our more active repos: 
 
     * [ISIS](https://github.com/DOI-USGS/ISIS3/issues)
     * [ALE](https://github.com/DOI-USGS/ale/issues)

@@ -34,11 +34,8 @@ projections.
 </figure>
 
 
-
 For additional information on types and properties of map projections
-see [Map Projection
-(USGS)](http://egsc.usgs.gov/isb//pubs/MapProjections/projections.html)
-.
+see the [USGS Map Projection Poster](https://pubs.usgs.gov/gip/70047422/report.pdf).
 
 
 ## ISIS3 Supported Projections 
@@ -70,6 +67,11 @@ see [Map Projection
   - [USGS: Map
     Projections](http://egsc.usgs.gov/isb//pubs/MapProjections/projections.html)
     - descriptions and comparisons of several map projections
+
+**ISIS3 PROJ Projections**
+
+  - See the [PROJ Projections](https://proj.org/en/stable/operations/projections/index.html#) for a list of supported projections
+  - See [PROJ Map Projecting Images](../../concepts/camera-geometry-and-projections/proj-projections.md) for how to use them
 
 
 ## What is a Planetary Image Map? 

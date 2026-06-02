@@ -488,11 +488,12 @@ crop from=input.cub to=output.cub+msb
 ```
 ### Storage Format
 
-The storage format of the file can be tile or band sequential. The default format is tile, which is preferable for most geometric processing programs. To select the format use
+The storage format of a cube can be tile or band sequential. The default format is tile, which is preferable for most geometric processing programs. ISIS also supports GeoTIFFs as a storage format and can be accessed similarly to the tile and band sequential formats. For more information on processing in ISIS using GeoTIFFs see the [GDAL Support](gdal-support.md) page. To select the format use:
 ```
 lowpass from=input.cub to=output.cub+tile
 lowpass from=input.cub to=output.cub+bsq
 lowpass from=input.cub to=output.cub+bandSequential
+lowpass from=input.cub to=output.tiff+GTiff
 ```
 Combining the cube attributes
 ```

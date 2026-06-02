@@ -117,7 +117,7 @@ There are two programs [**stats**](https://isis.astrogeology.usgs.gov/Applicatio
 
     ```
     Group = Results
-        From                    = Intro2isis.cub
+        From                    = intro2isis.cub
         Band                    = 1
         Average                 = 61.770642254011
         StandardDeviation       = 8.0295403784653

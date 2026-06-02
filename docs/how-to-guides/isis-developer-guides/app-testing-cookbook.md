@@ -1,6 +1,4 @@
-
-# ISIS App Testing Cookbook 
-
+# ISIS App Testing Templates 
 
 ### Main.cpp Templates 
 

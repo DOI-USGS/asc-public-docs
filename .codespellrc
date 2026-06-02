@@ -1,2 +1,3 @@
 [codespell]
 skip = *.po,*.ts,*.js,*.map,*.css,*.bsp,*.cub,*.tsc,*.tf,*.ti,*.pdf,*.ipynb
+ignore-words-list = startEt, stopEt

@@ -1,4 +1,6 @@
-A new ISIS3 class needs to have the following Doxygen tags filled out just above the class declaration, as in this example below:
+# Doxygen Tags
+
+A new ISIS class needs to have the following Doxygen tags filled out just above the class declaration, as in this example below:
 
 ```C++
    /**

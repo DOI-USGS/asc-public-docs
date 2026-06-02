@@ -1,207 +1,405 @@
-## Getting Started With GitHub
-To get started, you want a fresh copy of ISIS to work on. You first want to create a fork of the ISIS3 repo by going to the [main ISIS3 repo page](https://github.com/DOI-USGS/ISIS3) and clicking on "Fork" at the top of the page.
+# Developing ISIS with cmake
 
-Next, you want to create a clone of your fork on your machine. Go to your fork of ISIS3 on the GitHub website, url should be `github.com/<username>/ISIS3`, and click on the "Clone or Download" green button on the right and copy the link that is displayed. Next, you are going to open a terminal, go to the directory you want to make a clone in, and in the terminal, type:
+??? info "Environmental Variables and Common Directories"
 
-`git clone --recurse-submodules <paste the link>`
+    #### Environmental Variables
 
-This will copy all files in your fork to your current location in the terminal. Then, in your terminal, navigate to the ISIS3 directory by typing:
+    ***$ISISROOT points to either:***  
 
-`cd ISIS3`
+    - (For Dev) The CMake build directory  
+    `ISISROOT=/yourCodeDirectory/ISIS3/build`  
 
-### How to initialize the gtest submodule in an old clone
+    - (For Production) The install directory for running a deployed copy of ISIS. 
+    `ISISROOT=$CONDA_PREFIX`
 
-If your clone is older than November 26th 2018 and you update from dev, you will get the gtest submodule but it will be empty! This is because git does not initialize submodules by default. In order to initialize the gtest submodule run the following command at the root of the repository
+    ***$ISISDATA***  
+    Points to the NAIF SPICE Kernels, which contain spacecraft geometric and timing information that ISIS needs to process and align spacecraft images.
+    These kernels must be downloaded to process mission data, unless you are using the [SpiceQL web service](../../how-to-guides/SPICE/using-web-spice-in-isis-and-ale.md). See [ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md) for more info on how to download and set up `ISISDATA`.
 
-`git submodule update --init --recursive`
+    ***$ISISTESTDATA***  
+    Points to data for legacy ISIS Makefile tests.  This data must be downloaded to run legacy tests.  See [ISIS Test Data](../../how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md).
 
+    #### Common Directories
 
-## Anaconda and ISIS3 Dependencies
-To start building ISIS3 with cmake, you first need anaconda installed. **If you are developing internally to USGS, please expand the `For internal developers` drop-down for more information; otherwise, continue reading the instructions in this section**. 
+    ***Source Directory*** (`ISIS3/isis`):  
+    Where the ISIS source code lives, the lowercase `isis` subdirectory of `ISIS3`. *If you are in `ISIS3/build`, this would be `../isis` as a relative path.*
 
-??? Note "For internal developers"
+    ***Build Directory*** (`ISIS3/build`):  
+    Where generated project files live (Makefiles, Ninja files, Xcode project, etc). 
+    Holds the `bin` directory where binaries are built to.
+    `ninja` (or `make`) commands should be run from here.
 
-    When developing internally, it is *recommended* when you start working with cmake and anaconda that you use the shared anaconda environments in `/usgs/cpkgs/`. These anaconda environments have the isis3 dependencies installed that are needed for development. This makes setup simple and can make sharing builds easier.
-    You will need to modify your `~/.bashrc` as follows:
-
-    (Linux)
-    ```bash
-    echo -e "\n# Adding shared /usgs/cpkgs/ anaconda3 environment" >> ~/.bashrc
-    echo 'source /usgs/cpkgs/anaconda3_linux/etc/profile.d/conda.sh' >> ~/.bashrc
+    ***Executables Directory*** (`ISIS3/build/bin`):  
+    Executables are placed in `build/bin` (and linked in `$CONDA_PREFIX/bin`).  
+    For example, to run an ISIS app directly (with `$ISISROOT` set to the build directory):  
+    ```sh
+    $ISISROOT/bin/<application_name> from=my_input.cub to=my_output.cub
     ```
 
-    (macOS)
-    ```bash
-    echo -e "\n# Adding shared /usgs/cpkgs/ anaconda3 environment" >> ~/.bashrc
-    echo 'source /usgs/cpkgs/anaconda3_macOS/etc/profile.d/conda.sh' >> ~/.bashrc
+    ***Custom Data and Test Data***:  
+    The addition of test data files should be limited. Contributions to $ISISTESTDATA are no longer accepted. 
+    If a [test fixture](../../how-to-guides/isis-developer-guides/writing-isis-tests-with-ctest-and-gtest.md#test-fixtures) requires extra data, that data should be placed in `ISIS3/isis/tests/data`.
+
+## Fork and Clone from GitHub
+
+1. **Make your own fork of ISIS:**  
+   Go to the [main ISIS3 repo](https://github.com/DOI-USGS/ISIS3) and click on "Fork" at the top of the page.
+
+1. **Get a cloning link**  
+   On your ISIS fork (url should be `github.com/<username>/ISIS3`), click on the green `Clone or Download` button on the right and copy the link.  
+
+1. **Clone ISIS (including submodules)**  
+   Open a terminal, go to the directory you want to make a clone in, and run:  
+   `git clone --recurse-submodules <your link>`  
+
+1. **Checkout a branch**  
+   If you plan on contributing, create a branch with a short name to label your changes:  
+   `git checkout -b <branch-name>`
+
+Now that the files are on your computer, you can go on to build ISIS for yourself, 
+and maybe even edit its programs or contribute to development.
+
+??? info "Tracking Changes & Staying Updated - `git` branches & `conda` envs"
+    
+    **Update git repo & dev branch**
+
+    Before you make a new branch, you should make sure your git repository and dev branch are updated.
+    
+    ```sh
+    # Update your git repo
+    # (alternatively, open your repo online and click the sync button)
+    gh repo sync <your-username>/ISIS3
+
+    # Update your dev branch locally
+    git checkout dev
+    git pull
     ```
 
-    You will then need to `source ~/.bashrc` or open a new `bash` terminal to get the anaconda3 binaries added to your path.
+    **Checkout new branch**
 
-    To activate the isis3 environment and start developing, you can run:
-    ```bash
-    source activate isis3
+    For each contribution, create a new branch to track its specific changes:
+
+    ```sh
+    git checkout -b <branch-name>
     ```
 
-    You can continue to the [Building ISIS3](#building-isis3) section.
+    **Update conda env**
 
-Go to [Anaconda's download page](https://www.anaconda.com/download/) and follow the instructions for your operating system. ISIS3 dependencies are managed through Anaconda and ISIS3 uses Anaconda environments when building. Third party libraries are added inside of an environment. The cmake build configuration system expects an active [Anaconda environment](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment) containing these dependencies. There is an environment.yml file in the ISIS3 directory of your clone.  To create the required Anaconda environment, go into the ISIS3 directory and enter the following command:
+    After making a new branch, make a new conda environment to ensure dependencies are updated.  You may remove environments for branches you are done working on.
 
-`conda env create -n <environment-name> -f environment.yml` 
+    ```sh
+    # Optionally remove old env (needed if you will name the new env the same)
+    conda env remove -n isis-dev-env -y
 
-Give the environment whatever name you choose by substituting it for `<environment-name>`
-
-Building ISIS requires that the anaconda environment be activated. Activate your anaconda environment with:
-
-`source activate <environment-name>`
-
-## Building ISIS3
-**At the top-level directory of an ISIS3 clone**:   
-
-* Create a `build` and an `install` directory at this level:
-    * `mkdir build install`
-    * There should now be a `build/`, `install/`, and `isis/` directory.
-
-* Set your `ISISROOT` to `/the/path/to/your/build`:   
-    * `export ISISROOT=$(pwd)`
-    * **For internal instructions, see `For internal developers` section below.**
-
-        ??? Note "For internal developers"
-
-            Run the `setisis` command for your build directory:
-            ```bash
-            setisis .
-            ```
-
-            The following error is expected and can be ignored:
-
-            ```
-            Warning: Unable to find binaries.
-            Warning: Unable to find initialization scripts in <build directory>.
-                    Unable to set up third party, or data directories. (Use -h for help)
-            Warning: Only ISISROOT set.
-            ISISROOT set to: <build directory>
-            ```
-            (Where `<build directory>` is the directory you have run the setisis command in.) 
-
-            If this does not work (i.e. `no setisis in PATH`), run the following command to add an alias to your `~/.bashrc`:
-            ```bash
-            echo -e "alias setisis='. /usgs/cpkgs/isis3/isis3mgr_scripts/initIsisCmake.sh'" >> ~/.bashrc
-            ```
-
-* If you want to run the tests set the `ISISDATA` and `ISISTESTDATA` directories
-    * `export ISISDATA=/path/to/your/data/directory`
-    * `export ISISTESTDATA=/path/to/your/test/data/directory`
-
-* cd into the build directory and configure your build:
-    * `cmake -DJP2KFLAG=OFF -GNinja <source directory>`
-    * `<source directory>` is the root `isis` directory of the ISIS source tree, i.e. `/scratch/this_is_an_example/ISIS3/isis`. From the build directory, this is `../isis`
-
-* Build ISIS inside of your build directory and install it to your install directory:
-    * `ninja install`
+    # Create new env and activate (from ISIS3 folder)
+    conda env create -n isis-dev-env -f environment.yml
+    conda activate
+    ```
 
 
-??? Tip "Build tips"
-    * The `-GNinja` flag specifies creating Google [Ninja](https://ninja-build.org/manual.html) Makefile (an alternative Make system to the traditional GNU make system). If you instead want to use make, dont set this flag, and replace the ninja commands with their make counterparts.
+??? note "Cloning Submodules later <br>(if you didn't run `--recurse-submodules`, or are missing `gtest`)"
 
-    * `-Disis3Data` is used to set the location of the isis3 data directory, which includes kernels, icons, templates, etc. *This is needed to successfully run the app and module tests.*
+    If you have an old clone, or you forgot to add `--recurse-submodules` when you initially cloned ISIS, run this in the `ISIS3` directory to clone the `gtest` submodule:
+    
+    ```sh
+    git submodule update --init --recursive
+    ```
 
-    * `-Disis3TestData` is used to the location of the isis3 testData directory, which includes input and expected truth files for running and validating tests.
+## Build Environment & Dependencies
 
-    * `-DJP2KFLAG=OFF` disables JP2000 support.  **If you are internal, you should turn this ON.**
+Conda manages dependencies and 3rd-party libraries to create a build environment (conda env) for ISIS. The cmake build system expects an active [conda env](https://conda.io/docs/user-guide/tasks/manage-environments.html#activating-an-environment) containing these dependencies, which are listed in the [environment.yml](https://github.com/DOI-USGS/ISIS3/blob/dev/environment.yml).
 
-    * `-Dpybindings=OFF` disables the bundle adjust python bindings.  This is temporary.
+### Getting Conda
 
-    * To build with debug flags add `-DCMAKE_BUILD_TYPE=Debug` to the cmake configuration step.
+Building ISIS requires conda.  If you need conda, install it through [miniforge](https://github.com/conda-forge/miniforge):
+```sh
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+bash Miniforge3-$(uname)-$(uname -m).sh
+```
 
-    * Executables are no longer in an application's directory. When running in debug mode, it is important to give the correct path to an application's executable. Executables are located in `build/bin` and `install/bin`. Example using ddt with `$ISISROOT` set to the build directory: `ddt $ISISROOT/bin/<application_name>`
+### Cleaning Conda Envs
 
- 
-## New Environmental Variable Meanings
-`$ISISROOT` is no longer the ISIS3 source directory. `$ISISROOT` is now either the CMake build directory for development or the install directory for running a deployed copy of ISIS. 
+Don't reuse a conda env used to build an older version of ISIS. This can cause errors if the [dependencies](https://github.com/DOI-USGS/ISIS3/blob/dev/environment.yml) were updated.  If you need to start with a clean slate:
 
-* **Source Directory**: Where the ISIS source code lives. This is the isis directory. If you are in build, this would be `../isis` (i.e. your local repository)
-* **Build Directory**: Where generated project files live (Makefiles, Ninja files, Xcode project, etc.) and where binaries are built to.  This is where you spend most of your development time. 
-* **Install Directory**: Where the binaries are placed on install. 
+```sh
+# Remove an Old/Unneeded Environment
+conda env remove -n isis-dev-env -y
 
-## Custom Data and Test Data Directories
-Custom data and test data directories now have to be relative to the new `$ISISROOT`.   
-Therefore your data or testdata directories must be at the same hierarchical level as your build or install directories.
+# Remove cached packages
+conda clean --all
+```
 
-## Cleaning Builds
+### Creating/Activating an Env
 
-**Using the Ninja Build System:**
+To create and activate a conda env, run these commands in the ISIS3 directory.
 
-Removes all built objects except for those built by the build generator:
-`ninja -t clean` 
+=== "x86"
 
-Remove all built files specified in rules.ninja:
-`ninja -t clean -r rules` 
+    ```sh
+    # Create
+    conda env create -n isis-dev-env -f environment.yml
 
-Remove all built objects for a specific target:
-`ninja -t clean <target_name>` 
+    # Activate
+    conda activate isis-dev-env
+    ```
 
-Get a list of Ninja's targets:
-`ninja -t targets`
+=== "ARM"
 
-**Manual Cleans**
+    ```sh
+    # Create
+    conda env create -n isis-dev-env -f environment_arm.yml
 
-Cleaning all of ISIS: 
-`rm -rf build install`
+    # Activate
+    conda activate isis-dev-env
+    ```
 
-Cleaning an individual app:
-`cd build && rm bin/<app_name>`
+=== "x86 emulation on ARM"
 
-Cleaning an individual object:
- ``cd build && rm `find -name ObjectName.cpp.o` ``
+    ```sh
+    # Create
+    conda env create -n isis-dev-env --platform osx-64 -f environment.yml
 
-## Building Individual ISIS3 Applications/Objects
+    # Activate
+    conda activate isis-dev-env
+    ```
 
-### Applications 
+!!! quote ""
 
-The command (from the build directory) is:
+    *We chose the env name, "isis-dev-env", but you can name your env something else if you want.*
 
-`make install <appname>`
+    *Your terminal prompt should look now be preceded by `(isis-dev-env)`. 
+    This indicates that you are in an active conda env, 
+    which you will need to build ISIS.*
 
-To build fx:  `make install fx`
+## Building ISIS
 
-### Objects
+### 1. Create a `build` directory
 
-`make install isis3 -j7`: If you make a change to one class in the ISIS3 API, 
-it compiles and builds everything.  This can take awhile.
+```sh
+# From inside the ISIS3 directory:
+mkdir build
+```
 
-If you are using Ninja the command is:
+*There should now be a "build" subdirectory alongside the "isis" subdirectory.*  
+*`ninja` (or `make`) commands should be run from inside the build directory.*
 
-`ninja install libisis3.so`
+### 2. Set Env Variables
 
-The nice thing about Ninja is that it re-compiles whatever class you modified,
-and then re-links all the applications/objects/unit tests which have dependencies
-on that object.  In the case of a heavily used class like Pixel, this equates to 865 objects.
-It's still a lot faster then using cmake generated Makefiles.
+Set `ISISROOT` to point to your build directory.  
+See [the ISIS Data Area](../../how-to-guides/environment-setup-and-maintenance/isis-data-area.md) 
+to set up ISISDATA and ISISTESTDATA so you can import mission data and run tests.  
 
-### Plugins
+```sh
+export ISISROOT=/yourCodeDirectory/ISIS3/build
 
-## CMake Behavior When Adding/Removing/Modifying an Object
+export ISISDATA=/yourDataDirectory/isisdata
+export ISISTESTDATA=/yourDataDirectory/isistestdata
 
-The cmake configure command needs to be executed when adding/removing a new object so that the system sees and compiles it.  
+# You may want to add these to your .bashrc or .zshrc, 
+# so you don't have to set them every time.
+```
 
-## Building ISIS3 Documentation
+### 3. Make ISIS with `cmake`
 
-At present under the current system there is no way to build documentation for individual applications/objects.  To build all documentation using the ninja build system, CD into the build directory and enter the following command:
+```sh
+cd build               # Enter the build directory
+cmake -GNinja ../isis  # run cmake on the ISIS3/isis directory
+```
+*If you run `cmake` from a different directory, change `../isis` to point to the `isis` subfolder under `ISIS3`.*
 
-`ninja docs -j7`
+!!! note ""
 
-If CMake is being used to produce GNU Makefiles, the process is the same, but the command is:
+    Rerun the `cmake` command whenever you add/remove objects, so the system can see/compile them.
 
-`make docs -j7`
+### 4. Build ISIS with `ninja`
 
-The documentation is placed in `install/docs` (after being copied over from `build/docs`).
+=== "Build & Install"
 
-## Building in Debug Mode
-1. reconfigure cmake with flag (`-DCMAKE_BUILD_TYPE=DEBUG`)
-2. rebuild
+    ```sh
+    # From inside your build directory (or wherever cmake was run)
+    ninja install
 
-## Identifying Tests
+    # This may take a while, around 20 min to an hour.
+    # Binaries, libraries, and headers are linked into the conda env by default.
+    ```
+
+=== "Build Only"
+
+    ```sh
+    # From inside your build directory (or wherever cmake was run)
+    ninja
+
+    # This may take a while, around 20 min to an hour.
+    # Binaries, libraries, and headers are placed in the build directory.
+    ```
+
+??? info "Ninja vs Make"
+
+    We generally use `ninja` to build ISIS, though it is possible to configure cmake for 
+    plain `make` builds as well, omitting the `-GNinja` flag:
+    ```sh
+    cmake ../isis
+    make install
+    ```
+
+    `ninja` tends to be faster - it relinks dependencies instead of rebuilding them all.
+
+    `make` compiles and builds everything your class touches again (slow), 
+    but `ninja` just recompiles your class and relinks dependencies (faster). 
+
+    In the case of a heavily used class like Pixel, this equates to 865 objects.
+    It's still much faster then using cmake generated Makefiles.
+
+## Build Tasks and Custom Builds
+
+??? abstract "Cmake Build Configuration Flags"
+
+    Use these flags in the `cmake` command to configure your build. 
+    Flags with an = sign are shown with their default values. 
+    Some can be turned `ON` or `OFF`, others accept a specific value.
+
+    ***General cmake Flags***
+
+    `-GNinja`  
+    Makes a [Ninja](https://ninja-build.org/manual.html) Makefile (alternative to GNU `make`). To use plain `make` instead, omit this flag and replace the `ninja` commands with their `make` counterparts.
+
+    `-DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX$`  
+    Sets the path that ISIS will be installed to when `ninja install` is run.
+
+    `-DCMAKE_BUILD_TYPE=Release`  
+    Build type. `Release` by default, can also be set to `Debug`.
+
+    ***ISIS-Specific Flags***
+
+    `-DisisData=OFF`  
+    The ISISDATA directory. If `OFF`, the $ISISDATA environmental variable will be used by default.
+    
+    `-DisisTestData=OFF`  
+    The ISISTESTDATA directory. If `OFF`, the $ISISTESTDATA environmental variable will be used by default.
+
+    `-DtestOutputDir=OFF`  
+    Directory to store app test output folders. If `OFF`, then `${CMAKE_BINARY_DIR}/testOutputDir` will be used by default.
+
+    `-DbuildCore=ON`  
+    Build core ISIS modules.
+
+    `-DbuildMissions=ON`  
+    Build mission-specific modules.
+
+    `-DbuildStaticCore=OFF`  
+    Build libisis static libraries (in addition to dynamic, which are always built).
+
+    `-DbuildTests=ON`  
+    Tests.
+
+    `-DbuildCoverage=ON`  
+    Code coverage.  
+
+    `-DbuildDocs=ON`  
+    Documentation
+
+    `-DJP2KFLAG=OFF`  
+    JPEG2000 support. (Not available on ARM builds.)
+
+    `-Dpybindings=ON`  
+    Bundle adjust python bindings.
+
+    ***Build Options Source:***  
+    Most of the above options are spelled out in ISIS's CMakeLists.txt file.
+    Look for `# Configuration options` in [isis/CMakeLists.txt](https://github.com/DOI-USGS/ISIS3/blob/dev/isis/CMakeLists.txt#L63). 
+    Use `-D...` flags to turn these options on or off.
+
+    For example, to build ISIS with no tests and no docs:
+    ```sh
+    cmake -DbuildDocs=OFF -DbuildTests=OFF -GNinja ../isis
+    ```
+
+??? example "Installing to a Custom Directory"
+
+    ```sh
+    # Create a directory for your install
+    mkdir install
+
+    # Go to your build dir. Set the install dir in the cmake command.
+    cd build
+    cmake -DCMAKE_INSTALL_DIRECTORY=/path/to/your/install -GNinja ../isis
+
+    # install with ninja
+    ninja install
+
+    # Add install dir to your path so you can run the apps from any directory
+    # Place this command in your .bashrc or .zshrc to make permanent
+    export PATH="$PATH:/path/to/your/install"
+    ```
+
+??? example "Cleaning Builds"
+
+    === "ninja"
+
+        Removes all built objects except for those built by the build generator:  
+        `ninja -t clean` 
+
+        Remove all built objects for a specific target:  
+        `ninja -t clean <target_name>` 
+
+        Get a list of Ninja's targets:  
+        `ninja -t targets`
+
+    === "manual (`rm`)"
+
+        Cleaning all of ISIS:  
+        `rm -rf build`
+
+        Cleaning an individual app:  
+        `cd build && rm bin/<app_name>`
+
+        Cleaning an individual object:  
+        ``cd build && rm `find -name ObjectName.cpp.o` ``
+
+??? example "Building Individual ISIS Applications"
+
+    ```sh
+    # (from the build directory)
+    ninja install <appname>
+
+    # For example, to build fx:
+    ninja install fx
+    ```
+
+??? example "Building Individual ISIS Objects"
+
+    ```sh
+    ninja install lib<yourLibrary>.dylib
+
+    # For example, the isis library
+    ninja install libisis.dylib
+    ```
+
+??? example "Building Only Documentation"
+
+    ```sh
+    ninja docs
+    ```
+
+    The documentation is placed in `build/docs`. 
+
+    Cmake is configured to build docs by defaults, but if the `-DbuildDocs=OFF` flag was used, 
+    `ninja` and `make` won't be able to build the docs until you run cmake again.
+
+??? example "Building in Debug Mode"
+
+    ```sh
+    cmake -DCMAKE_BUILD_TYPE=DEBUG -GNinja ../isis   # cmake with debug flag
+    ninja install                                    # Rebuild
+    ```
+
+## Tests
+
+### ISIS Test Data
+
+See [ISIS Test Data](../../how-to-guides/isis-developer-guides/obtaining-maintaining-submitting-test-data.md) for info on downloading and setting up the data used in legacy makefile-based tests.
+
+### Identifying Tests
 The test names are as follows:   
 
 * unit test : `<modulename>_unit_test_<objectname>`
@@ -210,7 +408,7 @@ The test names are as follows:
 
 All cat tests under base, database, control, qisis, and system are listed under the isis3 module.
 
-## Running Tests
+### Running Tests
 
 ISIS tests now work through [ctest](https://cmake.org/cmake/help/v3.9/manual/ctest.1.html). Unit tests are by default put into the `build/unitTest` directory. The most simple way to run test of a certain type is using the `-R <regex>` option, which only runs tests which match the regex.
 
@@ -229,19 +427,19 @@ ctest -R jigsaw     # run jigsaw's app tests
 ctest -R lro        # run all lro tests
 ctest -E tgo        # Run everything but tgo tests
 ```
-## Building New Tests
+### Building New Tests
 
 The workflow for creating a new tests will be the same as the old ISIS make system besides adding test data. See [Make Truth Replacement](#make-truth-replacement) below for how this set in the process changes.
 
 
-## App Tests and Category Tests
+### App Tests and Category Tests
 
-App/Category tests still leverage the old make system, they work using the standard ISIS app/category test workflow for now.
+App/Category tests still use the old make system, with the standard ISIS app/category test workflow.
 App/Category tests can be developed in the ISIS src tree similar to the old make system. As long as the path is pointing to the binaries in the build directory (`build/bin`); `make output`, `make test`, `make compare`, `make truthdata`, and `make ostruthdata` all work. You cannot run all tests from the root of the ISIS source tree. To accomplish this use ctest in the build directory, see above. If there is testdata in the ISIS source tree ctest will test with that data.
 
-## Unit Tests
+### Unit Tests
 
-Unit test no longer rely on the old ISIS make system. The unitTest.cpp of each object are compiled and an executable is made and saved in the unitTest sub-directory of the build directory. A symbolic link of the unit test executable is created in the object's directory. This allows the unit test to get files that it needs inside the object's directory, i.e. unitTest.xml. If a unit test passes, then the symbolic link is removed. If you want to run a passing unit test in debug mode, you will have to create a symbolic link of the unit test in the object's directory yourself. If you are inside the object's directory:
+Unit tests don't use the old ISIS make system. The unitTest.cpp of each object are compiled and an executable is made and saved in the unitTest sub-directory of the build directory. A symbolic link of the unit test executable is created in the object's directory. This allows the unit test to get files that it needs inside the object's directory, i.e. unitTest.xml. If a unit test passes, then the symbolic link is removed. If you want to run a passing unit test in debug mode, you will have to create a symbolic link of the unit test in the object's directory yourself. If you are inside the object's directory:
 
 `ln -s $ISISROOT/unitTest/<unit_test_name> unitTest`
 
@@ -252,25 +450,32 @@ Steps To Create A New UnitTest:
 3. rebuild
 4. Use makeOutput.py (see below) to create new truth data
 
-## Example Ctest Output
+??? example "Example Ctest Output"
 
-```
-98% tests passed, 7 tests failed out of 394
+    ```
+    98% tests passed, 7 tests failed out of 394
 
-Total Test time (real) = 171.11 sec
+    Total Test time (real) = 171.11 sec
 
-The following tests FAILED:
-	 11 - isis3_unit_test_Application (Failed)
-	 97 - isis3_unit_test_IException (Failed)
-	174 - isis3_unit_test_Pipeline (Failed)
-	201 - isis3_unit_test_ProcessExportPds4 (Failed)
-	211 - isis3_unit_test_ProgramLauncher (Failed)
-	303 - isis3_unit_test_UserInterface (Failed)
-	338 - isis3_unit_test_MosaicSceneWidget (Failed)
-Errors while running CTest
-```
+    The following tests FAILED:
+        11 - isis3_unit_test_Application (Failed)
+        97 - isis3_unit_test_IException (Failed)
+        174 - isis3_unit_test_Pipeline (Failed)
+        201 - isis3_unit_test_ProcessExportPds4 (Failed)
+        211 - isis3_unit_test_ProgramLauncher (Failed)
+        303 - isis3_unit_test_UserInterface (Failed)
+        338 - isis3_unit_test_MosaicSceneWidget (Failed)
+    Errors while running CTest
+    ```
 
-## Make Truth Replacement
+<div class="grid cards" markdown>
+
+- To learn more about **Ctest**, check out the 
+  [Ctest Docs :octicons-arrow-right-24:](https://cmake.org/cmake/help/v3.9/manual/ctest.1.html)
+
+</div>
+
+### Make Truth Replacement
 
 The MakeTruth functionality that exists in the Makefiles of the old make system now exists in a script (makeOutput.py) located in `ISIS3/isis/scripts/makeOutput.py`.
 A developer will want output of a test before setting it as truth data. This is currently done with the following command in the form of:
@@ -302,11 +507,71 @@ When making OS specific truth data, do not add the "-t" flag. Instead, you will 
 * For app tests, you will need to rename the truth directory put in build/testOutputDir as
 `truth.<OStype>.x86_64.<OSname>`. If we wanted to make Mac truth data: "truth.Darwin.x86_64.MacOSX10_13".
 
-## Further Reading
+### Checking Test Coverage 
 
-[Ctest](https://cmake.org/cmake/help/v3.9/manual/ctest.1.html) functionality extends beyond this wiki. Take a moment to see the ctest documentation for additional capabilities.
+ISIS uses `gcovr` to track test coverage. PRs will not be approved if they drop coverage by more than 2%, though exceptions can be made for large feature adds. This step happens after tests have run, as coverage is detected based on the last ctest run. 
 
-## Problems
+```bash
+ninja test_coverage_ascii # generate ascii table to stdout 
+ninja test_coverage_html  # generate interactive webpage 
+                          # open HTML at $ISIS_BUILD_DIR/test_coverage_html/index.html
+```
+
+The remote CI coverage checks (on the PR) generate an ASCII table.  Locally, generating HTML reports is recommended, as they contain interactive access to line hits and misses. 
+
+When reading CI coverage on [ISIS CI builds](https://us-west-2.codebuild.aws.amazon.com/project/eyJlbmNyeXB0ZWREYXRhIjoiNDJNZ2MxbHFKTkwxV1RyQUxJekdJY3FIanNqU29rMHB4Nk1YUzk4REIrZUZDeEtEaW9HQlZ1dTZOSHpML2VUTGVDekYydmVFcU9sUHJKN20wQzd1Q0UzSzJscnB0MElDb1M3Ti9GTlJYR1RuMWJTV3V1SkJTa3NoYmc9PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF3U2NTSGlDcEtCc29YVnEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D), test coverage will be at the bottom of the logs once CI is complete.  The CI first **builds**, then **tests**, then checks **test coverage**.  You may have to scroll quite a bit to reach the desired section.
+
+??? example "Test Results and Coverage Report in ISIS CI Build Log"
+
+    ```bash
+    100% tests passed, 0 tests failed out of 2705
+
+    Total Test time (real) = 2145.30 sec
+
+    The following tests did not run:
+        1258 - TempTestingFiles.FunctionalTestJitterfitDefault (Disabled)
+        1302 - TempTestingFiles.UnitTestImageImporterTestJpeg (Disabled)
+        1553 - DefaultCube.FunctionalTestNoprojExpand (Disabled)
+        1900 - MroCtxCube.FunctionalTestCtxcalDefault (Disabled)
+        1903 - MroCtxCube.FunctionalTestCtxcalIofFalse (Disabled)
+    [1/1] Generating gcovr ASCII coverage report.
+    (INFO) Reading coverage data...
+    (INFO) Writing coverage report...
+    ------------------------------------------------------------------------------
+                            GCC Code Coverage Report
+    Directory: .
+    ------------------------------------------------------------------------------
+    File                                       Lines    Exec  Cover   Missing
+    ------------------------------------------------------------------------------
+    src/apollo/apps/apollo2isis/main.cpp         242       0     0%   50-54,56,58-59,61,63,66-68,71-72,74,77-78,80,82-84,87,89-100,102-105,112-116,119-124,126,131-145,147-150,152-155,158-160,163-164,167-176,178-179,181-182,185-188,193-195,198,200-205,207-209,213-216,219,223,228,230-232,234-236,238-244,246-250,252-253,255-257,260-263,265-266,269,272-273,275,278-283,286-288,290-292,295-298,300,302-307,310-315,318-328,331-333,336-338,341-343,347-350,355-357,359-361,363-365,369-371,374-384,386-387,389-393,395,398-401,403,406-408
+    src/apollo/apps/apollocal/apollocal.cpp       38      33    86%   26-29,74
+    src/apollo/apps/apollocal/main.cpp             4       0     0%   16-19
+    .
+    . Snip, many such files
+    .
+    src/voyager/apps/voycal/main.cpp             173     140    80%   69-72,82-85,90-93,118-123,155-160,247,312-314,334,343,345,347,349
+    src/voyager/apps/voyramp/main.cpp             85      71    83%   75-78,82-84,95-99,197-198
+    src/voyager/objs/VoyagerCamera/VoyagerCamera.cpp
+                                                78      67    85%   87-90,111-114,133-135
+    ------------------------------------------------------------------------------
+    TOTAL                                     130854  102073    78%
+    ------------------------------------------------------------------------------
+    lines: 78.0% (102073 out of 130854)
+    functions: 86.4% (7023 out of 8131)
+    branches: 42.6% (121959 out of 286413)
+    ```
+
+You should check your results to the last dev build to see if your coverage increased or decreased.
+
+### Static Code Checking
+
+ISIS uses [`cppcheck`](https://cppcheck.sourceforge.io) for static code checking, to catch security vulnerabilities and undefined behavior that other methods may miss.  In [ISIS CI](https://us-west-2.codebuild.aws.amazon.com/project/eyJlbmNyeXB0ZWREYXRhIjoiNDJNZ2MxbHFKTkwxV1RyQUxJekdJY3FIanNqU29rMHB4Nk1YUzk4REIrZUZDeEtEaW9HQlZ1dTZOSHpML2VUTGVDekYydmVFcU9sUHJKN20wQzd1Q0UzSzJscnB0MElDb1M3Ti9GTlJYR1RuMWJTV3V1SkJTa3NoYmc9PSIsIml2UGFyYW1ldGVyU3BlYyI6IjF3U2NTSGlDcEtCc29YVnEiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D), this is checked after running tests, close to the end of the log.
+
+```bash
+cppcheck your-new-contribution.cpp --enable=all --suppress=missingInclude --suppress=missingIncludeSystem --suppress=unmatchedSuppression
+```
+
+## Troubleshooting
 
 **If you get the following error message when trying to set up your environment**:
 

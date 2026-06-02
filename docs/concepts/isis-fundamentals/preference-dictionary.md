@@ -59,12 +59,13 @@ EndGroup
 
 ## Error Facility
 
-Errors can be written in either standard (single line) or PVL format, with the option to suppress the source file and line number identifying where the error occurred. Additionally, stack traces can be displayed when running ISIS in debug mode.
+Errors can be written in either **standard** (single line) or **PVL** format, with the option to suppress the source file and line number identifying where the error occurred.  Deprecation warnings can be shown or hidden.  Additionally, stack traces can be displayed when running ISIS in debug mode.
 
 ```
 Group = ErrorFacility
   Format   = Standard | Pvl
   FileLine = On | Off
+  ShowDeprecated = On | Off
   StackTrace = On | Off
 EndGroup
 ```
@@ -178,6 +179,7 @@ Group = DataDirectory
   Cassini      = $ISISDATA/cassini
   Chan1        = $ISISDATA/chan1
   Chandrayaan1 = $ISISDATA/chandrayaan1
+  Chandrayaan2 = $ISISDATA/chandrayaan2
   Clementine1  = $ISISDATA/clementine1
   Clipper      = $ISISDATA/../datalocal/clipper
   Control      = $ISISDATA/control

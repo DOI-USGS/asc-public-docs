@@ -4,7 +4,7 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
 
 !!! note "Recommended going forward: CSM"
 
-    The CSM Camera Model is recommended, especially if working with GTIFFS or creating new pipelines.  New missions will only be supported with the CSM Camera Model.
+    The CSM Camera Model is recommended, especially if working with GTIFFs or creating new pipelines.  New missions will only be supported with the CSM Camera Model.
     
     For projects with pre-existing tooling/pipelines, **keep using ISIS Camera Models**. The ISIS Camera Model is going into maintenance mode - Current missions **will continue to be supported**, but no new missions will be added.
 
@@ -17,16 +17,40 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
     === "CSM Camera Model"
 
         ```sh
+        # Ingest into ISIS
         mroctx2isis from=B10_013341_1010_XN_79S172W.IMG to=B10_013341_1010_XN_79S172W.cub
+
+        # Make ISD
         isd_generate B10_013341_1010_XN_79S172W.cub
+        
+        # Init CSM Model
         csminit from=B10_013341_1010_XN_79S172W.cub isd=B10_013341_1010_XN_79S172W.json
         ```
 
     === "ISIS Camera Model"
 
         ```sh
+        # Ingest into ISIS
         mroctx2isis from=B10_013341_1010_XN_79S172W.IMG to=B10_013341_1010_XN_79S172W.cub
+
+        # Attach SPICE/Init ISIS Model
         spiceinit from=B10_013341_1010_XN_79S172W.cub
+        ```
+
+    === "CSM with ISIS SPICE"
+
+        ```sh
+        # Ingest into ISIS
+        mroctx2isis from=B10_013341_1010_XN_79S172W.IMG to=B10_013341_1010_XN_79S172W.cub
+
+        # Attach SPICE
+        spiceinit from=B10_013341_1010_XN_79S172W.cub
+
+        # Make ISD from ISIS SPICE (-i)
+        isd_generate -i B10_013341_1010_XN_79S172W.cub
+
+        # Init CSM Model
+        csminit from=B10_013341_1010_XN_79S172W.cub isd=B10_013341_1010_XN_79S172W.json
         ```
 
     *We're using [this MRO CTX Image](https://asc-pds-mars-reconnaissance-orbiter.s3.us-west-2.amazonaws.com/CTX/mrox_0826/data/B10_013341_1010_XN_79S172W.IMG) for this tutorial.  If you use an image from another mission, use the appropriate [-2isis ingestion app](https://isis.astrogeology.usgs.gov/Application/index.html) or [isisimport](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/isisimport/isisimport.html) instead of mroctx2isis.*

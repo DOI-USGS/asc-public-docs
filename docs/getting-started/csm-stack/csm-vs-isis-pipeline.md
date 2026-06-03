@@ -10,7 +10,7 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
 
 ## Command-Line Examples
 
-???+ example "Initializing a Camera Model"
+!!! example "Initializing a Camera Model"
 
     Starting from an uninitialized image, run these commands to initialize a camera model.
 
@@ -22,7 +22,7 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
 
         # Make ISD
         isd_generate B10_013341_1010_XN_79S172W.cub
-        
+
         # Init CSM Model
         csminit from=B10_013341_1010_XN_79S172W.cub isd=B10_013341_1010_XN_79S172W.json
         ```
@@ -86,6 +86,33 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
     ...
     ```
 
+??? example "isd_generate Examples"
+
+    | Options                                                                            |
+    | ---------------------------------------------------------------------------------- |
+    | `-w`: Use web Kernels &emsp; *~or~* &emsp; `-s`: Look in $ALESPICEROOT for Kernels | 
+    | `-n`: Use NAIF SPICE &emsp; *~or~* &emsp; `-i`: Use ISIS SPICE                     |
+    | `-k path/to/kernel.mk`: Use a specific metakernel                                  |
+    | `-v`: Verbose (Useful for troubleshooting)                                         |
+
+
+    === "ISIS SPICE Driver"
+
+        ```sh
+        # Requires a spiceinit-ed .cub
+        isd_generate -i B10_013341_1010_XN_79S172W.cub
+
+        # This makes ISIS SPICE ISD. Use this ISD in csminit
+        # for the closest CSM parity with ISIS Camera Models
+        ```
+
+    === "NAIF SPICE Driver + Web Kernels"
+
+        ```sh
+        # -w is Useful for making ISDs without downloading kernel data
+        isd_generate -n -w B10_013341_1010_XN_79S172W.cub
+        ```
+
 ## Process
 
 For either model, the first step is to ingest the image into an ISIS .cub using an `2isis` app.  After that, the process diverges, depending on which Camera Model is preferred. You can attach ***SPICE information*** for the **ISIS Camera Model**, or a ***CSM State String*** for the **CSM Camera Model**.
@@ -100,7 +127,11 @@ flowchart TD
     E --> F
 ```
 
-The ISIS and CSM Camera Models differ slightly from each other. But either way, after a Camera Model is attached, you can do further Camera Model-dependent work in ISIS:
+The ISIS and CSM Camera Models differ slightly from each other.
+Most differences are negligible, but can vary depending on the instrument.
+For the closest parity with ISIS Models in CSM, use `isd_generate -i`, which forces an ISIS SPICE-based driver.
+
+Whichever method is used, after a Camera Model is attached, you can do further Camera Model-dependent work in ISIS:
 
 - [Camera Geometry](../../concepts/camera-geometry-and-projections/camera-geometry.md)
 - [Control Networks](../../concepts/control-networks/isis-control-networks.md)

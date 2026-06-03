@@ -27,7 +27,7 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
         spiceinit from=B10_013341_1010_XN_79S172W.cub
         ```
 
-    *We're using [this MRO CTX Image](https://asc-pds-mars-reconnaissance-orbiter.s3.us-west-2.amazonaws.com/CTX/mrox_0826/data/B10_013341_1010_XN_79S172W.IMG) for this tutorial.  If you use an image from another mission, use the apropriate [-2isis ingestion app](https://isis.astrogeology.usgs.gov/Application/index.html) or [isisimport](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/isisimport/isisimport.html) instead of mroctx2isis.*
+    *We're using [this MRO CTX Image](https://asc-pds-mars-reconnaissance-orbiter.s3.us-west-2.amazonaws.com/CTX/mrox_0826/data/B10_013341_1010_XN_79S172W.IMG) for this tutorial.  If you use an image from another mission, use the appropriate [-2isis ingestion app](https://isis.astrogeology.usgs.gov/Application/index.html) or [isisimport](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/isisimport/isisimport.html) instead of mroctx2isis.*
 
 
 ??? note "Developers - Updating the CSM Plugin Location for `csminit`"

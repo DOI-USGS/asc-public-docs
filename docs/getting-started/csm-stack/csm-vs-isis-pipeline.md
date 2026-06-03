@@ -31,15 +31,15 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
 
 ??? note "Developers - Updating the CSM Plugin Location for `csminit`"
 
-    Fore development version of ISIS, add the location of the CSM Plugins as a `CSMDirectory` in your `IsisPreferences` file.
+    If building ISIS for development, add the location of the CSM Plugins as a `CSMDirectory` in your `IsisPreferences` file.
 
-    The Isis Preference file may be found under `~/.isis/`, `ISIS3/isis`, and/or `ISIS3/build`.
+    The `IsisPreferences` file may be found under `~/.isis/`, `ISIS3/isis`, and/or `ISIS3/build`.  
     If you're not sure which file to update, just update any that are present.
 
     The CSM Plugin location is commonly `$CONDA_PREFIX/lib/csmplugins/` or `$ISISROOT/lib/csmplugins/`.
 
-    Once added, the Plugin Section of the IsisPreferences file might look like this:
-    ```
+    ``` title="IsisPreferences (Plugin Section)"
+    ...
     ########################################################
     #
     # Indicate where ISIS should search for Community
@@ -56,6 +56,7 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
                       "$HOME/.Isis/csm3.0.3/", -
                       "$CONDA_PREFIX/lib/csmplugins/")
     EndGroup
+    ...
     ```
 
 ## Process

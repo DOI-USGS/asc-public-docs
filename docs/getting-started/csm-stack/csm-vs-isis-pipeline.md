@@ -29,6 +29,35 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
         spiceinit from=B10_013341_1010_XN_79S172W.cub
         ```
 
+??? note "Developers - Updating the CSM Plugin Location for `csminit`"
+
+    Fore development version of ISIS, add the location of the CSM Plugins as a `CSMDirectory` in your `IsisPreferences` file.
+
+    The Isis Preference file may be found under `~/.isis/`, `ISIS3/isis`, and/or `ISIS3/build`.
+    If you're not sure which file to update, just update any that are present.
+
+    The CSM Plugin location is commonly `$CONDA_PREFIX/lib/csmplugins/` or `$ISISROOT/lib/csmplugins/`.
+
+    Once added, the Plugin Section of the IsisPreferences file might look like this:
+    ```
+    ########################################################
+    #
+    # Indicate where ISIS should search for Community
+    # Sensor Model (CSM) plugins. The value of this keyword
+    # should be a list of paths, that contain CSM plugin
+    # libraries.
+    #
+    ########################################################
+    
+    Group = Plugins
+      CSMDirectory = ("$ISISROOT/lib/csmplugins/", -
+                      "$ISISROOT/lib/isis/csm3.0.3/", -
+                      "$ISISROOT/csmlibs/3.0.3/", -
+                      "$HOME/.Isis/csm3.0.3/", -
+                      "$CONDA_PREFIX/lib/csmplugins/")
+    EndGroup
+    ```
+
 ## Process
 
 For ether model, the first step is to ingest the image into an ISIS .cub using an `2isis` app.  After that, the process diverges, depending on which Camera Model is preferred. You can attach ***SPICE information*** for the **ISIS Camera Model**, or a ***CSM State String*** for the **CSM Camera Model**.

@@ -107,7 +107,7 @@ For use of NAIF Data with ISIS, see the [ISIS Data Area](../../how-to-guides/env
         ```
 
     -----
-    *The Mars Reconnaissansce Orbiter (MRO) archive, which corresponds to the B10_013341_1010_XN_79S172W 
+    *The Mars Reconnaissance Orbiter (MRO) archive, which corresponds to the B10_013341_1010_XN_79S172W 
     used in the related tutorials, is 340 GB.  A subset of SPICE data is provided in the tutorials, but if you will be 
     working with more MRO images, and you have the space, you can try downloading the MRO Spice data.*
 

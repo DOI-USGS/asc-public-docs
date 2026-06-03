@@ -6,13 +6,11 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
 
     Using the CSM Camera Model is recommended.  New missions will only be supported with the CSM Camera Model.  The ISIS Camera Model is going into maintenance mode - Current missions will continue to be supported, but no new missions will be added.
 
-## Example
+## Command-Line Examples
 
 ???+ example "Initializing a Camera Model"
 
-    Starting from an uninitialized MRO CTX Image, run these commands to initialize a camera model.
-    
-    [[B10_013341_1010_XN_79S172W.IMG - 125MB](https://asc-pds-mars-reconnaissance-orbiter.s3.us-west-2.amazonaws.com/CTX/mrox_0826/data/B10_013341_1010_XN_79S172W.IMG)]
+    Starting from an uninitialized image, run these commands to initialize a camera model.
 
     === "CSM Camera Model"
 
@@ -23,11 +21,14 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
         ```
 
     === "ISIS Camera Model"
-    
+
         ```sh
         mroctx2isis from=B10_013341_1010_XN_79S172W.IMG to=B10_013341_1010_XN_79S172W.cub
         spiceinit from=B10_013341_1010_XN_79S172W.cub
         ```
+
+    *We're using [this MRO CTX Image](https://asc-pds-mars-reconnaissance-orbiter.s3.us-west-2.amazonaws.com/CTX/mrox_0826/data/B10_013341_1010_XN_79S172W.IMG) for this tutorial.  If you use an image from another mission, use the apropriate [-2isis ingestion app](https://isis.astrogeology.usgs.gov/Application/index.html) or [isisimport](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/isisimport/isisimport.html) instead of mroctx2isis.*
+
 
 ??? note "Developers - Updating the CSM Plugin Location for `csminit`"
 
@@ -82,8 +83,10 @@ The ISIS and CSM Camera Models differ slightly from each other. But either way, 
 
 ## Image Labels
 
-The label can reveal if a .cub has a Camera Model, and which kind it has.
+The **label** can reveal if a .cub has a Camera Model, and which kind (CSM or ISIS) it has.
 If a `NaifKeywords` Object is present, a Camera Model has been initialized.
+Other fields differentiate CSM and ISIS Camera Models from each other, as seen below.
+
 
 ```sh title="Readout the label for a .cub"
 catlab from=B10_013341_1010_XN_79S172W.cub

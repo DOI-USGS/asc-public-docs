@@ -2,9 +2,11 @@
 
 Two types of camera model are available from USGS Astro: CSM or ISIS.
 
-!!! note "Recommended: CSM"
+!!! note "Recommended going forward: CSM"
 
-    Using the CSM Camera Model is recommended.  New missions will only be supported with the CSM Camera Model.  The ISIS Camera Model is going into maintenance mode - Current missions will continue to be supported, but no new missions will be added.
+    The CSM Camera Model is recommended, especially if working with GTIFFS or creating new pipelines.  New missions will only be supported with the CSM Camera Model.
+    
+    For projects with pre-existing tooling/pipelines, **keep using ISIS Camera Models**. The ISIS Camera Model is going into maintenance mode - Current missions **will continue to be supported**, but no new missions will be added.
 
 ## Command-Line Examples
 
@@ -62,7 +64,7 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
 
 ## Process
 
-For ether model, the first step is to ingest the image into an ISIS .cub using an `2isis` app.  After that, the process diverges, depending on which Camera Model is preferred. You can attach ***SPICE information*** for the **ISIS Camera Model**, or a ***CSM State String*** for the **CSM Camera Model**.
+For either model, the first step is to ingest the image into an ISIS .cub using an `2isis` app.  After that, the process diverges, depending on which Camera Model is preferred. You can attach ***SPICE information*** for the **ISIS Camera Model**, or a ***CSM State String*** for the **CSM Camera Model**.
 
 ```mermaid
 flowchart TD

@@ -46,7 +46,7 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
         # Attach SPICE
         spiceinit from=B10_013341_1010_XN_79S172W.cub
 
-        # Make ISD from ISIS SPICE (-i)
+        # Make ISD using an ISIS SPICE Driver (-i)
         isd_generate -i B10_013341_1010_XN_79S172W.cub
 
         # Init CSM Model
@@ -88,12 +88,12 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
 
 ??? example "isd_generate Examples"
 
-    | Options                                                                            |
-    | ---------------------------------------------------------------------------------- |
-    | `-w`: Use web Kernels &emsp; *~or~* &emsp; `-s`: Look in $ALESPICEROOT for Kernels | 
-    | `-n`: Use NAIF SPICE &emsp; *~or~* &emsp; `-i`: Use ISIS SPICE                     |
-    | `-k path/to/kernel.mk`: Use a specific metakernel                                  |
-    | `-v`: Verbose (Useful for troubleshooting)                                         |
+    | Options                                                                                |
+    | -------------------------------------------------------------------------------------- |
+    | `-w`: Use web Kernels &emsp; *~or~* &emsp; `-s`: Look in $ALESPICEROOT for Kernels     | 
+    | `-n`: Use NAIF SPICE &emsp; *~or~* &emsp; `-i`: Use ISIS SPICE                         |
+    | `-k path/to/kernel.mk`: Use this file for a kernel source. Can be a metakernel or .cub |
+    | `-v`: Verbose (Useful for troubleshooting)                                             |
 
 
     === "ISIS SPICE Driver"
@@ -102,9 +102,25 @@ Two types of camera model are available from USGS Astro: CSM or ISIS.
         # Requires a spiceinit-ed .cub
         isd_generate -i B10_013341_1010_XN_79S172W.cub
 
-        # This makes ISIS SPICE ISD. Use this ISD in csminit
-        # for the closest CSM parity with ISIS Camera Models
+        # This makes an ISIS SPICE ISD, using an ISIS SPICE Driver in ALE.  
+        # Use an ISIS SPICE ISD in csminit for the closest CSM parity with ISIS Camera Models.
         ```
+
+        *The examples with `-i` and with `-k <your.cub>` 
+        both produce ISIS SPICE ISDs with the same values.*
+        
+    === "Cube Kernels"
+
+        ```sh
+        # Requires a spiceinit-ed .cub
+        isd_generate -k B10_013341_1010_XN_79S172W.cub B10_013341_1010_XN_79S172W.cub
+
+        # This makes an ISIS SPICE ISD, using the kernel from the .cub
+        # Use an ISIS SPICE ISD in csminit for the closest CSM parity with ISIS Camera Models.
+        ```
+
+        *The examples with `-i` and with `-k <your.cub>` 
+        both produce ISIS SPICE ISDs with the same values.*
 
     === "NAIF SPICE Driver + Web Kernels"
 

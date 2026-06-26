@@ -56,7 +56,7 @@ nav:
       - Adding SPICE:                       getting-started/using-isis-first-steps/adding-spice.md
       - Exporting ISIS Data:                getting-started/using-isis-first-steps/exporting-isis-data.md
       - ISIS FAQ:                           getting-started/using-isis-first-steps/isis-faq.md
-    - CSM Stack (ALE, Knoten):
+    - CSM Stack (ALE, Knoten, USGSCSM):
       - Using ALE:
         - Home: getting-started/using-ale/index.md
         - ALE SPICE Data Setup & Driver Types: getting-started/using-ale/ale-naif-spice-data-setup.md
@@ -68,6 +68,7 @@ nav:
       - CSM Sandbox:                        getting-started/csm-stack/csm-sandbox.ipynb
       - Ingesting Chandrayaan 2 TMC-2 Images: getting-started/csm-stack/ingesting-tmc2.md
       - Ingesting Chandrayaan 2 OHRC Images:  getting-started/csm-stack/ingesting-ohrc.md
+      - USGSCSM WASM (JavaScript/Web):      getting-started/csm-stack/usgscsm-wasm-bindings.md
     - Using SpiceQL:
       - SpiceQL Cassini Tutorial:          getting-started/using-spiceql/spiceql-cassini-tutorial.ipynb
       - Exploring SpiceQL's REST, Python, and C++ APIs: getting-started/using-spiceql/exploring-spiceqls-rest-python-and-cpp-apis.md
@@ -95,8 +96,9 @@ nav:
       - Image Projection:
         - Map Projecting Images:             how-to-guides/image-processing/map-projecting-images.md
       - Bundle Adjustment in ISIS:         how-to-guides/image-processing/bundle-adjustment-in-isis.md
-    - ISIS Demos:
+    - Demos:
       - Interactive Online Demos:          how-to-guides/demos/isis-demos.md
+      - USGSCSM WASM Demo:                 how-to-guides/demos/usgscsm-wasm-demo.md
     - Software Management:
       - Guidelines for Reporting Issues:   how-to-guides/software-management/guidelines-for-reporting-issues.md
       - Guidelines for Pull Requests:      how-to-guides/software-management/guidelines-for-pull-requests.md

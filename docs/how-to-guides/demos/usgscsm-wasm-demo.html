@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USGSCSM WASM Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            color: #34495e;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="number"], input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 150px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .output {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+            margin-top: 15px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .status.loading {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .example-link {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        .example-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>USGSCSM WASM Demo</h1>
+
+    <div class="container">
+        <div class="section">
+            <h2>1. Load Camera Model</h2>
+            <label for="modelType">Sensor Model Type:</label>
+            <select id="modelType">
+                <option value="USGS_ASTRO_FRAME_SENSOR_MODEL">Frame Camera</option>
+                <option value="USGS_ASTRO_LINE_SCANNER_SENSOR_MODEL">Line Scanner</option>
+                <option value="USGS_ASTRO_SAR_SENSOR_MODEL">SAR Model</option>
+            </select>
+
+            <label for="isdJson" style="margin-top: 15px;">ISD JSON Data:</label>
+            <textarea id="isdJson" placeholder='Paste your ISD JSON here, e.g.:
+{
+  "radii": {"semimajor": 3396190.0, "semiminor": 3376200.0},
+  "sensor_position": {"positions": [[1000000, 2000000, 3000000]]},
+  ...
+}'></textarea>
+            <a href="https://github.com/USGS-Astrogeology/ale" class="example-link" target="_blank">
+                ℹ️ Generate ISD files using ALE
+            </a>
+
+            <button onclick="loadModel()" id="loadBtn" disabled>Load Model from ISD</button>
+            <button onclick="loadExampleModel()" id="exampleBtn" disabled>Load Example Model</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>2. Image to Ground Conversion</h2>
+            <div class="input-group">
+                <div>
+                    <label for="imgLine">Line (row):</label>
+                    <input type="number" id="imgLine" value="512" step="0.5">
+                </div>
+                <div>
+                    <label for="imgSample">Sample (column):</label>
+                    <input type="number" id="imgSample" value="512" step="0.5">
+                </div>
+                <div>
+                    <label for="height">Height (meters):</label>
+                    <input type="number" id="height" value="0" step="100">
+                </div>
+            </div>
+            <button onclick="imageToGround()" disabled id="i2gBtn">Convert to Ground</button>
+            <div id="i2gOutput" class="output" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>3. Ground to Image Conversion</h2>
+            <div class="input-group">
+                <div>
+                    <label for="ecefX">ECEF X (meters):</label>
+                    <input type="number" id="ecefX" value="3396190" step="1000">
+                </div>
+                <div>
+                    <label for="ecefY">ECEF Y (meters):</label>
+                    <input type="number" id="ecefY" value="0" step="1000">
+                </div>
+                <div>
+                    <label for="ecefZ">ECEF Z (meters):</label>
+                    <input type="number" id="ecefZ" value="0" step="1000">
+                </div>
+            </div>
+            <button onclick="groundToImage()" disabled id="g2iBtn">Convert to Image</button>
+            <div id="g2iOutput" class="output" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>4. Sensor Position & Velocity</h2>
+            <div class="input-group">
+                <div>
+                    <label for="sensorLine">Line:</label>
+                    <input type="number" id="sensorLine" value="512" step="0.5">
+                </div>
+                <div>
+                    <label for="sensorSample">Sample:</label>
+                    <input type="number" id="sensorSample" value="512" step="0.5">
+                </div>
+                <div></div>
+            </div>
+            <button onclick="getSensorInfo()" disabled id="sensorBtn">Get Sensor Info</button>
+            <div id="sensorOutput" class="output" style="display: none;"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>5. Model State</h2>
+            <button onclick="getModelState()" disabled id="stateBtn">Export Model State</button>
+            <button onclick="loadFromState()" disabled id="loadStateBtn">Load from State</button>
+            <div id="stateOutput" class="output" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- USGSCSM files are included in the same directory -->
+    <script type="module">
+        import USGSCSM from './usgscsm.js';
+
+        let Module = null;
+        let cameraModel = null;
+
+        // Define functions first
+        window.updateStatus = function(type, message) {
+            const statusEl = document.getElementById('status');
+            statusEl.className = 'status ' + type;
+            statusEl.textContent = message;
+        }
+
+        window.enableModelButtons = function(enabled) {
+            document.getElementById('i2gBtn').disabled = !enabled;
+            document.getElementById('g2iBtn').disabled = !enabled;
+            document.getElementById('sensorBtn').disabled = !enabled;
+            document.getElementById('stateBtn').disabled = !enabled;
+            document.getElementById('loadStateBtn').disabled = !enabled;
+        }
+
+        window.loadModel = function() {
+            try {
+                const modelType = document.getElementById('modelType').value;
+                const isdJson = document.getElementById('isdJson').value.trim();
+
+                if (!isdJson) {
+                    window.updateStatus('error', 'Please provide ISD JSON data');
+                    return;
+                }
+
+                // Validate JSON
+                JSON.parse(isdJson);
+
+                // Create new model
+                cameraModel = new Module.USGSCSMModel();
+
+                // Load from ISD
+                const success = cameraModel.loadFromISD(isdJson, modelType);
+
+                if (success) {
+                    window.updateStatus('success', `Camera model loaded successfully! Model type: ${modelType}`);
+                    window.enableModelButtons(true);
+                } else {
+                    window.updateStatus('error', 'Failed to load camera model from ISD. Check console for details.');
+                    cameraModel = null;
+                    window.enableModelButtons(false);
+                }
+            } catch (err) {
+                window.updateStatus('error', 'Error loading model: ' + err.message);
+                console.error(err);
+                window.enableModelButtons(false);
+            }
+        }
+
+        window.loadExampleModel = function() {
+            // This is a simplified example - in practice, you'd load a real ISD
+            const exampleISD = {
+                "comment": "This is a minimal example ISD",
+                "radii": {
+                    "semimajor": 3396190.0,
+                    "semiminor": 3376200.0
+                },
+                "sensor_position": {
+                    "positions": [[3000000, 0, 2000000]],
+                    "velocities": [[0, 3000, 0]],
+                    "unit": "m"
+                },
+                "image_lines": 1024,
+                "image_samples": 1024,
+                "focal_length": 350.0,
+                "detector_center": {
+                    "line": 512,
+                    "sample": 512
+                }
+            };
+
+            document.getElementById('isdJson').value = JSON.stringify(exampleISD, null, 2);
+            window.updateStatus('success', 'Example ISD loaded into textarea. Note: This may not be a complete/valid ISD. For real usage, generate ISD files using ALE.');
+        }
+
+        window.imageToGround = function() {
+            if (!cameraModel) {
+                window.updateStatus('error', 'No camera model loaded');
+                return;
+            }
+
+            try {
+                const line = parseFloat(document.getElementById('imgLine').value);
+                const sample = parseFloat(document.getElementById('imgSample').value);
+                const height = parseFloat(document.getElementById('height').value);
+
+                const ground = cameraModel.imageToGround(line, sample, height);
+
+                if (ground) {
+                    const output = `Image Coordinates: (${line}, ${sample})
+Height: ${height} m
+
+ECEF Ground Coordinates:
+  X: ${ground.x.toFixed(3)} m
+  Y: ${ground.y.toFixed(3)} m
+  Z: ${ground.z.toFixed(3)} m`;
+
+                    document.getElementById('i2gOutput').textContent = output;
+                    document.getElementById('i2gOutput').style.display = 'block';
+
+                    // Auto-populate ground-to-image fields
+                    document.getElementById('ecefX').value = ground.x.toFixed(3);
+                    document.getElementById('ecefY').value = ground.y.toFixed(3);
+                    document.getElementById('ecefZ').value = ground.z.toFixed(3);
+                } else {
+                    window.updateStatus('error', 'Failed to convert image to ground coordinates');
+                }
+            } catch (err) {
+                window.updateStatus('error', 'Error in image to ground conversion: ' + err.message);
+                console.error(err);
+            }
+        }
+
+        window.groundToImage = function() {
+            if (!cameraModel) {
+                window.updateStatus('error', 'No camera model loaded');
+                return;
+            }
+
+            try {
+                const x = parseFloat(document.getElementById('ecefX').value);
+                const y = parseFloat(document.getElementById('ecefY').value);
+                const z = parseFloat(document.getElementById('ecefZ').value);
+
+                const image = cameraModel.groundToImage(x, y, z);
+
+                if (image) {
+                    const output = `ECEF Coordinates: (${x.toFixed(3)}, ${y.toFixed(3)}, ${z.toFixed(3)})
+
+Image Pixel Coordinates:
+  Line: ${image.line.toFixed(3)}
+  Sample: ${image.sample.toFixed(3)}`;
+
+                    document.getElementById('g2iOutput').textContent = output;
+                    document.getElementById('g2iOutput').style.display = 'block';
+                } else {
+                    const output = 'Ground point is not visible in the image or conversion failed.';
+                    document.getElementById('g2iOutput').textContent = output;
+                    document.getElementById('g2iOutput').style.display = 'block';
+                }
+            } catch (err) {
+                window.updateStatus('error', 'Error in ground to image conversion: ' + err.message);
+                console.error(err);
+            }
+        }
+
+        window.getSensorInfo = function() {
+            if (!cameraModel) {
+                window.updateStatus('error', 'No camera model loaded');
+                return;
+            }
+
+            try {
+                const line = parseFloat(document.getElementById('sensorLine').value);
+                const sample = parseFloat(document.getElementById('sensorSample').value);
+
+                const position = cameraModel.getSensorPosition(line, sample);
+                const velocity = cameraModel.getSensorVelocity(line, sample);
+
+                let output = `Sensor information at pixel (${line}, ${sample}):
+
+`;
+
+                if (position) {
+                    output += `Position (ECEF):
+  X: ${position.x.toFixed(3)} m
+  Y: ${position.y.toFixed(3)} m
+  Z: ${position.z.toFixed(3)} m
+
+`;
+                } else {
+                    output += 'Position: Not available\n\n';
+                }
+
+                if (velocity) {
+                    output += `Velocity (ECEF):
+  X: ${velocity.x.toFixed(6)} m/s
+  Y: ${velocity.y.toFixed(6)} m/s
+  Z: ${velocity.z.toFixed(6)} m/s`;
+                } else {
+                    output += 'Velocity: Not available';
+                }
+
+                document.getElementById('sensorOutput').textContent = output;
+                document.getElementById('sensorOutput').style.display = 'block';
+            } catch (err) {
+                window.updateStatus('error', 'Error getting sensor info: ' + err.message);
+                console.error(err);
+            }
+        }
+
+        window.getModelState = function() {
+            if (!cameraModel) {
+                window.updateStatus('error', 'No camera model loaded');
+                return;
+            }
+
+            try {
+                const state = cameraModel.getModelState();
+
+                if (state) {
+                    const formatted = JSON.stringify(JSON.parse(state), null, 2);
+                    document.getElementById('stateOutput').textContent = 'Model State (copy this for later use):\n\n' + formatted;
+                    document.getElementById('stateOutput').style.display = 'block';
+                } else {
+                    window.updateStatus('error', 'Failed to export model state');
+                }
+            } catch (err) {
+                window.updateStatus('error', 'Error exporting model state: ' + err.message);
+                console.error(err);
+            }
+        }
+
+        window.loadFromState = function() {
+            const stateText = document.getElementById('stateOutput').textContent;
+
+            if (!stateText || !stateText.includes('Model State')) {
+                window.updateStatus('error', 'Please export model state first, or paste state JSON into the ISD textarea');
+                return;
+            }
+
+            try {
+                // Extract JSON from output
+                const jsonStart = stateText.indexOf('{');
+                const stateJson = stateText.substring(jsonStart);
+
+                // Create new model
+                cameraModel = new Module.USGSCSMModel();
+
+                // Load from state
+                const success = cameraModel.loadFromState(stateJson);
+
+                if (success) {
+                    window.updateStatus('success', 'Camera model loaded from state successfully!');
+                    window.enableModelButtons(true);
+                } else {
+                    window.updateStatus('error', 'Failed to load camera model from state');
+                    cameraModel = null;
+                    window.enableModelButtons(false);
+                }
+            } catch (err) {
+                window.updateStatus('error', 'Error loading from state: ' + err.message);
+                console.error(err);
+                window.enableModelButtons(false);
+            }
+        }
+
+        // Initialize USGSCSM WASM module
+        console.log('Starting USGSCSM initialization...');
+
+        // Configure module to locate the WASM file
+        const moduleConfig = {
+            locateFile: function(path) {
+                console.log('Looking for file:', path);
+                if (path.endsWith('.wasm')) {
+                    return 'usgscsm.wasm';
+                }
+                return path;
+            }
+        };
+
+        USGSCSM(moduleConfig).then(mod => {
+            console.log('USGSCSM loaded:', mod);
+            Module = mod;
+            window.updateStatus('success', 'USGSCSM WASM module loaded successfully! Ready to use.');
+
+            // Enable load buttons
+            document.getElementById('loadBtn').disabled = false;
+            document.getElementById('exampleBtn').disabled = false;
+        }).catch(err => {
+            console.error('USGSCSM loading error:', err);
+            window.updateStatus('error', 'Failed to load USGSCSM WASM module: ' + err.message);
+            console.error(err);
+        });
+    </script>
+</body>
+</html>

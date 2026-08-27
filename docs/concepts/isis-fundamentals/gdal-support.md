@@ -54,7 +54,7 @@ Technically, a fully realized GeoTIFF is only enabled when the data is map proje
 
 -----
 
-### Processing With Cloud Data (`vsicurl`)
+## Processing With Cloud Data (`vsicurl`)
 
 GeoTIFFs (and therefore, ISIS as well) support online/cloud volume access.
 
@@ -71,6 +71,56 @@ You can access online volumes by adding `/vsicurl/` in front of the URL for your
     ```sh
     qview /vsicurl/https://astrogeo-ard.s3-us-west-2.amazonaws.com/mars/mro/ctx/controlled/usgs/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W/T01_000881_1752_XI_04S223W__P22_009716_1773_XI_02S223W-DEM.tif
     ```
+
+-----
+
+## Importing PDS Data
+
+ISIS3 now supports importing PDS images directly from remote sources using [GDAL's Virtual File System (VSI) API](https://gdal.org/en/stable/user/virtual_file_systems.html). This feature eliminates the need to download PDS data files before importing them into ISIS cubes.
+
+### Virtual File System Support
+
+The VSI integration allows ISIS import applications to read data through virtual file paths like `/vsicurl/`, enabling direct streaming from URLs. For local files, the VSI API passes through to standard file I/O, ensuring no performance impact on existing workflows.
+
+!!! info "Implementation Details"
+    
+    This feature leverages GDAL's `cpl_vsi.h` API for file operations and reads PDS XML labels through GDAL metadata domains. The implementation maintains backward compatibility with local file workflows while enabling new remote data access capabilities.
+
+### Import Application Support
+
+Most ISIS import applications support remote PDS data import via `/vsicurl/`.
+
+!!! example "Importing Remote PDS Data"
+
+    #### Mars Reconnaissance Orbiter CTX
+    ```sh
+    mroctx2isis \
+      from=/vsicurl/https://planetarydata.jpl.nasa.gov/img/data/mro/ctx/mrox_5011/data/V13_084840_0996_XN_80S159W.IMG \
+      to=ctx_image.cub
+    ```
+
+    #### Cassini VIMS
+    ```sh
+    vims2isis \
+      from=/vsicurl/https://pds-imaging.jpl.nasa.gov/api/data/atlas:pds3:cas:cassini_orbiter:/covims_0094/data/2017255T000819_2017257T195837/v1884113035_1.qub \
+      vis=vims_vis.cub \
+      ir=vims_ir.cub
+    ```
+
+    #### LRO Mini-RF
+    ```sh
+    mrf2isis \
+      from=/vsicurl/https://pds-geosciences.wustl.edu/lro/lro-l-mrflro-4-cdr-v1/lromrf_0001/data/sar/00200_00299/level1/lsb_00222_1cd_xiu_79s202_v1.lbl \
+      to=minirf.cub
+    ```
+
+### Known Limitations
+
+!!! warning "Large File Handling"
+    
+    **HiRISE RDR Images**: Mars Reconnaissance Orbiter HiRISE RDR (Reduced Data Record) images are currently too large for ISIS to handle properly via VSI streaming. A workaround has been implemented in `hirdr2isis` to catch VSI calls for these files. For HiRISE RDR processing, download the files locally before importing.
+
+-----
 
 ### ISIS Specific GeoTIFF Data
 

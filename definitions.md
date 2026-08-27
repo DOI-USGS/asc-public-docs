@@ -32,6 +32,7 @@
 *[Longitude]: Longitude represents a geographic position and is measured from a specified Prime Meridian (default is IAU) for the target body. 
 *[UTC]: Coordinated Universal Time (UTC) is a system of time keeping that gives an understandable name to each instant of time. The names are formed from the calendar date and time of day. UTC format consists of year, month, day, hour, minutes and seconds. 
 *[PVL]: Parameter Value Language (PVL) is used extensively by ISIS as a standard keyword value type language for naming and expressing data values. PVL format in ISIS is compatible with syntax used by the Planetary Data System. 
+*[PDS]: Planetary Data System. An archive of scientific data acquired from NASA planetary missions, astronomical observations, and laboratory measurements. By developing standards for data and archive formats and architectures for use within the archive, the PDS ensures long-term access and usability of NASA planetary data.
 *[MAP]: A representation of a three dimensional target such as a sphere, ellipsoid or an irregular shaped body onto a plane 
 *[IAU]: The International Astronomical Union 
 *[Scale]: The map resolution measured in pixels per degree 

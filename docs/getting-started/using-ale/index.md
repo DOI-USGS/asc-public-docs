@@ -42,6 +42,10 @@
 
     [:octicons-arrow-right-24: Generate an ISD](../../getting-started/using-ale/isd-generate.md)
 
+    Convert ISDs to SPICE kernels with `isd_to_kernel`
+
+    [:octicons-arrow-right-24: Convert ISD to Kernel](../../getting-started/using-ale/isd-to-kernel.md)
+
 -   :simple-python:{ .lg .middle } __ALE in Python__
 
     ---

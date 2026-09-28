@@ -61,6 +61,7 @@ nav:
         - Home: getting-started/using-ale/index.md
         - ALE SPICE Data Setup & Driver Types: getting-started/using-ale/ale-naif-spice-data-setup.md
         - Command Line - Generating an ISD:    getting-started/using-ale/isd-generate.md
+        - Command Line - Converting ISD to Kernel: getting-started/using-ale/isd-to-kernel.md
         - Python - ale.load & loads:           getting-started/using-ale/ale-python-load-loads.md
         - Specifying Kernels:                  getting-started/using-ale/ale-getting-kernels.md
       - CSM vs ISIS Camera Models:          getting-started/csm-stack/csm-vs-isis-pipeline.md

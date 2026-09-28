@@ -43,8 +43,8 @@ overlap polygons in different shades of color.
 | **Limit** | limiting the number of seeded tiepoints per polygon                           |
 | **Strip** | rectangular shaped overlap polygons such as those for adjacent line scan data |
 
-The standard autoseed templates for the three algorithms are in
-`$ISIS3DATA/base/templates/autoseed/`
+The standard autoseed templates for the three algorithms are in the ISIS repo at
+[`ISIS3/isis/appdata/templates/autoseed`](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/appdata/templates/autoseed)
 
 ## Required Parameters for each Algorithm
 

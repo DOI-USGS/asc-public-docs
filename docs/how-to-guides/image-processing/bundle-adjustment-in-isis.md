@@ -209,7 +209,7 @@ less overlap_list.lis
 In order to perform bundle adjustment, it is necessary to identify a set of locations per image (control points) that correspond to a set of ground locations (control measures).  Together, these points and measures are combined into a "control network." While there are multiple methods for generating a control network, this tutorial uses the `autoseed` utility to automatically generate a simple, grid-based control network.
 
 ### Configuring the algorithm with the definition file
-`autoseed` requires a "definition file," which is responsible for configuring the algorithm that generates the control points.  To follow along with the tutorial, save the following snippet as `seeder.def`.
+`autoseed` requires a "definition file," which is responsible for configuring the algorithm that generates the control points.  The Autoseed template for the `grid`, `limit`, and `strip` algorithms are located in the ISIS repo at [`ISIS3/isis/appdata/templates/autoseed`](https://github.com/DOI-USGS/ISIS3/tree/dev/isis/appdata/templates/autoseed).  To follow along with the tutorial, save the following snippet as `seeder.def`.
 
 ```text
 Group = PolygonSeederAlgorithm

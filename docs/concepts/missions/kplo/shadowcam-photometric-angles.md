@@ -141,7 +141,7 @@ emission=false incidence=false phase=false latitude=false longitude=false
 
 #### Visual Output
 
-In `qview`, click band tool (three colored cubes in the top right).  Then, in the dropdown at the top which defaults to `Center`, change it to `Name` to view the name of the current band ("Local Emission Angle" or "Local Incidence Angle").  The number toggle(s) to the left of the dropdown change which band is shown.  In RGB mode, multiple bands may be shown in different colors.
+In `qview`, click band tool (three colored cubes in the top right).  Then, in the dropdown at the top which defaults to `Center`, change it to `Name` to view the name of the current band ("Local Emission Angle" or "Local Incidence Angle").  The number toggle(s) to the left of the dropdown change which band is shown.  In RGB mode, multiple bands may be shown at the same time by using different colors.
 
 <div class="grid cards" markdown>
 

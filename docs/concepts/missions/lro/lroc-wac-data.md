@@ -24,7 +24,7 @@ Here are a couple of images with the Tycho crater:
     http://pds.lroc.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0002/DATA/MAP/2010035/WAC/M119923055ME.IMG
     http://pds.lroc.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0002/DATA/MAP/2010035/WAC/M119929852ME.IMG
 
-## Configuring Kernels
+## Configuring Kernels and Calibration Files
 
 --8<-- "docs/snippets/kernel-setup.md"
 

@@ -2228,6 +2228,136 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
         {"",{"ck":["mro/kernels/ck/mro_sc_psp_240319_240325.bc","mro/kernels/ck/mro_sc_psp_240326_240401.bc","mro/kernels/ck/mro_sc_psp_240402_240408.bc"],"fk":["mro/kernels/fk/mro_v16.tf"],"mro_ck_quality":"reconstructed","mro_spk_quality":"reconstructed","pck":["mro/kernels/pck/pck00008.tpc"],"sclk":["mro/kernels/sclk/MRO_SCLKSCET.00112.65536.tsc","mro/kernels/sclk/MRO_SCLKSCET.00112.tsc"],"spk":["mro/kernels/spk/mro_cruise.bsp"]}}
         ```
 
+
+??? example "searchForKernelsets with `getIntervals`"
+
+    #### [searchForKernelsets](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-searchforkernelsets) with segment coverage
+
+    Set `getIntervals` to `true` to also get the coverage intervals of the CKs and SPKs that were found. They are returned under an additional `intervals` key in the kernels object, in the same format as [`getKernelIntervals`](#getkernelintervals-response-format). `getIntervals` defaults to `false`.
+
+    The example below restricts the search to a time range with `startTime` and `stopTime` (ET, seconds past J2000), so all kernels covering that range are returned. This window spans three weekly CKs, and `limitCk=3` keeps all of them.
+
+    <h3>Function calls</h3>
+
+    === "REST"
+
+        ```bash
+        curl -XGET -g "https://astrogeology.usgs.gov/apis/spiceql/latest/searchForKernelsets?spiceqlNames=[mro]&types=[ck]&startTime=764000000&stopTime=765800000&limitCk=3&getIntervals=true"
+        ```
+        ⚠️ *Use `-g` or `--globoff` to treat brackets `[]` as literal characters instead of globbing.*
+
+    === "Python"
+
+        ```py
+        pql.searchForKernelsets(
+            spiceqlNames=["mro"],
+            types=["ck"],
+            startTime=764000000,
+            stopTime=765800000,
+            limitCk=3,
+            getIntervals=True
+        )
+        ```
+
+    === "C++"
+
+        ```c++
+        SpiceQL::searchForKernelsets({"mro"}, {"ck"}, 764000000, 765800000, {"smithed", "reconstructed"}, {"smithed", "reconstructed"}, false, false, 3, 1, false, true)
+        ```
+
+    <h3>Responses</h3>
+
+    *Interval values below are illustrative.*
+
+    === "REST"
+
+        ```json
+        {"statusCode":200,"body":{"return":"","kernels":{"ck":["mro/kernels/ck/mro_sc_psp_240319_240325.bc","mro/kernels/ck/mro_sc_psp_240326_240401.bc","mro/kernels/ck/mro_sc_psp_240402_240408.bc"],"mro_ck_quality":"reconstructed","intervals":{"/mro/ck/reconstructed/mro_sc_psp_240319_240325.bc":[{"start":764000000.0,"stop":764604800.0,"body_code":-74000}],"/mro/ck/reconstructed/mro_sc_psp_240326_240401.bc":[{"start":764604800.0,"stop":765209600.0,"body_code":-74000}],"/mro/ck/reconstructed/mro_sc_psp_240402_240408.bc":[{"start":765209600.0,"stop":765814400.0,"body_code":-74000}]}}}}
+        ```
+
+    === "Python"
+
+        ```py
+        ('', {'ck': ['mro/kernels/ck/mro_sc_psp_240319_240325.bc', 'mro/kernels/ck/mro_sc_psp_240326_240401.bc', 'mro/kernels/ck/mro_sc_psp_240402_240408.bc'], 'mro_ck_quality': 'reconstructed', 'intervals': {'/mro/ck/reconstructed/mro_sc_psp_240319_240325.bc': [{'start': 764000000.0, 'stop': 764604800.0, 'body_code': -74000}], '/mro/ck/reconstructed/mro_sc_psp_240326_240401.bc': [{'start': 764604800.0, 'stop': 765209600.0, 'body_code': -74000}], '/mro/ck/reconstructed/mro_sc_psp_240402_240408.bc': [{'start': 765209600.0, 'stop': 765814400.0, 'body_code': -74000}]}})
+        ```
+
+    === "C++"
+
+        ```c++
+        {"",{"ck":["mro/kernels/ck/mro_sc_psp_240319_240325.bc","mro/kernels/ck/mro_sc_psp_240326_240401.bc","mro/kernels/ck/mro_sc_psp_240402_240408.bc"],"mro_ck_quality":"reconstructed","intervals":{"/mro/ck/reconstructed/mro_sc_psp_240319_240325.bc":[{"start":764000000.0,"stop":764604800.0,"body_code":-74000}],"/mro/ck/reconstructed/mro_sc_psp_240326_240401.bc":[{"start":764604800.0,"stop":765209600.0,"body_code":-74000}],"/mro/ck/reconstructed/mro_sc_psp_240402_240408.bc":[{"start":765209600.0,"stop":765814400.0,"body_code":-74000}]}}}
+        ```
+
+    The returned kernels object (including `intervals`) can still be loaded as a kernel set.
+
+
+??? example "getKernelIntervals"
+
+    #### [getKernelIntervals](https://astrogeology.usgs.gov/docs/manuals/spiceql/SpiceQLCPPAPI/namespaceSpiceQL/#function-getkernelintervals)
+
+    Returns the coverage intervals of CKs and SPKs, one per NAIF ID covered. For CKs, gaps between interpolation intervals within a segment show up as separate intervals. Kernels that are not CKs or SPKs in the SpiceQL database are skipped.
+
+    Each kernel can be given as:
+
+    - a bare filename (e.g. `mro_sc_psp_240319_240325.bc`)
+    - a path relative to the data directory, or a full path ending in it (as returned by `searchForKernelsets`)
+    - a SpiceQL key: `/<mission>/<type>/<quality>/<filename>`
+
+    A filename that exists in more than one mission or quality gets an entry for each. A SpiceQL key matches only its own group.
+
+    <h3>Function calls</h3>
+
+    === "REST"
+
+        ```bash
+        curl -XGET -g "https://astrogeology.usgs.gov/apis/spiceql/latest/getKernelIntervals?kernels=[mro_sc_psp_240319_240325.bc]"
+        ```
+        ⚠️ *Use `-g` or `--globoff` to treat brackets `[]` as literal characters instead of globbing.*
+
+    === "Python"
+
+        ```py
+        pql.getKernelIntervals(
+            kernels=["mro_sc_psp_240319_240325.bc"]
+        )
+        ```
+
+    === "C++"
+
+        ```c++
+        SpiceQL::getKernelIntervals({"mro_sc_psp_240319_240325.bc"})
+        ```
+
+    <h3 id="getkernelintervals-response-format">Responses</h3>
+
+    The return object maps each SpiceQL key to a list of intervals. `start` and `stop` are in ET (seconds past J2000) and `body_code` is the NAIF ID the interval covers. *Interval values below are illustrative.*
+
+    === "REST"
+
+        ```json
+        {"statusCode":200,"body":{"return":{"/mro/ck/reconstructed/mro_sc_psp_240319_240325.bc":[{"start":764000000.0,"stop":764600000.0,"body_code":-74000}]},"kernels":{}}}
+        ```
+
+    === "Python"
+
+        ```py
+        ({'/mro/ck/reconstructed/mro_sc_psp_240319_240325.bc': [{'start': 764000000.0, 'stop': 764600000.0, 'body_code': -74000}]}, {})
+        ```
+
+    === "C++"
+
+        ```c++
+        {{"/mro/ck/reconstructed/mro_sc_psp_240319_240325.bc":[{"start":764000000.0,"stop":764600000.0,"body_code":-74000}]},{}}
+        ```
+
+    !!! tip "Chaining the two calls"
+
+        Pass the kernel paths from `searchForKernelsets` straight into `getKernelIntervals`:
+
+        ```py
+        _, found = pql.searchForKernelsets(spiceqlNames=["mro"], types=["ck"], limitCk=3)
+        intervals, _ = pql.getKernelIntervals(found["ck"])
+        ```
+
  
 ### Passing in a list of kernels
 

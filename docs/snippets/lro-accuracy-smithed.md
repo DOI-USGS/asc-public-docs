@@ -1,6 +1,6 @@
 ??? warning "LRO Coordinate Accuracy and Smithed Kernel Availability"
 
-    In 2018, the Miniature Inertial Measurement Unit (MIMU) was turned off. 
+    In 2018, the LRO's Miniature Inertial Measurement Unit (MIMU) was turned off. 
     The lack of MIMU data can affect accuracy. 
     For the most accurate coordinates, use LRO images from before the 2018 MIMU shutoff. 
     See [Where Is That Crater? Best Practices for Obtaining Accurate Coordinates from LROC NAC Data](https://iopscience.iop.org/article/10.3847/PSJ/ad54c6).

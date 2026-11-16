@@ -30,6 +30,8 @@ Here are a couple of images with the Tycho crater:
 
 *The short-name for this mission is `lro`.*
 
+--8<-- "docs/snippets/lro-accuracy-smithed.md"
+
 ## Importing and Processing LROC WAC Images in ISIS
 
 ### Importing

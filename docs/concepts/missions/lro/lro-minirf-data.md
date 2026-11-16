@@ -6,6 +6,8 @@
 
 *The short-name for this mission is `lro`.*
 
+--8<-- "docs/snippets/lro-accuracy-smithed.md"
+
 ## Data Ingestion
 
 !!! example "Import image to ISIS cube with [`mrf2isis`](https://isis.astrogeology.usgs.gov/Application/presentation/Tabbed/mrf2isis/mrf2isis.html)"

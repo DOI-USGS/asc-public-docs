@@ -21,6 +21,8 @@ LRO NAC consists of two cameras (`L` and `R`); both capture image data at the sa
 
 --8<-- "docs/snippets/lro-darkfiles.md"
 
+--8<-- "docs/snippets/lro-accuracy-smithed.md"
+
 ## Importing and processing LROC NAC images in ISIS
 
 Convert each .img file to an ISIS .cub camera image, initialize the SPICE kernels, and perform radiometric calibration and echo correction.

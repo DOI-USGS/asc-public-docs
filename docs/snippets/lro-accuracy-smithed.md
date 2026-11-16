@@ -11,9 +11,9 @@
     But, for the most accurate LRO data, using images from 2018 or earlier is recommended.
 
     ```sh title="Using Smithed vs Reconstructed Kernels"
-    // This may fail:
+    // If using Smithed Kernels only fails:
     spiceinit from=<lro-recent-image.cub> SPKSMITHED=TRUE SPKRECON=FALSE 
 
-    // Use reconstructed kernels as a fallback:
+    // Use Reconstructed Kernels as a fallback:
     spiceinit from=<lro-recent-image.cub> SPKSMITHED=TRUE SPKRECON=TRUE
     ```

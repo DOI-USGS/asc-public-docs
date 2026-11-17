@@ -13,13 +13,11 @@ LRO NAC consists of two cameras (`L` and `R`); both capture image data at the sa
     and filter for EDR images, then download the left and right EDR images to your working folder: `M104318871LE.img` and `M104318871RE.img`.
     *Only one image is needed for the following example.*
 
-## Configuring Kernels
+## Configuring Kernels and Calibration Files
 
 --8<-- "docs/snippets/kernel-setup.md"
 
 *The short-name for this mission is `lro`.*
-
---8<-- "docs/snippets/lro-darkfiles.md"
 
 ## Importing and processing LROC NAC images in ISIS
 

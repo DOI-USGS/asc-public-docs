@@ -394,7 +394,7 @@ You can set the flag `useWeb` to enable SpiceQL's cloud feature without having t
     === "C++"
 
         ```c++
-        SpiceQL::doubleSclkToEt(-74, "1321396563:036", "ctx", true, true)
+        SpiceQL::doubleSclkToEt(-85, "922997380.174174", "lro", true, true)
         ```
 
     <h3>Responses</h3>

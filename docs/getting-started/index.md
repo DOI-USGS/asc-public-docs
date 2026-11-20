@@ -64,6 +64,15 @@ The CSM (Community Sensor Model) Stack is a collection of apps ([ALE](https://gi
     - [Sensor Models](../concepts/sensor-models/sensor-models.md)
     - [USGS Software](../concepts/sensor-models/sensor-model-software.md)
 
+-   :simple-webassembly:{ .lg .middle } __Use in Websites__
+
+    ---
+
+    Integrate CSM software into your website with WebAssembly Bindings.
+
+    [:octicons-arrow-right-24: USGSCSM](../getting-started/csm-stack/usgscsm-wasm-bindings.md)&emsp;
+    [:octicons-arrow-right-24: Demo](../how-to-guides/demos/usgscsm.wasm)  
+    [:octicons-arrow-right-24: SpiceQL](../getting-started/using-spiceql/spiceql-wasm.md) 
 
 </div>
 
@@ -79,7 +88,7 @@ SpiceQL is a library for indexing and querying information from spacecraft SPICE
 
     Get positional data for the Cassini Spacecraft.
 
-    [:octicons-arrow-right-24: Make a simple query](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+    [:octicons-arrow-right-24: Make a simple query](../getting-started/using-spiceql/spiceql-cassini-tutorial.ipynb)
 
 -   :material-list-box:{ .lg .middle } __SpiceQL API__
 
@@ -87,7 +96,7 @@ SpiceQL is a library for indexing and querying information from spacecraft SPICE
 
     Examples and basics of the REST, Python, and C++ APIs for SpiceQL.
 
-    [:octicons-arrow-right-24: Explore the API](../how-to-guides/environment-setup-and-maintenance/installing-isis-via-anaconda.md)
+    [:octicons-arrow-right-24: Explore the API](../getting-started/using-spiceql/exploring-spiceqls-rest-python-and-cpp-apis.md)
 
 
 </div>

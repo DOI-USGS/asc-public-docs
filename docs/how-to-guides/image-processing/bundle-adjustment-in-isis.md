@@ -319,8 +319,100 @@ If you chose option 2 (csminit) for step 2, then you must also choose this optio
 
 !!! Warning "Velocity and Acceleration Parameters are not available for frame cameras."
 
+#### Finding Available CSM Parameters
 
-An example of a jigsaw run using `csminit`-ed images is as follows:
+The parameter names listed in the table above are specific to the USGS CSM plugin. Different CSM plugins may have completely different parameter names. To find which parameters are available for your specific sensor:
+
+**Step 1:** After running `csminit`, check your cube label:
+```console
+catlab from=your_cube.cub | grep -A 20 "Group = CsmInfo"
+```
+
+**Step 2:** Look for the `ModelParameterNames` keyword in the output:
+```text
+Group = CsmInfo
+  CSMPlatformID       = Mars_Reconnaissance_Orbiter
+  CSMInstrumentId     = "CONTEXT CAMERA"
+  ReferenceTime       = 2014-05-21T15:48:56Z
+  ModelParameterNames = ("IT Pos. Bias   ", "CT Pos. Bias   ",
+                          "Rad Pos. Bias  ", "Omega Bias     ",
+                          "Phi Bias       ", "Kappa Bias     ", ...)
+  ModelParameterUnits = (m, m, m, m, m, m, ...)
+  ModelParameterTypes = (REAL, REAL, REAL, REAL, REAL, REAL, ...)
+End_Group
+```
+
+**Step 3:** Use the exact parameter names from `ModelParameterNames` in your `csmsolvelist`.
+
+!!! Note "Plugin-Specific Parameters"
+    The parameter names and their availability depend entirely on which CSM plugin was used to initialize your cube. Always check the CsmInfo group in your cube label to see which parameters are available.
+
+#### Working with Array Parameters
+
+Some CSM models include array parameters that represent multiple related values, such as optical distortion coefficients or principal point offsets. These may appear in your cube label in one of two ways:
+
+**Single Array Parameter Name:**
+
+If your `ModelParameterNames` shows a single parameter name that represents multiple values:
+```text
+ModelParameterNames = ("opticalDistCoeff", "principalPoint", "focalLength")
+```
+
+To adjust this parameter, specify the array name once:
+```console
+csmsolvelist="(opticalDistCoeff)"
+```
+
+This will adjust **all values** within that array parameter. You cannot selectively adjust individual array elements when they are represented by a single parameter name.
+
+**Individual Array Element Names:**
+
+If your `ModelParameterNames` lists each array element separately:
+```text
+ModelParameterNames = ("distCoeff_k0", "distCoeff_k1", "distCoeff_k2", "distCoeff_k3")
+```
+
+You can selectively adjust specific elements:
+```console
+# Adjust only the first two coefficients:
+csmsolvelist="(distCoeff_k0, distCoeff_k1)"
+
+# Or adjust all coefficients:
+csmsolvelist="(distCoeff_k0, distCoeff_k1, distCoeff_k2, distCoeff_k3)"
+```
+
+!!! Tip "Finding Your Parameter Names"
+    If your CSM plugin has array parameters (like distortion coefficients), replace the parameter names in the examples below with those from your CsmInfo group. First check: `catlab from=your_cube.cub | grep ModelParameterNames`
+
+**Example with specific array parameters:**
+
+If your CSM plugin has parameters named `opticalDistCoeff` or `currentParameterValue` (check your CsmInfo group to confirm):
+
+```console
+# Adjusting optical distortion coefficient array parameter
+jigsaw fromlist=cubes.lis \
+       cnet=input.net \
+       onet=output.net \
+       csmsolvelist="(opticalDistCoeff)" \
+       control_point_coordinate_type_bundle=rectangular \
+       point_x_sigma=50 \
+       point_y_sigma=50 \
+       point_z_sigma=50 \
+       radius=yes
+
+# Adjusting both opticalDistCoeff and currentParameterValue
+jigsaw fromlist=cubes.lis \
+       cnet=input.net \
+       onet=output.net \
+       csmsolvelist="(opticalDistCoeff, currentParameterValue)" \
+       control_point_coordinate_type_bundle=rectangular \
+       point_x_sigma=50 \
+       point_y_sigma=50 \
+       point_z_sigma=50 \
+       radius=yes
+```
+
+An example of a jigsaw run using `csminit`-ed images with USGS CSM parameters is as follows:
 
 ```console
 jigsaw fromlis=cubes.lis cnet=input.net onet=output.net radius=yes csmsolvelist="(Omega Bias, Phi Bias, Kappa Bias)" control_point_coordinate_type_bundle=rectangular control_point_coordinate_type_reports=rectangular point_x_sigma=50 point_y_sigma=50 point_z_sigma=50

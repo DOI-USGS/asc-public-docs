@@ -289,9 +289,13 @@ Further discussion of these results is provided in Step 7.
 
 
 #### Option 2: For images with a CSM State String
-If you chose option 2 (csminit) for step 2, then you must also choose this option for jigsaw. When using jigsaw to bundle adjust a `csminit`-ed image, the user must pass CSM-specific parameter names via the `csmsolvelist` parameter.  Allowable values and their descriptions are as follows.
+If you chose option 2 (csminit) for step 2, then you must also choose this option for jigsaw. When using jigsaw to bundle adjust a `csminit`-ed image, the user must pass CSM-specific parameter names via the `csmsolvelist` parameter.
+
+The parameter names depend on which USGSCSM sensor model was used to initialize your cube. USGSCSM provides four sensor models:
 
 !!! Note "All parameters are in meters or scaled to meters within the sensor model for the purpose of bundle adjustment."
+
+**UsgsAstroLsSensorModel** (Line Scanner) and **UsgsAstroPushFrameSensorModel** (16 parameters):
 
 | Parameter | Description | Unit |
 |---|---|---|
@@ -312,6 +316,29 @@ If you chose option 2 (csminit) for step 2, then you must also choose this optio
 | Kappa Accl      |  An angular acceleration that allows the kappa angle to vary quadratically with respect to time | m |
 | Focal Bias      |  Estimated error of the camera's focal length | m |
 
+**UsgsAstroFrameSensorModel** (Frame Camera - 7 parameters):
+
+| Parameter | Description | Unit |
+|---|---|---|
+| X Sensor Position (m) | X component of spacecraft position in body-fixed coordinates | m |
+| Y Sensor Position (m) | Y component of spacecraft position in body-fixed coordinates | m |
+| Z Sensor Position (m) | Z component of spacecraft position in body-fixed coordinates | m |
+| w | Quaternion w component for camera rotation | - |
+| v1 | Quaternion v1 component for camera rotation | - |
+| v2 | Quaternion v2 component for camera rotation | - |
+| v3 | Quaternion v3 component for camera rotation | - |
+
+**UsgsAstroSarSensorModel** (SAR - 6 parameters):
+
+| Parameter | Description | Unit |
+|---|---|---|
+| X Pos. Bias | X position bias in body-fixed coordinates | m |
+| Y Pos. Bias | Y position bias in body-fixed coordinates | m |
+| Z Pos. Bias | Z position bias in body-fixed coordinates | m |
+| X Vel. Bias | X velocity bias in body-fixed coordinates | m/s |
+| Y Vel. Bias | Y velocity bias in body-fixed coordinates | m/s |
+| Z Vel. Bias | Z velocity bias in body-fixed coordinates | m/s |
+
 !!! Tip "Parameter Correlations"
     Some parameters are highly correlated with respect to their effects on the bundle solution, and it is not necessary to solve for all parameters within the same bundle adjust process.  
     
@@ -319,8 +346,35 @@ If you chose option 2 (csminit) for step 2, then you must also choose this optio
 
 !!! Warning "Velocity and Acceleration Parameters are not available for frame cameras."
 
+#### Finding Available CSM Parameters
 
-An example of a jigsaw run using `csminit`-ed images is as follows:
+The parameter names listed in the table above are specific to the USGS CSM plugin. Different CSM plugins may have completely different parameter names. To find which parameters are available for your specific sensor:
+
+**Step 1:** After running `csminit`, check your cube label:
+```console
+catlab from=your_cube.cub | grep -A 20 "Group = CsmInfo"
+```
+
+**Step 2:** Look for the `ModelParameterNames` keyword in the output:
+```text
+Group = CsmInfo
+  CSMPlatformID       = Mars_Reconnaissance_Orbiter
+  CSMInstrumentId     = "CONTEXT CAMERA"
+  ReferenceTime       = 2014-05-21T15:48:56Z
+  ModelParameterNames = ("IT Pos. Bias   ", "CT Pos. Bias   ",
+                          "Rad Pos. Bias  ", "Omega Bias     ",
+                          "Phi Bias       ", "Kappa Bias     ", ...)
+  ModelParameterUnits = (m, m, m, m, m, m, ...)
+  ModelParameterTypes = (REAL, REAL, REAL, REAL, REAL, REAL, ...)
+End_Group
+```
+
+**Step 3:** Use the exact parameter names from `ModelParameterNames` in your `csmsolvelist`.
+
+!!! Note "Using Non-USGSCSM Plugins"
+    If you are using a CSM plugin other than USGSCSM, the parameter names may be completely different. Always check the CsmInfo group in your cube label to see which parameters are available, and consult your CSM plugin's documentation for parameter descriptions.
+
+An example of a jigsaw run using `csminit`-ed images with USGSCSM parameters is as follows:
 
 ```console
 jigsaw fromlis=cubes.lis cnet=input.net onet=output.net radius=yes csmsolvelist="(Omega Bias, Phi Bias, Kappa Bias)" control_point_coordinate_type_bundle=rectangular control_point_coordinate_type_reports=rectangular point_x_sigma=50 point_y_sigma=50 point_z_sigma=50
